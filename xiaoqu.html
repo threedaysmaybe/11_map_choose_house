@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>小区档案</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: -apple-system, "Microsoft YaHei", sans-serif; background: #1b1e24; color: #e8e9ec; padding: 24px; line-height: 1.7; }
+  .wrap { max-width: 960px; margin: 0 auto; }
+  h1 { font-size: 26px; color: #fff; }
+  .sub { color: #a9adb8; font-size: 14px; margin-bottom: 20px; }
+  .card { background: #262a32; border-radius: 12px; padding: 20px; margin-bottom: 16px; }
+  .card h2 { font-size: 16px; color: #7ec8e3; margin-bottom: 12px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 8px; }
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  td { padding: 6px 10px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+  td:first-child { color: #8a8d94; width: 100px; }
+  .price { color: #f0c060; font-size: 22px; font-weight: bold; }
+  .metro-recent { color: #7ec8e3; font-size: 15px; font-weight: bold; }
+  .deal td { color: #a9adb8; }
+  .house { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.06); flex-wrap: wrap; }
+  .house img { width: 160px; height: 120px; object-fit: cover; border-radius: 8px; flex-shrink: 0; }
+  .house { overflow-x: auto; }
+  .gallery { display: flex; overflow-x: auto; gap: 12px; padding-bottom: 8px; }
+  .gallery img { width: 200px; height: 150px; object-fit: cover; border-radius: 8px; cursor: pointer; flex-shrink: 0; }
+  .gallery img:hover { opacity: 0.85; }
+  .gallery::-webkit-scrollbar, .house::-webkit-scrollbar { height: 8px; }
+  .gallery::-webkit-scrollbar-thumb, .house::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
+  .back { display: inline-block; margin-bottom: 16px; color: #4fc3f7; text-decoration: none; font-size: 14px; }
+  .tag { display: inline-block; background: rgba(255,255,255,0.1); border-radius: 4px; padding: 1px 8px; font-size: 12px; margin-right: 6px; color: #c9ccd3; }
+  .card img { cursor: zoom-in; }
+  #lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 9999; cursor: grab; overflow: hidden; }
+  #lightbox img { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); max-width: 92vw; max-height: 92vh; user-select: none; -webkit-user-drag: none; }
+  #lightbox img:active { cursor: grabbing; }
+  #lightbox .lb-hint { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: #c9ccd3; font-size: 12px; pointer-events: none; }
+  #lightbox .lb-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 60px; line-height: 60px; text-align: center; font-size: 34px; color: #fff; background: rgba(255,255,255,0.1); border-radius: 6px; cursor: pointer; user-select: none; z-index: 10; }
+  #lightbox .lb-arrow:hover { background: rgba(255,255,255,0.25); }
+  #lightbox #lbPrev { left: 16px; }
+  #lightbox #lbNext { right: 16px; }
+  #lightbox .lb-count { position: absolute; top: 16px; left: 50%; transform: translateX(-50%); color: #c9ccd3; font-size: 13px; }
+</style>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#10131a">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="选房报告">
+<link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="index.html">← 返回数据版</a>
+  <select id="xqSelect" style="width:100%;padding:11px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:#262a32;color:#fff;font-size:16px;margin:0 0 18px;outline:none">
+    <option value="" style="color:#333">📂 选择小区查看报告…</option>
+  </select>
+  <h1 id="xqName">小区报告</h1>
+  <div class="sub" id="xqSub"></div>
+  <div id="content"></div>
+</div>
+<div id="lightbox"><img id="lightboxImg" src="" alt=""><div id="lbPrev" class="lb-arrow">‹</div><div id="lbNext" class="lb-arrow">›</div><div class="lb-count" id="lbCount"></div><div class="lb-hint">滚轮缩放 · 按住拖动 · 单击关闭</div></div>
+<script>
+  let curName = new URLSearchParams(location.search).get('name') || '';
+  document.title = '小区报告';
+
+  // 加载小区列表（读静态文件，兼容 GitHub Pages 静态部署）
+  async function loadList() {
+    try {
+      const r = await fetch('data/ke_xiaoqu/xiaoqu_list.json');
+      const d = await r.json();
+      const list = (d.files || []).slice().sort((a, b) => (a.board || '').localeCompare(b.board || '') || (a.name || '').localeCompare(b.name || ''));
+      const sel = document.getElementById('xqSelect');
+      sel.innerHTML = '<option value="" style="color:#333">📂 选择小区查看报告…</option>' + list.map(x => `<option value="${x.name}">${x.name}${x.board ? '（' + x.board + '）' : ''}</option>`).join('');
+      if (curName && list.some(x => x.name === curName)) sel.value = curName;
+    } catch (e) {}
+  }
+
+  async function load(n) {
+    if (!n) { document.getElementById('content').innerHTML = '<div class="card">请在上方选择小区查看报告</div>'; document.getElementById('xqName').textContent = '小区报告'; document.getElementById('xqSub').textContent = ''; return; }
+    const r = await fetch('data/ke_xiaoqu/' + encodeURIComponent(n) + '.json');
+    const d = await r.json();
+    const info = d.info || {};
+    document.getElementById('xqName').textContent = d.name || n;
+    document.getElementById('xqSub').textContent = '抓取时间：' + (d.updatedAt || '').slice(0, 10);
+
+    let html = '';
+    // 概览
+    html += `<div class="card"><h2>小区概览</h2><div class="price">${d.price || '?'} 元/㎡</div>`;
+    if (d.note) html += `<div style="font-weight:bold;color:#ffe082;margin:10px 0;padding:8px 10px;background:rgba(255,224,130,0.12);border-left:3px solid #ffe082;border-radius:4px">📝 备注：${d.note}</div>`;
+    const rows = [['建筑类型', info['建筑类型']], ['楼栋总数', info['楼栋总数']], ['房屋总数', info['房屋总数']], ['容积率', info['容积率']], ['绿化率', info['绿化率']], ['建成年代', info['建成年代']], ['交易权属', info['交易权属']], ['房屋性质', info['房屋性质']], ['停车费', info['停车费']], ['物业费', info['物业费']], ['开发商', info['开发商']]];
+    html += '<table>' + rows.filter(([, v]) => v).map(([k, v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join('') + '</table></div>';
+
+    // 地铁
+    if (d.metro && d.metro.length) {
+      const sorted = d.metro.slice().sort((a, b) => parseInt(a.distance) - parseInt(b.distance));
+      html += `<div class="card"><h2>附近地铁</h2><div class="metro-recent">最近：${sorted[0].name} ${sorted[0].distance}（${sorted[0].lines}）</div>`;
+      html += '<table>' + sorted.map(m => `<tr><td>${m.name}</td><td>${m.distance}</td><td>${m.lines}</td></tr>`).join('') + '</table></div>';
+    }
+
+    // 成交
+    if (d.deals && d.deals.length) {
+      html += `<div class="card"><h2>最近成交</h2><table><tr><td>面积</td><td>签约日期</td><td>成交价</td><td>成交单价</td></tr>`;
+      html += d.deals.map(x => `<tr class="deal"><td>${x.面积}</td><td>${x.签约日期}</td><td>${x.成交价}</td><td>${x.成交单价}</td></tr>`).join('');
+      html += '</table></div>';
+    }
+
+    // 房源（含户型图）
+    if (d.houses && d.houses.length) {
+      html += `<div class="card"><h2>在售房源（${d.houses.length} 套）</h2>`;
+      d.houses.forEach(h => {
+        html += `<div class="house">`;
+        if (h.localImages && h.localImages.length) html += h.localImages.map(img => `<img src="data/ke_xiaoqu/images/${encodeURIComponent(d.name || n)}/${img}">`).join('');
+        html += `<div><div style="color:#fff;font-weight:bold">${h.room || '?'} ${h.area || '?'}㎡</div><div>总价 ${h.totalPrice || '?'}万 · ${h.unitPrice || '?'}元/平</div><div><span class="tag">${h.orientation || '朝向?'}</span><span class="tag">${h.floor || '?'}楼层</span></div></div></div>`;
+      });
+      html += '</div>';
+    }
+
+    // 小区图片
+    if (d.localImages && d.localImages.length) {
+      html += `<div class="card"><h2>小区实景（${d.localImages.length} 张）</h2><div class="gallery">`;
+      html += d.localImages.map(img => `<img src="data/ke_xiaoqu/images/${encodeURIComponent(d.name || n)}/${img}" loading="lazy">`).join('');
+      html += '</div></div>';
+    }
+
+    document.getElementById('content').innerHTML = html;
+  }
+  document.getElementById('xqSelect').addEventListener('change', e => {
+    const n = e.target.value;
+    if (!n) { load(''); return; }
+    history.replaceState(null, '', '?name=' + encodeURIComponent(n));
+    load(n);
+  });
+  loadList();
+  load(curName).catch(e => document.getElementById('content').innerHTML = '<div class="card">加载失败：' + e.message + '</div>');
+
+  // ---- 图片灯箱：点击放大 + 滚轮缩放 + 按住拖动 + 单击关闭 ----
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightboxImg');
+  let st = { scale: 1, tx: 0, ty: 0, dragging: false, moved: false, sx: 0, sy: 0, startTx: 0, startTy: 0 };
+  function apply() {
+    lbImg.style.transform = `translate(calc(-50% + ${st.tx}px), calc(-50% + ${st.ty}px)) scale(${st.scale})`;
+  }
+  let lbSrcs = [], lbIndex = 0;
+  function showImage() {
+    lbImg.src = lbSrcs[lbIndex];
+    st = { scale: 1, tx: 0, ty: 0, dragging: false, moved: false, sx: 0, sy: 0, startTx: 0, startTy: 0 };
+    apply();
+    document.getElementById('lbCount').textContent = (lbIndex + 1) + ' / ' + lbSrcs.length;
+    document.getElementById('lbPrev').style.display = lbIndex > 0 ? 'block' : 'none';
+    document.getElementById('lbNext').style.display = lbIndex < lbSrcs.length - 1 ? 'block' : 'none';
+  }
+  function openLightbox(srcs, index) {
+    lbSrcs = srcs || []; lbIndex = index || 0;
+    showImage();
+    lb.style.display = 'block';
+  }
+  function closeLightbox() { lb.style.display = 'none'; }
+  function lbPrev() { if (lbIndex > 0) { lbIndex--; showImage(); } }
+  function lbNext() { if (lbIndex < lbSrcs.length - 1) { lbIndex++; showImage(); } }
+  document.getElementById('lbPrev').addEventListener('click', e => { e.stopPropagation(); lbPrev(); });
+  document.getElementById('lbNext').addEventListener('click', e => { e.stopPropagation(); lbNext(); });
+  // 点击图片打开（事件委托：收集同组图片）
+  document.getElementById('content').addEventListener('click', e => {
+    if (e.target.tagName !== 'IMG') return;
+    const imgs = [...e.target.parentElement.querySelectorAll('img')];
+    const srcs = imgs.map(i => i.src);
+    openLightbox(srcs, srcs.indexOf(e.target.src));
+  });
+  // 滚轮缩放
+  lb.addEventListener('wheel', e => {
+    e.preventDefault();
+    st.scale *= (e.deltaY < 0 ? 1.12 : 0.89);
+    st.scale = Math.max(0.4, Math.min(6, st.scale));
+    apply();
+  }, { passive: false });
+  // 按住拖动
+  lbImg.addEventListener('mousedown', e => {
+    st.dragging = true; st.moved = false;
+    st.sx = e.clientX; st.sy = e.clientY;
+    st.startTx = st.tx; st.startTy = st.ty;
+    e.preventDefault();
+  });
+  window.addEventListener('mousemove', e => {
+    if (!st.dragging) return;
+    const dx = e.clientX - st.sx, dy = e.clientY - st.sy;
+    if (Math.abs(dx) + Math.abs(dy) > 3) st.moved = true;
+    st.tx = st.startTx + dx; st.ty = st.startTy + dy;
+    apply();
+  });
+  window.addEventListener('mouseup', () => { st.dragging = false; });
+  // 单击关闭（纯点击，非拖拽）
+  lb.addEventListener('click', e => {
+    if (e.target !== lbImg && !st.moved) closeLightbox();
+  });
+  lbImg.addEventListener('click', e => {
+    if (!st.moved) closeLightbox();
+    else st.moved = false;
+  });
+  // Esc 关闭
+  window.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+    else if (e.key === 'ArrowLeft') lbPrev();
+    else if (e.key === 'ArrowRight') lbNext();
+  });
+</script>
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js').catch(() => {}); });
+  }
+</script>
+</body>
+</html>

@@ -1,0 +1,156 @@
+{
+  "name": "启明公寓",
+  "price": "18334",
+  "board": "合江亭",
+  "info": {
+    "建筑类型": "塔板结合",
+    "房屋总数": "468户",
+    "楼栋总数": "3栋",
+    "绿化率": "25%",
+    "容积率": "2",
+    "交易权属": "商品房/已购公房",
+    "建成年代": "1990-2003年",
+    "供暖类型": "自采暖",
+    "用水类型": "商水/民水",
+    "用电类型": "商电/民电",
+    "物业费": "1.6元/平米/月",
+    "开发商": "中国电力建设集团房地产（成都）有限公司"
+  },
+  "metro": [
+    {
+      "name": "东门大桥",
+      "distance": "95米",
+      "lines": "地铁2号"
+    },
+    {
+      "name": "牛王庙",
+      "distance": "907米",
+      "lines": "地铁2号"
+    },
+    {
+      "name": "春熙路",
+      "distance": "1033米",
+      "lines": "地铁2号"
+    },
+    {
+      "name": "九眼桥",
+      "distance": "1231米",
+      "lines": "地铁13号"
+    },
+    {
+      "name": "玉双路",
+      "distance": "1419米",
+      "lines": "地铁4号"
+    },
+    {
+      "name": "新南门",
+      "distance": "1419米",
+      "lines": "地铁13号"
+    },
+    {
+      "name": "市二医院",
+      "distance": "1522米",
+      "lines": "地铁3号"
+    },
+    {
+      "name": "顺江路",
+      "distance": "1879米",
+      "lines": "地铁6号"
+    },
+    {
+      "name": "磨子桥",
+      "distance": "1945米",
+      "lines": "地铁3号"
+    }
+  ],
+  "deals": [
+    {
+      "建成年份": "暂无信息",
+      "面积": "136平米",
+      "签约日期": "2025-10-11",
+      "成交价": "232.5万",
+      "成交单价": "17096元/平"
+    },
+    {
+      "建成年份": "2000年",
+      "面积": "179平米",
+      "签约日期": "2025-05-12",
+      "成交价": "325万",
+      "成交单价": "18157元/平"
+    },
+    {
+      "建成年份": "2000年",
+      "面积": "134平米",
+      "签约日期": "2024-12-07",
+      "成交价": "226万",
+      "成交单价": "16866元/平"
+    }
+  ],
+  "images": [
+    "https://ke-image.ljcdn.com/hdic-resblock/21af227b-f0d7-446a-9b90-44095223fa1e.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/bee4dea3-f076-487b-83d2-0ea33dd16831.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/fb173cd4-d379-49dc-a8e6-f2deabbad46f.jpg.710x400.jpg"
+  ],
+  "updatedAt": "2026-08-24T18:05:25.339Z",
+  "localImages": [
+    "1787584434891-0-eyh0.jpg",
+    "1787584434903-1-n947.jpg",
+    "1787584434918-2-1d43.jpg",
+    "1787584476156-0-liyi.jpg",
+    "1787584476170-1-h7tv.jpg",
+    "1787584476188-2-gg5l.jpg",
+    "1787594725350-0-517m.jpg",
+    "1787594725361-1-s2w9.jpg",
+    "1787594725381-2-bq83.jpg"
+  ],
+  "houses": [
+    {
+      "title": "成都锦江合江亭启明公寓 3室1厅 西南",
+      "room": "3室1厅",
+      "area": "138",
+      "totalPrice": "238",
+      "unitPrice": "17247",
+      "floor": "高",
+      "orientation": "西南",
+      "community": "启明公寓",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/pc1_4SsLlfHpx.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_vIdSefpn7.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/apc_mSs0tueec_1.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_42c4c06f-a1c4-414a-baec-eb42cc82dfb7.png!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/apc_5KfkgNO3F_1.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/apc_7KlGOEjZQ_1.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/apc_mSs0tueec_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/apc_5KfkgNO3F_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "localImages": [
+        "1787594725102-0-7754.jpg",
+        "1787594725104-1-3vfg.jpg",
+        "1787594725106-2-sywq.jpg",
+        "1787594725303-3-o6u7.png",
+        "1787594725307-4-wbso.jpg",
+        "1787594725309-5-g6ih.jpg",
+        "1787594725321-6-j2kg.jpg",
+        "1787594725332-7-1zd6.jpg"
+      ],
+      "totalFloors": "26",
+      "features": [
+        "单位房",
+        "满五",
+        "户型方正",
+        "停车费60元/月",
+        "电梯"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106122050589.html",
+      "houseCode": "106122050589"
+    }
+  ],
+  "note": "省电力局单位房 · 户型方正 · 停车费60元/月 · 居住成本低 · 满五",
+  "features": [
+    "单位房",
+    "满五",
+    "户型方正",
+    "停车费60元/月",
+    "电梯"
+  ]
+}

@@ -1,0 +1,233 @@
+{
+  "name": "紫东苑",
+  "price": "16238",
+  "board": "合江亭",
+  "info": {
+    "建筑类型": "塔楼/板楼/塔板结合",
+    "房屋总数": "373户",
+    "楼栋总数": "5栋",
+    "绿化率": "35%",
+    "容积率": "3.5",
+    "交易权属": "商品房",
+    "建成年代": "2000-2009年",
+    "供暖类型": "自采暖",
+    "用水类型": "商水/民水",
+    "用电类型": "商电/民电",
+    "物业费": "0.8至1.35元/平米/月",
+    "开发商": "无开发商",
+    "房屋性质": "单位房"
+  },
+  "metro": [
+    {
+      "name": "东门大桥",
+      "distance": "384米",
+      "lines": "地铁2号"
+    },
+    {
+      "name": "牛王庙",
+      "distance": "464米",
+      "lines": "地铁2号"
+    },
+    {
+      "name": "九眼桥",
+      "distance": "901米",
+      "lines": "地铁13号"
+    },
+    {
+      "name": "玉双路",
+      "distance": "1378米",
+      "lines": "地铁4号"
+    },
+    {
+      "name": "顺江路",
+      "distance": "1454米",
+      "lines": "地铁6号"
+    },
+    {
+      "name": "春熙路",
+      "distance": "1485米",
+      "lines": "地铁2号"
+    },
+    {
+      "name": "新南门",
+      "distance": "1607米",
+      "lines": "地铁13号"
+    },
+    {
+      "name": "磨子桥",
+      "distance": "1931米",
+      "lines": "地铁3号"
+    },
+    {
+      "name": "市二医院",
+      "distance": "1937米",
+      "lines": "地铁3号"
+    }
+  ],
+  "deals": [
+    {
+      "建成年份": "暂无信息",
+      "面积": "79.4平米",
+      "签约日期": "2026-07-03",
+      "成交价": "132万",
+      "成交单价": "16625元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "79.4平米",
+      "签约日期": "2026-03-19",
+      "成交价": "133.6万",
+      "成交单价": "16827元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "113.52平米",
+      "签约日期": "2026-03-14",
+      "成交价": "190万",
+      "成交单价": "16738元/平"
+    }
+  ],
+  "images": [
+    "https://ke-image.ljcdn.com/hdic-resblock/88b74d33-5a6f-4c42-9d9a-78d41a8e016e.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/64110752-6060-4398-9f0a-dac24e7d166d.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/e67075ae-113a-4228-9b40-cd5b2d43e8a6.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/75651286-8e71-4ab3-b1bf-854012ee213c.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/8b13e7c1-ef5b-4065-a4ba-e9e84093b940.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/9fceea4c-d703-47ad-baea-7a9a1b8d637a.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/aacd1f60-1dc8-423f-ba40-cdcacb19f374.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/fea1cfb2-1bf4-4568-a852-a90c0c2b136e.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/5ab3756c-3f37-4c83-ab68-91e8fada9fe2.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/44ea140b-89d6-4cf1-a4fe-93f867bce99e.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/48f50de5-e65d-4f6b-9e21-b297eedc54e5.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/0885c7a0-7101-4317-9f46-ca845ef3d74e.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/d0d8196d-4ae1-4dc2-b034-7797d81d504d.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/78d39fe4-7138-4130-8ed8-7e467dc1f07f.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/b6f94ed0-3af2-4bb9-b34c-e1f90a47e356.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/84ea378b-c222-4628-8826-fa133b545010.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/01ba5b02-858b-4e1e-a768-53d3be523789.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/ffe39469-aea0-431b-8693-c033b698a565.jpg.710x400.jpg"
+  ],
+  "updatedAt": "2026-08-24T18:09:40.076Z",
+  "localImages": [
+    "1787509095602-0-fbev.jpg",
+    "1787509095691-1-yps7.JPG",
+    "1787509095727-2-eb0c.jpg",
+    "1787509095752-3-mjvv.JPG",
+    "1787509095782-4-mhj6.jpg",
+    "1787509095829-5-br1z.jpg",
+    "1787509095859-6-57lx.jpg",
+    "1787509095890-7-8p82.jpg",
+    "1787509095927-8-hcmm.jpg",
+    "1787509096013-9-aohr.jpg",
+    "1787509096054-10-u4ph.jpg",
+    "1787509096386-11-x685.JPG",
+    "1787509096435-12-wr91.jpg",
+    "1787509096475-13-e1om.jpg",
+    "1787509096506-14-ki80.jpg",
+    "1787509096529-15-hney.jpg",
+    "1787509096837-16-ky53.jpg",
+    "1787509097289-17-erk9.jpg",
+    "1787594980096-0-5h3q.jpg",
+    "1787594980110-1-qubf.JPG",
+    "1787594980123-2-dwbt.jpg",
+    "1787594980136-3-wzrh.JPG",
+    "1787594980153-4-mzbc.jpg",
+    "1787594980174-5-62ch.jpg",
+    "1787594980187-6-18xl.jpg",
+    "1787594980204-7-iy0x.jpg",
+    "1787594980226-8-hvxz.jpg",
+    "1787594980239-9-ek52.jpg",
+    "1787594980258-10-2eh8.jpg",
+    "1787594980271-11-zkaq.JPG",
+    "1787594980288-12-wamk.jpg",
+    "1787594980297-13-uj64.jpg",
+    "1787594980309-14-wdb7.jpg",
+    "1787594980316-15-lwtp.jpg",
+    "1787594980325-16-2tqo.jpg",
+    "1787594980340-17-xy3b.jpg"
+  ],
+  "houses": [
+    {
+      "title": "成都锦江合江亭紫东苑 4室2厅 西",
+      "room": "4室2厅",
+      "area": "167.56",
+      "totalPrice": "240",
+      "unitPrice": "14324",
+      "floor": "低",
+      "orientation": "西",
+      "community": "紫东苑",
+      "images": [
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1780115951689.jpeg!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17801159600_FfBF1xCEr.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17801159600_bd187kBQe.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1780115951689.jpeg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17801159600_r0Pp6wUv7.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17801159600_yofkVISAH.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17801159600_0VwZvbJKB.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17801159600_wv37tem0y.jpg!m_fill,w_120,h_80,f_jpg"
+      ],
+      "localImages": [
+        "1787594980602-0-284y.jpeg",
+        "1787594980604-1-zj9j.jpg",
+        "1787594980606-2-7a6e.jpg",
+        "1787594980609-3-ovgs.jpeg",
+        "1787594980611-4-9e31.jpg",
+        "1787594980613-5-qz34.jpg",
+        "1787594980615-6-lv7f.jpg",
+        "1787594980618-7-10fu.jpg"
+      ],
+      "totalFloors": "25",
+      "features": [
+        "单位房",
+        "户型方正",
+        "电梯"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106127814209.html",
+      "houseCode": "106127814209"
+    },
+    {
+      "title": "成都锦江合江亭紫东苑 3室2厅 西南",
+      "room": "3室2厅",
+      "area": "130.06",
+      "totalPrice": "218",
+      "unitPrice": "16762",
+      "floor": "中",
+      "orientation": "西南",
+      "community": "紫东苑",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/17744458560_7JWwgc3BT.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17744458840_vY9zplPki.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1774445860468.jpeg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17744458560_VSSfQUSWL.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17744458560_BURrZndIL.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17744458560_FJi9ZBSdX.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17744458560_LmFnLRcj0.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17744458560_dm8YhzqOy.jpg!m_fill,w_120,h_80,f_jpg"
+      ],
+      "localImages": [
+        "1787594980351-0-4330.jpg",
+        "1787594980353-1-s7sz.jpg",
+        "1787594980355-2-oh2e.jpeg",
+        "1787594980357-3-wh4u.jpg",
+        "1787594980360-4-t4jh.jpg",
+        "1787594980362-5-pp7d.jpg",
+        "1787594980364-6-dtu8.jpg",
+        "1787594980587-7-23uw.jpg"
+      ],
+      "totalFloors": "7",
+      "features": [
+        "单位房",
+        "满五",
+        "电梯"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106126882289.html",
+      "houseCode": "106126882289"
+    }
+  ],
+  "features": [
+    "单位房",
+    "满五",
+    "电梯",
+    "户型方正"
+  ]
+}
