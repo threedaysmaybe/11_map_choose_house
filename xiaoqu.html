@@ -45,6 +45,12 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="选房报告">
 <link rel="apple-touch-icon" href="icon-192.png">
+<link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<style>
+  #xqMap { height: 240px; border-radius: 12px; overflow: hidden; margin-bottom: 16px; border: 1px solid rgba(255,255,255,0.1); }
+  #xqMap .marker-pin { width: 22px; height: 22px; background: #ff5a5f; border: 3px solid #fff; border-radius: 50%; box-shadow: 0 0 0 3px rgba(255,90,95,0.35); }
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -52,6 +58,7 @@
   <select id="xqSelect" style="width:100%;padding:11px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:#262a32;color:#fff;font-size:16px;margin:0 0 18px;outline:none">
     <option value="" style="color:#333">📂 选择小区查看报告…</option>
   </select>
+  <div id="xqMap"></div>
   <h1 id="xqName">小区报告</h1>
   <div class="sub" id="xqSub"></div>
   <div id="content"></div>
@@ -61,16 +68,52 @@
   let curName = new URLSearchParams(location.search).get('name') || '';
   document.title = '小区报告';
 
+  let xiaoquCoords = [];
   // 加载小区列表（读静态文件，兼容 GitHub Pages 静态部署）
   async function loadList() {
     try {
       const r = await fetch('data/ke_xiaoqu/xiaoqu_list.json');
       const d = await r.json();
       const list = (d.files || []).slice().sort((a, b) => (a.board || '').localeCompare(b.board || '') || (a.name || '').localeCompare(b.name || ''));
+      xiaoquCoords = list;
       const sel = document.getElementById('xqSelect');
       sel.innerHTML = '<option value="" style="color:#333">📂 选择小区查看报告…</option>' + list.map(x => `<option value="${x.name}">${x.name}${x.board ? '（' + x.board + '）' : ''}</option>`).join('');
       if (curName && list.some(x => x.name === curName)) sel.value = curName;
     } catch (e) {}
+  }
+
+  // ---- 2D 地图：定位小区在成都的位置 ----
+  let xqMap = null, xqMarker = null;
+  function initMap() {
+    if (xqMap || !window.maplibregl) return;
+    xqMap = new maplibregl.Map({
+      container: 'xqMap',
+      style: {
+        version: 8,
+        sources: {
+          osm: { type: 'raster', tiles: ['https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png'], tileSize: 256, attribution: '© OpenStreetMap © CARTO' }
+        },
+        layers: [{ id: 'osm', type: 'raster', source: 'osm' }]
+      },
+      center: [104.066, 30.66],
+      zoom: 11,
+      attributionControl: { compact: true }
+    });
+  }
+  function focusXiaoqu(lon, lat) {
+    if (!xqMap || !lon || !lat) return;
+    if (!xqMarker) {
+      const el = document.createElement('div');
+      el.className = 'marker-pin';
+      xqMarker = new maplibregl.Marker({ element: el }).setLngLat([lon, lat]).addTo(xqMap);
+    } else {
+      xqMarker.setLngLat([lon, lat]);
+    }
+    xqMap.flyTo({ center: [lon, lat], zoom: 14 });
+  }
+  function locateByName(name) {
+    const item = xiaoquCoords.find(x => x.name === name);
+    if (item && item.lon && item.lat) focusXiaoqu(item.lon, item.lat);
   }
 
   async function load(n) {
@@ -127,8 +170,12 @@
     if (!n) { load(''); return; }
     history.replaceState(null, '', '?name=' + encodeURIComponent(n));
     load(n);
+    locateByName(n);
   });
-  loadList();
+  loadList().then(() => {
+    initMap();
+    locateByName(curName);
+  });
   load(curName).catch(e => document.getElementById('content').innerHTML = '<div class="card">加载失败：' + e.message + '</div>');
 
   // ---- 图片灯箱：点击放大 + 滚轮缩放 + 按住拖动 + 单击关闭 ----
