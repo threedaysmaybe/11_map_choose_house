@@ -1,8 +1,8 @@
 {
-  "name": "成都选房地图",
-  "short_name": "选房地图",
-  "description": "成都主城区 3D 楼栋地图 + 小区档案 + 房源筛选",
-  "start_url": "./index.html",
+  "name": "成都选房报告",
+  "short_name": "选房报告",
+  "description": "成都小区档案报告 + 房源 + 位置地图",
+  "start_url": "./xiaoqu.html",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",

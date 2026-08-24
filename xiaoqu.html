@@ -84,6 +84,17 @@
 
   // ---- 2D 地图：定位小区在成都的位置 ----
   let xqMap = null, xqMarker = null;
+  // WGS84 → GCJ02（高德瓦片是火星坐标系，小区坐标是 WGS84，需偏移）
+  function wgs2gcj(lon, lat) {
+    const a = 6378245.0, ee = 0.00669342162296594323;
+    const tlat = (x, y) => { let r = -100 + 2*x + 3*y + 0.2*y*y + 0.1*x*y + 0.2*Math.sqrt(Math.abs(x)); r += (20*Math.sin(6*x*Math.PI) + 20*Math.sin(2*x*Math.PI))*2/3; r += (20*Math.sin(y*Math.PI) + 40*Math.sin(y/3*Math.PI))*2/3; r += (160*Math.sin(y/12*Math.PI) + 320*Math.sin(y*Math.PI/30))*2/3; return r; };
+    const tlon = (x, y) => { let r = 300 + x + 2*y + 0.1*x*x + 0.1*x*y + 0.1*Math.sqrt(Math.abs(x)); r += (20*Math.sin(6*x*Math.PI) + 20*Math.sin(2*x*Math.PI))*2/3; r += (20*Math.sin(x*Math.PI) + 40*Math.sin(x/3*Math.PI))*2/3; r += (150*Math.sin(x/12*Math.PI) + 300*Math.sin(x/30*Math.PI))*2/3; return r; };
+    let dlat = tlat(lon - 105, lat - 35), dlon = tlon(lon - 105, lat - 35);
+    const rl = lat/180*Math.PI; let m = Math.sin(rl); m = 1 - ee*m*m; const sm = Math.sqrt(m);
+    dlat = dlat*180/((a*(1-ee))/(m*sm)*Math.PI);
+    dlon = dlon*180/(a/sm*Math.cos(rl)*Math.PI);
+    return [lon + dlon, lat + dlat];
+  }
   function initMap() {
     if (xqMap || !window.maplibregl) return;
     xqMap = new maplibregl.Map({
@@ -91,25 +102,26 @@
       style: {
         version: 8,
         sources: {
-          osm: { type: 'raster', tiles: ['https://basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png'], tileSize: 256, attribution: '© OpenStreetMap © CARTO' }
+          gaode: { type: 'raster', tiles: ['https://webrd01.is.autonavi.com/appmaptile?lang=zh_cn&size=1&scale=1&style=8&x={x}&y={y}&z={z}'], tileSize: 256, attribution: '© 高德地图' }
         },
-        layers: [{ id: 'osm', type: 'raster', source: 'osm' }]
+        layers: [{ id: 'gaode', type: 'raster', source: 'gaode' }]
       },
-      center: [104.066, 30.66],
+      center: wgs2gcj(104.066, 30.66),
       zoom: 11,
       attributionControl: { compact: true }
     });
   }
   function focusXiaoqu(lon, lat) {
     if (!xqMap || !lon || !lat) return;
+    const gcj = wgs2gcj(lon, lat);
     if (!xqMarker) {
       const el = document.createElement('div');
       el.className = 'marker-pin';
-      xqMarker = new maplibregl.Marker({ element: el }).setLngLat([lon, lat]).addTo(xqMap);
+      xqMarker = new maplibregl.Marker({ element: el }).setLngLat(gcj).addTo(xqMap);
     } else {
-      xqMarker.setLngLat([lon, lat]);
+      xqMarker.setLngLat(gcj);
     }
-    xqMap.flyTo({ center: [lon, lat], zoom: 14 });
+    xqMap.flyTo({ center: gcj, zoom: 14 });
   }
   function locateByName(name) {
     const item = xiaoquCoords.find(x => x.name === name);
