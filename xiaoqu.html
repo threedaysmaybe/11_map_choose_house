@@ -55,16 +55,21 @@
 <body>
 <div class="wrap">
   <a class="back" href="index.html">← 返回数据版</a>
-  <select id="boardSelect" style="width:100%;padding:11px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:#262a32;color:#fff;font-size:16px;margin:0 0 10px;outline:none">
-    <option value="" style="color:#333">📍 选择板块（全部）…</option>
-  </select>
+  <div style="display:flex;gap:8px;margin:0 0 10px">
+    <select id="districtSelect" style="flex:1;padding:11px 8px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:#262a32;color:#fff;font-size:15px;outline:none">
+      <option value="" style="color:#fff">📍 区</option>
+    </select>
+    <select id="boardSelect" style="flex:1;padding:11px 8px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:#262a32;color:#fff;font-size:15px;outline:none">
+      <option value="" style="color:#fff">🏘️ 板块</option>
+    </select>
+  </div>
   <select id="anzhiSelect" style="width:100%;padding:11px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:#262a32;color:#fff;font-size:16px;margin:0 0 10px;outline:none">
-    <option value="all" style="color:#333">🏘️ 全部小区</option>
-    <option value="no" style="color:#333">✅ 排除安置房</option>
-    <option value="only" style="color:#333">🔴 仅安置房</option>
+    <option value="all" style="color:#fff">🏘️ 全部小区</option>
+    <option value="no" style="color:#fff">✅ 排除安置房</option>
+    <option value="only" style="color:#fff">🔴 仅安置房</option>
   </select>
   <select id="xqSelect" style="width:100%;padding:11px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:#262a32;color:#fff;font-size:16px;margin:0 0 18px;outline:none">
-    <option value="" style="color:#333">📂 选择小区查看报告…</option>
+    <option value="" style="color:#fff">📂 选择小区查看报告…</option>
   </select>
   <div id="xqMap"></div>
   <h1 id="xqName">小区报告</h1>
@@ -83,29 +88,38 @@
       const r = await fetch('data/ke_xiaoqu/xiaoqu_list.json');
       const d = await r.json();
       const raw = (d.files || []).slice().sort((a, b) => (a.district || '').localeCompare(b.district || '') || (a.board || '').localeCompare(b.board || '') || (a.name || '').localeCompare(b.name || ''));
-      // 填充板块下拉（去重，按区+板块排序）
+      // 填充区下拉（去重）
+      const distSel = document.getElementById('districtSelect');
+      const districts = [...new Set(raw.map(x => x.district).filter(Boolean))].sort();
+      const curDist = distSel.value;
+      distSel.innerHTML = '<option value="" style="color:#fff">📍 区（全部）</option>' + districts.map(d => `<option value="${d}" style="color:#fff">${d}</option>`).join('');
+      if (curDist && districts.includes(curDist)) distSel.value = curDist;
+      // 填充板块下拉（当前区的板块）
       const boardSel = document.getElementById('boardSelect');
       const boards = [];
       for (const x of raw) {
         if (!x.board) continue;
-        if (!boards.some(b => b.board === x.board && b.district === x.district)) boards.push({ district: x.district, board: x.board });
+        if (distSel.value && x.district !== distSel.value) continue;
+        if (!boards.some(b => b.board === x.board)) boards.push({ board: x.board });
       }
-      boards.sort((a, b) => (a.district || '').localeCompare(b.district || '') || (a.board || '').localeCompare(b.board || ''));
+      boards.sort((a, b) => (a.board || '').localeCompare(b.board || ''));
       const curBoard = boardSel.value;
-      boardSel.innerHTML = '<option value="" style="color:#333">📍 选择板块（全部）…</option>' + boards.map(b => `<option value="${b.board}" style="color:#333">${b.district ? b.district + '·' : ''}${b.board}</option>`).join('');
+      boardSel.innerHTML = '<option value="" style="color:#fff">🏘️ 板块（全部）</option>' + boards.map(b => `<option value="${b.board}" style="color:#fff">${b.board}</option>`).join('');
       if (curBoard && boards.some(b => b.board === curBoard)) boardSel.value = curBoard;
-      // 板块过滤
+      // 两级过滤：区 + 板块
       let list = raw;
+      if (distSel.value) list = list.filter(x => x.district === distSel.value);
       if (boardSel.value) list = list.filter(x => x.board === boardSel.value);
       // 安置房过滤
       const anzhiMode = (document.getElementById('anzhiSelect') || {}).value || 'all';
       list = anzhiMode === 'no' ? list.filter(x => !x.anzhi) : anzhiMode === 'only' ? list.filter(x => x.anzhi) : list;
       xiaoquCoords = list;
       const sel = document.getElementById('xqSelect');
-      sel.innerHTML = '<option value="" style="color:#333">📂 选择小区查看报告…</option>' + list.map(x => `<option value="${x.name}">${x.anzhi ? '🔴' : ''}${x.name}${x.board ? '（' + (x.district ? x.district + '·' : '') + x.board + '）' : ''}</option>`).join('');
+      sel.innerHTML = '<option value="" style="color:#fff">📂 选择小区查看报告…</option>' + list.map(x => `<option value="${x.name}" style="color:#fff">${x.anzhi ? '🔴' : ''}${x.name}${x.board ? '（' + (x.district ? x.district + '·' : '') + x.board + '）' : ''}</option>`).join('');
       if (curName && list.some(x => x.name === curName)) sel.value = curName;
     } catch (e) {}
   }
+  document.getElementById('districtSelect').addEventListener('change', () => loadList());
   document.getElementById('boardSelect').addEventListener('change', () => loadList());
   document.getElementById('anzhiSelect').addEventListener('change', () => loadList());
 
