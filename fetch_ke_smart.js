@@ -143,6 +143,7 @@ async function grabHouseDetail(page) {
       title: title.replace(/[-_].*$/, '').trim(),
       room: grab(/(\d+室\d+厅)/),
       area: grab(/([\d.]+)平米/),
+      taoneiArea: grab(/套内面积\s*([\d.]+)/),
       totalPrice,
       unitPrice,
       floor: grab(/(低|中|高)楼层/),
