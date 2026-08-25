@@ -214,13 +214,15 @@ const server = http.createServer((req, res) => {
         for (const b of boards) boardDistrict[b.name] = b.district || '';
       } catch (e) {}
       const files = fs.existsSync(dir) ? fs.readdirSync(dir).filter(f => f.endsWith('.json') && f !== 'xiaoqu_list.json') : [];
-      // 读取每个小区的 name + board + district
+      // 读取每个小区的 name + board + district + 是否安置房
       const list = files.map(f => {
         try {
           const d = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
           const board = d.board || '';
-          return { name: d.name || f.replace(/\.json$/, ''), board, district: boardDistrict[board] || '' };
-        } catch (e) { return { name: f.replace(/\.json$/, ''), board: '', district: '' }; }
+          const quanshu = (d.info && d.info['交易权属']) || '';
+          const anzhi = /拆迁|安置|回迁/.test(quanshu);
+          return { name: d.name || f.replace(/\.json$/, ''), board, district: boardDistrict[board] || '', anzhi };
+        } catch (e) { return { name: f.replace(/\.json$/, ''), board: '', district: '', anzhi: false }; }
       });
       res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
       res.end(JSON.stringify({ ok: true, files: list }));

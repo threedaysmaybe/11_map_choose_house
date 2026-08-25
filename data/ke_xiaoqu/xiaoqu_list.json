@@ -58,6 +58,30 @@
       "count": 14
     },
     {
+      "name": "海会花园",
+      "board": "川音",
+      "district": "武侯",
+      "lon": 104.081847,
+      "lat": 30.640466,
+      "count": 3
+    },
+    {
+      "name": "红星苑",
+      "board": "川音",
+      "district": "武侯",
+      "lon": null,
+      "lat": null,
+      "count": 0
+    },
+    {
+      "name": "龙江电信公寓",
+      "board": "川音",
+      "district": "武侯",
+      "lon": null,
+      "lat": null,
+      "count": 0
+    },
+    {
       "name": "国嘉南苑一期",
       "board": "华西",
       "district": "武侯",
@@ -120,6 +144,22 @@
       "lon": 104.062108,
       "lat": 30.64746,
       "count": 11
+    },
+    {
+      "name": "盛隆街2号",
+      "board": "棕北",
+      "district": "武侯",
+      "lon": null,
+      "lat": null,
+      "count": 0
+    },
+    {
+      "name": "棕南正街6号",
+      "board": "棕北",
+      "district": "武侯",
+      "lon": null,
+      "lat": null,
+      "count": 0
     }
   ]
 }

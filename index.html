@@ -196,7 +196,8 @@
       <div style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.12)">
         <div class="title" id="xqTitle" style="font-size:13px;cursor:pointer;user-select:none">🏠 小区档案（贝壳）<span id="xqToggle" style="float:right">▸</span></div>
         <div id="xqBody" style="display:none">
-        <select id="xqSelect" style="width:100%;margin:6px 0;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:4px;color:#fff;font-size:12px;padding:4px"><option style="color:#333" value="">选择小区…</option></select>
+        <select id="anzhiSelect" style="width:100%;margin:6px 0;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:4px;color:#fff;font-size:12px;padding:4px"><option style="color:#333" value="all">全部小区</option><option style="color:#333" value="no">排除安置房</option><option style="color:#333" value="only">仅安置房</option></select>
+        <select id="xqSelect" style="width:100%;margin:0 0 6px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:4px;color:#fff;font-size:12px;padding:4px"><option style="color:#333" value="">选择小区…</option></select>
         <div id="xqDetail" style="font-size:12px;color:#e8e9ec;line-height:1.8"></div>
         </div>
       </div>
@@ -823,14 +824,22 @@
       const btn = document.getElementById('fetchSmartBtn');
       btn.textContent = '🤖 抓取中…';
       info.textContent = '正在识别所有贝壳页面并抓取（约需数秒）…';
+      const beforeSet = new Set(xiaoquList);
       fetch('/fetch-ke-smart', { method: 'POST' })
         .then(r => r.json())
         .then(d => {
           btn.textContent = '🤖 智能抓取所有贝壳页';
           info.textContent = d.ok ? d.msg : ('❌ ' + (d.msg || '抓取失败'));
-          if (d.ok) setTimeout(() => loadXiaoquArchives(true), 300);
         })
         .catch(e => { btn.textContent = '🤖 智能抓取所有贝壳页'; info.textContent = '❌ 抓取失败：' + e.message; });
+      // 轮询刷新：抓取可能超过 serve 超时，用轮询检测新小区并刷新下拉
+      let polls = 0;
+      const timer = setInterval(async () => {
+        polls++;
+        await loadXiaoquArchives(true);
+        const hasNew = xiaoquList.some(n => !beforeSet.has(n));
+        if (hasNew || polls > 180) { clearInterval(timer); }
+      }, 1500);
     });
 
     // 导出 Markdown 报告
@@ -858,16 +867,20 @@
         xiaoquList = list.map(x => x.name).filter(Boolean);
         // 按当前勾选的板块过滤（不选板块 = 显示全部；forceAll 强制显示全部）
         const checkedBoards = forceAll ? [] : [...document.querySelectorAll('.board-check:checked')].map(cb => cb.dataset.name);
-        const filtered = checkedBoards.length
+        let filtered = checkedBoards.length
           ? list.filter(x => checkedBoards.some(b => (x.board || '').includes(b) || b.includes(x.board || '')))
           : list;
+        // 安置房过滤（排除/仅看安置房）
+        const anzhiMode = (document.getElementById('anzhiSelect') || {}).value || 'all';
+        filtered = anzhiMode === 'no' ? filtered.filter(x => !x.anzhi) : anzhiMode === 'only' ? filtered.filter(x => x.anzhi) : filtered;
         // 同板块放一起：先按板块名排序，再按小区名排序
         filtered.sort((a, b) => (a.district || '').localeCompare(b.district || '') || (a.board || '').localeCompare(b.board || '') || (a.name || '').localeCompare(b.name || ''));
         const cur = sel.value;
-        sel.innerHTML = '<option style="color:#333" value="">选择小区…</option>' + filtered.map(x => `<option style="color:#333" value="${x.name}">${x.name}${x.board ? '（' + (x.district ? x.district + '·' : '') + x.board + '）' : ''}</option>`).join('');
+        sel.innerHTML = '<option style="color:#333" value="">选择小区…</option>' + filtered.map(x => `<option style="color:#333" value="${x.name}">${x.anzhi ? '🔴' : ''}${x.name}${x.board ? '（' + (x.district ? x.district + '·' : '') + x.board + '）' : ''}</option>`).join('');
         if (filtered.some(x => x.name === cur)) sel.value = cur;
       } catch (e) {}
     }
+    document.getElementById('anzhiSelect').addEventListener('change', () => loadXiaoquArchives(false));
     document.getElementById('xqSelect').addEventListener('change', async e => {
       const name = e.target.value;
       const detail = document.getElementById('xqDetail');
@@ -1002,8 +1015,12 @@
           fetch('/delete-xiaoqu', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name }) })
             .then(r => r.json())
             .then(dd => {
-              if (dd.ok) { detail.innerHTML = ''; loadXiaoquArchives(); }
-              else alert('删除失败：' + (dd.msg || ''));
+              if (dd.ok) {
+                detail.innerHTML = '';
+                const sel = document.getElementById('xqSelect');
+                sel.value = '';
+                loadXiaoquArchives(true);
+              } else alert('删除失败：' + (dd.msg || ''));
             })
             .catch(e => alert('删除失败：' + e.message));
         });
