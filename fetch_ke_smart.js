@@ -107,6 +107,13 @@ async function grabHouseDetail(page) {
       community = (title.match(new RegExp('_([\\u4e00-\\u9fa5]{2,10}' + RESI + ')')) || [])[1]
         || grab(new RegExp('([\\u4e00-\\u9fa5]{2,8}' + RESI + ')')) || '';
     }
+    // 所在区域（.areaName 元素："所在区域 武侯 华西"，区 + 板块）
+    let district = '', board = '';
+    const areaEl = document.querySelector('.areaName');
+    if (areaEl) {
+      const m = areaEl.textContent.replace(/\s+/g, ' ').match(/所在区域\s*([\u4e00-\u9fa5]+)\s*([\u4e00-\u9fa5]+)/);
+      if (m) { district = m[1]; board = m[2]; }
+    }
     // 从房源描述提取关键特征（单位房/回迁/满五/停车费/电梯等）
     const features = [];
     if (/单位房|单位集资|单位分房|单位宿舍|单位大院/.test(txt)) features.push('单位房');
@@ -172,6 +179,8 @@ async function grabHouseDetail(page) {
       totalFloors: grab(/共(\d+)层/),
       orientation: grab(/(东南|西南|东北|西北|南北|东西|南|北|东|西)(?=\s|$)/),
       community,
+      district,
+      board,
       features,
       tihu,
       images: imageUrls,
@@ -256,6 +265,10 @@ async function downloadImages(page, urls, subdir) {
         const saved = await downloadImages(page, data.images, comm);
         data.localImages = saved.map(f => path.basename(f));
       }
+      // 归并区域信息（区 + 板块）到小区档案（房源页图片右边的"所在区域"）
+      if (!existing.board && data.board) existing.board = data.board;
+      if (!existing.district && data.district) existing.district = data.district;
+      if (!existing.name && data.community) existing.name = data.community;
       // 归并房源关键特征到小区信息（单位房/停车费等）
       if (data.features && data.features.length) {
         existing.info = existing.info || {};
