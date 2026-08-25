@@ -150,6 +150,12 @@
           if (/公房/.test(tag)) return `<span style="color:#f0c060;font-weight:bold">${tag}</span>`;
           return tag;
         }).join('/');
+      } else if (k === '容积率') {
+        const r = parseFloat(v);
+        if (!isNaN(r)) {
+          const color = r < 2.8 ? '#2ecc71' : r < 4 ? '#f0c060' : '#e74c3c';
+          display = `<span style="color:${color};font-weight:bold">${v}</span>`;
+        }
       }
       return `<tr><td>${k}</td><td>${display}</td></tr>`;
     }).join('') + '</table></div>';
