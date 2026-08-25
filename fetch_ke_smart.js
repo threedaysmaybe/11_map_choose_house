@@ -90,10 +90,12 @@ async function grabHouseDetail(page) {
     const totalPrice = (priceText.match(/([\d.]+)\s*万/) || [])[1] || grab(/([\d.]+)\s*万/);
     const unitPrice = (priceText.match(/([\d,]+)\s*元\/平米/) || [])[1] || grab(/([\d,]+)元\/平/);
     const title = document.title || '';
-    // 小区名后缀特征（含"公寓"，排除"电梯小区"这种正文噪音）
-    const RESI = '(?:花园|花苑|苑|城|郡|庭|院|湾|府|居|宅|邸|堡|岸|庄|湖|山|园|公馆|名宅|公寓|[一二三四五六七八九十]?期)';
-    const community = (title.match(new RegExp('_([\\u4e00-\\u9fa5]{2,10}' + RESI + ')')) || [])[1]
+    // 小区名后缀特征（含"公寓/阁"，排除"电梯小区"这种正文噪音）
+    const RESI = '(?:花园|花苑|苑|城|郡|庭|院|湾|府|居|宅|邸|堡|岸|庄|湖|山|园|公馆|名宅|公寓|阁|[一二三四五六七八九十]?期)';
+    let community = (title.match(new RegExp('_([\\u4e00-\\u9fa5]{2,10}' + RESI + ')')) || [])[1]
       || grab(new RegExp('([\\u4e00-\\u9fa5]{2,8}' + RESI + ')')) || '';
+    // 排除贝壳品牌名（贝壳研究院/贝壳找房等，出现在页面底部，不是小区名）
+    if (/贝壳|研究院|找房/.test(community)) community = '';
     // 从房源描述提取关键特征（单位房/回迁/满五/停车费/电梯等）
     const features = [];
     if (/单位房|单位集资|单位分房|单位宿舍|单位大院/.test(txt)) features.push('单位房');

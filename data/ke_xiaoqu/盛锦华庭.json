@@ -1,0 +1,155 @@
+{
+  "name": "盛锦华庭",
+  "price": "17392",
+  "board": "华西",
+  "info": {
+    "建筑类型": "塔楼/板楼",
+    "房屋总数": "302户",
+    "楼栋总数": "7栋",
+    "绿化率": "35%",
+    "容积率": "2.62",
+    "交易权属": "商品房",
+    "建成年代": "2004年",
+    "供暖类型": "自采暖",
+    "用水类型": "商水/民水",
+    "用电类型": "商电/民电",
+    "物业费": "0.8至1.65元/平米/月",
+    "开发商": "无开发商"
+  },
+  "metro": [
+    {
+      "name": "衣冠庙",
+      "distance": "623米",
+      "lines": "地铁3号"
+    },
+    {
+      "name": "省体育馆",
+      "distance": "959米",
+      "lines": "地铁1号"
+    },
+    {
+      "name": "芳草街",
+      "distance": "1207米",
+      "lines": "地铁8号"
+    },
+    {
+      "name": "永丰",
+      "distance": "1427米",
+      "lines": "地铁8号"
+    },
+    {
+      "name": "华西坝",
+      "distance": "1470米",
+      "lines": "地铁13号"
+    },
+    {
+      "name": "倪家桥",
+      "distance": "1554米",
+      "lines": "地铁1号"
+    },
+    {
+      "name": "武侯祠",
+      "distance": "1590米",
+      "lines": "地铁10号"
+    },
+    {
+      "name": "武侯祠",
+      "distance": "1590米",
+      "lines": "地铁10号"
+    },
+    {
+      "name": "高升桥",
+      "distance": "1919米",
+      "lines": "地铁10号"
+    },
+    {
+      "name": "文翁石室",
+      "distance": "1919米",
+      "lines": "地铁13号"
+    }
+  ],
+  "deals": [
+    {
+      "建成年份": "暂无信息",
+      "面积": "88.02平米",
+      "签约日期": "2026-01-11",
+      "成交价": "137万",
+      "成交单价": "15565元/平"
+    },
+    {
+      "建成年份": "2004年",
+      "面积": "88.56平米",
+      "签约日期": "2025-11-09",
+      "成交价": "129.8万",
+      "成交单价": "14657元/平"
+    },
+    {
+      "建成年份": "2004年",
+      "面积": "88.56平米",
+      "签约日期": "2025-05-24",
+      "成交价": "135.6万",
+      "成交单价": "15312元/平"
+    }
+  ],
+  "images": [
+    "https://ke-image.ljcdn.com/hdic-resblock/ee51e9dc-9bed-4508-acb9-14076acee119.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/9330a5a3-68c8-4e46-8dc1-896d29d03dae.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/def8e5f6-0010-4030-94f3-5c9f9c0d035b.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/8f46cbd0-4b6d-495c-8a38-9143537336fd.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/2701eeb0-5b47-4ce9-a673-9bf726a7b7cd.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/2e72047d-9b6f-4455-bf9a-44a4c76f0f2a.jpg.710x400.jpg"
+  ],
+  "updatedAt": "2026-08-25T13:51:52.990Z",
+  "localImages": [
+    "1787665913003-0-8y0v.jpg",
+    "1787665913014-1-7m3d.jpg",
+    "1787665913031-2-99mq.jpg",
+    "1787665913046-3-sswi.jpg",
+    "1787665913059-4-z0ex.jpg",
+    "1787665913070-5-f8ge.jpg"
+  ],
+  "houses": [
+    {
+      "title": "成都武侯华西盛锦华庭 3室2厅 北",
+      "room": "3室2厅",
+      "area": "111.69",
+      "totalPrice": "215",
+      "unitPrice": "19250",
+      "floor": "中",
+      "totalFloors": "12",
+      "orientation": "北",
+      "community": "盛锦华庭",
+      "features": [
+        "满五",
+        "户型方正",
+        "精装",
+        "电梯"
+      ],
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_TLI9tkQ1J.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_KtjU7Kv9W.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_0CRwCEwZU.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_7031488f-d41a-42a1-98b3-de1e3f7f1133.png!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_TLI9tkQ1J.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_5qvgVnb5r.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106120191728.html",
+      "houseCode": "106120191728",
+      "localImages": [
+        "1787665915431-0-rm3m.jpg",
+        "1787665915871-1-ylyu.jpg",
+        "1787665916262-2-93vz.jpg",
+        "1787665916592-3-0z5m.png",
+        "1787665916988-4-njlq.jpg",
+        "1787665917325-5-c1gf.jpg"
+      ]
+    }
+  ],
+  "features": [
+    "满五",
+    "户型方正",
+    "精装",
+    "电梯"
+  ],
+  "note": "有的是东北西南朝向"
+}
