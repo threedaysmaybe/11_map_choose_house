@@ -1,7 +1,77 @@
 {
-  "name": "锦宏阁",
-  "price": "18008",
-  "board": "华西",
+  "houses": [
+    {
+      "title": "成都武侯华西锦宏阁 3室2厅 东",
+      "room": "3室2厅",
+      "area": "142.06",
+      "taoneiArea": null,
+      "totalPrice": "220",
+      "unitPrice": "15487",
+      "floor": "低",
+      "totalFloors": "17",
+      "orientation": "东",
+      "community": "锦宏阁",
+      "features": [
+        "满五",
+        "电梯"
+      ],
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_Jb3dOQrok.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_Jb3dOQrok.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_0SRBbmzHI.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_a9bf032a-91d5-478c-8e4a-28f21b91a93a.png!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_zlJrQ1OjI.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_38AE0omjO.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106126318138.html",
+      "houseCode": "106126318138",
+      "localImages": [
+        "1787667275938-0-9cqc.jpg",
+        "1787667275956-1-5avv.jpg",
+        "1787667275973-2-l9qz.jpg",
+        "1787667275984-3-hyht.png",
+        "1787667275999-4-2vto.jpg",
+        "1787667276008-5-nhfu.jpg"
+      ]
+    },
+    {
+      "title": "成都武侯华西锦宏阁 4室2厅 东",
+      "room": "4室2厅",
+      "area": "134.81",
+      "taoneiArea": null,
+      "totalPrice": "298",
+      "unitPrice": "22106",
+      "floor": "高",
+      "totalFloors": "17",
+      "orientation": "东",
+      "community": "锦宏阁",
+      "features": [
+        "满五",
+        "户型方正",
+        "电梯"
+      ],
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_wI4l5W6QX.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_wI4l5W6QX.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_fh1ubkvoh.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_25b918a4-c984-4832-b4e7-c89ada865d8a.png!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_zwP2LhYTt.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_TUV8LxnLG.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_9vYiSWQko.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106122199387.html",
+      "houseCode": "106122199387",
+      "localImages": [
+        "1787667277928-0-rug5.jpg",
+        "1787667277945-1-da3j.jpg",
+        "1787667277958-2-qz0u.jpg",
+        "1787667277968-3-zqch.png",
+        "1787667277991-4-qpxe.jpg",
+        "1787667278003-5-204b.jpg",
+        "1787667278021-6-q3z6.jpg"
+      ]
+    }
+  ],
   "info": {
     "建筑类型": "板楼",
     "房屋总数": "186户",
@@ -16,6 +86,14 @@
     "物业费": "1.6元/平米/月",
     "开发商": "无开发商"
   },
+  "features": [
+    "满五",
+    "电梯",
+    "户型方正"
+  ],
+  "name": "锦宏阁",
+  "price": "18008",
+  "board": "华西",
   "metro": [
     {
       "name": "高升桥",
@@ -92,84 +170,12 @@
     "https://ke-image.ljcdn.com/hdic-resblock/5e759f51-509b-4808-b803-3517fa6b93f9.jpg.710x400.jpg",
     "https://ke-image.ljcdn.com/hdic-resblock/b8a6e416-849c-465f-8c65-1fa5850531b2.jpg.710x400.jpg"
   ],
-  "updatedAt": "2026-08-25T14:08:35.192Z",
+  "updatedAt": "2026-08-25T14:14:36.017Z",
   "localImages": [
-    "1787666915213-0-r0x6.jpg",
-    "1787666915487-1-20v0.jpg",
-    "1787666915810-2-aw5l.jpg",
-    "1787666916447-3-mhu6.jpg"
+    "1787667276033-0-rdif.jpg",
+    "1787667276040-1-9luk.jpg",
+    "1787667276049-2-gddt.jpg",
+    "1787667276064-3-jrmy.jpg"
   ],
-  "houses": [
-    {
-      "title": "成都武侯华西锦宏阁 3室2厅 东",
-      "room": "3室2厅",
-      "area": "142.06",
-      "taoneiArea": null,
-      "totalPrice": "220",
-      "unitPrice": "15487",
-      "floor": "低",
-      "totalFloors": "17",
-      "orientation": "东",
-      "community": "锦宏阁",
-      "features": [
-        "满五",
-        "电梯"
-      ],
-      "images": [
-        "https://ke-image.ljcdn.com/110000-inspection/pc0_Jb3dOQrok.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
-        "https://ke-image.ljcdn.com/110000-inspection/pc0_Jb3dOQrok.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
-        "https://ke-image.ljcdn.com/110000-inspection/pc0_0SRBbmzHI.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
-        "https://ke-image.ljcdn.com/hdic-frame/standard_a9bf032a-91d5-478c-8e4a-28f21b91a93a.png!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
-        "https://ke-image.ljcdn.com/110000-inspection/pc0_zlJrQ1OjI.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
-        "https://ke-image.ljcdn.com/110000-inspection/pc0_38AE0omjO.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
-      ],
-      "url": "https://cd.ke.com/ershoufang/106126318138.html",
-      "houseCode": "106126318138",
-      "localImages": [
-        "1787666913477-0-8wk1.jpg",
-        "1787666913731-1-cbsq.jpg",
-        "1787666914085-2-t6am.jpg",
-        "1787666914402-3-5k1a.png",
-        "1787666914782-4-lxv7.jpg",
-        "1787666915187-5-2a6x.jpg"
-      ]
-    },
-    {
-      "title": "成都武侯华西锦宏阁 4室2厅 东",
-      "room": "4室2厅",
-      "area": "134.81",
-      "taoneiArea": null,
-      "totalPrice": "298",
-      "unitPrice": "22106",
-      "floor": "高",
-      "totalFloors": "17",
-      "orientation": "东",
-      "community": "锦宏阁",
-      "features": [
-        "满五",
-        "户型方正",
-        "电梯"
-      ],
-      "images": [
-        "https://ke-image.ljcdn.com/110000-inspection/pc0_wI4l5W6QX.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
-        "https://ke-image.ljcdn.com/110000-inspection/pc0_wI4l5W6QX.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
-        "https://ke-image.ljcdn.com/110000-inspection/pc0_fh1ubkvoh.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
-        "https://ke-image.ljcdn.com/hdic-frame/standard_25b918a4-c984-4832-b4e7-c89ada865d8a.png!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
-        "https://ke-image.ljcdn.com/110000-inspection/pc0_zwP2LhYTt.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
-        "https://ke-image.ljcdn.com/110000-inspection/pc0_TUV8LxnLG.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
-        "https://ke-image.ljcdn.com/110000-inspection/pc0_9vYiSWQko.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
-      ],
-      "url": "https://cd.ke.com/ershoufang/106122199387.html",
-      "houseCode": "106122199387",
-      "localImages": [
-        "1787666918740-0-m891.jpg",
-        "1787666919212-1-mbda.jpg",
-        "1787666919617-2-99wt.jpg",
-        "1787666919954-3-oeha.png",
-        "1787666920320-4-7qyk.jpg",
-        "1787666920656-5-rgns.jpg",
-        "1787666921032-6-hmhf.jpg"
-      ]
-    }
-  ]
+  "note": "一环边"
 }

@@ -1,0 +1,1612 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>成都金融城+大源 · 3D 楼栋分布（选房辅助）</title>
+  <link rel="stylesheet" href="vendor/maplibre-gl.css">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body, #map { width: 100%; height: 100%; }
+    body { font-family: -apple-system, "Microsoft YaHei", "PingFang SC", sans-serif; }
+
+    .left-col {
+      position: absolute; top: 16px; left: 16px; z-index: 10;
+      display: flex; flex-direction: column; gap: 12px; align-items: flex-start;
+      max-height: calc(100vh - 32px); overflow-y: auto;
+    }
+    .panel {
+      background: rgba(20, 22, 28, 0.88); color: #e8e9ec;
+      padding: 16px 18px; border-radius: 12px; max-width: 320px;
+      backdrop-filter: blur(8px); box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+    .panel h1 { font-size: 16px; font-weight: 700; margin-bottom: 4px; color: #fff; }
+    .panel .sub { font-size: 12px; color: #a9adb8; margin-bottom: 12px; line-height: 1.6; }
+    .panel .tip { font-size: 11px; color: #8b8f99; line-height: 1.7; border-top: 1px solid rgba(255,255,255,0.12); padding-top: 10px; margin-top: 10px; }
+    .panel .tip b { color: #e8a04e; }
+
+    .legend {
+      position: absolute; bottom: 28px; left: 16px; z-index: 10;
+      background: rgba(20, 22, 28, 0.88); color: #e8e9ec;
+      padding: 12px 14px; border-radius: 10px; font-size: 12px;
+      backdrop-filter: blur(8px); box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+    }
+    .legend .title { font-weight: 700; margin-bottom: 8px; color: #fff; }
+    .legend .row { display: flex; align-items: center; margin: 4px 0; }
+    .legend .swatch { width: 16px; height: 16px; border-radius: 3px; margin-right: 8px; flex-shrink: 0; }
+
+    .beike-panel {
+      background: rgba(20, 22, 28, 0.9); color: #e8e9ec;
+      padding: 12px 14px; border-radius: 10px; font-size: 12px;
+      backdrop-filter: blur(8px); box-shadow: 0 4px 16px rgba(0,0,0,0.35);
+      max-width: 280px;
+    }
+    .beike-panel .title { font-weight: 700; margin-bottom: 6px; color: #fff; }
+    .beike-panel .swatch-blue { display:inline-block; width:12px; height:12px; border-radius:2px; background:#2e86de; margin-right:6px; vertical-align:middle; }
+
+    .sun-panel {
+      position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%); z-index: 10;
+      background: rgba(20, 22, 28, 0.9); color: #e8e9ec;
+      padding: 12px 18px 14px; border-radius: 12px; min-width: 360px;
+      backdrop-filter: blur(8px); box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+    .sun-panel .sun-title { font-size: 13px; font-weight: 700; color: #fff; margin-bottom: 2px; }
+    .sun-panel .sun-info { font-size: 12px; color: #f0c060; margin-bottom: 8px; }
+    .sun-panel input[type=range] { width: 100%; accent-color: #f0c060; cursor: pointer; }
+    .sun-panel .sun-ctrl { display: flex; justify-content: space-between; align-items: center; font-size: 11px; color: #a9adb8; margin-top: 8px; }
+    .sun-panel .sun-ctrl label { display: flex; align-items: center; gap: 4px; cursor: pointer; }
+    .sun-panel .sun-note { font-size: 10px; color: #6d717c; margin-top: 6px; }
+
+    .maplibregl-popup-content { border-radius: 8px; padding: 12px 14px; font-size: 12px; line-height: 1.7; color: #2a2d35; }
+    .maplibregl-popup-content h3 { font-size: 13px; margin-bottom: 4px; }
+    .maplibregl-popup-content .k { color: #8a8d94; }
+    .badge { display: inline-block; padding: 1px 6px; border-radius: 4px; font-size: 10px; margin-left: 4px; }
+    .badge.height { background: #e8f4ea; color: #1e7d34; }
+    .badge.levels { background: #fff3d9; color: #a06a00; }
+    .badge.estimated { background: #fdeaea; color: #c0392b; }
+
+    .result-panel {
+      background: rgba(20, 22, 28, 0.9); color: #e8e9ec;
+      padding: 14px 16px; border-radius: 12px; width: 320px;
+      backdrop-filter: blur(8px); box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+      font-size: 12px; line-height: 1.7; display: none;
+    }
+    .result-panel .res-title { font-weight: 700; color: #fff; font-size: 13px; }
+    .result-panel .res-row { color: #c8cbd2; }
+    .result-panel .res-note { color: #f0c060; margin-top: 6px; }
+    .res-btn {
+      background: #e8a04e; color: #1a1a1a; border: none;
+      padding: 5px 12px; border-radius: 6px; font-size: 12px;
+      cursor: pointer; margin-top: 8px; font-weight: 600;
+    }
+    .res-btn:hover { background: #f0b060; }
+    .beike-link {
+      display: block; margin-top: 6px; padding: 5px 12px;
+      background: #00ae66; color: #fff; text-decoration: none;
+      border-radius: 6px; font-size: 12px; text-align: center; font-weight: 600;
+    }
+    .beike-link:hover { background: #00c977; }
+
+    #loading {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(20, 22, 28, 0.95); z-index: 100;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; font-size: 15px; letter-spacing: 1px;
+      transition: opacity 0.4s;
+    }
+    #loading .spin {
+      display: inline-block; width: 16px; height: 16px; margin-right: 10px;
+      border: 2px solid #e8a04e; border-top-color: transparent; border-radius: 50%;
+      animation: spin 0.8s linear infinite; vertical-align: -3px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    #xqDetail img { cursor: zoom-in; }
+    #lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 9999; cursor: grab; overflow: hidden; }
+    #lightbox img { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 92vw; height: 92vh; object-fit: contain; user-select: none; -webkit-user-drag: none; }
+    #lightbox img:active { cursor: grabbing; }
+    #lightbox .lb-hint { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: #c9ccd3; font-size: 12px; pointer-events: none; }
+    #lightbox .lb-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 60px; line-height: 60px; text-align: center; font-size: 34px; color: #fff; background: rgba(255,255,255,0.1); border-radius: 6px; cursor: pointer; user-select: none; z-index: 10; }
+    #lightbox .lb-arrow:hover { background: rgba(255,255,255,0.25); }
+    #lightbox #lbPrev { left: 16px; }
+    #lightbox #lbNext { right: 16px; }
+    #lightbox .lb-count { position: absolute; top: 16px; left: 50%; transform: translateX(-50%); color: #c9ccd3; font-size: 13px; }
+  </style>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#10131a">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="选房地图">
+  <link rel="apple-touch-icon" href="icon-192.png">
+</head>
+<body>
+  <div id="map"></div>
+  <div id="loading"><span class="spin"></span><span id="loadingText">正在加载楼栋数据…</span></div>
+
+  <div class="left-col">
+    <div class="panel">
+      <div id="dragHandle" style="cursor:move;text-align:center;color:#6d717c;font-size:13px;user-select:none;line-height:1;padding:2px 0 6px" title="按住拖拽移动面板">⠿ 拖拽</div>
+      <div class="title" id="infoTitle" style="cursor:pointer;user-select:none;font-size:13px">📌 关于本工具 <span id="infoToggle" style="float:right">▸</span></div>
+      <div id="infoBody" style="display:none">
+      <h1>成都金融城 + 大源 · 3D 楼栋分布</h1>
+      <div class="sub">选房辅助 Demo · 颜色越深楼越高，旋转视角观察楼栋遮挡关系</div>
+      <div class="tip">
+        <b>操作：</b>左键拖拽平移 · <b>右键拖拽旋转</b> · <b>Ctrl+左键俯仰</b> · 滚轮缩放 · 点击楼栋看详情<br>
+        <b>数据：</b>OSM 建筑轮廓 + 楼层/高度；<span style="color:#f1948a">红标「推断估算」</span>的楼为按类型/面积推算，点击楼栋可看数据来源
+      </div>
+      <div class="tip" style="margin-top:6px;padding-top:6px;border-top:1px solid rgba(255,255,255,0.12)">
+        <a href="amap3d.html" style="color:#4fc3f7">→ 切到高德3D版（真实楼栋高度，看视野遮挡）</a>
+      </div>
+      </div>
+      <div style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.12)">
+        <input type="text" id="searchInput" placeholder="搜索小区，如：康郡 / 南城都汇" style="width:100%;box-sizing:border-box;padding:6px 10px;border-radius:6px;border:1px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.1);color:#fff;font-size:12px;outline:none">
+        <button id="searchBtn" class="res-btn" style="margin-top:6px;width:100%">🔍 搜索并高亮</button>
+        <button id="openChromeBtn" class="res-btn" style="margin-top:4px;width:100%">🌐 启动贝壳调试浏览器</button>
+      </div>
+    
+
+    <div class="title" id="boardTitle" style="cursor:pointer;user-select:none">🏘️ 板块选择（可多选）<span id="boardToggle" style="float:right">▾</span></div>
+    <div id="boardBody">
+      <div style="font-size:11px;color:#a9adb8;margin:6px 0">先选区，再勾选板块</div>
+      <select id="districtSelect" style="width:100%;box-sizing:border-box;padding:5px 8px;border-radius:6px;border:1px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.12);color:#fff;font-size:12px;outline:none">
+        <option value="" style="color:#333">-- 选择区 --</option>
+      </select>
+      <div id="boardList" style="max-height:200px;overflow-y:auto;padding-right:4px;margin-top:6px"></div>
+      <button id="clearBoardBtn" class="res-btn" style="margin-top:6px;width:100%">清除板块选择</button>
+      <div id="advTitle" style="cursor:pointer;user-select:none;font-size:12px;color:#a9adb8;margin-top:8px;padding:4px 0">🔧 高级功能 <span id="advToggle" style="float:right">▸</span></div>
+      <div id="advBody" style="display:none">
+        <button id="redrawBtn" class="res-btn" style="margin-top:4px;width:100%">✏️ 重画边界</button>
+        <button id="updateBoardsBtn" class="res-btn" style="margin-top:4px;width:100%">🔄 更新板块数据（贝壳）</button>
+      </div>
+    </div>
+
+    <div class="title" id="keToolsTitle" style="cursor:pointer;user-select:none;font-size:13px;margin-top:8px;padding:4px 0">🔧 贝壳工具 <span id="keToolsToggle" style="float:right">▸</span></div>
+    <div id="keToolsBody" style="display:none">
+      <button id="fetchPageBtn" class="res-btn" style="margin-top:4px;width:100%">📥 抓取当前页房源</button>
+      <button id="fetchSmartBtn" class="res-btn" style="margin-top:4px;width:100%">🤖 智能抓取所有贝壳页</button>
+      <button id="exportMdBtn" class="res-btn" style="margin-top:4px;width:100%">📄 导出 Markdown 报告</button>
+
+      <div id="logTitle" style="cursor:pointer;user-select:none;font-size:12px;color:#a9adb8;margin-top:8px;padding:4px 0">📋 抓取日志 <span id="logToggle" style="float:right">▾</span></div>
+      <div id="beikeInfo" style="font-size:11px;color:#f0c060;margin-top:4px;line-height:1.6;max-height:160px;overflow-y:auto"></div>
+      <div style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.12)">
+        <div class="title" id="fTitle" style="font-size:13px;cursor:pointer;user-select:none">🏠 房源筛选 <span id="fToggle" style="float:right">▸</span></div>
+        <div id="fBody" style="display:none">
+        <div style="margin:6px 0;font-size:12px;color:#e8e9ec;line-height:2.2">
+          总价(万) <input id="fPriceMin" type="number" placeholder="不限" style="width:55px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:4px;color:#fff;padding:3px 4px;font-size:12px"> ~ <input id="fPriceMax" type="number" placeholder="不限" style="width:55px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:4px;color:#fff;padding:3px 4px;font-size:12px"><br>
+          单价(元/平) <input id="fUnitMin" type="number" placeholder="不限" style="width:55px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:4px;color:#fff;padding:3px 4px;font-size:12px"> ~ <input id="fUnitMax" type="number" placeholder="不限" style="width:55px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:4px;color:#fff;padding:3px 4px;font-size:12px"><br>
+          面积(㎡) <input id="fAreaMin" type="number" placeholder="不限" style="width:55px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:4px;color:#fff;padding:3px 4px;font-size:12px"> ~ <input id="fAreaMax" type="number" placeholder="不限" style="width:55px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:4px;color:#fff;padding:3px 4px;font-size:12px"><br>
+          户型 <select id="fRoom" style="width:70px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:4px;color:#fff;font-size:12px;padding:3px 4px"><option style="color:#333" value="">不限</option><option style="color:#333" value="1">1室</option><option style="color:#333" value="2">2室</option><option style="color:#333" value="3">3室</option><option style="color:#333" value="4">4室</option><option style="color:#333" value="5">5室+</option></select>
+          楼层 <select id="fFloor" style="width:80px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:4px;color:#fff;font-size:12px;padding:3px 4px"><option style="color:#333" value="">不限</option><option style="color:#333" value="低楼层">低楼层</option><option style="color:#333" value="中楼层">中楼层</option><option style="color:#333" value="高楼层">高楼层</option></select><br>
+          朝向
+          <label style="margin-right:6px;cursor:pointer"><input type="checkbox" class="orient-check" value="南" style="vertical-align:middle">南</label>
+          <label style="margin-right:6px;cursor:pointer"><input type="checkbox" class="orient-check" value="北" style="vertical-align:middle">北</label>
+          <label style="margin-right:6px;cursor:pointer"><input type="checkbox" class="orient-check" value="东" style="vertical-align:middle">东</label>
+          <label style="margin-right:6px;cursor:pointer"><input type="checkbox" class="orient-check" value="西" style="vertical-align:middle">西</label>
+          <label style="margin-right:6px;cursor:pointer"><input type="checkbox" class="orient-check" value="南北" style="vertical-align:middle">南北</label>
+          <label style="cursor:pointer"><input type="checkbox" class="orient-check" value="东西" style="vertical-align:middle">东西</label><br>
+          标签
+          <label style="margin-right:6px;cursor:pointer"><input type="checkbox" class="tag-check" value="电梯" style="vertical-align:middle">电梯</label>
+          <label style="margin-right:6px;cursor:pointer"><input type="checkbox" class="tag-check" value="近地铁" style="vertical-align:middle">近地铁</label>
+          <label style="margin-right:6px;cursor:pointer"><input type="checkbox" class="tag-check" value="精装" style="vertical-align:middle">精装</label>
+          <label style="cursor:pointer"><input type="checkbox" class="tag-check" value="满五年" style="vertical-align:middle">满五年</label>
+        </div>
+        <button id="filterBtn" class="res-btn">筛选并高亮小区</button>
+        <button id="beikeBtn" class="res-btn" style="margin-top:4px">重新读取贝壳房源</button>
+        </div>
+      </div>
+      <div style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.12)">
+        <div class="title" id="xqTitle" style="font-size:13px;cursor:pointer;user-select:none">🏠 小区档案（贝壳）<span id="xqToggle" style="float:right">▸</span></div>
+        <div id="xqBody" style="display:none">
+        <select id="xqSelect" style="width:100%;margin:6px 0;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:4px;color:#fff;font-size:12px;padding:4px"><option style="color:#333" value="">选择小区…</option></select>
+        <div id="xqDetail" style="font-size:12px;color:#e8e9ec;line-height:1.8"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="result-panel" id="resultPanel"></div>
+
+  </div>
+
+  <div class="legend" id="legendBox">
+    <div class="title" id="legendHandle" style="cursor:move;user-select:none" title="按住拖拽移动图例">楼栋高度 ⠿</div>
+    <div class="row"><span class="swatch" style="background:#c9d8c9"></span>&lt; 12m（约 &lt;4 层）</div>
+    <div class="row"><span class="swatch" style="background:#f0dfae"></span>12–40m（约 4–13 层）</div>
+    <div class="row"><span class="swatch" style="background:#e89a4e"></span>40–90m（约 13–30 层）</div>
+    <div class="row"><span class="swatch" style="background:#c04f3a"></span>&gt; 90m（约 &gt;30 层）</div>
+    <div class="row" style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.15)"><span class="swatch" style="background:#9a9aa2"></span>灰色 = 估算高度</div>
+    <label class="row" style="cursor:pointer;color:#a9adb8"><input type="checkbox" id="srcToggle" checked style="margin-right:6px">标注估算/真实</label>
+  </div>
+
+
+
+  <div class="sun-panel">
+    <div class="sun-title">☀️ 冬至日照模拟</div>
+    <div class="sun-info" id="sunInfo">加载中…</div>
+    <input type="range" id="timeSlider" min="480" max="1020" step="10" value="720">
+    <div class="sun-ctrl">
+      <span id="timeLabel">12:00</span>
+      <label><input type="checkbox" id="shadowToggle"> 显示阴影</label>
+    </div>
+    <div class="sun-note">深色阴影 = 楼栋投影（冬至日太阳最低，采光最差）。阴影朝北说明南侧楼挡光。</div>
+  </div>
+
+  <script src="vendor/maplibre-gl.js"></script>
+  <script>
+    const CENTER = [104.066, 30.66]; // 成都市中心
+    const LAT = 30.66, LON = 104.066;
+    const TDT_KEY = '53c475d801a2cddc01c0a0c7133d42ef';
+
+    const map = new maplibregl.Map({
+      container: 'map',
+      style: {
+        version: 8,
+        sources: {},
+        layers: [],
+        glyphs: 'https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf', // 小区名文字用
+      },
+      center: CENTER,
+      zoom: 13,
+      pitch: 50,
+      bearing: -20,
+      maxPitch: 75,
+      attributionControl: true,
+    });
+
+    map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), 'top-right');
+    window.map = map; // 暴露给调试/截图脚本
+    window.markTarget = markTarget;
+
+    const srcLabel = { height: '精确高度', levels: '按层数估算', estimated: '推断估算' };
+    const btypeLabel = {
+      residential: '住宅', apartments: '公寓', house: '住宅', bungalow: '平房',
+      commercial: '商业', office: '办公', hotel: '酒店', retail: '零售',
+      kindergarten: '幼儿园', fire_station: '消防站', construction: '在建', roof: '屋顶',
+      part: '建筑主体',
+    };
+    // 无名称建筑：按类型显示（如"公寓楼"而非"未命名"）
+    const btypeFallback = {
+      residential: '住宅楼', apartments: '公寓楼', house: '住宅楼',
+      commercial: '商业楼', office: '办公楼', hotel: '酒店', retail: '商业楼',
+      kindergarten: '幼儿园', fire_station: '消防站', school: '学校',
+      construction: '在建楼', bungalow: '平房', part: '建筑主体', roof: '屋顶建筑',
+    };
+
+    // ---- 太阳位置计算（NOAA 简化公式）----
+    function sunPosition(date, lat, lon) {
+      const start = new Date(date.getFullYear(), 0, 0);
+      const dayOfYear = (date - start) / 86400000;
+      const decl = -23.44 * Math.cos((2 * Math.PI / 365) * (dayOfYear + 10)); // 太阳赤纬（度）
+
+      const lonCorr = (lon - 120) / 15; // 经度修正（相对东八区标准子午线 120°E）
+      const solarTime = date.getHours() + date.getMinutes() / 60 + lonCorr;
+      const hourAngle = (solarTime - 12) * 15; // 小时角，正午=0，下午为正
+
+      const latRad = lat * Math.PI / 180;
+      const declRad = decl * Math.PI / 180;
+      const haRad = hourAngle * Math.PI / 180;
+
+      const sinAlt = Math.sin(latRad) * Math.sin(declRad) + Math.cos(latRad) * Math.cos(declRad) * Math.cos(haRad);
+      const altitude = Math.asin(Math.max(-1, Math.min(1, sinAlt))) * 180 / Math.PI;
+
+      const cosAz = (Math.sin(declRad) - Math.sin(latRad) * sinAlt) / (Math.cos(latRad) * Math.cos(altitude * Math.PI / 180));
+      let azimuth = Math.acos(Math.max(-1, Math.min(1, cosAz))) * 180 / Math.PI;
+      if (hourAngle > 0) azimuth = 360 - azimuth; // 下午太阳在西侧
+
+      return { altitude, azimuth };
+    }
+
+    function azimuthToText(az) {
+      const dirs = ['北', '东北', '东', '东南', '南', '西南', '西', '西北'];
+      return dirs[Math.round(az / 45) % 8];
+    }
+
+    // ---- 阴影生成：每栋楼沿太阳反方向平移轮廓 ----
+    function convexHull(points) {
+      if (points.length <= 2) return points;
+      points = points.slice().sort((a, b) => a[0] - b[0] || a[1] - b[1]);
+      const cross = (o, a, b) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+      const lower = [];
+      for (const p of points) {
+        while (lower.length >= 2 && cross(lower[lower.length - 2], lower[lower.length - 1], p) <= 0) lower.pop();
+        lower.push(p);
+      }
+      const upper = [];
+      for (let i = points.length - 1; i >= 0; i--) {
+        const p = points[i];
+        while (upper.length >= 2 && cross(upper[upper.length - 2], upper[upper.length - 1], p) <= 0) upper.pop();
+        upper.push(p);
+      }
+      lower.pop();
+      upper.pop();
+      return lower.concat(upper);
+    }
+
+    function buildShadows(buildings, date) {
+      const { altitude, azimuth } = sunPosition(date, LAT, LON);
+      const features = [];
+      if (altitude > 0.5) {
+        const shadowAz = (azimuth + 180) % 360;
+        const azRad = shadowAz * Math.PI / 180;
+        const dNorth = Math.cos(azRad);
+        const dEast = Math.sin(azRad);
+        const tanAlt = Math.tan(altitude * Math.PI / 180);
+
+        // 只对视野内（扩展约1km）建筑生成阴影，避免全城几万栋计算
+        let vp = null;
+        try {
+          const b = map.getBounds().toArray(); // [[west,south],[east,north]]
+          const pad = 0.01;
+          vp = [b[0][0] - pad, b[0][1] - pad, b[1][0] + pad, b[1][1] + pad];
+        } catch (e) {}
+
+        for (const f of buildings.features) {
+          const h = f.properties.height;
+          const ring = f.geometry.coordinates[0];
+          if (vp) { // 视野外建筑跳过
+            const p0 = ring[0];
+            if (p0[0] < vp[0] || p0[0] > vp[2] || p0[1] < vp[1] || p0[1] > vp[3]) continue;
+          }
+          const L = h / tanAlt;
+
+          // 以楼底轮廓中心为原点，转到米坐标
+          const n = ring.length;
+          let cx = 0, cy = 0;
+          for (const [lon, lat] of ring) { cx += lon; cy += lat; }
+          cx /= n; cy /= n;
+          const mPerDegLat = 111320;
+          const mPerDegLon = 111320 * Math.cos(cy * Math.PI / 180);
+
+          const pts = [];
+          for (const [lon, lat] of ring) {
+            const x = (lon - cx) * mPerDegLon;
+            const y = (lat - cy) * mPerDegLat;
+            pts.push([x, y]);                              // 楼底轮廓
+            pts.push([x + L * dEast, y + L * dNorth]);     // 阴影末端（楼顶投影）
+          }
+
+          // 凸包 = 楼底到阴影末端的连续拖影
+          const hull = convexHull(pts);
+          const hullRing = hull.map(([x, y]) => [cx + x / mPerDegLon, cy + y / mPerDegLat]);
+          hullRing.push(hullRing[0]);
+
+          features.push({
+            type: 'Feature',
+            properties: { height: h },
+            geometry: { type: 'Polygon', coordinates: [hullRing] },
+          });
+        }
+      }
+      return { fc: { type: 'FeatureCollection', features }, altitude, azimuth };
+    }
+
+    let buildingsData = null;
+
+    function updateShadows() {
+      const mins = parseInt(document.getElementById('timeSlider').value, 10);
+      const h = Math.floor(mins / 60), m = mins % 60;
+      const date = new Date(2026, 11, 22, h, m); // 2026 年冬至
+      const { fc, altitude, azimuth } = buildShadows(buildingsData, date);
+
+      if (map.getSource('shadows')) {
+        map.getSource('shadows').setData(fc);
+      }
+      document.getElementById('timeLabel').textContent = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')}`;
+      document.getElementById('sunInfo').textContent =
+        altitude > 0
+          ? `太阳高度角 ${altitude.toFixed(1)}° · 方位 ${azimuthToText(azimuth)} · 阴影朝 ${azimuthToText((azimuth + 180) % 360)}`
+          : `太阳未升起（高度角 ${altitude.toFixed(1)}°）`;
+    }
+
+    // ---- 目标楼栋标记 + 南侧遮挡识别 ----
+    function centroid(feature) {
+      const ring = feature.geometry.coordinates[0];
+      let lon = 0, lat = 0;
+      for (const [l, a] of ring) { lon += l; lat += a; }
+      return [lon / ring.length, lat / ring.length];
+    }
+    function distanceM(lon1, lat1, lon2, lat2) {
+      const dLat = (lat2 - lat1) * 111320;
+      const dLon = (lon2 - lon1) * 111320 * Math.cos(lat1 * Math.PI / 180);
+      return Math.sqrt(dLat * dLat + dLon * dLon);
+    }
+    function pointInPolygon(pt, ring) {
+      let inside = false;
+      for (let i = 0, j = ring.length - 1; i < ring.length; j = i++) {
+        const xi = ring[i][0], yi = ring[i][1], xj = ring[j][0], yj = ring[j][1];
+        if ((yi > pt[1]) !== (yj > pt[1]) && (pt[0] < (xj - xi) * (pt[1] - yi) / (yj - yi) + xi)) inside = !inside;
+      }
+      return inside;
+    }
+    function bearingBetween(lon1, lat1, lon2, lat2) {
+      const dLon = (lon2 - lon1) * Math.PI / 180;
+      const lat1r = lat1 * Math.PI / 180, lat2r = lat2 * Math.PI / 180;
+      const y = Math.sin(dLon) * Math.cos(lat2r);
+      const x = Math.cos(lat1r) * Math.sin(lat2r) - Math.sin(lat1r) * Math.cos(lat2r) * Math.cos(dLon);
+      return (Math.atan2(y, x) * 180 / Math.PI + 360) % 360;
+    }
+
+    // ---- 贝壳房源高亮 ----
+    let beikeHighlightedIds = [];
+    function clearBeikeHighlight() {
+      for (const id of beikeHighlightedIds) {
+        map.setFeatureState({ source: 'buildings', sourceLayer: 'buildings', id }, { beike: false, xiaoqu: false, search: false });
+      }
+      beikeHighlightedIds = [];
+    }
+    let beikeHousesCache = [];
+    function loadBeikeHouses() {
+      // 合并贝壳 + 幸福里两个数据源
+      return Promise.all([
+        fetch('data/beike_houses.json').then(r => r.json()).catch(() => []),
+        fetch('data/xingfuli_houses.json').then(r => r.json()).catch(() => []),
+      ]).then(([beike, xingfuli]) => {
+        beikeHousesCache = [...(beike || []), ...(xingfuli || [])];
+        return beikeHousesCache;
+      });
+    }
+    function highlightBeike() {
+      const info = document.getElementById('beikeInfo');
+      info.textContent = '读取中…';
+      loadBeikeHouses()
+        .then(houses => {
+          if (!houses.length) { info.textContent = '⚠️ 未找到房源数据，请先抓取贝壳房源'; return; }
+          info.textContent = `✅ 已缓存 ${houses.length} 套房源，设置条件后点「筛选并高亮小区」`;
+        })
+        .catch(e => { info.textContent = '❌ 读取失败：' + e.message; });
+    }
+    function filterHouses() {
+      const info = document.getElementById('beikeInfo');
+      if (!beikeHousesCache.length) { info.textContent = '⚠️ 请先点「重新读取贝壳房源」'; return; }
+      const priceMin = parseFloat(document.getElementById('fPriceMin').value) || 0;
+      const priceMax = parseFloat(document.getElementById('fPriceMax').value) || Infinity;
+      const unitMin = parseFloat(document.getElementById('fUnitMin').value) || 0;
+      const unitMax = parseFloat(document.getElementById('fUnitMax').value) || Infinity;
+      const areaMin = parseFloat(document.getElementById('fAreaMin').value) || 0;
+      const areaMax = parseFloat(document.getElementById('fAreaMax').value) || Infinity;
+      const room = document.getElementById('fRoom').value;
+      const floor = document.getElementById('fFloor').value;
+      const orients = [...document.querySelectorAll('.orient-check:checked')].map(cb => cb.value);
+      const tags = [...document.querySelectorAll('.tag-check:checked')].map(cb => cb.value);
+      const norm = s => (s || '').replace(/[·\s·]/g, '');
+      const matched = beikeHousesCache.filter(h => {
+        const price = parseFloat((h.price || '').replace(/[^\d.]/g, ''));
+        const unit = parseFloat((h.unit || '').replace(/[^\d.]/g, ''));
+        const area = parseFloat((h.area || '').replace(/[^\d.]/g, ''));
+        const ori = h.orientation || '';
+        const roomN = parseInt((h.room || '').replace(/[^\d]/g, '')) || 0;
+        const floorStr = h.floor || '';
+        const tagStr = (h.tags || []).join(' ') + ' ' + (h.fullText || '');
+        if (price < priceMin || price > priceMax) return false;
+        if (unit < unitMin || unit > unitMax) return false;
+        if (area < areaMin || area > areaMax) return false;
+        if (orients.length && !orients.some(o => ori.includes(o))) return false;
+        if (room) { if (room === '5' ? roomN < 5 : roomN !== parseInt(room)) return false; }
+        if (floor && !floorStr.includes(floor)) return false;
+        if (tags.length && !tags.every(t => tagStr.includes(t))) return false;
+        return true;
+      });
+      clearBeikeHighlight();
+      const normNames = [...new Set(matched.map(h => norm(h.community)).filter(Boolean))];
+      let count = 0;
+      for (const f of buildingsData.features) {
+        const n = norm(f.properties.name);
+        if (!n) continue;
+        if (normNames.some(bn => n.includes(bn) || bn.includes(n))) {
+          map.setFeatureState({ source: 'buildings', sourceLayer: 'buildings', id: f.id }, { beike: true });
+          beikeHighlightedIds.push(f.id);
+          count++;
+        }
+      }
+      info.textContent = `✅ 筛选出 ${matched.length} 套房源 / ${normNames.length} 个小区，高亮 ${count} 栋楼`;
+    }
+    document.getElementById('beikeBtn').addEventListener('click', highlightBeike);
+    document.getElementById('filterBtn').addEventListener('click', filterHouses);
+
+    // ---- 搜索小区并高亮 ----
+    function searchCommunity() {
+      const kw = document.getElementById('searchInput').value.trim();
+      const info = document.getElementById('beikeInfo');
+      if (!kw) { info.textContent = '请输入小区或板块名'; return; }
+      clearBeikeHighlight();
+      // 清除旧板块边框
+      if (map.getSource('board')) map.getSource('board').setData({ type: 'FeatureCollection', features: [] });
+      const normKw = kw.replace(/[·\s·]/g, '');
+      const NOISE = /幼儿园|学校|小学|中学|大学|医院|派出所|居委会|政府|办事处|门卫|岗亭|车棚|配电|垃圾/;
+      let count = 0;
+      let firstCenter = null;
+      const pts = [];
+      for (const f of buildingsData.features) {
+        const rawName = f.properties.name || '';
+        if (NOISE.test(rawName)) continue; // 排除幼儿园/学校等非住宅
+        // 清洗：去掉地址括号后缀，保留小区名（"东方新城(锦东路356号院东南)" → "东方新城"）
+        const n = rawName.replace(/\([^)]*\)/g, '').replace(/（[^）]*）/g, '').replace(/[·\s·]/g, '');
+        if (n && n.includes(normKw)) {
+          map.setFeatureState({ source: 'buildings', sourceLayer: 'buildings', id: f.id }, { search: true });
+          beikeHighlightedIds.push(f.id);
+          count++;
+          if (!firstCenter) firstCenter = centroid(f);
+          for (const [lon, lat] of f.geometry.coordinates[0]) pts.push([lon, lat]);
+        }
+      }
+      if (!count) { info.textContent = `❌ 未找到「${kw}」，换个关键词试试`; return; }
+      // 匹配较多（板块级）→ 画粗边框
+      if (count >= 8 && pts.length >= 3) {
+        const hull = convexHull(pts);
+        if (hull.length >= 3) {
+          const closed = hull.concat([hull[0]]);
+          map.getSource('board').setData({ type: 'FeatureCollection', features: [{ type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: closed } }] });
+          const b = closed.reduce((a, p) => [Math.min(a[0], p[0]), Math.min(a[1], p[1]), Math.max(a[2] || p[0], p[0]), Math.max(a[3] || p[1], p[1])], [1e9, 1e9, -1e9, -1e9]);
+          map.fitBounds([[b[0], b[1]], [b[2], b[3]]], { padding: 60 });
+        }
+      } else {
+        map.flyTo({ center: firstCenter, zoom: 15 });
+      }
+      info.textContent = count >= 8
+        ? `✅ 「${kw}」匹配 ${count} 栋楼，已画出板块粗边框（红色）`
+        : `✅ 「${kw}」匹配 ${count} 栋楼（蓝色）`;
+    }
+    document.getElementById('searchBtn').addEventListener('click', searchCommunity);
+    document.getElementById('searchInput').addEventListener('keydown', e => { if (e.key === 'Enter') searchCommunity(); });
+
+    // ---- 板块复选框 ----
+    function updateBoardHighlight() {
+      const checked = [...document.querySelectorAll('.board-check:checked')].map(cb => cb.dataset.name);
+      clearBeikeHighlight();
+      if (map.getSource('board')) map.getSource('board').setData({ type: 'FeatureCollection', features: [] });
+      if (map.getSource('district')) map.getSource('district').setData({ type: 'FeatureCollection', features: [] }); // 取消区高亮
+      if (!checked.length) { document.getElementById('beikeInfo').textContent = '已清除板块选择'; return; }
+      const borderFeats = [];
+      for (const name of checked) {
+        // 用 Voronoi 板块边界（无缝多边形）
+        const v = boardsVoronoi.find(f => f.properties.name === name);
+        if (!v) continue;
+        const ring = v.geometry.coordinates[0];
+        borderFeats.push({ type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: ring } });
+        // 先算板块 bounding box，预过滤楼栋，减少点判断
+        const rb = [1e9, 1e9, -1e9, -1e9];
+        for (const [lon, lat] of ring) { rb[0] = Math.min(rb[0], lon); rb[1] = Math.min(rb[1], lat); rb[2] = Math.max(rb[2], lon); rb[3] = Math.max(rb[3], lat); }
+        for (const f of buildingsData.features) {
+          const [lon, lat] = centroid(f);
+          if (lon < rb[0] || lon > rb[2] || lat < rb[1] || lat > rb[3]) continue;
+          if (pointInPolygon([lon, lat], ring)) {
+            map.setFeatureState({ source: 'buildings', sourceLayer: 'buildings', id: f.id }, { beike: true });
+            beikeHighlightedIds.push(f.id);
+          }
+        }
+      }
+      map.getSource('board').setData({ type: 'FeatureCollection', features: borderFeats });
+      if (borderFeats.length) {
+        const bounds = borderFeats.reduce((acc, f) => {
+          for (const [lon, lat] of f.geometry.coordinates) {
+            acc[0] = Math.min(acc[0], lon); acc[1] = Math.min(acc[1], lat);
+            acc[2] = Math.max(acc[2], lon); acc[3] = Math.max(acc[3], lat);
+          }
+          return acc;
+        }, [1e9, 1e9, -1e9, -1e9]);
+        map.fitBounds([[bounds[0], bounds[1]], [bounds[2], bounds[3]]], { padding: 80, duration: 0 });
+      }
+      document.getElementById('beikeInfo').textContent = `✅ 已勾选 ${checked.length} 个板块，高亮 ${beikeHighlightedIds.length} 栋楼`;
+      if (typeof loadXiaoquArchives === 'function') loadXiaoquArchives();
+    }
+    document.getElementById('clearBoardBtn').addEventListener('click', () => {
+      document.querySelectorAll('.board-check:checked').forEach(cb => cb.checked = false);
+      updateBoardHighlight();
+    });
+
+    let boardsData = [];
+    function renderBoardList(district) {
+      const list = document.getElementById('boardList');
+      const items = boardsData.filter(b => b.district === district);
+      list.innerHTML = items.map(b =>
+        `<label style="display:block;font-size:12px;color:#e8e9ec;cursor:pointer;padding:2px 0">
+          <input type="checkbox" class="board-check" data-name="${b.name}" style="margin-right:6px;vertical-align:middle">${b.name}
+        </label>`).join('');
+      list.querySelectorAll('.board-check').forEach(cb => cb.addEventListener('change', updateBoardHighlight));
+    }
+    function loadBoards() {
+      fetch('data/boards.json')
+        .then(r => r.json())
+        .then(boards => {
+          // 区名规范化：主城区补「区」字，新都/崇州/青白江等本身不带「区」的保持原名
+          const DIST_NAME = { 锦江: '锦江区', 青羊: '青羊区', 武侯: '武侯区', 成华: '成华区', 金牛: '金牛区', 高新: '高新区', 双流: '双流区', 温江: '温江区', 龙泉驿: '龙泉驿区', 高新西: '高新区西区' };
+          const normD = d => DIST_NAME[d] || d;
+          boardsData = boards.filter(b => b.count >= 5).map(b => ({ ...b, district: normD(b.district) }));
+          // 按「主城区 / 二圈层 / 地级市」排序
+          const DIST_ORDER = {
+            锦江区: 0, 青羊区: 0, 武侯区: 0, 成华区: 0, 金牛区: 0, 高新区: 0, 高新区西区: 0, 天府新区: 0, '天府新区南区': 0,
+            双流区: 1, 温江区: 1, 郫都区: 1, 龙泉驿区: 1, 新都: 1, 青白江: 1,
+            都江堰: 2, 彭州: 2, 简阳: 2, 新津区: 2, 崇州: 2, 大邑: 2, 金堂: 2, 蒲江: 2, 邛崃: 2,
+          };
+          const districts = [...new Set(boardsData.map(b => b.district).filter(Boolean))]
+            .sort((a, b) => (DIST_ORDER[a] ?? 9) - (DIST_ORDER[b] ?? 9) || a.localeCompare(b, 'zh'));
+          const sel = document.getElementById('districtSelect');
+          sel.innerHTML = '<option value="" style="color:#333">-- 选择区 --</option>' +
+            districts.map(d => `<option value="${d}" style="color:#333">${d}</option>`).join('');
+          document.getElementById('boardList').innerHTML = '';
+        })
+        .catch(e => console.error('板块加载失败', e));
+    }
+    let districtsData = [];
+    function highlightDistrict(name) {
+      if (!map.getSource('district')) return;
+      if (!name) { map.getSource('district').setData({ type: 'FeatureCollection', features: [] }); return; }
+      const ds = districtsData.filter(f => f.properties.name === name);
+      if (ds.length) {
+        map.getSource('district').setData({ type: 'FeatureCollection', features: ds });
+        const b = ds.reduce((acc, f) => {
+          for (const [lon, lat] of f.geometry.coordinates) {
+            acc[0] = Math.min(acc[0], lon); acc[1] = Math.min(acc[1], lat);
+            acc[2] = Math.max(acc[2], lon); acc[3] = Math.max(acc[3], lat);
+          }
+          return acc;
+        }, [1e9, 1e9, -1e9, -1e9]);
+        map.fitBounds([[b[0], b[1]], [b[2], b[3]]], { padding: 60, duration: 0 });
+      }
+    }
+    function loadDistricts() {
+      fetch('data/districts.geojson')
+        .then(r => r.json())
+        .then(d => { districtsData = d.features; });
+    }
+    document.getElementById('districtSelect').addEventListener('change', e => {
+      renderBoardList(e.target.value);
+      clearBeikeHighlight();
+      highlightDistrict(e.target.value);
+    });
+    document.getElementById('boardTitle').addEventListener('click', () => {
+      const body = document.getElementById('boardBody');
+      const tg = document.getElementById('boardToggle');
+      if (body.style.display === 'none') { body.style.display = ''; tg.textContent = '▾'; }
+      else { body.style.display = 'none'; tg.textContent = '▸'; }
+    });
+    document.getElementById('advTitle').addEventListener('click', () => {
+      const body = document.getElementById('advBody');
+      const tg = document.getElementById('advToggle');
+      if (body.style.display === 'none') { body.style.display = ''; tg.textContent = '▾'; }
+      else { body.style.display = 'none'; tg.textContent = '▸'; }
+    });
+    document.getElementById('logTitle').addEventListener('click', () => {
+      const body = document.getElementById('beikeInfo');
+      const tg = document.getElementById('logToggle');
+      if (body.style.display === 'none') { body.style.display = ''; tg.textContent = '▾'; }
+      else { body.style.display = 'none'; tg.textContent = '▸'; }
+    });
+    document.getElementById('keToolsTitle').addEventListener('click', () => {
+      const body = document.getElementById('keToolsBody');
+      const tg = document.getElementById('keToolsToggle');
+      if (body.style.display === 'none') { body.style.display = ''; tg.textContent = '▾'; }
+      else { body.style.display = 'none'; tg.textContent = '▸'; }
+    });
+    // 房源筛选 / 小区档案 折叠
+    document.getElementById('fTitle').addEventListener('click', () => {
+      const body = document.getElementById('fBody');
+      const tg = document.getElementById('fToggle');
+      if (body.style.display === 'none') { body.style.display = ''; tg.textContent = '▾'; }
+      else { body.style.display = 'none'; tg.textContent = '▸'; }
+    });
+    document.getElementById('xqTitle').addEventListener('click', () => {
+      const body = document.getElementById('xqBody');
+      const tg = document.getElementById('xqToggle');
+      if (body.style.display === 'none') { body.style.display = ''; tg.textContent = '▾'; }
+      else { body.style.display = 'none'; tg.textContent = '▸'; }
+    });
+    document.getElementById('infoTitle').addEventListener('click', () => {
+      const body = document.getElementById('infoBody');
+      const tg = document.getElementById('infoToggle');
+      if (body.style.display === 'none') { body.style.display = ''; tg.textContent = '▾'; }
+      else { body.style.display = 'none'; tg.textContent = '▸'; }
+    });
+    // 加载已保存的面板位置（刷新后恢复）
+    (function () {
+      try {
+        const colPos = JSON.parse(localStorage.getItem('leftColPos') || 'null');
+        if (colPos && colPos.left) {
+          const col = document.querySelector('.left-col');
+          col.style.left = colPos.left; col.style.top = colPos.top;
+        }
+        const legPos = JSON.parse(localStorage.getItem('legendPos') || 'null');
+        if (legPos && legPos.left) {
+          const box = document.getElementById('legendBox');
+          box.style.bottom = 'auto'; box.style.left = legPos.left; box.style.top = legPos.top;
+        }
+      } catch (e) {}
+    })();
+    // 拖拽移动左侧面板（位置保存到 localStorage）
+    (function () {
+      const col = document.querySelector('.left-col');
+      const handle = document.getElementById('dragHandle');
+      let dragging = false, sx = 0, sy = 0, sl = 0, st = 0;
+      handle.addEventListener('mousedown', e => {
+        dragging = true;
+        sx = e.clientX; sy = e.clientY;
+        const rect = col.getBoundingClientRect();
+        sl = rect.left; st = rect.top;
+        e.preventDefault();
+      });
+      window.addEventListener('mousemove', e => {
+        if (!dragging) return;
+        col.style.left = (sl + e.clientX - sx) + 'px';
+        col.style.top = (st + e.clientY - sy) + 'px';
+      });
+      window.addEventListener('mouseup', () => {
+        if (!dragging) return;
+        dragging = false;
+        localStorage.setItem('leftColPos', JSON.stringify({ left: col.style.left, top: col.style.top }));
+      });
+    })();
+    // 拖拽移动楼栋高度图例（legend，位置保存到 localStorage）
+    (function () {
+      const box = document.getElementById('legendBox');
+      const handle = document.getElementById('legendHandle');
+      let dragging = false, sx = 0, sy = 0, sl = 0, st = 0;
+      handle.addEventListener('mousedown', e => {
+        dragging = true;
+        sx = e.clientX; sy = e.clientY;
+        const rect = box.getBoundingClientRect();
+        sl = rect.left; st = rect.top;
+        box.style.bottom = 'auto';
+        e.preventDefault();
+      });
+      window.addEventListener('mousemove', e => {
+        if (!dragging) return;
+        box.style.left = (sl + e.clientX - sx) + 'px';
+        box.style.top = (st + e.clientY - sy) + 'px';
+      });
+      window.addEventListener('mouseup', () => {
+        if (!dragging) return;
+        dragging = false;
+        localStorage.setItem('legendPos', JSON.stringify({ left: box.style.left, top: box.style.top }));
+      });
+    })();
+    loadBoards();
+    loadDistricts();
+    let boardsVoronoi = [];
+    function loadBoardsVoronoi() {
+      fetch('data/boards_voronoi.geojson')
+        .then(r => r.json())
+        .then(d => { boardsVoronoi = d.features; });
+    }
+    loadBoardsVoronoi();
+
+    // 更新板块数据按钮（从贝壳抓取真实边界）
+    document.getElementById('updateBoardsBtn').addEventListener('click', () => {
+      const btn = document.getElementById('updateBoardsBtn');
+      const info = document.getElementById('beikeInfo');
+      btn.textContent = '🔄 更新中…';
+      info.textContent = '正在从贝壳抓取板块数据（需已登录调试 Chrome）…';
+      fetch('/update-boards', { method: 'POST' })
+        .then(r => r.json())
+        .then(d => {
+          btn.textContent = '🔄 更新板块数据（贝壳）';
+          info.textContent = d.ok ? ('✅ ' + d.msg) : ('❌ ' + (d.msg || '更新失败'));
+          if (d.ok) {
+            loadBoards();
+            loadBoardsVoronoi();
+            setTimeout(() => { document.getElementById('beikeInfo').textContent = '✅ 板块数据已更新，请重新选区查看'; }, 1500);
+          }
+        })
+        .catch(e => { btn.textContent = '🔄 更新板块数据（贝壳）'; info.textContent = '❌ 更新失败：' + e.message; });
+    });
+
+    // 一键启动贝壳调试浏览器
+    document.getElementById('openChromeBtn').addEventListener('click', () => {
+      const info = document.getElementById('beikeInfo');
+      info.textContent = '正在启动贝壳调试浏览器…';
+      fetch('/open-debug-chrome', { method: 'POST' })
+        .then(r => r.json())
+        .then(d => {
+          info.textContent = d.ok
+            ? '✅ 已启动贝壳调试浏览器，请在弹窗里登录贝壳，登录后点「更新板块数据」'
+            : '❌ 启动失败：' + (d.msg || '');
+        })
+        .catch(e => { info.textContent = '❌ 启动失败：' + e.message; });
+    });
+
+    // 抓取调试 Chrome 当前页的贝壳房源
+    document.getElementById('fetchPageBtn').addEventListener('click', () => {
+      const info = document.getElementById('beikeInfo');
+      const btn = document.getElementById('fetchPageBtn');
+      btn.textContent = '📥 抓取中…';
+      info.textContent = '正在读取贝壳当前页房源…';
+      fetch('/fetch-current-page', { method: 'POST' })
+        .then(r => r.json())
+        .then(d => {
+          btn.textContent = '📥 抓取当前页房源';
+          info.textContent = d.ok ? d.msg : ('❌ ' + (d.msg || '抓取失败'));
+          if (d.ok) setTimeout(() => loadXiaoquArchives(true), 300);
+        })
+        .catch(e => { btn.textContent = '📥 抓取当前页房源'; info.textContent = '❌ 抓取失败：' + e.message; });
+    });
+
+    // 智能抓取所有贝壳页（小区详情/房源详情/列表）
+    document.getElementById('fetchSmartBtn').addEventListener('click', () => {
+      const info = document.getElementById('beikeInfo');
+      const btn = document.getElementById('fetchSmartBtn');
+      btn.textContent = '🤖 抓取中…';
+      info.textContent = '正在识别所有贝壳页面并抓取（约需数秒）…';
+      fetch('/fetch-ke-smart', { method: 'POST' })
+        .then(r => r.json())
+        .then(d => {
+          btn.textContent = '🤖 智能抓取所有贝壳页';
+          info.textContent = d.ok ? d.msg : ('❌ ' + (d.msg || '抓取失败'));
+          if (d.ok) setTimeout(() => loadXiaoquArchives(true), 300);
+        })
+        .catch(e => { btn.textContent = '🤖 智能抓取所有贝壳页'; info.textContent = '❌ 抓取失败：' + e.message; });
+    });
+
+    // 导出 Markdown 报告
+    document.getElementById('exportMdBtn').addEventListener('click', () => {
+      const info = document.getElementById('beikeInfo');
+      const btn = document.getElementById('exportMdBtn');
+      btn.textContent = '📄 导出中…';
+      fetch('/export-md', { method: 'POST' })
+        .then(r => r.json())
+        .then(d => {
+          btn.textContent = '📄 导出 Markdown 报告';
+          info.textContent = d.ok ? d.msg : ('❌ ' + (d.msg || '导出失败'));
+        })
+        .catch(e => { btn.textContent = '📄 导出 Markdown 报告'; info.textContent = '❌ 导出失败：' + e.message; });
+    });
+
+    // ---- 小区档案（贝壳）----
+    let xiaoquList = []; // 已抓取的小区名列表（供楼栋 popup 判断是否有档案）
+    async function loadXiaoquArchives(forceAll) {
+      const sel = document.getElementById('xqSelect');
+      try {
+        const r = await fetch('/list-xiaoqu');
+        const d = await r.json();
+        const list = d.files || [];
+        xiaoquList = list.map(x => x.name).filter(Boolean);
+        // 按当前勾选的板块过滤（不选板块 = 显示全部；forceAll 强制显示全部）
+        const checkedBoards = forceAll ? [] : [...document.querySelectorAll('.board-check:checked')].map(cb => cb.dataset.name);
+        const filtered = checkedBoards.length
+          ? list.filter(x => checkedBoards.some(b => (x.board || '').includes(b) || b.includes(x.board || '')))
+          : list;
+        // 同板块放一起：先按板块名排序，再按小区名排序
+        filtered.sort((a, b) => (a.district || '').localeCompare(b.district || '') || (a.board || '').localeCompare(b.board || '') || (a.name || '').localeCompare(b.name || ''));
+        const cur = sel.value;
+        sel.innerHTML = '<option style="color:#333" value="">选择小区…</option>' + filtered.map(x => `<option style="color:#333" value="${x.name}">${x.name}${x.board ? '（' + (x.district ? x.district + '·' : '') + x.board + '）' : ''}</option>`).join('');
+        if (filtered.some(x => x.name === cur)) sel.value = cur;
+      } catch (e) {}
+    }
+    document.getElementById('xqSelect').addEventListener('change', async e => {
+      const name = e.target.value;
+      const detail = document.getElementById('xqDetail');
+      if (!name) { detail.innerHTML = ''; return; }
+      // 地图高亮该小区位置（xiaoqu 橙色，区别于板块 beike 蓝色）
+      clearBeikeHighlight();
+      const normKw = name.replace(/[·\s·]/g, '');
+      const NOISE = /幼儿园|学校|小学|中学|大学|医院|派出所|居委会|政府|办事处|门卫|岗亭|车棚|配电|垃圾/;
+      let xqCenter = null;
+      for (const f of buildingsData.features) {
+        const rawName = f.properties.name || '';
+        if (NOISE.test(rawName)) continue;
+        const n = rawName.replace(/\([^)]*\)/g, '').replace(/（[^）]*）/g, '').replace(/[·\s·]/g, '');
+        if (n && n.includes(normKw)) {
+          map.setFeatureState({ source: 'buildings', sourceLayer: 'buildings', id: f.id }, { xiaoqu: true });
+          beikeHighlightedIds.push(f.id);
+          if (!xqCenter) xqCenter = centroid(f);
+        }
+      }
+      if (xqCenter) map.flyTo({ center: xqCenter, zoom: 15 });
+      try {
+        const r = await fetch('data/ke_xiaoqu/' + encodeURIComponent(name) + '.json');
+        const d = await r.json();
+        const info = d.info || {};
+        let html = `<div style="font-weight:bold;color:#fff;margin-bottom:4px">${d.name || name}</div>`;
+        html += `<a href="xiaoqu.html?name=${encodeURIComponent(d.name || name)}" target="_blank" style="display:inline-block;margin-bottom:4px;color:#4fc3f7;text-decoration:none;font-size:12px">🔗 打开独立页面查看 →</a>`;
+        html += ` <a href="javascript:void(0)" id="delXqBtn" style="display:inline-block;margin-bottom:4px;color:#e74c3c;text-decoration:none;font-size:12px;margin-left:8px">🗑 删除档案</a>`;
+        if (d.note) html += `<div style="font-weight:bold;color:#ffe082;margin:6px 0;padding:6px 8px;background:rgba(255,224,130,0.12);border-left:3px solid #ffe082;border-radius:3px">📝 ${d.note}</div>`;
+        html += `<div style="margin-top:4px"><input id="noteInput" type="text" value="${d.note || ''}" placeholder="添加备注…" style="width:calc(100% - 66px);background:#f0f1f3;border:1px solid #d0d2d6;border-radius:4px;color:#2a2d35;padding:3px 6px"> <button id="saveNoteBtn" class="res-btn" style="padding:3px 8px">保存</button></div>`;
+        html += `<div>均价：<b>${d.price || '?'}</b> 元/㎡</div>`;
+        const rows = [['建筑类型', info['建筑类型']], ['楼栋', info['楼栋总数']], ['房屋', info['房屋总数']], ['容积率', info['容积率']], ['绿化率', info['绿化率']], ['年代', info['建成年代']], ['权属', info['交易权属']], ['房屋性质', info['房屋性质']], ['停车费', info['停车费']], ['物业费', info['物业费']], ['开发商', info['开发商']]];
+        rows.forEach(([k, v]) => {
+          if (!v) return;
+          let display = v;
+          if (k === '权属') {
+            // 按斜杠拆分，只给「拆迁/回迁(红)、公房(黄)」那一个标签标色
+            display = v.split('/').map(tag => {
+              if (/拆迁|回迁/.test(tag)) return `<span style="color:#e74c3c;font-weight:bold">${tag}</span>`;
+              if (/公房/.test(tag)) return `<span style="color:#f0c060;font-weight:bold">${tag}</span>`;
+              return tag;
+            }).join('/');
+          } else if (k === '容积率') {
+            const r = parseFloat(v);
+            if (!isNaN(r)) {
+              const color = r < 2.8 ? '#2ecc71' : r < 4 ? '#f0c060' : '#e74c3c';
+              display = `<span style="color:${color};font-weight:bold">${v}</span>`;
+            }
+          }
+          html += `<div>${k}：${display}</div>`;
+        });
+        if (d.metro && d.metro.length) {
+          const sorted = d.metro.slice().sort((a, b) => parseInt(a.distance) - parseInt(b.distance));
+          html += `<div style="margin-top:4px;color:#7ec8e3">🚇 最近地铁：${sorted[0].name} ${sorted[0].distance}（${sorted[0].lines}）</div>`;
+          html += `<div style="color:#a9adb8">${sorted.slice(1, 5).map(m => m.name + m.distance).join(' · ')}</div>`;
+        }
+        if (d.deals && d.deals.length) {
+          html += `<div style="margin-top:4px;color:#f0c060">最近成交：</div>`;
+          d.deals.forEach(x => html += `<div style="color:#a9adb8">${x.面积} ${x.签约日期} ${x.成交价}（${x.成交单价}）</div>`);
+        }
+        if (d.houses && d.houses.length) {
+          html += `<div style="margin-top:4px;color:#f0c060">在售房源：</div>`;
+          d.houses.forEach((h, hi) => {
+            const hc = h.houseCode || '';
+            const floors = h.totalFloors ? `共${h.totalFloors}层` : '';
+            let deFang = '';
+            if (h.taoneiArea && h.area) {
+              const rate = parseFloat(h.taoneiArea) / parseFloat(h.area) * 100;
+              const color = rate >= 90 ? '#2ecc71' : rate >= 85 ? '#f0c060' : '#e74c3c';
+              deFang = ` <span style="color:${color};font-weight:bold">得房率${rate.toFixed(1)}%</span>`;
+            } else {
+              deFang = ` 套内<input type="number" class="tnInput" data-hc="${hc}" placeholder="㎡" style="width:48px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:4px;color:#fff;padding:1px 4px;font-size:11px;margin-left:4px">`;
+            }
+            let tihuHtml = '';
+            if (h.tihu) {
+              const tm = h.tihu.match(/(\d+)梯(\d+)户/);
+              if (tm) {
+                const ti = parseInt(tm[1]), hu = parseInt(tm[2]);
+                const ratio = hu / ti;
+                const color = (hu <= 4 && ratio <= 2) ? '#2ecc71' : (hu <= 6 && ratio <= 2.5) ? '#f0c060' : '#e74c3c';
+                tihuHtml = ` <span style="color:${color};font-weight:bold">${h.tihu}</span>`;
+              }
+            }
+            const link = h.url ? `<a href="${h.url}" target="_blank" style="color:#4fc3f7;font-size:11px;margin-left:4px" title="打开贝壳房源">🔗</a>` : '';
+            html += `<div style="color:#a9adb8">${h.room} ${h.area}㎡ ${h.totalPrice}万 ${h.orientation}${floors ? ' · ' + floors : ''}${deFang}${tihuHtml}${link} <a href="javascript:void(0)" class="delHouseBtn" data-hc="${hc}" data-hi="${hi}" style="color:#e74c3c;font-size:11px;margin-left:6px">🗑 删除</a></div>`;
+            if (h.localImages && h.localImages.length) {
+              html += `<div style="display:flex;overflow-x:auto;gap:4px;margin:4px 0">`;
+              h.localImages.forEach(img => html += `<img src="data/ke_xiaoqu/images/${encodeURIComponent(d.name || name)}/${img}" style="width:120px;height:90px;object-fit:cover;border-radius:4px;flex-shrink:0">`);
+              html += `</div>`;
+            }
+          });
+        }
+        if (d.localImages && d.localImages.length) {
+          html += `<div style="margin-top:6px;display:flex;overflow-x:auto;gap:6px;padding-bottom:4px">`;
+          d.localImages.forEach(img => html += `<img src="data/ke_xiaoqu/images/${encodeURIComponent(d.name || name)}/${img}" style="width:140px;height:100px;object-fit:cover;border-radius:4px;flex-shrink:0" loading="lazy">`);
+          html += `</div>`;
+        }
+        detail.innerHTML = html;
+        // 删除单条房源（事件委托）
+        detail.querySelectorAll('.delHouseBtn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const hc = btn.dataset.hc;
+            const h = d.houses[parseInt(btn.dataset.hi)];
+            if (!confirm(`确认删除房源：${h ? h.room + ' ' + h.area + '㎡ ' + h.totalPrice + '万' : ''}？`)) return;
+            fetch('/delete-house', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, houseCode: hc }) })
+              .then(r => r.json())
+              .then(dd => {
+                if (dd.ok) document.getElementById('xqSelect').dispatchEvent(new Event('change'));
+                else alert('删除失败：' + (dd.msg || ''));
+              })
+              .catch(e => alert('删除失败：' + e.message));
+          });
+        });
+        // 套内面积输入框（回车保存，算得房率）
+        detail.querySelectorAll('.tnInput').forEach(inp => {
+          inp.addEventListener('keydown', e => {
+            if (e.key !== 'Enter') return;
+            const hc = inp.dataset.hc;
+            const v = inp.value;
+            if (!v || isNaN(parseFloat(v))) { alert('请输入有效的套内面积'); return; }
+            fetch('/set-taonei-area', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, houseCode: hc, taoneiArea: v }) })
+              .then(r => r.json())
+              .then(dd => {
+                if (dd.ok) document.getElementById('xqSelect').dispatchEvent(new Event('change'));
+                else alert('保存失败：' + (dd.msg || ''));
+              })
+              .catch(e => alert('保存失败：' + e.message));
+          });
+        });
+        const delBtn = document.getElementById('delXqBtn');
+        if (delBtn) delBtn.addEventListener('click', () => {
+          if (!confirm(`确认删除「${name}」的小区档案？`)) return;
+          fetch('/delete-xiaoqu', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name }) })
+            .then(r => r.json())
+            .then(dd => {
+              if (dd.ok) { detail.innerHTML = ''; loadXiaoquArchives(); }
+              else alert('删除失败：' + (dd.msg || ''));
+            })
+            .catch(e => alert('删除失败：' + e.message));
+        });
+        const noteBtn = document.getElementById('saveNoteBtn');
+        if (noteBtn) noteBtn.addEventListener('click', () => {
+          const note = document.getElementById('noteInput').value;
+          fetch('/add-xiaoqu-note', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, note }) })
+            .then(r => r.json())
+            .then(dd => {
+              if (dd.ok) { document.getElementById('xqSelect').dispatchEvent(new Event('change')); }
+              else alert('保存失败：' + (dd.msg || ''));
+            })
+            .catch(e => alert('保存失败：' + e.message));
+        });
+      } catch (err) { detail.textContent = '加载失败：' + err.message; }
+    });
+    loadXiaoquArchives();
+
+    // ---- 重画边界 ----
+    let redrawMode = false;
+    let redrawPoints = [];
+    let redrawDistrict = '';
+    const redrawBtn = document.getElementById('redrawBtn');
+
+    function saveDistrict(name, coordinates) {
+      fetch('/save-district', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, coordinates }),
+      })
+        .then(r => r.json())
+        .then(d => {
+          if (d.ok) {
+            document.getElementById('beikeInfo').textContent = `✅ 「${name}」边界已保存（${coordinates.length - 1} 个顶点）`;
+            loadDistricts();
+            setTimeout(() => highlightDistrict(name), 300);
+          } else {
+            document.getElementById('beikeInfo').textContent = '❌ 保存失败：' + d.error;
+          }
+        })
+        .catch(e => { document.getElementById('beikeInfo').textContent = '❌ 保存失败：' + e.message; });
+    }
+
+    redrawBtn.addEventListener('click', () => {
+      if (!redrawMode) {
+        redrawDistrict = document.getElementById('districtSelect').value;
+        if (!redrawDistrict) { document.getElementById('beikeInfo').textContent = '⚠️ 请先选择区再重画'; return; }
+        redrawMode = true;
+        redrawPoints = [];
+        redrawBtn.textContent = '✅ 完成并保存';
+        redrawBtn.style.background = '#27ae60';
+        document.getElementById('beikeInfo').textContent = '✏️ 绘制中：在地图上点击描出「' + redrawDistrict + '」边界，点完按「完成并保存」';
+        if (map.getSource('draw')) map.getSource('draw').setData({ type: 'FeatureCollection', features: [] });
+      } else {
+        if (redrawPoints.length < 3) { document.getElementById('beikeInfo').textContent = '⚠️ 至少点 3 个点'; return; }
+        const coords = redrawPoints.concat([redrawPoints[0]]); // 闭合
+        saveDistrict(redrawDistrict, coords);
+        redrawMode = false;
+        redrawPoints = [];
+        redrawBtn.textContent = '✏️ 重画边界';
+        redrawBtn.style.background = '';
+        if (map.getSource('draw')) map.getSource('draw').setData({ type: 'FeatureCollection', features: [] });
+      }
+    });
+
+    map.on('click', e => {
+      if (!redrawMode) return;
+      redrawPoints.push([e.lngLat.lng, e.lngLat.lat]);
+      const coords = redrawPoints.concat([redrawPoints[0]]);
+      if (map.getSource('draw')) {
+        map.getSource('draw').setData({ type: 'FeatureCollection', features: [{ type: 'Feature', properties: {}, geometry: { type: 'LineString', coordinates: coords } }] });
+      }
+    });
+
+    let targetId = null;
+    let blockedIds = [];
+
+    function clearMark() {
+      if (targetId !== null) {
+        map.removeFeatureState({ source: 'buildings', sourceLayer: 'buildings', id: targetId });
+      }
+      for (const id of blockedIds) {
+        map.removeFeatureState({ source: 'buildings', sourceLayer: 'buildings', id });
+      }
+      targetId = null;
+      blockedIds = [];
+      currentTargetFeature = null;
+      if (map.getSource('viewshed')) {
+        map.getSource('viewshed').setData({ type: 'FeatureCollection', features: [] });
+      }
+      document.getElementById('resultPanel').style.display = 'none';
+    }
+
+    function markTarget(feature) {
+      clearMark();
+      targetId = feature.id;
+      currentTargetFeature = feature;
+      map.setFeatureState({ source: 'buildings', sourceLayer: 'buildings', id: targetId }, { target: true });
+
+      const [tLon, tLat] = centroid(feature);
+      const tHeight = feature.properties.height;
+
+      const south = [];
+      for (const f of buildingsData.features) {
+        if (f.id === targetId) continue;
+        const [cLon, cLat] = centroid(f);
+        const brng = bearingBetween(tLon, tLat, cLon, cLat);
+        const dist = distanceM(tLon, tLat, cLon, cLat);
+        if (brng >= 135 && brng <= 225 && dist < 400) {
+          south.push({ f, brng, dist });
+        }
+      }
+
+      blockedIds = south
+        .filter(s => s.f.properties.height >= tHeight * 0.8)
+        .map(s => s.f.id);
+      for (const id of blockedIds) {
+        map.setFeatureState({ source: 'buildings', sourceLayer: 'buildings', id }, { blocked: true });
+      }
+
+      const name = feature.properties.name || btypeFallback[feature.properties.building] || '建筑';
+      const maxSouth = south.length ? Math.max(...south.map(s => s.f.properties.height)) : 0;
+      const higher = blockedIds.length;
+      const panel = document.getElementById('resultPanel');
+      panel.innerHTML = `
+        <div class="res-title">🎯 目标楼栋</div>
+        <div class="res-row">${name} · ${feature.properties.height}m（${feature.properties.levels || '?'}层）</div>
+        <div class="res-title" style="margin-top:8px">南侧遮挡分析（400m 内）</div>
+        <div class="res-row">南侧楼 ${south.length} 栋，其中高于目标 ${higher} 栋</div>
+        <div class="res-row">南侧最高楼 ${maxSouth}m</div>
+        <div class="res-note">${higher > 0 ? '🔴 红色楼栋高于目标，冬至正午可能挡光' : '✅ 南侧无更高楼，采光相对较好'}</div>
+        <div class="res-title" style="margin-top:8px">👁️ 视野分析</div>
+        <div class="res-row">所在楼层：<input type="range" id="floorSlider" min="1" max="50" value="10" style="width:140px;vertical-align:middle"> <span id="floorLabel">10层</span></div>
+        <div class="res-row" style="color:#8b8f99">地面色环：绿=开阔(>400m) · 黄=一般 · 红=被挡(&lt;200m)</div>
+        <button id="clearMarkBtn" class="res-btn">清除标记</button>
+      `;
+      panel.style.display = 'block';
+      document.getElementById('clearMarkBtn').addEventListener('click', clearMark);
+      document.getElementById('floorSlider').addEventListener('input', updateViewShed);
+      updateViewShed();
+    }
+
+    // ---- 视野/视域分析（360° 视线遮挡检测）----
+    let currentTargetFeature = null;
+
+    function rayPolygonDistance(pts, dx, dy) {
+      let minT = null;
+      for (let i = 0; i < pts.length - 1; i++) {
+        const x1 = pts[i][0], y1 = pts[i][1];
+        const x2 = pts[i + 1][0], y2 = pts[i + 1][1];
+        const ex = x2 - x1, ey = y2 - y1;
+        const det = ex * dy - dx * ey;
+        if (Math.abs(det) < 1e-9) continue;
+        const t = (ex * y1 - x1 * ey) / det;
+        const u = (dx * y1 - dy * x1) / det;
+        if (t >= 0 && u >= 0 && u <= 1) {
+          if (minT === null || t < minT) minT = t;
+        }
+      }
+      return minT;
+    }
+
+    function colorForDist(d) {
+      if (d >= 400) return '#2ecc71';
+      if (d >= 200) return '#f1c40f';
+      return '#e74c3c';
+    }
+
+    function endPoint(tLon, tLat, angle, dist, mPerDegLat, mPerDegLon) {
+      const rad = angle * Math.PI / 180;
+      return [tLon + (dist * Math.sin(rad)) / mPerDegLon, tLat + (dist * Math.cos(rad)) / mPerDegLat];
+    }
+
+    function updateViewShed() {
+      if (!currentTargetFeature) return;
+      const floors = parseInt(document.getElementById('floorSlider').value, 10);
+      const viewHeightM = floors * 3;
+      document.getElementById('floorLabel').textContent = `${floors}层（约${viewHeightM}m）`;
+
+      const [tLon, tLat] = centroid(currentTargetFeature);
+      const mPerDegLat = 111320;
+      const mPerDegLon = 111320 * Math.cos(tLat * Math.PI / 180);
+      const MAX_DIST = 800;
+
+      const blockers = [];
+      for (const f of buildingsData.features) {
+        if (f.id === currentTargetFeature.id) continue;
+        if (f.properties.height <= viewHeightM) continue;
+        const ring = f.geometry.coordinates[0];
+        blockers.push(ring.map(([lon, lat]) => [
+          (lon - tLon) * mPerDegLon,
+          (lat - tLat) * mPerDegLat,
+        ]));
+      }
+
+      const N = 72;
+      const dists = new Array(N);
+      for (let i = 0; i < N; i++) {
+        const rad = (i * 360 / N) * Math.PI / 180;
+        const dx = Math.sin(rad), dy = Math.cos(rad);
+        let minDist = MAX_DIST;
+        for (const pts of blockers) {
+          const d = rayPolygonDistance(pts, dx, dy);
+          if (d !== null && d < minDist) minDist = d;
+        }
+        dists[i] = minDist;
+      }
+
+      const features = [];
+      for (let i = 0; i < N; i++) {
+        const angle = i * 360 / N;
+        const nextAngle = ((i + 1) % N) * 360 / N;
+        const e1 = endPoint(tLon, tLat, angle, dists[i], mPerDegLat, mPerDegLon);
+        const e2 = endPoint(tLon, tLat, nextAngle, dists[(i + 1) % N], mPerDegLat, mPerDegLon);
+        features.push({
+          type: 'Feature',
+          properties: { color: colorForDist(dists[i]) },
+          geometry: { type: 'Polygon', coordinates: [[[tLon, tLat], e1, e2, [tLon, tLat]]] },
+        });
+      }
+
+      if (map.getSource('viewshed')) {
+        map.getSource('viewshed').setData({ type: 'FeatureCollection', features });
+      }
+    }
+
+    // 带进度的数据下载（显示百分比 + 预估时间）
+    function setLoadingText(s) {
+      const el = document.getElementById('loadingText');
+      if (el) el.textContent = s;
+    }
+
+    map.on('load', () => {
+      fetch('data/buildings.geojson')
+        .then(async r => {
+          const total = parseInt(r.headers.get('content-length'), 10) || 0;
+          const reader = r.body.getReader();
+          const chunks = [];
+          let received = 0, lastUpdate = 0;
+          const t0 = Date.now();
+          while (true) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            chunks.push(value);
+            received += value.length;
+            const now = Date.now();
+            if (total > 0 && now - lastUpdate > 80) { // 节流更新
+              lastUpdate = now;
+              const pct = (received / total * 100).toFixed(0);
+              const elapsed = (now - t0) / 1000;
+              const speed = received / elapsed;
+              const remaining = speed > 0 ? (total - received) / speed : 0;
+              setLoadingText(`下载楼栋数据 ${pct}%（预计还需 ${remaining.toFixed(0)} 秒）`);
+            }
+          }
+          setLoadingText('解析楼栋数据…');
+          const buf = new Uint8Array(received);
+          let off = 0;
+          for (const c of chunks) { buf.set(c, off); off += c.length; }
+          return JSON.parse(new TextDecoder('utf-8').decode(buf));
+        })
+        .then(data => {
+          buildingsData = data;
+
+          // 加载小区数据（色块 + 名字）
+          fetch('data/communities.geojson')
+            .then(r => r.json())
+            .then(cdata => {
+              if (map.getSource('communities')) map.getSource('communities').setData(cdata);
+            })
+            .catch(err => console.error('小区数据加载失败', err));
+
+          // 天地图卫星影像底图（标准坐标，无偏移）
+          map.addSource('tdt-img', {
+            type: 'raster',
+            tiles: [`https://t0.tianditu.gov.cn/img_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=img&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&tk=${TDT_KEY}`],
+            tileSize: 256,
+          });
+          map.addLayer({ id: 'tdt-img', type: 'raster', source: 'tdt-img' });
+
+          map.addSource('tdt-cia', {
+            type: 'raster',
+            tiles: [`https://t0.tianditu.gov.cn/cia_w/wmts?SERVICE=WMTS&REQUEST=GetTile&VERSION=1.0.0&LAYER=cia&STYLE=default&TILEMATRIXSET=w&FORMAT=tiles&TILEMATRIX={z}&TILEROW={y}&TILECOL={x}&tk=${TDT_KEY}`],
+            tileSize: 256,
+          });
+          map.addLayer({ id: 'tdt-cia', type: 'raster', source: 'tdt-cia' });
+
+          // 楼栋用矢量瓦片（vector tiles）：按瓦片加载，缩放移动时瓦片秒加载、楼栋始终在
+          map.addSource('buildings', {
+            type: 'vector',
+            url: 'data/tiles/tile.json',
+          });
+          map.addSource('shadows', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+          map.addSource('viewshed', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+          map.addSource('communities', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+          map.addSource('board', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+          map.addSource('district', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+          map.addSource('draw', { type: 'geojson', data: { type: 'FeatureCollection', features: [] } });
+
+          // 阴影层（地面 fill，先加，位于建筑之下；默认隐藏）
+          map.addLayer({
+            id: 'shadows',
+            type: 'fill',
+            source: 'shadows',
+            layout: { visibility: 'none' },
+            paint: {
+              'fill-color': '#1a1a2e',
+              'fill-opacity': 0.30,
+            },
+          });
+
+          // 视野环层（地面 fill，位于建筑之下）
+          map.addLayer({
+            id: 'viewshed',
+            type: 'fill',
+            source: 'viewshed',
+            paint: {
+              'fill-color': ['get', 'color'],
+              'fill-opacity': 0.35,
+            },
+          });
+
+          // 小区边框层（LineString，仅边界线，放大到 14 级才显示避免全城乱）
+          map.addLayer({
+            id: 'communities-line',
+            type: 'line',
+            source: 'communities',
+            minzoom: 14,
+            paint: {
+              'line-color': '#e86a33',
+              'line-width': 2.5,
+              'line-opacity': 0.85,
+            },
+          });
+
+          // 主建筑层：按高度分档着色（矢量瓦片，缩放移动流畅）
+          map.addLayer({
+            id: 'buildings',
+            type: 'fill-extrusion',
+            source: 'buildings',
+            'source-layer': 'buildings',
+            paint: {
+              'fill-extrusion-height': ['get', 'height'],
+              'fill-extrusion-base': 0,
+              'fill-extrusion-opacity': 0.92,
+              'fill-extrusion-color': [
+                'case',
+                ['boolean', ['feature-state', 'target'], false], '#2ecc71',
+                ['boolean', ['feature-state', 'blocked'], false], '#e74c3c',
+                ['boolean', ['feature-state', 'beike'], false], '#2e86de',
+                ['boolean', ['feature-state', 'xiaoqu'], false], '#00bcd4',
+                ['boolean', ['feature-state', 'search'], false], '#00bcd4',
+                ['==', ['get', 'heightSource'], 'estimated'], '#9a9aa2',
+                ['==', ['get', 'heightSource'], 'manual'], '#9b59b6',
+                ['step', ['get', 'height'],
+                  '#c9d8c9', 12,
+                  '#f0dfae', 40,
+                  '#e89a4e', 90,
+                  '#c04f3a',
+                ],
+              ],
+            },
+          });
+
+          // 小区名文字层（在楼栋之上，放大到 14 级才显示）
+          map.addLayer({
+            id: 'communities-label',
+            type: 'symbol',
+            source: 'communities',
+            minzoom: 14,
+            layout: {
+              'text-field': ['get', 'name'],
+              'text-size': 15,
+              'text-font': ['Noto Sans Bold'],
+              'text-anchor': 'center',
+            },
+            paint: {
+              'text-color': '#1a1a1a',
+              'text-halo-color': '#ffffff',
+              'text-halo-width': 2,
+            },
+          });
+
+          // 板块粗边框层（搜索板块时显示）
+          map.addLayer({
+            id: 'board-line',
+            type: 'line',
+            source: 'board',
+            paint: {
+              'line-color': '#ff5a5f',
+              'line-width': 5,
+              'line-opacity': 0.9,
+            },
+          });
+
+          // 区边界层（选区时显示，鲜黄色）
+          map.addLayer({
+            id: 'district-line',
+            type: 'line',
+            source: 'district',
+            paint: {
+              'line-color': '#ffe600',
+              'line-width': 4,
+              'line-opacity': 0.9,
+            },
+          });
+
+          // 重画边界临时线（绘制时显示，青色虚线）
+          map.addLayer({
+            id: 'draw-line',
+            type: 'line',
+            source: 'draw',
+            paint: {
+              'line-color': '#00e5ff',
+              'line-width': 4,
+              'line-dasharray': [2, 1],
+            },
+          });
+
+          // 悬停高亮层
+          map.addLayer({
+            id: 'buildings-hover',
+            type: 'fill-extrusion',
+            source: 'buildings',
+            'source-layer': 'buildings',
+            filter: ['==', ['id'], -1],
+            paint: {
+              'fill-extrusion-height': ['get', 'height'],
+              'fill-extrusion-base': 0,
+              'fill-extrusion-opacity': 1,
+              'fill-extrusion-color': '#ffe082',
+            },
+          });
+
+          // 悬停
+          map.on('mousemove', 'buildings', (e) => {
+            if (e.features.length > 0) {
+              map.setFilter('buildings-hover', ['==', ['id'], e.features[0].id]);
+              map.getCanvas().style.cursor = 'pointer';
+            }
+          });
+          map.on('mouseleave', 'buildings', () => {
+            map.setFilter('buildings-hover', ['==', ['id'], -1]);
+            map.getCanvas().style.cursor = '';
+          });
+
+          // 点击查看详情
+          map.on('click', 'buildings', (e) => {
+            const f = e.features[0];
+            const p = f.properties;
+            const name = p.name || btypeFallback[p.building] || '建筑';
+            const type = btypeLabel[p.building] || p.building;
+            const levels = p.levels ? `${p.levels} 层` : '未知';
+            const src = srcLabel[p.heightSource] || p.heightSource;
+            const beikeLink = p.name
+              ? `<a class="beike-link" href="https://cd.ke.com/xiaoqu/rs${encodeURIComponent(p.name)}/" target="_blank" rel="noopener">🏠 在贝壳查看均价 / 在售套数 →</a>`
+              : '';
+            const xiaoquLink = p.name && xiaoquList.includes(p.name)
+              ? `<a class="beike-link" href="xiaoqu.html?name=${encodeURIComponent(p.name)}" target="_blank">📋 打开小区档案 →</a>`
+              : '';
+            const html = `
+              <h3>${name}</h3>
+              <div>类型：${type}</div>
+              <div>楼层：${levels}</div>
+              <div>高度：<b>${p.height} m</b>
+                <span class="badge ${p.heightSource}">${src}</span></div>
+              <button id="markBtn" class="res-btn">🎯 设为目标楼栋</button>
+              <div style="margin-top:6px">层数：<input id="floorInput" type="number" value="${p.levels || Math.round(p.height / 3)}" style="width:64px;background:#f0f1f3;border:1px solid #d0d2d6;border-radius:4px;color:#2a2d35;padding:3px 6px"> <button id="saveFloorBtn" class="res-btn" style="padding:3px 10px">💾 保存层数</button></div>
+              <div style="margin-top:4px">名字：<input id="nameInput" type="text" value="${name}" style="width:140px;background:#f0f1f3;border:1px solid #d0d2d6;border-radius:4px;color:#2a2d35;padding:3px 6px"> <button id="saveNameBtn" class="res-btn" style="padding:3px 10px">💾 保存</button></div>
+              ${xiaoquLink}
+              ${beikeLink}
+            `;
+            const popup = new maplibregl.Popup({ offset: 12 })
+              .setLngLat(e.lngLat)
+              .setHTML(html)
+              .addTo(map);
+            document.getElementById('markBtn').addEventListener('click', () => {
+              markTarget(f);
+              popup.remove();
+            });
+            document.getElementById('saveFloorBtn').addEventListener('click', () => {
+              const floors = document.getElementById('floorInput').value;
+              if (!floors || isNaN(parseFloat(floors))) { alert('请输入有效层数'); return; }
+              fetch('/set-building-height', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ id: f.id, floors: parseFloat(floors) }) })
+                .then(r => r.json())
+                .then(d => {
+                  popup.remove();
+                  if (d.ok) { alert(d.msg + '，页面将刷新'); location.reload(); }
+                  else alert('设置失败：' + (d.msg || ''));
+                })
+                .catch(err => alert('设置失败：' + err.message));
+            });
+            document.getElementById('saveNameBtn').addEventListener('click', () => {
+              const newName = document.getElementById('nameInput').value.trim();
+              if (!newName) { alert('请输入名字'); return; }
+              const newFloors = document.getElementById('floorInput').value;
+              const body = { id: f.id, name: newName };
+              if (newFloors && !isNaN(parseFloat(newFloors))) body.floors = parseFloat(newFloors);
+              fetch('/fix-building', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) })
+                .then(r => r.json())
+                .then(d => {
+                  popup.remove();
+                  if (d.ok) { alert(d.msg + '，页面将刷新'); location.reload(); }
+                  else alert('修正失败：' + (d.msg || ''));
+                })
+                .catch(err => alert('修正失败：' + err.message));
+            });
+          });
+
+          // 日照控制（阴影默认关闭）
+          document.getElementById('timeSlider').addEventListener('input', updateShadows);
+          document.getElementById('shadowToggle').addEventListener('change', (e) => {
+            map.setLayoutProperty('shadows', 'visibility', e.target.checked ? 'visible' : 'none');
+            if (e.target.checked) updateShadows();
+          });
+          // 不初始生成阴影；楼栋一次性全量加载，缩放不重载
+
+          // 标注估算/真实高度开关
+          const STEP_COLOR = ['step', ['get', 'height'], '#c9d8c9', 12, '#f0dfae', 40, '#e89a4e', 90, '#c04f3a'];
+          document.getElementById('srcToggle').addEventListener('change', (e) => {
+            const show = e.target.checked;
+            const expr = show
+              ? ['case', ['boolean', ['feature-state', 'target'], false], '#2ecc71', ['boolean', ['feature-state', 'blocked'], false], '#e74c3c', ['boolean', ['feature-state', 'beike'], false], '#2e86de', ['boolean', ['feature-state', 'xiaoqu'], false], '#00bcd4', ['boolean', ['feature-state', 'search'], false], '#00bcd4', ['==', ['get', 'heightSource'], 'estimated'], '#9a9aa2', ['==', ['get', 'heightSource'], 'manual'], '#9b59b6', STEP_COLOR]
+              : ['case', ['boolean', ['feature-state', 'target'], false], '#2ecc71', ['boolean', ['feature-state', 'blocked'], false], '#e74c3c', ['boolean', ['feature-state', 'beike'], false], '#2e86de', ['boolean', ['feature-state', 'xiaoqu'], false], '#00bcd4', ['boolean', ['feature-state', 'search'], false], '#00bcd4', ['==', ['get', 'heightSource'], 'manual'], '#9b59b6', STEP_COLOR];
+            if (map.getLayer('buildings')) map.setPaintProperty('buildings', 'fill-extrusion-color', expr);
+          });
+
+          // 等地图空闲（楼栋全部渲染完）才隐藏 loading；兜底 20 秒
+          setLoadingText('渲染楼栋…');
+          const loading = document.getElementById('loading');
+          function hideLoading() {
+            if (loading) { loading.style.opacity = '0'; setTimeout(() => loading.remove(), 400); }
+          }
+          map.once('idle', hideLoading);
+          setTimeout(hideLoading, 20000);
+        })
+        .catch(err => console.error('加载建筑数据失败：', err));
+    });
+  </script>
+  <div id="lightbox"><img id="lightboxImg" src="" alt=""><div id="lbPrev" class="lb-arrow">‹</div><div id="lbNext" class="lb-arrow">›</div><div class="lb-count" id="lbCount"></div><div class="lb-hint">滚轮缩放 · 按住拖动 · 单击关闭</div></div>
+  <script>
+    // ---- 图片灯箱：点击放大 + 滚轮缩放 + 按住拖动 + 单击关闭 + 左右翻页 ----
+    (function () {
+      const lb = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightboxImg');
+      let st = { scale: 1, tx: 0, ty: 0, dragging: false, moved: false, sx: 0, sy: 0, startTx: 0, startTy: 0 };
+      let lbSrcs = [], lbIndex = 0;
+      function apply() { lbImg.style.transform = `translate(calc(-50% + ${st.tx}px), calc(-50% + ${st.ty}px)) scale(${st.scale})`; }
+      function showImage() {
+        lbImg.src = lbSrcs[lbIndex];
+        st = { scale: 1, tx: 0, ty: 0, dragging: false, moved: false, sx: 0, sy: 0, startTx: 0, startTy: 0 };
+        apply();
+        document.getElementById('lbCount').textContent = (lbIndex + 1) + ' / ' + lbSrcs.length;
+        document.getElementById('lbPrev').style.display = lbIndex > 0 ? 'block' : 'none';
+        document.getElementById('lbNext').style.display = lbIndex < lbSrcs.length - 1 ? 'block' : 'none';
+      }
+      window.openLightbox = function (srcs, index) {
+        lbSrcs = srcs || []; lbIndex = index || 0;
+        showImage(); lb.style.display = 'block';
+      };
+      function close() { lb.style.display = 'none'; }
+      function lbPrev() { if (lbIndex > 0) { lbIndex--; showImage(); } }
+      function lbNext() { if (lbIndex < lbSrcs.length - 1) { lbIndex++; showImage(); } }
+      document.getElementById('lbPrev').addEventListener('click', e => { e.stopPropagation(); lbPrev(); });
+      document.getElementById('lbNext').addEventListener('click', e => { e.stopPropagation(); lbNext(); });
+      // 事件委托：点击 xqDetail 里的图片（收集同组图片）
+      document.getElementById('xqDetail').addEventListener('click', e => {
+        if (e.target.tagName !== 'IMG') return;
+        const imgs = [...e.target.parentElement.querySelectorAll('img')];
+        const srcs = imgs.map(i => i.src);
+        window.openLightbox(srcs, srcs.indexOf(e.target.src));
+      });
+      lb.addEventListener('wheel', e => {
+        e.preventDefault();
+        st.scale *= (e.deltaY < 0 ? 1.12 : 0.89);
+        st.scale = Math.max(0.4, Math.min(6, st.scale));
+        apply();
+      }, { passive: false });
+      lbImg.addEventListener('mousedown', e => {
+        st.dragging = true; st.moved = false; st.sx = e.clientX; st.sy = e.clientY; st.startTx = st.tx; st.startTy = st.ty; e.preventDefault();
+      });
+      window.addEventListener('mousemove', e => {
+        if (!st.dragging) return;
+        const dx = e.clientX - st.sx, dy = e.clientY - st.sy;
+        if (Math.abs(dx) + Math.abs(dy) > 3) st.moved = true;
+        st.tx = st.startTx + dx; st.ty = st.startTy + dy; apply();
+      });
+      window.addEventListener('mouseup', () => { st.dragging = false; });
+      lb.addEventListener('click', e => { if (e.target !== lbImg && e.target.className !== 'lb-arrow' && !st.moved) close(); });
+      lbImg.addEventListener('click', () => { if (!st.moved) close(); else st.moved = false; });
+      window.addEventListener('keydown', e => {
+        if (e.key === 'Escape') close();
+        else if (e.key === 'ArrowLeft') lbPrev();
+        else if (e.key === 'ArrowRight') lbNext();
+      });
+    })();
+  </script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js').catch(() => {});
+      });
+    }
+  </script>
+</body>
+</html>

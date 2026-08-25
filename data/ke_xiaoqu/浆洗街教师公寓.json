@@ -1,0 +1,166 @@
+{
+  "houses": [
+    {
+      "title": "成都武侯华西浆洗街教师公寓 4室1厅 东南",
+      "room": "4室1厅",
+      "area": "146.26",
+      "taoneiArea": null,
+      "totalPrice": "228",
+      "unitPrice": "15589",
+      "floor": "低",
+      "totalFloors": "22",
+      "orientation": "东南",
+      "community": "浆洗街教师公寓",
+      "features": [
+        "满五",
+        "户型方正",
+        "精装",
+        "电梯"
+      ],
+      "tihu": "2梯6户",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/01ca99008fed239d0ea8810dc2df2f8c-033.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/01ca99008fed239d0ea8810dc2df2f8c-033.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/591dc69ac8a161dc1cf88101c618724f-065.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/6481b9c1951551552ffc2d6b2160971e-032.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/c04a0dd2-caf1-4207-9a19-c16926fb32da.png!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/4d9aaeedcfe48b0b13be554c5ed77b58-068.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/30ab558fa04db778abd86f285f95c0f1-062.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/2764bc2adc3044e5e05bc740b9951689-065.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/7f61827666ab0e5e925e4a84c2c81ff2-014.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/3f6baf054c1fd374e25f0e2f7f497a8d-090.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/d05eb9b5c2afa2abf594d2019e6507ca-100.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/18b05adbb211892cedb5146c779ae57a-053.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106127005792.html",
+      "houseCode": "106127005792",
+      "localImages": [
+        "1787668337922-0-ewky.jpg",
+        "1787668337937-1-0vqn.jpg",
+        "1787668337949-2-r3sm.jpg",
+        "1787668337962-3-axy5.jpg",
+        "1787668337970-4-30n1.png",
+        "1787668337982-5-doxw.jpg",
+        "1787668337999-6-dqmx.jpg",
+        "1787668338009-7-romg.jpg",
+        "1787668338023-8-2l37.jpg",
+        "1787668338034-9-lg73.jpg",
+        "1787668338050-10-q1ye.jpg",
+        "1787668338064-11-e253.jpg"
+      ]
+    }
+  ],
+  "info": {
+    "建筑类型": "板楼/塔板结合",
+    "房屋总数": "256户",
+    "楼栋总数": "2栋",
+    "绿化率": "25%",
+    "容积率": "暂无信息",
+    "交易权属": "商品房",
+    "建成年代": "2004年",
+    "供暖类型": "自采暖",
+    "用水类型": "民水",
+    "用电类型": "民电",
+    "物业费": "0.6至1.5元/平米/月",
+    "开发商": "无开发商"
+  },
+  "features": [
+    "满五",
+    "户型方正",
+    "精装",
+    "电梯"
+  ],
+  "name": "浆洗街教师公寓",
+  "price": "14691",
+  "board": "华西",
+  "metro": [
+    {
+      "name": "武侯祠",
+      "distance": "762米",
+      "lines": "地铁10号"
+    },
+    {
+      "name": "华西坝",
+      "distance": "844米",
+      "lines": "地铁13号"
+    },
+    {
+      "name": "锦江宾馆",
+      "distance": "1103米",
+      "lines": "地铁1号"
+    },
+    {
+      "name": "省体育馆",
+      "distance": "1728米",
+      "lines": "地铁1号"
+    },
+    {
+      "name": "天府广场",
+      "distance": "1834米",
+      "lines": "地铁1号"
+    },
+    {
+      "name": "人民公园",
+      "distance": "1845米",
+      "lines": "地铁17号"
+    },
+    {
+      "name": "高升桥",
+      "distance": "1854米",
+      "lines": "地铁10号"
+    },
+    {
+      "name": "新南门",
+      "distance": "1957米",
+      "lines": "地铁13号"
+    }
+  ],
+  "deals": [
+    {
+      "建成年份": "2004年",
+      "面积": "152.13平米",
+      "签约日期": "2026-03-14",
+      "成交价": "201万",
+      "成交单价": "13213元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "152.13平米",
+      "签约日期": "2025-12-07",
+      "成交价": "219万",
+      "成交单价": "14396元/平"
+    },
+    {
+      "建成年份": "2004年",
+      "面积": "133.58平米",
+      "签约日期": "2025-05-22",
+      "成交价": "175.5万",
+      "成交单价": "13139元/平"
+    }
+  ],
+  "images": [
+    "https://ke-image.ljcdn.com/hdic-resblock/77324d18-0449-43f7-b5c4-e8f86089eb95.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/4ed73376-ca24-4d84-9001-ed8459d3241e.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/3e853d52-df82-48b2-aa66-51a8ff00d295.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/9ecd74f5-c944-4d7f-96ac-f9dd6cca0d18.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/b4fe31c8-db32-4026-bedb-a53077203994.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/bd04422b-729f-42b9-9073-31e038442fcf.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/4dd36d1b-f98e-44b3-85d7-91d865014370.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/13393c4e-c26b-4d81-8145-0940bc81e6cc.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/79b36a37-dfbd-41bb-8f41-5483ea67518a.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/e8e64385-97ae-4c54-9604-0c87a7b027e5.jpg.710x400.jpg"
+  ],
+  "updatedAt": "2026-08-25T14:32:12.425Z",
+  "localImages": [
+    "1787668332431-0-3hga.jpg",
+    "1787668332871-1-r2pm.jpg",
+    "1787668333156-2-zbfr.jpg",
+    "1787668333553-3-sm13.jpg",
+    "1787668333641-4-jvoi.jpg",
+    "1787668333989-5-s1un.jpg",
+    "1787668334216-6-x1z5.jpg",
+    "1787668334538-7-jqu2.jpg",
+    "1787668334935-8-ecck.jpg",
+    "1787668335304-9-hniz.jpg"
+  ]
+}

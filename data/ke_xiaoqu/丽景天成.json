@@ -1,0 +1,222 @@
+{
+  "name": "丽景天成",
+  "price": "19052",
+  "board": "华西",
+  "info": {
+    "建筑类型": "塔板结合",
+    "房屋总数": "1088户",
+    "楼栋总数": "5栋",
+    "绿化率": "35%",
+    "容积率": "3.5",
+    "交易权属": "商品房",
+    "建成年代": "2004-2014年",
+    "供暖类型": "自采暖/无供暖",
+    "用水类型": "商水/民水",
+    "用电类型": "商电/民电",
+    "物业费": "1.6元/平米/月",
+    "开发商": "四川兴大房地产开发有限公司"
+  },
+  "metro": [
+    {
+      "name": "衣冠庙",
+      "distance": "562米",
+      "lines": "地铁3号"
+    },
+    {
+      "name": "省体育馆",
+      "distance": "1051米",
+      "lines": "地铁1号"
+    },
+    {
+      "name": "芳草街",
+      "distance": "1299米",
+      "lines": "地铁8号"
+    },
+    {
+      "name": "华西坝",
+      "distance": "1410米",
+      "lines": "地铁13号"
+    },
+    {
+      "name": "武侯祠",
+      "distance": "1440米",
+      "lines": "地铁10号"
+    },
+    {
+      "name": "永丰",
+      "distance": "1449米",
+      "lines": "地铁8号"
+    },
+    {
+      "name": "倪家桥",
+      "distance": "1702米",
+      "lines": "地铁1号"
+    },
+    {
+      "name": "文翁石室",
+      "distance": "1784米",
+      "lines": "地铁13号"
+    },
+    {
+      "name": "高升桥",
+      "distance": "1801米",
+      "lines": "地铁10号"
+    }
+  ],
+  "deals": [
+    {
+      "建成年份": "暂无信息",
+      "面积": "117.35平米",
+      "签约日期": "2026-06-21",
+      "成交价": "210万",
+      "成交单价": "17896元/平"
+    },
+    {
+      "建成年份": "2004年",
+      "面积": "166.14平米",
+      "签约日期": "2026-06-04",
+      "成交价": "279.8万",
+      "成交单价": "16842元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "83.33平米",
+      "签约日期": "2026-05-12",
+      "成交价": "158万",
+      "成交单价": "18961元/平"
+    }
+  ],
+  "images": [
+    "https://ke-image.ljcdn.com/hdic-resblock/7eaa1b48-0232-4107-8e53-2239bc658e0b.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/1187cbe4-f71a-4c6c-9be4-946d505191f0.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/f873b001-c45a-4fd1-9f38-8732a8cd35d8.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/be163491-9228-40ad-9017-39c43892864d.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/01ea7ff1-3a6d-4393-a86f-d1ad39d5cc4c.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/8589508e-f078-400f-a3d2-70f72d1c09fe.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/704d5c52-3b48-4535-ad25-65dc4f56ba1e.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/64449ffc-f464-4b4c-989b-4eaa700955f6.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/3589ffbd-d409-4d8a-a981-919441c57d5c.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/82735229-660a-451f-acd5-e1bd39469bc8.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/e69238b1-9f08-4764-8eea-7984c678027c.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/814850a7-fdfe-4ab6-a94f-a78e46448798.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/e0c4760c-fc2c-4f0a-90e1-c9cf6dc15699.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/a47f3762-2f64-423a-aa54-c04adb4fe05b.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/2c72bf81-1486-4edd-9e45-d221ae58c1de.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/f6f6e448-1685-464d-9009-f9b4061add0e.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/9051e4ff-cd0d-4d8d-add6-15549bb69614.jpg.710x400.jpg"
+  ],
+  "updatedAt": "2026-08-25T14:46:57.870Z",
+  "localImages": [
+    "1787669217914-0-7t3r.jpg",
+    "1787669217944-1-v8ii.jpg",
+    "1787669218038-2-4mvz.jpg",
+    "1787669218075-3-gvlw.jpg",
+    "1787669218129-4-sp80.jpg",
+    "1787669218230-5-7sjs.jpg",
+    "1787669218331-6-wtyh.jpg",
+    "1787669218403-7-nuxa.jpg",
+    "1787669218462-8-ltzy.jpg",
+    "1787669218512-9-lgm6.jpg",
+    "1787669218997-10-2puv.jpg",
+    "1787669219409-11-gro8.jpg",
+    "1787669219839-12-2z9v.jpg",
+    "1787669220268-13-2s2d.jpg",
+    "1787669220573-14-oxpq.jpg",
+    "1787669220916-15-89o1.jpg",
+    "1787669221357-16-92pl.jpg"
+  ],
+  "houses": [
+    {
+      "title": "成都武侯华西丽景天成 3室2厅 南",
+      "room": "3室2厅",
+      "area": "139.1",
+      "taoneiArea": "120.83",
+      "totalPrice": "292",
+      "unitPrice": "20993",
+      "floor": "高",
+      "totalFloors": "11",
+      "orientation": "南",
+      "community": "丽景天成",
+      "district": "武侯",
+      "board": "华西",
+      "features": [
+        "满五",
+        "户型方正",
+        "电梯"
+      ],
+      "tihu": "1梯5户",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/17865316460_Yg2HBsCUH.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17865316460_Yg2HBsCUH.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17865316650_ktn09SHDE.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1786531635975.jpeg!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17865316460_rsQbWwO2D.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17865316460_ixxJqA80C.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17865316460_RJbJb6WWj.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17865316460_ZktpHzOMr.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17865316460_FR3XLzKQ9.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106128839453.html",
+      "houseCode": "106128839453",
+      "localImages": [
+        "1787669224406-0-msc5.jpg",
+        "1787669224727-1-gaa6.jpg",
+        "1787669225050-2-2rs7.jpg",
+        "1787669225350-3-5r5z.jpeg",
+        "1787669225636-4-wau4.jpg",
+        "1787669225948-5-506l.jpg",
+        "1787669226323-6-lw27.jpg",
+        "1787669226704-7-u9h2.jpg",
+        "1787669226967-8-8ceh.jpg"
+      ]
+    },
+    {
+      "title": "成都武侯华西丽景天成 3室2厅 北",
+      "room": "3室2厅",
+      "area": "110.09",
+      "taoneiArea": null,
+      "totalPrice": "229",
+      "unitPrice": "20802",
+      "floor": "中",
+      "totalFloors": "11",
+      "orientation": "北",
+      "community": "丽景天成",
+      "district": "武侯",
+      "board": "华西",
+      "features": [
+        "满五",
+        "电梯"
+      ],
+      "tihu": "1梯4户",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/17722748030_kExMK4H6M.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17722748030_kExMK4H6M.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17722748030_0720dVcM8.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1772274787176.jpeg!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17722748030_hnBuaI8gJ.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17722748030_13yglmS6X.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17722748030_Gw6iz9sMe.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17722748030_LbJwUz9qr.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106126455085.html",
+      "houseCode": "106126455085",
+      "localImages": [
+        "1787669229293-0-zo8q.jpg",
+        "1787669229571-1-lwb3.jpg",
+        "1787669229987-2-4j0z.jpg",
+        "1787669230279-3-ut5f.jpeg",
+        "1787669230637-4-upd5.jpg",
+        "1787669231021-5-gzmv.jpg",
+        "1787669231352-6-guts.jpg",
+        "1787669231758-7-h2g4.jpg"
+      ]
+    }
+  ],
+  "district": "武侯",
+  "features": [
+    "满五",
+    "户型方正",
+    "电梯"
+  ],
+  "note": "和1环隔一个盛锦华庭，目前这两套还行，剩下的都是1楼带花园"
+}

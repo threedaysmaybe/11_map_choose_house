@@ -66,6 +66,14 @@
       "count": 51
     },
     {
+      "name": "浆洗街教师公寓",
+      "board": "华西",
+      "district": "武侯",
+      "lon": null,
+      "lat": null,
+      "count": 0
+    },
+    {
       "name": "锦宏阁",
       "board": "华西",
       "district": "武侯",
@@ -74,12 +82,28 @@
       "count": 4
     },
     {
+      "name": "丽景天成",
+      "board": "华西",
+      "district": "武侯",
+      "lon": 104.054836,
+      "lat": 30.637806,
+      "count": 3
+    },
+    {
       "name": "盛锦华庭",
       "board": "华西",
       "district": "武侯",
       "lon": 104.05501,
       "lat": 30.636493,
       "count": 7
+    },
+    {
+      "name": "武侯名园",
+      "board": "华西",
+      "district": "武侯",
+      "lon": 104.04267,
+      "lat": 30.6425,
+      "count": 21
     }
   ]
 }
