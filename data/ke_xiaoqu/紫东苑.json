@@ -174,7 +174,8 @@
         "电梯"
       ],
       "url": "https://cd.ke.com/ershoufang/106127814209.html",
-      "houseCode": "106127814209"
+      "houseCode": "106127814209",
+      "tihu": "2梯4户"
     },
     {
       "title": "成都锦江合江亭紫东苑 3室2厅 西南",
@@ -222,7 +223,8 @@
         "电梯"
       ],
       "url": "https://cd.ke.com/ershoufang/106126882289.html",
-      "houseCode": "106126882289"
+      "houseCode": "106126882289",
+      "tihu": "1梯2户"
     }
   ],
   "features": [
@@ -230,5 +232,6 @@
     "满五",
     "电梯",
     "户型方正"
-  ]
+  ],
+  "district": "锦江"
 }

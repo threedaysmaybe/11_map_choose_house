@@ -252,7 +252,8 @@
         "1787594438544-7-elq2.jpg"
       ],
       "totalFloors": "22",
-      "url": "https://cd.ke.com/ershoufang/106126038688.html"
+      "url": "https://cd.ke.com/ershoufang/106126038688.html",
+      "tihu": "2梯4户"
     },
     {
       "title": "成都锦江水碾河蜀都花园 3室2厅 东北",
@@ -291,7 +292,8 @@
         "1787594438572-7-8p6l.jpg"
       ],
       "totalFloors": "18",
-      "url": "https://cd.ke.com/ershoufang/106123230293.html"
+      "url": "https://cd.ke.com/ershoufang/106123230293.html",
+      "tihu": "2梯4户"
     },
     {
       "title": "成都锦江水碾河蜀都花园 4室2厅 南",
@@ -330,7 +332,8 @@
         "1787594438598-7-nws8.jpg"
       ],
       "totalFloors": "19",
-      "url": "https://cd.ke.com/ershoufang/106126195501.html"
+      "url": "https://cd.ke.com/ershoufang/106126195501.html",
+      "tihu": "2梯6户"
     }
   ],
   "features": [
@@ -339,5 +342,6 @@
     "满五",
     "精装"
   ],
-  "note": "二手房很多，户型有特点，就是离地铁远"
+  "note": "二手房很多，户型有特点，就是离地铁远",
+  "district": "锦江"
 }

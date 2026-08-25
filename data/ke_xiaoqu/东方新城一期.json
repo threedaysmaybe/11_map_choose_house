@@ -37,7 +37,9 @@
       ],
       "totalFloors": "11",
       "url": "https://cd.ke.com/ershoufang/106124860747.html",
-      "houseCode": "106124860747"
+      "houseCode": "106124860747",
+      "taoneiArea": "115.08",
+      "tihu": "1梯4户"
     }
   ],
   "info": {
@@ -245,5 +247,6 @@
     "1787594657610-33-lklo.jpg",
     "1787594657628-34-zu9s.jpg",
     "1787594657643-35-ujwu.jpg"
-  ]
+  ],
+  "district": "锦江"
 }

@@ -181,7 +181,7 @@ const server = http.createServer((req, res) => {
   if (req.method === 'POST' && req.url === '/fetch-ke-smart') {
     // 异步执行，避免阻塞 serve（否则抓取期间其它请求会 fail to fetch）
     const { execFile } = require('child_process');
-    execFile(process.execPath, ['fetch_ke_smart.js'], { cwd: ROOT, timeout: 90000, maxBuffer: 1024 * 1024 * 10 }, (err, stdout) => {
+    execFile(process.execPath, ['fetch_ke_smart.js'], { cwd: ROOT, timeout: 180000, maxBuffer: 1024 * 1024 * 10 }, (err, stdout) => {
       res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
       if (err) res.end(JSON.stringify({ ok: false, msg: (stdout || '').trim() || err.message }));
       else res.end(JSON.stringify({ ok: true, msg: (stdout || '').trim() }));
@@ -207,13 +207,20 @@ const server = http.createServer((req, res) => {
   if (req.url === '/list-xiaoqu') {
     try {
       const dir = path.join(ROOT, 'data', 'ke_xiaoqu');
+      // 板块→区映射
+      let boardDistrict = {};
+      try {
+        const boards = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'boards.json'), 'utf8'));
+        for (const b of boards) boardDistrict[b.name] = b.district || '';
+      } catch (e) {}
       const files = fs.existsSync(dir) ? fs.readdirSync(dir).filter(f => f.endsWith('.json') && f !== 'xiaoqu_list.json') : [];
-      // 读取每个小区的 name + board
+      // 读取每个小区的 name + board + district
       const list = files.map(f => {
         try {
           const d = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
-          return { name: d.name || f.replace(/\.json$/, ''), board: d.board || '' };
-        } catch (e) { return { name: f.replace(/\.json$/, ''), board: '' }; }
+          const board = d.board || '';
+          return { name: d.name || f.replace(/\.json$/, ''), board, district: boardDistrict[board] || '' };
+        } catch (e) { return { name: f.replace(/\.json$/, ''), board: '', district: '' }; }
       });
       res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
       res.end(JSON.stringify({ ok: true, files: list }));
@@ -292,6 +299,31 @@ const server = http.createServer((req, res) => {
         fs.writeFileSync(file, JSON.stringify(d, null, 2));
         res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
         res.end(JSON.stringify({ ok: true, msg: `已删除房源（${before} → ${d.houses.length}）` }));
+      } catch (e) {
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ ok: false, msg: e.message }));
+      }
+    });
+    return;
+  }
+
+  // 设置房源套内面积（用户手动输入，算得房率）
+  if (req.method === 'POST' && req.url === '/set-taonei-area') {
+    let body = '';
+    req.on('data', c => body += c);
+    req.on('end', () => {
+      try {
+        const { name, houseCode, taoneiArea } = JSON.parse(body);
+        if (!name || !houseCode) { res.end(JSON.stringify({ ok: false, msg: '缺少参数' })); return; }
+        const file = path.join(ROOT, 'data', 'ke_xiaoqu', name + '.json');
+        if (!fs.existsSync(file)) { res.end(JSON.stringify({ ok: false, msg: '未找到小区档案' })); return; }
+        const d = JSON.parse(fs.readFileSync(file, 'utf8'));
+        const h = (d.houses || []).find(x => String(x.houseCode) === String(houseCode));
+        if (!h) { res.end(JSON.stringify({ ok: false, msg: '未找到房源' })); return; }
+        h.taoneiArea = taoneiArea || '';
+        fs.writeFileSync(file, JSON.stringify(d, null, 2));
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ ok: true, msg: '套内面积已保存' }));
       } catch (e) {
         res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
         res.end(JSON.stringify({ ok: false, msg: e.message }));

@@ -145,7 +145,8 @@
         "电梯"
       ],
       "url": "https://cd.ke.com/ershoufang/106127290564.html",
-      "houseCode": "106127290564"
+      "houseCode": "106127290564",
+      "tihu": "2梯5户"
     }
   ],
   "features": [
@@ -153,5 +154,6 @@
     "户型方正",
     "精装",
     "电梯"
-  ]
+  ],
+  "district": "锦江"
 }

@@ -286,7 +286,13 @@ async function downloadImages(page, urls, subdir) {
       if (dupIdx >= 0) {
         // 已存在：更新（补充总层高/链接等新字段，保留旧图片）
         const old = existing.houses[dupIdx];
-        existing.houses[dupIdx] = { ...old, ...data, localImages: (data.localImages && data.localImages.length) ? data.localImages : (old.localImages || []) };
+        existing.houses[dupIdx] = {
+          ...old,
+          ...data,
+          // 套内面积：新抓的为空时保留旧值（用户可能手动填过，别覆盖）
+          taoneiArea: data.taoneiArea || old.taoneiArea || '',
+          localImages: (data.localImages && data.localImages.length) ? data.localImages : (old.localImages || [])
+        };
         result.房源.push(`[已更新] ${data.title || '房源'}（补充楼层/链接）`);
       } else {
         existing.houses.push(data);

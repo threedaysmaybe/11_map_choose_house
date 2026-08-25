@@ -1,0 +1,212 @@
+{
+  "houses": [
+    {
+      "title": "成都武侯华西晓天芳苑 4室2厅 西",
+      "room": "4室2厅",
+      "area": "166.2",
+      "taoneiArea": null,
+      "totalPrice": "245",
+      "unitPrice": "14742",
+      "floor": "中",
+      "totalFloors": "11",
+      "orientation": "西",
+      "community": "晓天芳苑",
+      "district": "武侯",
+      "board": "华西",
+      "features": [
+        "满五",
+        "电梯"
+      ],
+      "tihu": "1梯2户",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_EGkRgrH4m.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_EGkRgrH4m.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_5CfMHeegn.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_711418a4-c29b-469d-8f95-7abed398c0f5.png!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_TB5B9uppO.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_OIdNu8zMj.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_t0sB21WtV.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_36CdhyknP.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106126533896.html",
+      "houseCode": "106126533896",
+      "localImages": [
+        "1787670196449-0-j6yi.jpg",
+        "1787670196723-1-t4r5.jpg",
+        "1787670197141-2-6f5c.jpg",
+        "1787670197483-3-txg8.png",
+        "1787670197788-4-o2mf.jpg",
+        "1787670198102-5-bfpm.jpg",
+        "1787670198414-6-xdav.jpg",
+        "1787670198805-7-s7x4.jpg"
+      ]
+    },
+    {
+      "title": "成都武侯华西晓天芳苑 3室2厅 西",
+      "room": "3室2厅",
+      "area": "145.81",
+      "taoneiArea": null,
+      "totalPrice": "225",
+      "unitPrice": "15432",
+      "floor": "中",
+      "totalFloors": "11",
+      "orientation": "西",
+      "community": "晓天芳苑",
+      "district": "武侯",
+      "board": "华西",
+      "features": [
+        "满五",
+        "户型方正",
+        "电梯"
+      ],
+      "tihu": "1梯2户",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_X1bEbWmp1.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_X1bEbWmp1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_xeOQDsGtY.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_206ccbad-25e9-40e4-9bce-47fefc6c98b0.png!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_VJrL0kiR6.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_rHWvup0sJ.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/apc_Xtt4c5aQk_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106122788697.html",
+      "houseCode": "106122788697",
+      "localImages": [
+        "1787670207412-0-kwvd.jpg",
+        "1787670207862-1-m0ei.jpg",
+        "1787670208237-2-1wvm.jpg",
+        "1787670208591-3-2hc6.png",
+        "1787670208911-4-ul77.jpg",
+        "1787670209327-5-fadq.jpg",
+        "1787670209613-6-89oa.jpg"
+      ]
+    }
+  ],
+  "board": "华西",
+  "district": "武侯",
+  "name": "晓天芳苑",
+  "info": {
+    "建筑类型": "板楼",
+    "房屋总数": "145户",
+    "楼栋总数": "1栋",
+    "绿化率": "30%",
+    "容积率": "1.99",
+    "交易权属": "商品房",
+    "建成年代": "2002-2003年",
+    "供暖类型": "自采暖",
+    "用水类型": "民水",
+    "用电类型": "民电",
+    "物业费": "1.6至3元/平米/月",
+    "开发商": "无开发商"
+  },
+  "features": [
+    "满五",
+    "电梯",
+    "户型方正"
+  ],
+  "price": "15064",
+  "metro": [
+    {
+      "name": "芳草街",
+      "distance": "1153米",
+      "lines": "地铁8号"
+    },
+    {
+      "name": "省体育馆",
+      "distance": "1174米",
+      "lines": "地铁1号"
+    },
+    {
+      "name": "永丰",
+      "distance": "1273米",
+      "lines": "地铁8号"
+    },
+    {
+      "name": "武侯祠",
+      "distance": "1477米",
+      "lines": "地铁10号"
+    },
+    {
+      "name": "华西坝",
+      "distance": "1581米",
+      "lines": "地铁13号"
+    },
+    {
+      "name": "高升桥",
+      "distance": "1715米",
+      "lines": "地铁10号"
+    },
+    {
+      "name": "倪家桥",
+      "distance": "1717米",
+      "lines": "地铁1号"
+    },
+    {
+      "name": "文翁石室",
+      "distance": "1892米",
+      "lines": "地铁13号"
+    }
+  ],
+  "deals": [
+    {
+      "建成年份": "2002年",
+      "面积": "145平米",
+      "签约日期": "2026-02-06",
+      "成交价": "214.8万",
+      "成交单价": "14814元/平"
+    },
+    {
+      "建成年份": "2002年",
+      "面积": "167.5平米",
+      "签约日期": "2024-09-29",
+      "成交价": "295万",
+      "成交单价": "17612元/平"
+    },
+    {
+      "建成年份": "2002年",
+      "面积": "107.32平米",
+      "签约日期": "2021-03-02",
+      "成交价": "164.2万",
+      "成交单价": "15301元/平"
+    }
+  ],
+  "images": [
+    "https://ke-image.ljcdn.com/hdic-resblock/061e20ef-3d05-457a-af12-ff59aa57a0ba.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/f96917d6-23b5-4be8-8120-7f9e2e0892a6.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/df174e96-2edd-4823-b4ce-22389eee7950.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/0da3be92-24cd-4fe7-a11b-bd53c61f8128.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/e6300f66-33b8-492f-b3ff-cb3633832c88.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/c165f46a-6c36-44e2-88b5-396232e6c326.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/ef49e70e-2837-4dac-86b0-bc990e8a489f.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/2d019055-5952-4bf9-b0a6-7a2f0300d5dd.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/94719318-d602-47b4-94e2-f830fdfd0f46.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/e60a71b2-9da1-4713-8db3-4b475cbec289.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/4071be35-e69d-4584-8483-b5fda22c41ce.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/3c07f830-15f7-40c9-99a4-8e6d862230e1.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/ea0a0e7a-da29-4560-ad76-441d91b0f289.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/fae18bdc-fbd4-4839-894b-bf3998121121.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/8123adbf-60e2-4266-99ed-f1314d6ef7c9.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/891e255e-2494-4870-b214-59f1a06e2481.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/52cf6c61-68c0-488e-ac07-611c89cb1ba0.jpg.710x400.jpg"
+  ],
+  "updatedAt": "2026-08-25T15:03:18.815Z",
+  "localImages": [
+    "1787670198846-0-d958.JPG",
+    "1787670198862-1-7ob8.jpg",
+    "1787670199340-2-h095.JPG",
+    "1787670199351-3-te6p.JPG",
+    "1787670199368-4-sfia.JPG",
+    "1787670199379-5-lyrv.jpg",
+    "1787670199394-6-ka6i.jpg",
+    "1787670199407-7-p514.JPG",
+    "1787670199426-8-bp6o.jpg",
+    "1787670199434-9-lma2.JPG",
+    "1787670200292-10-fh7c.JPG",
+    "1787670200895-11-kp99.jpg",
+    "1787670201581-12-d6xa.JPG",
+    "1787670202047-13-imsi.jpg",
+    "1787670203145-14-j66m.JPG",
+    "1787670203813-15-h6va.jpg",
+    "1787670204377-16-1dia.jpg"
+  ]
+}
