@@ -14,9 +14,11 @@ const list = files.map(f => {
   try {
     const d = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
     const board = d.board || '';
-    return { name: d.name || f.replace(/\.json$/, ''), board, district: boardDistrict[board] || '' };
+    const quanshu = (d.info && d.info['交易权属']) || '';
+    const anzhi = /拆迁|安置|回迁/.test(quanshu);
+    return { name: d.name || f.replace(/\.json$/, ''), board, district: boardDistrict[board] || '', anzhi };
   } catch (e) {
-    return { name: f.replace(/\.json$/, ''), board: '', district: '' };
+    return { name: f.replace(/\.json$/, ''), board: '', district: '', anzhi: false };
   }
 }).filter(x => x.name);
 

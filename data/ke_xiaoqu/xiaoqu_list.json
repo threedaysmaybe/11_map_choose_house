@@ -2,17 +2,10 @@
   "ok": true,
   "files": [
     {
-      "name": "比华利国际城一期",
-      "board": "川师",
-      "district": "锦江",
-      "lon": 104.125775,
-      "lat": 30.617911,
-      "count": 21
-    },
-    {
       "name": "启明公寓",
       "board": "合江亭",
       "district": "锦江",
+      "anzhi": false,
       "lon": 104.084856,
       "lat": 30.651432,
       "count": 2
@@ -21,6 +14,7 @@
       "name": "秀水花园",
       "board": "合江亭",
       "district": "锦江",
+      "anzhi": false,
       "lon": 104.081665,
       "lat": 30.650291,
       "count": 3
@@ -29,6 +23,7 @@
       "name": "紫东苑",
       "board": "合江亭",
       "district": "锦江",
+      "anzhi": false,
       "lon": 104.086268,
       "lat": 30.648371,
       "count": 3
@@ -37,6 +32,7 @@
       "name": "朝阳名宅",
       "board": "九眼桥",
       "district": "锦江",
+      "anzhi": true,
       "lon": 104.092076,
       "lat": 30.63962,
       "count": 1
@@ -45,6 +41,7 @@
       "name": "东方新城一期",
       "board": "九眼桥",
       "district": "锦江",
+      "anzhi": true,
       "lon": 104.140606,
       "lat": 30.633566,
       "count": 10
@@ -53,6 +50,7 @@
       "name": "蜀都花园",
       "board": "水碾河",
       "district": "锦江",
+      "anzhi": true,
       "lon": 104.100518,
       "lat": 30.647391,
       "count": 14
@@ -61,6 +59,7 @@
       "name": "海会花园",
       "board": "川音",
       "district": "武侯",
+      "anzhi": false,
       "lon": 104.081847,
       "lat": 30.640466,
       "count": 3
@@ -69,6 +68,7 @@
       "name": "红星苑",
       "board": "川音",
       "district": "武侯",
+      "anzhi": true,
       "lon": null,
       "lat": null,
       "count": 0
@@ -77,6 +77,7 @@
       "name": "龙江电信公寓",
       "board": "川音",
       "district": "武侯",
+      "anzhi": false,
       "lon": null,
       "lat": null,
       "count": 0
@@ -85,6 +86,7 @@
       "name": "国嘉南苑一期",
       "board": "华西",
       "district": "武侯",
+      "anzhi": false,
       "lon": 104.053473,
       "lat": 30.646936,
       "count": 51
@@ -93,6 +95,7 @@
       "name": "浆洗街教师公寓",
       "board": "华西",
       "district": "武侯",
+      "anzhi": false,
       "lon": null,
       "lat": null,
       "count": 0
@@ -101,6 +104,7 @@
       "name": "锦宏阁",
       "board": "华西",
       "district": "武侯",
+      "anzhi": false,
       "lon": 104.044091,
       "lat": 30.640297,
       "count": 4
@@ -109,6 +113,7 @@
       "name": "丽景天成",
       "board": "华西",
       "district": "武侯",
+      "anzhi": false,
       "lon": 104.054836,
       "lat": 30.637806,
       "count": 3
@@ -117,6 +122,7 @@
       "name": "盛锦华庭",
       "board": "华西",
       "district": "武侯",
+      "anzhi": false,
       "lon": 104.05501,
       "lat": 30.636493,
       "count": 7
@@ -125,6 +131,7 @@
       "name": "武侯名园",
       "board": "华西",
       "district": "武侯",
+      "anzhi": false,
       "lon": 104.04267,
       "lat": 30.6425,
       "count": 21
@@ -133,6 +140,7 @@
       "name": "晓天芳苑",
       "board": "华西",
       "district": "武侯",
+      "anzhi": false,
       "lon": 104.052509,
       "lat": 30.636749,
       "count": 9
@@ -141,6 +149,7 @@
       "name": "新气象小区",
       "board": "华西",
       "district": "武侯",
+      "anzhi": false,
       "lon": 104.062108,
       "lat": 30.64746,
       "count": 11
@@ -149,6 +158,7 @@
       "name": "盛隆街2号",
       "board": "棕北",
       "district": "武侯",
+      "anzhi": false,
       "lon": null,
       "lat": null,
       "count": 0
@@ -157,6 +167,7 @@
       "name": "棕南正街6号",
       "board": "棕北",
       "district": "武侯",
+      "anzhi": false,
       "lon": null,
       "lat": null,
       "count": 0
