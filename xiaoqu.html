@@ -181,8 +181,18 @@
           const color = rate >= 90 ? '#2ecc71' : rate >= 85 ? '#f0c060' : '#e74c3c';
           deFang = ` · <span style="color:${color};font-weight:bold">得房率 ${rate.toFixed(1)}%</span>`;
         }
+        let tihuHtml = '';
+        if (h.tihu) {
+          const tm = h.tihu.match(/(\d+)梯(\d+)户/);
+          if (tm) {
+            const ti = parseInt(tm[1]), hu = parseInt(tm[2]);
+            const ratio = hu / ti;
+            const color = (hu <= 4 && ratio <= 2) ? '#2ecc71' : (hu <= 6 && ratio <= 2.5) ? '#f0c060' : '#e74c3c';
+            tihuHtml = ` · <span style="color:${color};font-weight:bold">${h.tihu}</span>`;
+          }
+        }
         const link = h.url ? `<a href="${h.url}" target="_blank" style="color:#4fc3f7;font-size:12px">🔗 贝壳</a>` : '';
-        html += `<div><div style="color:#fff;font-weight:bold">${h.room || '?'} ${h.area || '?'}㎡${floors}${deFang}</div><div>总价 ${h.totalPrice || '?'}万 · ${h.unitPrice || '?'}元/平 ${link}</div><div><span class="tag">${h.orientation || '朝向?'}</span><span class="tag">${h.floor || '?'}楼层</span></div></div></div>`;
+        html += `<div><div style="color:#fff;font-weight:bold">${h.room || '?'} ${h.area || '?'}㎡${floors}${deFang}${tihuHtml}</div><div>总价 ${h.totalPrice || '?'}万 · ${h.unitPrice || '?'}元/平 ${link}</div><div><span class="tag">${h.orientation || '朝向?'}</span><span class="tag">${h.floor || '?'}楼层</span></div></div></div>`;
       });
       html += '</div>';
     }

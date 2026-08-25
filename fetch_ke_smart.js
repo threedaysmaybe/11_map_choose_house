@@ -120,6 +120,15 @@ async function grabHouseDetail(page) {
     const pk = txt.match(/停车费\s*[:：]?\s*(\d+)/);
     if (pk) features.push('停车费' + pk[1] + '元/月');
     if (/电梯/.test(txt)) features.push('电梯');
+    // 梯户比（X梯X户，如"两梯六户"）
+    const cnNum = { '一': 1, '二': 2, '两': 2, '三': 3, '四': 4, '五': 5, '六': 6, '七': 7, '八': 8, '九': 9, '十': 10 };
+    const toNum = s => { s = s.trim(); if (/^\d+$/.test(s)) return parseInt(s); if (cnNum[s]) return cnNum[s]; return 0; };
+    let tihu = '';
+    const tihuM = txt.match(/([一二三四五六七八九十两\d]+)梯([一二三四五六七八九十两\d]+)户/);
+    if (tihuM) {
+      const ti = toNum(tihuM[1]), hu = toNum(tihuM[2]);
+      if (ti && hu) tihu = ti + '梯' + hu + '户';
+    }
     // 抓高清大图：点击缩略图打开大图查看器，读 data-pic(1000x750)/src(710x400)
     let imageUrls = [];
     try {
@@ -164,6 +173,7 @@ async function grabHouseDetail(page) {
       orientation: grab(/(东南|西南|东北|西北|南北|东西|南|北|东|西)(?=\s|$)/),
       community,
       features,
+      tihu,
       images: imageUrls,
     };
   });
