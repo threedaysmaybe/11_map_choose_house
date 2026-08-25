@@ -163,7 +163,9 @@
       d.houses.forEach(h => {
         html += `<div class="house">`;
         if (h.localImages && h.localImages.length) html += h.localImages.map(img => `<img src="data/ke_xiaoqu/images/${encodeURIComponent(d.name || n)}/${img}">`).join('');
-        html += `<div><div style="color:#fff;font-weight:bold">${h.room || '?'} ${h.area || '?'}㎡</div><div>总价 ${h.totalPrice || '?'}万 · ${h.unitPrice || '?'}元/平</div><div><span class="tag">${h.orientation || '朝向?'}</span><span class="tag">${h.floor || '?'}楼层</span></div></div></div>`;
+        const floors = h.totalFloors ? ` · 共${h.totalFloors}层` : '';
+        const link = h.url ? `<a href="${h.url}" target="_blank" style="color:#4fc3f7;font-size:12px">🔗 贝壳</a>` : '';
+        html += `<div><div style="color:#fff;font-weight:bold">${h.room || '?'} ${h.area || '?'}㎡${floors}</div><div>总价 ${h.totalPrice || '?'}万 · ${h.unitPrice || '?'}元/平 ${link}</div><div><span class="tag">${h.orientation || '朝向?'}</span><span class="tag">${h.floor || '?'}楼层</span></div></div></div>`;
       });
       html += '</div>';
     }
