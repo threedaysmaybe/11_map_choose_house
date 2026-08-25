@@ -141,7 +141,12 @@
     html += `<div class="card"><h2>小区概览</h2><div class="price">${d.price || '?'} 元/㎡</div>`;
     if (d.note) html += `<div style="font-weight:bold;color:#ffe082;margin:10px 0;padding:8px 10px;background:rgba(255,224,130,0.12);border-left:3px solid #ffe082;border-radius:4px">📝 备注：${d.note}</div>`;
     const rows = [['建筑类型', info['建筑类型']], ['楼栋总数', info['楼栋总数']], ['房屋总数', info['房屋总数']], ['容积率', info['容积率']], ['绿化率', info['绿化率']], ['建成年代', info['建成年代']], ['交易权属', info['交易权属']], ['房屋性质', info['房屋性质']], ['停车费', info['停车费']], ['物业费', info['物业费']], ['开发商', info['开发商']]];
-    html += '<table>' + rows.filter(([, v]) => v).map(([k, v]) => `<tr><td>${k}</td><td>${v}</td></tr>`).join('') + '</table></div>';
+    html += '<table>' + rows.filter(([, v]) => v).map(([k, v]) => {
+      let display = v;
+      if (k === '交易权属' && /拆迁|回迁/.test(v)) display = `<span style="color:#e74c3c;font-weight:bold">${v}</span>`;
+      else if (k === '交易权属' && /公房/.test(v)) display = `<span style="color:#f0c060;font-weight:bold">${v}</span>`;
+      return `<tr><td>${k}</td><td>${display}</td></tr>`;
+    }).join('') + '</table></div>';
 
     // 地铁
     if (d.metro && d.metro.length) {
