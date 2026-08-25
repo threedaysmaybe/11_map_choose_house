@@ -310,5 +310,22 @@ async function downloadImages(page, urls, subdir) {
     result[k].forEach(x => console.log('  -', x));
   }
   console.log('\n存储目录:', DIR);
+
+  // 自动重新生成列表 + 坐标，并自检 APP 地图定位
+  try {
+    const { execFileSync } = require('child_process');
+    execFileSync(process.execPath, ['gen_xiaoqu_list.js'], { stdio: 'inherit' });
+    execFileSync(process.execPath, ['gen_xiaoqu_coords.js'], { stdio: 'inherit' });
+    const list = JSON.parse(require('fs').readFileSync(path.join(DIR, 'xiaoqu_list.json'), 'utf8'));
+    const noLoc = list.files.filter(x => !x.lon || !x.lat);
+    if (noLoc.length) {
+      console.log('\n⚠️ 自检：仍有 ' + noLoc.length + ' 个小区无法定位: ' + noLoc.map(x => x.name).join('、'));
+    } else {
+      console.log('\n✅ 自检：所有小区均可在 APP 地图定位');
+    }
+  } catch (e) {
+    console.log('\n⚠️ 自检失败:', e.message);
+  }
+
   browser.disconnect();
 })().catch(e => { console.error('失败:', e.message); process.exit(1); });

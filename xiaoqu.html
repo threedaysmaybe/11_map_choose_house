@@ -55,6 +55,9 @@
 <body>
 <div class="wrap">
   <a class="back" href="index.html">← 返回数据版</a>
+  <select id="boardSelect" style="width:100%;padding:11px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:#262a32;color:#fff;font-size:16px;margin:0 0 10px;outline:none">
+    <option value="" style="color:#333">📍 选择板块（全部）…</option>
+  </select>
   <select id="anzhiSelect" style="width:100%;padding:11px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:#262a32;color:#fff;font-size:16px;margin:0 0 10px;outline:none">
     <option value="all" style="color:#333">🏘️ 全部小区</option>
     <option value="no" style="color:#333">✅ 排除安置房</option>
@@ -79,7 +82,21 @@
     try {
       const r = await fetch('data/ke_xiaoqu/xiaoqu_list.json');
       const d = await r.json();
-      let list = (d.files || []).slice().sort((a, b) => (a.district || '').localeCompare(b.district || '') || (a.board || '').localeCompare(b.board || '') || (a.name || '').localeCompare(b.name || ''));
+      const raw = (d.files || []).slice().sort((a, b) => (a.district || '').localeCompare(b.district || '') || (a.board || '').localeCompare(b.board || '') || (a.name || '').localeCompare(b.name || ''));
+      // 填充板块下拉（去重，按区+板块排序）
+      const boardSel = document.getElementById('boardSelect');
+      const boards = [];
+      for (const x of raw) {
+        if (!x.board) continue;
+        if (!boards.some(b => b.board === x.board && b.district === x.district)) boards.push({ district: x.district, board: x.board });
+      }
+      boards.sort((a, b) => (a.district || '').localeCompare(b.district || '') || (a.board || '').localeCompare(b.board || ''));
+      const curBoard = boardSel.value;
+      boardSel.innerHTML = '<option value="" style="color:#333">📍 选择板块（全部）…</option>' + boards.map(b => `<option value="${b.board}" style="color:#333">${b.district ? b.district + '·' : ''}${b.board}</option>`).join('');
+      if (curBoard && boards.some(b => b.board === curBoard)) boardSel.value = curBoard;
+      // 板块过滤
+      let list = raw;
+      if (boardSel.value) list = list.filter(x => x.board === boardSel.value);
       // 安置房过滤
       const anzhiMode = (document.getElementById('anzhiSelect') || {}).value || 'all';
       list = anzhiMode === 'no' ? list.filter(x => !x.anzhi) : anzhiMode === 'only' ? list.filter(x => x.anzhi) : list;
@@ -89,6 +106,7 @@
       if (curName && list.some(x => x.name === curName)) sel.value = curName;
     } catch (e) {}
   }
+  document.getElementById('boardSelect').addEventListener('change', () => loadList());
   document.getElementById('anzhiSelect').addEventListener('change', () => loadList());
 
   // ---- 2D 地图：定位小区在成都的位置 ----

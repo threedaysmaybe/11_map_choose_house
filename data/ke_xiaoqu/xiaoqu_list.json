@@ -69,8 +69,8 @@
       "board": "川音",
       "district": "武侯",
       "anzhi": true,
-      "lon": null,
-      "lat": null,
+      "lon": 104.073653,
+      "lat": 30.64534,
       "count": 0
     },
     {
@@ -78,8 +78,8 @@
       "board": "川音",
       "district": "武侯",
       "anzhi": false,
-      "lon": null,
-      "lat": null,
+      "lon": 104.073834,
+      "lat": 30.643995,
       "count": 0
     },
     {
@@ -96,8 +96,8 @@
       "board": "华西",
       "district": "武侯",
       "anzhi": false,
-      "lon": null,
-      "lat": null,
+      "lon": 104.055785,
+      "lat": 30.647234,
       "count": 0
     },
     {
@@ -159,17 +159,17 @@
       "board": "棕北",
       "district": "武侯",
       "anzhi": false,
-      "lon": null,
-      "lat": null,
-      "count": 0
+      "lon": 104.06988,
+      "lat": 30.623944,
+      "count": 9
     },
     {
       "name": "棕南正街6号",
       "board": "棕北",
       "district": "武侯",
       "anzhi": false,
-      "lon": null,
-      "lat": null,
+      "lon": 104.072599,
+      "lat": 30.624247,
       "count": 0
     }
   ]
