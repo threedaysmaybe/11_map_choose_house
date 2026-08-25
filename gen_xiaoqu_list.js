@@ -3,17 +3,25 @@ const fs = require('fs');
 const path = require('path');
 
 const dir = path.join(__dirname, 'data', 'ke_xiaoqu');
+// 读取板块→区映射
+let boardDistrict = {};
+try {
+  const boards = JSON.parse(fs.readFileSync(path.join(__dirname, 'data', 'boards.json'), 'utf8'));
+  for (const b of boards) boardDistrict[b.name] = b.district || '';
+} catch (e) {}
 const files = fs.existsSync(dir) ? fs.readdirSync(dir).filter(f => f.endsWith('.json') && f !== 'xiaoqu_list.json') : [];
 const list = files.map(f => {
   try {
     const d = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
-    return { name: d.name || f.replace(/\.json$/, ''), board: d.board || '' };
+    const board = d.board || '';
+    return { name: d.name || f.replace(/\.json$/, ''), board, district: boardDistrict[board] || '' };
   } catch (e) {
-    return { name: f.replace(/\.json$/, ''), board: '' };
+    return { name: f.replace(/\.json$/, ''), board: '', district: '' };
   }
 }).filter(x => x.name);
 
-list.sort((a, b) => (a.board || '').localeCompare(b.board || '') || (a.name || '').localeCompare(b.name || ''));
+// 先按区，再按板块，再按名字
+list.sort((a, b) => (a.district || '').localeCompare(b.district || '') || (a.board || '').localeCompare(b.board || '') || (a.name || '').localeCompare(b.name || ''));
 
 const out = path.join(dir, 'xiaoqu_list.json');
 fs.writeFileSync(out, JSON.stringify({ ok: true, files: list }, null, 2));

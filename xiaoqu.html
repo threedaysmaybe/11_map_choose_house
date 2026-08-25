@@ -74,10 +74,10 @@
     try {
       const r = await fetch('data/ke_xiaoqu/xiaoqu_list.json');
       const d = await r.json();
-      const list = (d.files || []).slice().sort((a, b) => (a.board || '').localeCompare(b.board || '') || (a.name || '').localeCompare(b.name || ''));
+      const list = (d.files || []).slice().sort((a, b) => (a.district || '').localeCompare(b.district || '') || (a.board || '').localeCompare(b.board || '') || (a.name || '').localeCompare(b.name || ''));
       xiaoquCoords = list;
       const sel = document.getElementById('xqSelect');
-      sel.innerHTML = '<option value="" style="color:#333">📂 选择小区查看报告…</option>' + list.map(x => `<option value="${x.name}">${x.name}${x.board ? '（' + x.board + '）' : ''}</option>`).join('');
+      sel.innerHTML = '<option value="" style="color:#333">📂 选择小区查看报告…</option>' + list.map(x => `<option value="${x.name}">${x.name}${x.board ? '（' + (x.district ? x.district + '·' : '') + x.board + '）' : ''}</option>`).join('');
       if (curName && list.some(x => x.name === curName)) sel.value = curName;
     } catch (e) {}
   }
