@@ -138,6 +138,18 @@ async function grabHouseDetail(page) {
     }
     // 建筑结构（框架结构/砖混结构/钢结构/混合结构等）
     const structure = grab(/建筑结构\s*([\u4e00-\u9fa5]{1,6}结构)/) || '';
+    // 补充字段：抵押/产权/建筑类型/户型结构/用途/装修/挂牌/上次交易/核心卖点/房本
+    const diya = grab(/抵押信息\s*(无抵押|有抵押)/) || '';
+    const chanquan = grab(/产权所属\s*(非共有|共有|按份共有|共同共有)/) || '';
+    const buildingType = grab(/建筑类型\s*(板楼|塔楼|板塔结合|平房)/) || '';
+    const huxingStructure = grab(/户型结构\s*(平层|复式|跃层|错层)/) || '';
+    const usage = grab(/房屋用途\s*(普通住宅|别墅|公寓|商业办公|车位)/) || '';
+    const decoration = grab(/装修情况\s*(毛坯|简装|精装|豪华装修)/) || '';
+    const listTime = grab(/挂牌时间\s*(\d{4}年\d{1,2}月\d{1,2}日)/) || '';
+    const lastTrade = grab(/上次交易\s*(\d{4}年\d{1,2}月\d{1,2}日)/) || '';
+    const spM = txt.match(/核心卖点\s*([\u4e00-\u9fa5，。、：；0-9a-zA-Z\s]{5,120})/);
+    const sellingPoint = spM ? spM[1].trim() : '';
+    const fangben = grab(/房本备件\s*([^\s]+)/) || '';
     // 抓高清大图：点击缩略图打开大图查看器，读 data-pic(1000x750)/src(710x400)
     let imageUrls = [];
     try {
@@ -186,6 +198,16 @@ async function grabHouseDetail(page) {
       features,
       tihu,
       structure,
+      diya,
+      chanquan,
+      buildingType,
+      huxingStructure,
+      usage,
+      decoration,
+      listTime,
+      lastTrade,
+      sellingPoint,
+      fangben,
       images: imageUrls,
     };
   });
