@@ -136,6 +136,8 @@ async function grabHouseDetail(page) {
       const ti = toNum(tihuM[1]), hu = toNum(tihuM[2]);
       if (ti && hu) tihu = ti + '梯' + hu + '户';
     }
+    // 建筑结构（框架结构/砖混结构/钢结构/混合结构等）
+    const structure = grab(/建筑结构\s*([\u4e00-\u9fa5]{2,6}结构)/) || '';
     // 抓高清大图：点击缩略图打开大图查看器，读 data-pic(1000x750)/src(710x400)
     let imageUrls = [];
     try {
@@ -183,6 +185,7 @@ async function grabHouseDetail(page) {
       board,
       features,
       tihu,
+      structure,
       images: imageUrls,
     };
   });

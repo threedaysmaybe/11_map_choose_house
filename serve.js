@@ -51,15 +51,12 @@ const server = http.createServer((req, res) => {
 
   // 更新板块数据（从贝壳抓取真实板块边界）
   if (req.method === 'POST' && req.url === '/update-boards') {
-    try {
-      const { execFileSync } = require('child_process');
-      const out = execFileSync(process.execPath, ['update_boards.js'], { cwd: ROOT, timeout: 60000, encoding: 'utf8' });
+    const { execFile } = require('child_process');
+    execFile(process.execPath, ['update_boards.js'], { cwd: ROOT, timeout: 120000, maxBuffer: 1024 * 1024 * 10 }, (err, stdout) => {
       res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-      res.end(JSON.stringify({ ok: true, msg: out.trim() }));
-    } catch (e) {
-      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-      res.end(JSON.stringify({ ok: false, msg: (e.stdout || '').toString().trim() || e.message }));
-    }
+      if (err) res.end(JSON.stringify({ ok: false, msg: (stdout || '').trim() || err.message }));
+      else res.end(JSON.stringify({ ok: true, msg: (stdout || '').trim() }));
+    });
     return;
   }
 
@@ -118,11 +115,13 @@ const server = http.createServer((req, res) => {
         f.properties.levels = fl;
         f.properties.heightSource = 'manual';
         fs.writeFileSync(bf, JSON.stringify(b));
-        // 重新生成瓦片
-        const { execFileSync } = require('child_process');
-        execFileSync(process.execPath, ['generate_tiles.js'], { cwd: ROOT, timeout: 60000 });
-        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-        res.end(JSON.stringify({ ok: true, msg: `已设为 ${fl} 层（${Math.round(fl * 3)} 米）并重新渲染` }));
+        // 重新生成瓦片（异步执行，避免阻塞 serve 事件循环导致页面打不开）
+        const { execFile } = require('child_process');
+        execFile(process.execPath, ['generate_tiles.js'], { cwd: ROOT, timeout: 120000 }, (gerr) => {
+          res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+          res.end(JSON.stringify({ ok: true, msg: gerr ? ('已设为 ' + fl + ' 层，但瓦片生成失败：' + gerr.message) : ('已设为 ' + fl + ' 层（' + Math.round(fl * 3) + ' 米）并重新渲染') }));
+        });
+        return;
       } catch (e) {
         res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
         res.end(JSON.stringify({ ok: false, msg: e.message }));
@@ -165,10 +164,13 @@ const server = http.createServer((req, res) => {
         fixes[id] = entry;
         fs.writeFileSync(ff, JSON.stringify(fixes));
         fs.writeFileSync(bf, JSON.stringify(b));
-        const { execFileSync } = require('child_process');
-        execFileSync(process.execPath, ['generate_tiles.js'], { cwd: ROOT, timeout: 60000 });
-        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-        res.end(JSON.stringify({ ok: true, msg: '已修正 ' + done.join('，') + ' 并重新渲染' }));
+        // 重新生成瓦片（异步执行，避免阻塞 serve 事件循环导致页面打不开）
+        const { execFile } = require('child_process');
+        execFile(process.execPath, ['generate_tiles.js'], { cwd: ROOT, timeout: 120000 }, (gerr) => {
+          res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+          res.end(JSON.stringify({ ok: true, msg: gerr ? ('已修正 ' + done.join('，') + '，但瓦片生成失败：' + gerr.message) : ('已修正 ' + done.join('，') + ' 并重新渲染') }));
+        });
+        return;
       } catch (e) {
         res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
         res.end(JSON.stringify({ ok: false, msg: e.message }));
@@ -191,15 +193,12 @@ const server = http.createServer((req, res) => {
 
   // 导出 Markdown 报告
   if (req.method === 'POST' && req.url === '/export-md') {
-    try {
-      const { execFileSync } = require('child_process');
-      const out = execFileSync(process.execPath, ['export_md.js'], { cwd: ROOT, timeout: 30000, encoding: 'utf8' });
+    const { execFile } = require('child_process');
+    execFile(process.execPath, ['export_md.js'], { cwd: ROOT, timeout: 60000, maxBuffer: 1024 * 1024 * 10 }, (err, stdout) => {
       res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-      res.end(JSON.stringify({ ok: true, msg: out.trim() }));
-    } catch (e) {
-      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-      res.end(JSON.stringify({ ok: false, msg: (e.stdout || '').toString().trim() || e.message }));
-    }
+      if (err) res.end(JSON.stringify({ ok: false, msg: (stdout || '').trim() || err.message }));
+      else res.end(JSON.stringify({ ok: true, msg: (stdout || '').trim() }));
+    });
     return;
   }
 
