@@ -115,12 +115,11 @@ const server = http.createServer((req, res) => {
         f.properties.levels = fl;
         f.properties.heightSource = 'manual';
         fs.writeFileSync(bf, JSON.stringify(b));
-        // 重新生成瓦片（异步执行，避免阻塞 serve 事件循环导致页面打不开）
+        // 先响应，瓦片后台生成（不阻塞前端等待）
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ ok: true, msg: '已设为 ' + fl + ' 层，正在后台渲染…' }));
         const { execFile } = require('child_process');
-        execFile(process.execPath, ['generate_tiles.js'], { cwd: ROOT, timeout: 120000 }, (gerr) => {
-          res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-          res.end(JSON.stringify({ ok: true, msg: gerr ? ('已设为 ' + fl + ' 层，但瓦片生成失败：' + gerr.message) : ('已设为 ' + fl + ' 层（' + Math.round(fl * 3) + ' 米）并重新渲染') }));
-        });
+        execFile(process.execPath, ['generate_tiles.js'], { cwd: ROOT, timeout: 120000 }, () => {});
         return;
       } catch (e) {
         res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
@@ -164,12 +163,11 @@ const server = http.createServer((req, res) => {
         fixes[id] = entry;
         fs.writeFileSync(ff, JSON.stringify(fixes));
         fs.writeFileSync(bf, JSON.stringify(b));
-        // 重新生成瓦片（异步执行，避免阻塞 serve 事件循环导致页面打不开）
+        // 先响应，瓦片后台生成（不阻塞前端等待）
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ ok: true, msg: '已修正 ' + done.join('，') + '，正在后台渲染…' }));
         const { execFile } = require('child_process');
-        execFile(process.execPath, ['generate_tiles.js'], { cwd: ROOT, timeout: 120000 }, (gerr) => {
-          res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-          res.end(JSON.stringify({ ok: true, msg: gerr ? ('已修正 ' + done.join('，') + '，但瓦片生成失败：' + gerr.message) : ('已修正 ' + done.join('，') + ' 并重新渲染') }));
-        });
+        execFile(process.execPath, ['generate_tiles.js'], { cwd: ROOT, timeout: 120000 }, () => {});
         return;
       } catch (e) {
         res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });

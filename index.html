@@ -256,6 +256,15 @@
     window.map = map; // 暴露给调试/截图脚本
     window.markTarget = markTarget;
 
+    // 软刷新楼栋瓦片（不整页刷新）：加时间戳 + 清 MapLibre 内存缓存
+    function softRefreshBuildings() {
+      const s = map.getSource('buildings');
+      if (!s) return;
+      s.setTiles(['http://localhost:8080/data/tiles/{z}/{x}/{y}.pbf?v=' + Date.now()]);
+      if (s._sourceCache && s._sourceCache.clearTiles) s._sourceCache.clearTiles();
+      map.triggerRepaint();
+    }
+
     const srcLabel = { height: '精确高度', levels: '按层数估算', estimated: '推断估算' };
     const btypeLabel = {
       residential: '住宅', apartments: '公寓', house: '住宅', bungalow: '平房',
@@ -964,7 +973,28 @@
               }
             }
             const link = h.url ? `<a href="${h.url}" target="_blank" style="color:#4fc3f7;font-size:11px;margin-left:4px" title="打开贝壳房源">🔗</a>` : '';
-            html += `<div style="color:#a9adb8">${h.room} ${h.area}㎡ ${h.totalPrice}万 ${h.orientation}${floors ? ' · ' + floors : ''}${deFang}${tihuHtml}${link} <a href="javascript:void(0)" class="delHouseBtn" data-hc="${hc}" data-hi="${hi}" style="color:#e74c3c;font-size:11px;margin-left:6px">🗑 删除</a></div>`;
+            let structureTxt = '';
+            if (h.structure) {
+              const scolor = h.structure === '框架结构' ? '#2ecc71' : '#f0c060';
+              structureTxt = ` · <span style="color:${scolor};font-weight:bold">${h.structure}</span>`;
+            }
+            let diyaTxt = '';
+            if (h.diya) {
+              const dcolor = h.diya === '无抵押' ? '#2ecc71' : '#e74c3c';
+              diyaTxt = ` · <span style="color:${dcolor};font-weight:bold">${h.diya}</span>`;
+            }
+            let chanquanTxt = '';
+            if (h.chanquan) {
+              chanquanTxt = h.chanquan === '非共有' ? ` · <span style="color:#2ecc71;font-weight:bold">${h.chanquan}</span>` : ` · <span style="color:#f0c060;font-weight:bold">${h.chanquan}</span>`;
+            }
+            let usageTxt = '';
+            if (h.usage) {
+              const ucolor = h.usage === '普通住宅' ? '#2ecc71' : '#e74c3c';
+              usageTxt = ` · <span style="color:${ucolor};font-weight:bold">${h.usage}</span>`;
+            }
+            const extraTxt = [h.buildingType, h.huxingStructure, h.decoration, h.listTime ? '挂牌' + h.listTime : '', h.lastTrade ? '上次交易' + h.lastTrade : '', h.fangben].filter(Boolean).map(t => ` · ${t}`).join('');
+            const spTxt = h.sellingPoint ? ` · <span style="color:#f0c060;font-weight:bold">[${h.sellingPoint}]</span>` : '';
+            html += `<div style="color:#a9adb8">${h.room} ${h.area}㎡ ${h.totalPrice}万 ${h.orientation}${structureTxt}${floors ? ' · ' + floors : ''}${deFang}${tihuHtml}${diyaTxt}${chanquanTxt}${usageTxt}${extraTxt}${spTxt}${link} <a href="javascript:void(0)" class="delHouseBtn" data-hc="${hc}" data-hi="${hi}" style="color:#e74c3c;font-size:11px;margin-left:6px">🗑 删除</a></div>`;
             if (h.localImages && h.localImages.length) {
               html += `<div style="display:flex;overflow-x:auto;gap:4px;margin:4px 0">`;
               h.localImages.forEach(img => html += `<img src="data/ke_xiaoqu/images/${encodeURIComponent(d.name || name)}/${img}" style="width:120px;height:90px;object-fit:cover;border-radius:4px;flex-shrink:0">`);
@@ -1508,7 +1538,11 @@
                 .then(r => r.json())
                 .then(d => {
                   popup.remove();
-                  if (d.ok) { alert(d.msg + '，页面将刷新'); location.reload(); }
+                  if (d.ok) {
+                    // 软刷新：立即刷一次，8 秒后再刷一次（等瓦片后台生成完）
+                    try { softRefreshBuildings(); } catch (e) {}
+                    setTimeout(() => { try { softRefreshBuildings(); } catch (e) {} }, 8000);
+                  }
                   else alert('设置失败：' + (d.msg || ''));
                 })
                 .catch(err => alert('设置失败：' + err.message));
@@ -1523,7 +1557,11 @@
                 .then(r => r.json())
                 .then(d => {
                   popup.remove();
-                  if (d.ok) { alert(d.msg + '，页面将刷新'); location.reload(); }
+                  if (d.ok) {
+                    // 软刷新：立即刷一次，8 秒后再刷一次（等瓦片后台生成完）
+                    try { softRefreshBuildings(); } catch (e) {}
+                    setTimeout(() => { try { softRefreshBuildings(); } catch (e) {} }, 8000);
+                  }
                   else alert('修正失败：' + (d.msg || ''));
                 })
                 .catch(err => alert('修正失败：' + err.message));
