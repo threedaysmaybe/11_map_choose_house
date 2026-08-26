@@ -206,9 +206,13 @@ async function downloadImages(page, urls, subdir) {
           clearTimeout(timer);
           if (!resp.ok) return null;
           const buf = await resp.arrayBuffer();
-          let binary = '';
           const bytes = new Uint8Array(buf);
-          for (let j = 0; j < bytes.length; j++) binary += String.fromCharCode(bytes[j]);
+          // 分块转 base64（避免逐字节拼接的 O(n²) 性能问题）
+          let binary = '';
+          const CHUNK = 8192;
+          for (let j = 0; j < bytes.length; j += CHUNK) {
+            binary += String.fromCharCode.apply(null, bytes.subarray(j, j + CHUNK));
+          }
           return btoa(binary);
         } catch (e) { return null; }
       }, u);
