@@ -265,7 +265,7 @@
         // 核心卖点：标黄加粗
         const spHtml = h.sellingPoint ? `<div style="color:#f0c060;font-weight:bold;font-size:12px;margin-top:4px;line-height:1.5">核心卖点：${h.sellingPoint}</div>` : '';
         // 信息放图片前面，单独一行
-        html += `<div style="margin-bottom:6px"><div style="color:#fff;font-weight:bold">${h.room || '?'} ${h.area || '?'}㎡${floors}${deFang}${tihuHtml}</div><div>总价 ${h.totalPrice || '?'}万 · ${h.unitPrice || '?'}元/平 ${link}</div><div><span class="tag">${h.orientation || '朝向?'}</span><span class="tag">${h.floor || '?'}楼层</span>${structureTag}${diyaHtml}${chanquanHtml}${usageHtml}${extraTags}</div>${spHtml}</div>`;
+        html += `<div style="margin-bottom:6px;flex-basis:100%"><div style="color:#fff;font-weight:bold">${h.room || '?'} ${h.area || '?'}㎡${floors}${deFang}${tihuHtml}</div><div>总价 ${h.totalPrice || '?'}万 · ${h.unitPrice || '?'}元/平 ${link}</div><div><span class="tag">${h.orientation || '朝向?'}</span><span class="tag">${h.floor || '?'}楼层</span>${structureTag}${diyaHtml}${chanquanHtml}${usageHtml}${extraTags}</div>${spHtml}</div>`;
         if (h.localImages && h.localImages.length) html += h.localImages.map(img => `<img src="data/ke_xiaoqu/images/${encodeURIComponent(d.name || n)}/${img}">`).join('');
         html += `</div>`;
       });
