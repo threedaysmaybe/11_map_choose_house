@@ -254,7 +254,16 @@
       "totalFloors": "22",
       "url": "https://cd.ke.com/ershoufang/106126038688.html",
       "tihu": "2梯4户",
-      "structure": "框架结构"
+      "structure": "框架结构",
+      "diya": "无抵押",
+      "chanquan": "非共有",
+      "buildingType": "板楼",
+      "usage": "普通住宅",
+      "decoration": "简装",
+      "listTime": "2026年01月11日",
+      "lastTrade": "2026年01月14日",
+      "sellingPoint": "小区入则安静宜居，出则繁华，阳光充足，视野开阔",
+      "fangben": "已上传房本照片"
     },
     {
       "title": "成都锦江水碾河蜀都花园 3室2厅 东北",
@@ -295,7 +304,16 @@
       "totalFloors": "18",
       "url": "https://cd.ke.com/ershoufang/106123230293.html",
       "tihu": "2梯4户",
-      "structure": "框架结构"
+      "structure": "框架结构",
+      "diya": "无抵押",
+      "chanquan": "非共有",
+      "buildingType": "塔楼",
+      "usage": "普通住宅",
+      "decoration": "精装",
+      "listTime": "2025年05月31日",
+      "lastTrade": "2008年01月25日",
+      "sellingPoint": "锦江区1",
+      "fangben": "已上传房本照片"
     },
     {
       "title": "成都锦江水碾河蜀都花园 4室2厅 南",
@@ -336,7 +354,17 @@
       "totalFloors": "19",
       "url": "https://cd.ke.com/ershoufang/106126195501.html",
       "tihu": "2梯6户",
-      "structure": "框架结构"
+      "structure": "框架结构",
+      "diya": "无抵押",
+      "chanquan": "非共有",
+      "buildingType": "塔楼",
+      "huxingStructure": "平层",
+      "usage": "普通住宅",
+      "decoration": "简装",
+      "listTime": "2026年01月24日",
+      "lastTrade": "2009年01月01日",
+      "sellingPoint": "中间楼层采光好，客厅挑高，标准跃层套四的户型 小区介绍 小区为东门的大盘，园林式小区，楼盘比较大，居家比较舒适，绿化53",
+      "fangben": "已上传房本照片"
     }
   ],
   "features": [
