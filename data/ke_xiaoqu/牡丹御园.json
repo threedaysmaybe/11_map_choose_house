@@ -1,0 +1,190 @@
+{
+  "name": "牡丹御园",
+  "price": "13984",
+  "board": "芳草",
+  "info": {
+    "建筑类型": "塔楼/板楼/塔板结合",
+    "房屋总数": "483户",
+    "楼栋总数": "6栋",
+    "绿化率": "30%",
+    "容积率": "1.8",
+    "交易权属": "商品房",
+    "建成年代": "2000-2006年",
+    "供暖类型": "无供暖",
+    "用水类型": "商水/民水",
+    "用电类型": "商电/民电",
+    "物业费": "0.7至1.2元/平米/月",
+    "开发商": "无开发商"
+  },
+  "metro": [
+    {
+      "name": "芳草街",
+      "distance": "417米",
+      "lines": "地铁8号"
+    },
+    {
+      "name": "永丰",
+      "distance": "522米",
+      "lines": "地铁8号"
+    },
+    {
+      "name": "九兴大道",
+      "distance": "1228米",
+      "lines": "地铁5号"
+    },
+    {
+      "name": "衣冠庙",
+      "distance": "1304米",
+      "lines": "地铁3号"
+    },
+    {
+      "name": "科园",
+      "distance": "1321米",
+      "lines": "地铁5号"
+    },
+    {
+      "name": "神仙树",
+      "distance": "1920米",
+      "lines": "地铁5号"
+    },
+    {
+      "name": "倪家桥",
+      "distance": "1925米",
+      "lines": "地铁1号"
+    },
+    {
+      "name": "高朋大道",
+      "distance": "1976米",
+      "lines": "地铁7号"
+    },
+    {
+      "name": "倪家桥",
+      "distance": "1997米",
+      "lines": "地铁18号"
+    }
+  ],
+  "deals": [
+    {
+      "建成年份": "暂无信息",
+      "面积": "148.28平米",
+      "签约日期": "2026-07-10",
+      "成交价": "208万",
+      "成交单价": "14028元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "141.86平米",
+      "签约日期": "2026-07-01",
+      "成交价": "173.6万",
+      "成交单价": "12237元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "72.25平米",
+      "签约日期": "2026-05-23",
+      "成交价": "96万",
+      "成交单价": "13288元/平"
+    }
+  ],
+  "images": [
+    "https://ke-image.ljcdn.com/hdic-resblock/3abd86cd-658c-433f-a477-9ec5db6cdd27.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/d3b1f796-665e-4396-89fc-1a51f681de7f.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/4dc91759-f19e-45b7-95b1-e2b86c0de995.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/4e959a11-d561-47f2-baa6-9b44dcd93433.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/7fa7de4d-13fc-401d-9f0e-d9221af4e9c0.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/c1e686c2-90c1-4dba-beb0-1c474a075b8c.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/e04df558-bcd9-4624-abb3-0775d4eebe4e.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/b152e859-7cd6-4ca9-9b82-881276356ffe.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/09292078-01a0-4340-b0b1-86addddd226f.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/8b3a820a-5263-4bd1-ada3-dabfcd438019.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/131c79de-96c2-4ed9-9e83-e907b6202cd4.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/e9beb25b-c7f1-44ff-bac1-c1448535a986.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/7092976d-7552-4bca-957b-26e406ff5d24.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/dcab694f-e77d-456f-b034-ec34fde5c29a.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/904bce5e-10cb-43c7-87c8-7b35dab78dd5.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/ef9ac963-1d7a-478e-bdb1-d83e32e7fa9c.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/058f4fe1-c3e9-479d-8942-760f83a3c801.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/c29ad52e-fdfb-4093-ba6e-120ec87006e7.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/88be34e5-d387-41ba-a66b-9e7ff459bdcc.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/26474b09-1966-463c-b649-3be38df04d9e.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/615f9446-63ec-4aa9-8adf-8a30dbe8af28.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/c7f2bdb8-7189-4aa6-aae9-896445c17ef2.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/1739d934-78d3-4a31-bdc2-0b47d075a519.jpg.710x400.jpg"
+  ],
+  "updatedAt": "2026-08-26T13:52:26.156Z",
+  "localImages": [
+    "1787752346163-0-yvsw.jpg",
+    "1787752346170-1-hjy9.jpg",
+    "1787752346183-2-suqj.jpg",
+    "1787752346198-3-v5lf.jpg",
+    "1787752346210-4-a8u6.jpg",
+    "1787752346299-5-aznn.jpg",
+    "1787752346335-6-er4w.jpg",
+    "1787752346358-7-16zn.jpg",
+    "1787752346389-8-t7kj.jpg",
+    "1787752346437-9-arbt.jpg",
+    "1787752346486-10-8zxf.jpg",
+    "1787752346798-11-jjia.jpg",
+    "1787752347301-12-qh0o.jpg",
+    "1787752347691-13-f4pd.jpg",
+    "1787752348312-14-krob.jpg",
+    "1787752349019-15-aecp.jpg",
+    "1787752349350-16-8f9d.jpg",
+    "1787752349589-17-315f.jpg",
+    "1787752349952-18-sj1c.jpg",
+    "1787752350804-19-kcor.jpg",
+    "1787752351188-20-fid4.jpg",
+    "1787752351514-21-thst.jpg",
+    "1787752351923-22-4vlo.jpg"
+  ],
+  "houses": [
+    {
+      "title": "成都高新芳草牡丹御园 3室1厅 南 东北",
+      "room": "3室1厅",
+      "area": "131.22",
+      "taoneiArea": null,
+      "totalPrice": "194.8",
+      "unitPrice": "14846",
+      "floor": "中",
+      "totalFloors": "11",
+      "orientation": "南",
+      "community": "牡丹御园",
+      "district": "高新",
+      "board": "芳草",
+      "features": [
+        "满五",
+        "户型方正",
+        "电梯"
+      ],
+      "tihu": "2梯6户",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/17865315720_ChtLpcozK.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17865315720_ChtLpcozK.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17865316250_I8PDKxlOD.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1786531563177.jpeg!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17865315720_28ivUBdS5.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17865315720_gg3MrXPiL.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17865315720_5qKue9EkL.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106124592479.html",
+      "houseCode": "106124592479",
+      "localImages": [
+        "1787752354250-0-696c.jpg",
+        "1787752354473-1-g88z.jpg",
+        "1787752354724-2-7x4k.jpg",
+        "1787752354990-3-anh8.jpeg",
+        "1787752355287-4-5xz0.jpg",
+        "1787752355774-5-gbg5.jpg",
+        "1787752356190-6-vjeh.jpg"
+      ],
+      "structure": "框架结构"
+    }
+  ],
+  "district": "高新",
+  "features": [
+    "满五",
+    "户型方正",
+    "电梯"
+  ],
+  "note": "二环路旁，可以横厅，但是出租过"
+}

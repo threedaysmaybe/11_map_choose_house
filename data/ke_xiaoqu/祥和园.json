@@ -1,0 +1,168 @@
+{
+  "name": "祥和园",
+  "price": "11840",
+  "board": "芳草",
+  "info": {
+    "建筑类型": "板楼/平房",
+    "房屋总数": "231户",
+    "楼栋总数": "4栋",
+    "绿化率": "26%",
+    "容积率": "3",
+    "交易权属": "商品房",
+    "建成年代": "1998-2006年",
+    "供暖类型": "自采暖",
+    "用水类型": "民水",
+    "用电类型": "民电",
+    "物业费": "0.5至1元/平米/月",
+    "开发商": "无开发商"
+  },
+  "metro": [
+    {
+      "name": "芳草街",
+      "distance": "657米",
+      "lines": "地铁8号"
+    },
+    {
+      "name": "倪家桥",
+      "distance": "1291米",
+      "lines": "地铁1号"
+    },
+    {
+      "name": "永丰",
+      "distance": "1293米",
+      "lines": "地铁8号"
+    },
+    {
+      "name": "倪家桥",
+      "distance": "1349米",
+      "lines": "地铁18号"
+    },
+    {
+      "name": "桐梓林",
+      "distance": "1537米",
+      "lines": "地铁1号"
+    },
+    {
+      "name": "衣冠庙",
+      "distance": "1715米",
+      "lines": "地铁3号"
+    },
+    {
+      "name": "神仙树",
+      "distance": "1726米",
+      "lines": "地铁5号"
+    },
+    {
+      "name": "九兴大道",
+      "distance": "1856米",
+      "lines": "地铁5号"
+    },
+    {
+      "name": "省体育馆",
+      "distance": "1940米",
+      "lines": "地铁1号"
+    }
+  ],
+  "deals": [
+    {
+      "建成年份": "2000年",
+      "面积": "110.44平米",
+      "签约日期": "2026-03-05",
+      "成交价": "110万",
+      "成交单价": "9961元/平"
+    },
+    {
+      "建成年份": "2000年",
+      "面积": "96.55平米",
+      "签约日期": "2025-08-24",
+      "成交价": "103万",
+      "成交单价": "10669元/平"
+    },
+    {
+      "建成年份": "2000年",
+      "面积": "92.57平米",
+      "签约日期": "2025-07-10",
+      "成交价": "89.8万",
+      "成交单价": "9701元/平"
+    }
+  ],
+  "images": [
+    "https://ke-image.ljcdn.com/hdic-resblock/b9b91365-a70a-44bc-9599-5871e17014a3.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/5955422b-8efe-4929-8f9b-5ab5fb402b76.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/fcd61b5f-90b0-4553-ae9f-fb4802dc80fa.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/2089d8c2-87db-489b-8acf-0d58e7f5cdb8.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/35063587-82b8-4a16-b86f-bdffef0bb772.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/41f3453a-35c1-4bad-a256-63d29a69fe7c.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/657b48dc-ee19-4768-8705-a9cb2419fc3d.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/508a8ba1-7062-4206-9ef8-502d9824aeb1.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/13eaf60e-6b02-46ab-a0d3-870de9e56db8.jpg.170x125.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/66ada28f-0e4a-4191-a0c1-b0928f6afe46.jpg.170x125.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/e3767917-0de4-4167-8846-21504637e324.jpg.170x125.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/34d2eb08-de3a-46f4-bcc6-6bf163a8efba.jpg.170x125.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/00d5b02a-d541-4926-a48e-24c2907bf8ac.jpg.170x125.jpg"
+  ],
+  "updatedAt": "2026-08-26T13:47:15.816Z",
+  "localImages": [
+    "1787752035826-0-kiwu.jpg",
+    "1787752035832-1-ahu6.jpg",
+    "1787752036139-2-3djv.jpg",
+    "1787752036146-3-ftnr.jpg",
+    "1787752036151-4-di39.jpg",
+    "1787752036160-5-i7ph.jpg",
+    "1787752036165-6-2y8d.jpg",
+    "1787752036547-7-wfbt.jpg",
+    "1787752036572-8-pmn9.jpg",
+    "1787752036597-9-y8gn.jpg",
+    "1787752036613-10-llr7.jpg",
+    "1787752036623-11-y9eq.jpg",
+    "1787752036631-12-7hjh.jpg"
+  ],
+  "houses": [
+    {
+      "title": "成都高新芳草祥和园 3室1厅 南",
+      "room": "3室1厅",
+      "area": "130.56",
+      "taoneiArea": "130.56",
+      "totalPrice": "146",
+      "unitPrice": "11183",
+      "floor": "中",
+      "totalFloors": "7",
+      "orientation": "南",
+      "community": "祥和园",
+      "district": "高新",
+      "board": "芳草",
+      "features": [
+        "满五",
+        "精装"
+      ],
+      "tihu": "",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/17829041860_ZgOdVJPVO.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17829041860_vRTqSjjE8.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17829041860_xhlkpdqb8.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1782904177455.jpeg!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17829041860_t7mVf3vhm.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17829041860_ZgOdVJPVO.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17829041860_uSc0O1zM7.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106128274558.html",
+      "houseCode": "106128274558",
+      "localImages": [
+        "1787752038773-0-qz1a.jpg",
+        "1787752039044-1-0dg1.jpg",
+        "1787752039451-2-dm8d.jpg",
+        "1787752039783-3-6k05.jpeg",
+        "1787752040100-4-3h9l.jpg",
+        "1787752040343-5-gjg0.jpg",
+        "1787752040592-6-a882.jpg"
+      ],
+      "structure": "混合结构"
+    }
+  ],
+  "district": "高新",
+  "features": [
+    "满五",
+    "精装"
+  ],
+  "note": "南北通透，小区有点老，二环高架旁"
+}

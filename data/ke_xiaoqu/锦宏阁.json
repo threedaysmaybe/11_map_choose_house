@@ -33,45 +33,8 @@
         "1787667275999-4-2vto.jpg",
         "1787667276008-5-nhfu.jpg"
       ],
-      "tihu": "2梯6户"
-    },
-    {
-      "title": "成都武侯华西锦宏阁 4室2厅 东",
-      "room": "4室2厅",
-      "area": "134.81",
-      "taoneiArea": null,
-      "totalPrice": "298",
-      "unitPrice": "22106",
-      "floor": "高",
-      "totalFloors": "17",
-      "orientation": "东",
-      "community": "锦宏阁",
-      "features": [
-        "满五",
-        "户型方正",
-        "电梯"
-      ],
-      "images": [
-        "https://ke-image.ljcdn.com/110000-inspection/pc0_wI4l5W6QX.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
-        "https://ke-image.ljcdn.com/110000-inspection/pc0_wI4l5W6QX.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
-        "https://ke-image.ljcdn.com/110000-inspection/pc0_fh1ubkvoh.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
-        "https://ke-image.ljcdn.com/hdic-frame/standard_25b918a4-c984-4832-b4e7-c89ada865d8a.png!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
-        "https://ke-image.ljcdn.com/110000-inspection/pc0_zwP2LhYTt.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
-        "https://ke-image.ljcdn.com/110000-inspection/pc0_TUV8LxnLG.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
-        "https://ke-image.ljcdn.com/110000-inspection/pc0_9vYiSWQko.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
-      ],
-      "url": "https://cd.ke.com/ershoufang/106122199387.html",
-      "houseCode": "106122199387",
-      "localImages": [
-        "1787667277928-0-rug5.jpg",
-        "1787667277945-1-da3j.jpg",
-        "1787667277958-2-qz0u.jpg",
-        "1787667277968-3-zqch.png",
-        "1787667277991-4-qpxe.jpg",
-        "1787667278003-5-204b.jpg",
-        "1787667278021-6-q3z6.jpg"
-      ],
-      "tihu": "2梯6户"
+      "tihu": "2梯6户",
+      "structure": "钢结构"
     }
   ],
   "info": {

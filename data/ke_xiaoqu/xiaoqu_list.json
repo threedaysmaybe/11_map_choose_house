@@ -2,124 +2,229 @@
   "ok": true,
   "files": [
     {
+      "name": "蓝天路3号",
+      "board": "芳草",
+      "district": "高新",
+      "anzhi": false,
+      "lon": 104.053122,
+      "lat": 30.630513,
+      "count": 5
+    },
+    {
+      "name": "牡丹御园",
+      "board": "芳草",
+      "district": "高新",
+      "anzhi": false,
+      "lon": 104.046563,
+      "lat": 30.627179,
+      "count": 4
+    },
+    {
+      "name": "王府花园",
+      "board": "芳草",
+      "district": "高新",
+      "anzhi": false,
+      "lon": 104.050386,
+      "lat": 30.63395,
+      "count": 17
+    },
+    {
+      "name": "梧桐世家一期",
+      "board": "芳草",
+      "district": "高新",
+      "anzhi": false,
+      "lon": 104.049896,
+      "lat": 30.631713,
+      "count": 4
+    },
+    {
+      "name": "祥和园",
+      "board": "芳草",
+      "district": "高新",
+      "anzhi": false,
+      "lon": 104.053107,
+      "lat": 30.624057,
+      "count": 5
+    },
+    {
       "name": "启明公寓",
       "board": "合江亭",
       "district": "锦江",
-      "anzhi": false
+      "anzhi": false,
+      "lon": 104.084856,
+      "lat": 30.651432,
+      "count": 2
     },
     {
       "name": "秀水花园",
       "board": "合江亭",
       "district": "锦江",
-      "anzhi": false
+      "anzhi": false,
+      "lon": 104.081665,
+      "lat": 30.650291,
+      "count": 3
     },
     {
       "name": "紫东苑",
       "board": "合江亭",
       "district": "锦江",
-      "anzhi": false
+      "anzhi": false,
+      "lon": 104.086268,
+      "lat": 30.648371,
+      "count": 3
     },
     {
       "name": "朝阳名宅",
       "board": "九眼桥",
       "district": "锦江",
-      "anzhi": true
+      "anzhi": true,
+      "lon": 104.092076,
+      "lat": 30.63962,
+      "count": 1
     },
     {
       "name": "东方新城一期",
       "board": "九眼桥",
       "district": "锦江",
-      "anzhi": true
+      "anzhi": true,
+      "lon": 104.140606,
+      "lat": 30.633566,
+      "count": 10
     },
     {
       "name": "蜀都花园",
       "board": "水碾河",
       "district": "锦江",
-      "anzhi": true
+      "anzhi": true,
+      "lon": 104.100518,
+      "lat": 30.647391,
+      "count": 14
     },
     {
       "name": "海德花苑",
       "board": "川大",
       "district": "武侯",
-      "anzhi": false
+      "anzhi": false,
+      "lon": 104.07826,
+      "lat": 30.626523,
+      "count": 1
     },
     {
       "name": "海会花园",
       "board": "川音",
       "district": "武侯",
-      "anzhi": false
+      "anzhi": false,
+      "lon": 104.081847,
+      "lat": 30.640466,
+      "count": 3
     },
     {
       "name": "红星苑",
       "board": "川音",
       "district": "武侯",
-      "anzhi": true
+      "anzhi": true,
+      "lon": 104.073653,
+      "lat": 30.64534,
+      "count": 0
     },
     {
       "name": "龙江电信公寓",
       "board": "川音",
       "district": "武侯",
-      "anzhi": false
+      "anzhi": false,
+      "lon": 104.073834,
+      "lat": 30.643995,
+      "count": 0
     },
     {
       "name": "国嘉南苑一期",
       "board": "华西",
       "district": "武侯",
-      "anzhi": false
+      "anzhi": false,
+      "lon": 104.053473,
+      "lat": 30.646936,
+      "count": 51
     },
     {
       "name": "浆洗街教师公寓",
       "board": "华西",
       "district": "武侯",
-      "anzhi": false
+      "anzhi": false,
+      "lon": 104.055785,
+      "lat": 30.647234,
+      "count": 0
     },
     {
       "name": "锦宏阁",
       "board": "华西",
       "district": "武侯",
-      "anzhi": false
+      "anzhi": false,
+      "lon": 104.044091,
+      "lat": 30.640297,
+      "count": 4
     },
     {
       "name": "丽景天成",
       "board": "华西",
       "district": "武侯",
-      "anzhi": false
+      "anzhi": false,
+      "lon": 104.054836,
+      "lat": 30.637806,
+      "count": 3
     },
     {
       "name": "盛锦华庭",
       "board": "华西",
       "district": "武侯",
-      "anzhi": false
+      "anzhi": false,
+      "lon": 104.05501,
+      "lat": 30.636493,
+      "count": 7
     },
     {
       "name": "武侯名园",
       "board": "华西",
       "district": "武侯",
-      "anzhi": false
+      "anzhi": false,
+      "lon": 104.04267,
+      "lat": 30.6425,
+      "count": 21
     },
     {
       "name": "晓天芳苑",
       "board": "华西",
       "district": "武侯",
-      "anzhi": false
+      "anzhi": false,
+      "lon": 104.052509,
+      "lat": 30.636749,
+      "count": 9
     },
     {
       "name": "新气象小区",
       "board": "华西",
       "district": "武侯",
-      "anzhi": false
+      "anzhi": false,
+      "lon": 104.062108,
+      "lat": 30.64746,
+      "count": 11
     },
     {
       "name": "盛隆街2号",
       "board": "棕北",
       "district": "武侯",
-      "anzhi": false
+      "anzhi": false,
+      "lon": 104.06988,
+      "lat": 30.623944,
+      "count": 9
     },
     {
       "name": "棕南正街6号",
       "board": "棕北",
       "district": "武侯",
-      "anzhi": false
+      "anzhi": false,
+      "lon": 104.072599,
+      "lat": 30.624247,
+      "count": 0
     }
   ]
 }

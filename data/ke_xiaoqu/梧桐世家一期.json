@@ -1,0 +1,177 @@
+{
+  "houses": [
+    {
+      "title": "成都高新芳草梧桐世家一期 3室2厅 西北",
+      "room": "3室2厅",
+      "area": "129.66",
+      "taoneiArea": null,
+      "totalPrice": "210",
+      "unitPrice": "16197",
+      "floor": "高",
+      "totalFloors": "13",
+      "orientation": "西北",
+      "community": "梧桐世家一期",
+      "district": "高新",
+      "board": "芳草",
+      "features": [
+        "满五",
+        "户型方正",
+        "精装",
+        "电梯"
+      ],
+      "tihu": "1梯6户",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/pc1_aHfFSA0gV_1.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc1_aHfFSA0gV_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/apc_f62f11OeJ_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_JMfAV0ly2_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_30a586c9-075c-439a-82be-4797fa5fb57e.png!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_h164Dc6GS_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106122138212.html",
+      "houseCode": "106122138212",
+      "localImages": [
+        "1787754339381-0-ke7g.jpg",
+        "1787754339799-1-8y12.jpg",
+        "1787754340210-2-a1bq.jpg",
+        "1787754340562-3-i894.jpg",
+        "1787754340915-4-gbl5.png",
+        "1787754341277-5-no2o.jpg"
+      ],
+      "structure": "框架结构"
+    }
+  ],
+  "board": "芳草",
+  "district": "高新",
+  "name": "梧桐世家一期",
+  "info": {
+    "建筑类型": "塔楼/板楼",
+    "房屋总数": "465户",
+    "楼栋总数": "3栋",
+    "绿化率": "22%",
+    "容积率": "3.9",
+    "交易权属": "商品房",
+    "建成年代": "2000-2004年",
+    "供暖类型": "自采暖",
+    "用水类型": "商水/民水",
+    "用电类型": "商电/民电",
+    "物业费": "1.2至1.5元/平米/月",
+    "开发商": "四川恒宇房地产开发有限公司"
+  },
+  "features": [
+    "满五",
+    "户型方正",
+    "精装",
+    "电梯"
+  ],
+  "price": "16332",
+  "metro": [
+    {
+      "name": "芳草街",
+      "distance": "463米",
+      "lines": "地铁8号"
+    },
+    {
+      "name": "永丰",
+      "distance": "590米",
+      "lines": "地铁8号"
+    },
+    {
+      "name": "衣冠庙",
+      "distance": "643米",
+      "lines": "地铁3号"
+    },
+    {
+      "name": "科园",
+      "distance": "1575米",
+      "lines": "地铁5号"
+    },
+    {
+      "name": "省体育馆",
+      "distance": "1663米",
+      "lines": "地铁1号"
+    },
+    {
+      "name": "倪家桥",
+      "distance": "1718米",
+      "lines": "地铁1号"
+    },
+    {
+      "name": "九兴大道",
+      "distance": "1805米",
+      "lines": "地铁5号"
+    },
+    {
+      "name": "高升桥",
+      "distance": "1806米",
+      "lines": "地铁10号"
+    }
+  ],
+  "deals": [
+    {
+      "建成年份": "暂无信息",
+      "面积": "68.38平米",
+      "签约日期": "2026-04-28",
+      "成交价": "109万",
+      "成交单价": "15941元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "51.71平米",
+      "签约日期": "2026-02-26",
+      "成交价": "67万",
+      "成交单价": "12957元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "129.66平米",
+      "签约日期": "2026-01-24",
+      "成交价": "168万",
+      "成交单价": "12957元/平"
+    }
+  ],
+  "images": [
+    "https://ke-image.ljcdn.com/hdic-resblock/b5931fa1-85a1-4d33-b6df-de20c8f92176.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/2c7f1a44-44a3-4190-88cf-088f94f396ce.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/bd678181-1417-4dc0-b2c6-26e7ae13a07d.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/7a5e2cb4-bae9-434d-b9b7-f0d44c92c722.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/e01075b8-a430-4706-886b-1c39bdc95a7e.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/528f5789-9c06-4774-a590-36ab898abe6b.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/5e4f80d6-4ae6-4996-af5d-61b8a9614b2f.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/724d6fba-6de0-4efc-a6bc-d2d4e16829b7.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/dc04a6ef-e65f-44bc-9162-2715b832ac87.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/a6476362-4445-4f42-a24d-dec06bb73c2f.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/f71178bc-0a97-41e7-8ade-0add2d43f62a.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/360b5454-cb0c-42a4-b09e-3e6f1a646ca5.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/6dde2595-0957-4ee9-85d9-bdb0c69d8422.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/1158a2d3-3833-4d61-bf06-b6eabc462309.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/e3767917-0de4-4167-8846-21504637e324.jpg.170x125.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/13eaf60e-6b02-46ab-a0d3-870de9e56db8.jpg.170x125.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/00d5b02a-d541-4926-a48e-24c2907bf8ac.jpg.170x125.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/e3d13774-a5ba-45b8-b4b6-a60b31562e20.JPG.170x125.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/d0b040f5-fc24-4885-bfee-1f1ab7bd0123.jpg.170x125.jpg"
+  ],
+  "updatedAt": "2026-08-26T14:25:41.287Z",
+  "localImages": [
+    "1787754341293-0-jjzo.jpg",
+    "1787754341306-1-g4tg.jpg",
+    "1787754341314-2-puiv.jpg",
+    "1787754341332-3-c9io.jpg",
+    "1787754341351-4-13dd.jpg",
+    "1787754341357-5-jf6q.jpg",
+    "1787754341364-6-h384.jpg",
+    "1787754341378-7-hifr.jpg",
+    "1787754341396-8-iy2a.jpg",
+    "1787754341410-9-f4n2.jpg",
+    "1787754341453-10-3y6e.jpg",
+    "1787754341510-11-ipfu.jpg",
+    "1787754341598-12-z7zy.jpg",
+    "1787754341647-13-ak3v.jpg",
+    "1787754341655-14-jfw6.jpg",
+    "1787754341660-15-ebx0.jpg",
+    "1787754341666-16-bdy6.jpg",
+    "1787754341673-17-jh1i.JPG",
+    "1787754341677-18-jt8x.jpg"
+  ],
+  "note": "外立面挺好，框架结构，这个户型还挺有特点"
+}

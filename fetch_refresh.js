@@ -27,7 +27,9 @@ async function grabNewFields(page) {
     }
     // 总楼层
     const totalFloors = grab(/共(\d+)层/);
-    return { taoneiArea, tihu, district, board, totalFloors };
+    // 建筑结构
+    const structure = grab(/建筑结构\s*([\u4e00-\u9fa5]{1,6}结构)/) || '';
+    return { taoneiArea, tihu, district, board, totalFloors, structure };
   });
 }
 
@@ -58,6 +60,7 @@ async function grabNewFields(page) {
         if (data.taoneiArea && !h.taoneiArea) h.taoneiArea = data.taoneiArea;   // 只填空值，保留手动填的
         if (data.tihu && !h.tihu) h.tihu = data.tihu;
         if (data.totalFloors && !h.totalFloors) h.totalFloors = data.totalFloors;
+        if (data.structure && !h.structure) h.structure = data.structure;
       }
       if (data.district || data.board) {
         if (!d.board && data.board) d.board = data.board;
