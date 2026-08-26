@@ -251,7 +251,7 @@
         // 产权所属：共有标黄
         let chanquanHtml = '';
         if (h.chanquan) {
-          chanquanHtml = /共有/.test(h.chanquan) ? `<span class="tag" style="color:#f0c060;font-weight:bold">${h.chanquan}</span>` : `<span class="tag">${h.chanquan}</span>`;
+          chanquanHtml = h.chanquan === '非共有' ? `<span class="tag" style="color:#2ecc71;font-weight:bold">${h.chanquan}</span>` : `<span class="tag" style="color:#f0c060;font-weight:bold">${h.chanquan}</span>`;
         }
         // 房屋用途：普通住宅绿，否则红
         let usageHtml = '';
