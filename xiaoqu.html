@@ -260,7 +260,7 @@
           usageHtml = `<span class="tag" style="color:${ucolor};font-weight:bold">${h.usage}</span>`;
         }
         // 其它普通字段
-        const extraTags = [h.buildingType, h.huxingStructure, h.decoration, h.listTime, h.lastTrade, h.fangben].filter(Boolean).map(t => `<span class="tag">${t}</span>`).join('');
+        const extraTags = [h.buildingType, h.huxingStructure, h.decoration, h.listTime ? '挂牌' + h.listTime : '', h.lastTrade ? '上次交易' + h.lastTrade : '', h.fangben].filter(Boolean).map(t => `<span class="tag">${t}</span>`).join('');
         const link = h.url ? `<a href="${h.url}" target="_blank" style="color:#4fc3f7;font-size:12px">🔗 贝壳</a>` : '';
         // 核心卖点：标黄加粗
         const spHtml = h.sellingPoint ? `<div style="color:#f0c060;font-weight:bold;font-size:12px;margin-top:4px;line-height:1.5">核心卖点：${h.sellingPoint}</div>` : '';
