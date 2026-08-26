@@ -88,12 +88,13 @@
       const r = await fetch('data/ke_xiaoqu/xiaoqu_list.json');
       const d = await r.json();
       const raw = (d.files || []).slice().sort((a, b) => (a.district || '').localeCompare(b.district || '') || (a.board || '').localeCompare(b.board || '') || (a.name || '').localeCompare(b.name || ''));
-      // 填充区下拉（去重）
+      // 填充区下拉（去重）——只在首次填充，避免重复渲染导致下拉被关
       const distSel = document.getElementById('districtSelect');
-      const districts = [...new Set(raw.map(x => x.district).filter(Boolean))].sort();
+      if (distSel.options.length <= 1) {
+        const districts = [...new Set(raw.map(x => x.district).filter(Boolean))].sort();
+        distSel.innerHTML = '<option value="" style="color:#fff">📍 区（全部）</option>' + districts.map(d => `<option value="${d}" style="color:#fff">${d}</option>`).join('');
+      }
       const curDist = distSel.value;
-      distSel.innerHTML = '<option value="" style="color:#fff">📍 区（全部）</option>' + districts.map(d => `<option value="${d}" style="color:#fff">${d}</option>`).join('');
-      if (curDist && districts.includes(curDist)) distSel.value = curDist;
       // 填充板块下拉（当前区的板块）
       const boardSel = document.getElementById('boardSelect');
       const boards = [];
