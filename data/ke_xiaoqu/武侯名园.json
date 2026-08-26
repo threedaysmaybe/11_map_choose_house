@@ -41,7 +41,16 @@
         "1787668722317-7-ihmz.jpg",
         "1787668722573-8-23fp.jpg"
       ],
-      "structure": "框架结构"
+      "structure": "框架结构",
+      "diya": "无抵押",
+      "chanquan": "共有",
+      "buildingType": "板塔结合",
+      "huxingStructure": "错层",
+      "usage": "普通住宅",
+      "listTime": "2025年09月13日",
+      "lastTrade": "2020年07月06日",
+      "sellingPoint": "此房满五年，带大阳台，户型方正通透，装修保养好",
+      "fangben": "已上传房本照片"
     },
     {
       "title": "成都武侯华西武侯名园 3室2厅 西南",
@@ -83,7 +92,17 @@
         "1787668740408-6-klrx.jpg",
         "1787668740887-7-s7gc.jpg"
       ],
-      "structure": "框架结构"
+      "structure": "框架结构",
+      "diya": "无抵押",
+      "chanquan": "非共有",
+      "buildingType": "板楼",
+      "huxingStructure": "错层",
+      "usage": "普通住宅",
+      "decoration": "精装",
+      "listTime": "2026年03月01日",
+      "lastTrade": "2013年08月05日",
+      "sellingPoint": "武侯名园，电梯小高层，标准套三 ，户型方正，采光好",
+      "fangben": "已上传房本照片"
     }
   ],
   "info": {

@@ -1,0 +1,223 @@
+{
+  "name": "神仙树大院",
+  "price": "25211",
+  "board": "神仙树",
+  "info": {
+    "建筑类型": "板楼/塔板结合",
+    "房屋总数": "3399户",
+    "楼栋总数": "28栋",
+    "绿化率": "30%",
+    "容积率": "2.7",
+    "交易权属": "商品房",
+    "建成年代": "2002-2023年",
+    "供暖类型": "自采暖/无供暖",
+    "用水类型": "商水/民水",
+    "用电类型": "商电/民电",
+    "物业费": "2.6元/平米/月",
+    "开发商": "成都怡和天成房地产开发有限公司"
+  },
+  "metro": [
+    {
+      "name": "九兴大道",
+      "distance": "863米",
+      "lines": "地铁5号"
+    },
+    {
+      "name": "神仙树",
+      "distance": "931米",
+      "lines": "地铁5号"
+    },
+    {
+      "name": "高朋大道",
+      "distance": "1065米",
+      "lines": "地铁7号"
+    },
+    {
+      "name": "殷家林",
+      "distance": "1566米",
+      "lines": "地铁8号"
+    },
+    {
+      "name": "永丰",
+      "distance": "1688米",
+      "lines": "地铁8号"
+    },
+    {
+      "name": "科园",
+      "distance": "1697米",
+      "lines": "地铁5号"
+    },
+    {
+      "name": "芳草街",
+      "distance": "1716米",
+      "lines": "地铁8号"
+    }
+  ],
+  "deals": [
+    {
+      "建成年份": "2006年",
+      "面积": "140.93平米",
+      "签约日期": "2026-07-03",
+      "成交价": "300万",
+      "成交单价": "21288元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "97.49平米",
+      "签约日期": "2026-07-02",
+      "成交价": "197.6万",
+      "成交单价": "20269元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "137.99平米",
+      "签约日期": "2026-07-02",
+      "成交价": "288万",
+      "成交单价": "20872元/平"
+    }
+  ],
+  "images": [
+    "https://ke-image.ljcdn.com/hdic-resblock/4c9fff36-bf76-4d18-9fe7-c9f9025fb851.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/e3767917-0de4-4167-8846-21504637e324.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/756978ed-55db-45b4-ae48-9278a4b6040f.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/ae6639df-5cbd-4fc7-b8b6-62b610e5d89d.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/043c949e-b0c1-4428-99b3-6391a40e5e44.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/9f59c37d-f0ad-45dd-9f12-2c7fd72ef29e.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/81081a5d-7305-486a-9663-5e4ee4ea3f16.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/654de8ea-9ba3-4670-8275-a5ec415776e8.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/54dcf41d-30a2-45e0-a2e0-573b448f2a61.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/05128bb9-2dc7-4479-b00e-e848112e8595.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/c2db4b90-6074-4294-8f0b-8f76f3bd6ffd.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/195ebfb4-e65e-417e-868b-357623b833a9.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/696a557e-7b49-4ce3-9368-135dbfc7c86a.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/48046040-46d4-40f8-914f-56a10206d338.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/784c33f3-e0b2-40ee-83cb-e804dca7cc37.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/039c78b2-0e8e-483b-a1b2-a92ad83b7bf2.jpg.710x400.jpg"
+  ],
+  "updatedAt": "2026-08-26T15:34:52.794Z",
+  "localImages": [
+    "1787758492812-0-g1y2.jpg",
+    "1787758492828-1-qtqm.jpg",
+    "1787758492914-2-w4l6.jpg",
+    "1787758492945-3-jf3v.jpg",
+    "1787758492977-4-plu1.jpg",
+    "1787758493010-5-h6gq.jpg",
+    "1787758493048-6-qze5.jpg",
+    "1787758493079-7-q2de.jpg",
+    "1787758493129-8-o2r3.jpg",
+    "1787758493164-9-gdpt.jpg",
+    "1787758493198-10-327l.jpg",
+    "1787758493229-11-emmo.jpg",
+    "1787758493261-12-0bmn.jpg",
+    "1787758493291-13-qjcn.jpg",
+    "1787758493318-14-o3k4.jpg",
+    "1787758493341-15-ckbq.jpg"
+  ],
+  "houses": [
+    {
+      "title": "成都高新神仙树神仙树大院 3室1厅 南",
+      "room": "3室1厅",
+      "area": "124.05",
+      "taoneiArea": "107.27",
+      "totalPrice": "255",
+      "unitPrice": "20557",
+      "floor": "低",
+      "totalFloors": "18",
+      "orientation": "南",
+      "community": "神仙树大院",
+      "district": "高新",
+      "board": "神仙树",
+      "features": [
+        "满五",
+        "电梯"
+      ],
+      "tihu": "2梯4户",
+      "structure": "钢混结构",
+      "images": [
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1787395775866.jpeg!m_fill,w_1000,h_750,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17873957710_i1LJJRa5M.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17873957710_TJFl7gJoo.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1787395775866.jpeg!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17873957710_ngpVNzBlx.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17873957710_CCrPa0IET.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17873957710_02Ccbs0HC.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106128953208.html",
+      "houseCode": "106128953208",
+      "localImages": [
+        "1787758496290-0-jwdi.jpeg",
+        "1787758496519-1-xfmp.jpg",
+        "1787758496715-2-6o5d.jpg",
+        "1787758497030-3-e4om.jpeg",
+        "1787758497374-4-7msr.jpg",
+        "1787758497666-5-699f.jpg",
+        "1787758498062-6-3tm0.jpg"
+      ],
+      "diya": "有抵押",
+      "chanquan": "非共有",
+      "buildingType": "板楼",
+      "huxingStructure": "平层",
+      "usage": "普通住宅",
+      "listTime": "2026年08月20日",
+      "lastTrade": "2018年04月12日",
+      "sellingPoint": "品质小区，套三双卫朝西南户型，带中 央空调地暖 小区介绍 神仙树大院开发商是怡和天城房地产有限公司，物管是威斯顿联邦物业，物业费2",
+      "fangben": "已上传房本照片"
+    },
+    {
+      "title": "成都高新神仙树神仙树大院 3室2厅 西北",
+      "room": "3室2厅",
+      "area": "104.67",
+      "taoneiArea": "88.42",
+      "totalPrice": "210",
+      "unitPrice": "20064",
+      "floor": "低",
+      "totalFloors": "18",
+      "orientation": "西北",
+      "community": "神仙树大院",
+      "district": "高新",
+      "board": "神仙树",
+      "features": [
+        "满五",
+        "电梯"
+      ],
+      "tihu": "2梯5户",
+      "structure": "框架结构",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/pc1_1Sqo7NViX_1.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc1_1Sqo7NViX_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/apc_YweDTWqPN_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/apc_I36rdr2Lj_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_e041e809-f019-4d26-9cf6-4024c61195c8.png!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/apc_UWMn1oV5u_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_JEw4G4KiH_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106116111458.html",
+      "houseCode": "106116111458",
+      "localImages": [
+        "1787758500005-0-aqat.jpg",
+        "1787758500346-1-ivtp.jpg",
+        "1787758500682-2-s8ap.jpg",
+        "1787758501066-3-k5so.jpg",
+        "1787758501586-4-h3tn.png",
+        "1787758501832-5-zluk.jpg",
+        "1787758502311-6-qmn9.jpg"
+      ],
+      "diya": "有抵押",
+      "chanquan": "共有",
+      "buildingType": "板楼",
+      "huxingStructure": "平层",
+      "usage": "普通住宅",
+      "decoration": "简装",
+      "listTime": "2023年10月07日",
+      "lastTrade": "2012年07月10日",
+      "sellingPoint": "低楼层电梯房 环境优美 配套成熟 小区介绍 小区分五期，三期是2011年建成，小高层，多数为两梯四户有几栋是两梯三户，小区物业公司是香港威斯顿物业，物管费2",
+      "fangben": "已上传房本照片"
+    }
+  ],
+  "district": "高新",
+  "features": [
+    "满五",
+    "电梯"
+  ],
+  "note": "贵，户型就这样吧"
+}

@@ -1,0 +1,197 @@
+{
+  "houses": [
+    {
+      "title": "成都高新衣冠庙南苑公寓 3室2厅 东",
+      "room": "3室2厅",
+      "area": "155.88",
+      "taoneiArea": null,
+      "totalPrice": "186",
+      "unitPrice": "11933",
+      "floor": "中",
+      "totalFloors": "6",
+      "orientation": "东",
+      "community": "南苑公寓",
+      "district": "高新",
+      "board": "衣冠庙",
+      "features": [
+        "满五",
+        "户型方正",
+        "精装",
+        "电梯"
+      ],
+      "tihu": "1梯2户",
+      "structure": "砖混结构",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/17708158770_deGCoHfcq.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17708158770_deGCoHfcq.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17708158770_7kqYTvme1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1770816405809.jpeg!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17708158770_yw2yoCL3i.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17708159250_Pf4VH1Hvr.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17708158770_pj6Vr5vQ6.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106126353496.html",
+      "houseCode": "106126353496",
+      "localImages": [
+        "1787755543475-0-eslt.jpg",
+        "1787755543773-1-nb9d.jpg",
+        "1787755544122-2-gxrs.jpg",
+        "1787755544395-3-btar.jpeg",
+        "1787755544726-4-dxzu.jpg",
+        "1787755545066-5-zpnl.jpg",
+        "1787755545384-6-6ha4.jpg"
+      ],
+      "diya": "无抵押",
+      "chanquan": "非共有",
+      "buildingType": "板楼",
+      "huxingStructure": "平层",
+      "usage": "普通住宅",
+      "decoration": "精装",
+      "listTime": "2026年02月07日",
+      "lastTrade": "2013年12月21日",
+      "sellingPoint": "此房有电梯，上下楼方便，户型方正 看房预约 业主自住 小区介绍 小区位于高新区高升桥东路，小区一共4栋，配有地上车位，小区环境不错，安保性较高 户型介绍 此房是三个卧室，三个卫生间 ，房子大气，位置好，出门就是公交站，近地铁 周边配套 楼下",
+      "fangben": "已上传房本照片"
+    }
+  ],
+  "board": "衣冠庙",
+  "district": "高新",
+  "name": "南苑公寓",
+  "info": {
+    "建筑类型": "板楼",
+    "房屋总数": "126户",
+    "楼栋总数": "3栋",
+    "绿化率": "30%",
+    "容积率": "2",
+    "交易权属": "商品房/已购公房",
+    "建成年代": "1996-2000年",
+    "供暖类型": "自采暖",
+    "用水类型": "民水",
+    "用电类型": "民电",
+    "物业费": "0.8元/平米/月",
+    "开发商": "无开发商"
+  },
+  "features": [
+    "户型方正",
+    "电梯",
+    "满五",
+    "精装"
+  ],
+  "price": "11395",
+  "metro": [
+    {
+      "name": "高升桥",
+      "distance": "752米",
+      "lines": "地铁10号"
+    },
+    {
+      "name": "永丰",
+      "distance": "981米",
+      "lines": "地铁8号"
+    },
+    {
+      "name": "科园",
+      "distance": "999米",
+      "lines": "地铁5号"
+    },
+    {
+      "name": "衣冠庙",
+      "distance": "1081米",
+      "lines": "地铁3号"
+    },
+    {
+      "name": "红牌楼",
+      "distance": "1393米",
+      "lines": "地铁10号"
+    },
+    {
+      "name": "芳草街",
+      "distance": "1609米",
+      "lines": "地铁8号"
+    },
+    {
+      "name": "武侯祠",
+      "distance": "1669米",
+      "lines": "地铁10号"
+    },
+    {
+      "name": "武侯祠",
+      "distance": "1669米",
+      "lines": "地铁10号"
+    },
+    {
+      "name": "九兴大道",
+      "distance": "1781米",
+      "lines": "地铁5号"
+    }
+  ],
+  "deals": [
+    {
+      "建成年份": "1996年",
+      "面积": "114.62平米",
+      "签约日期": "2025-07-04",
+      "成交价": "128万",
+      "成交单价": "11168元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "97平米",
+      "签约日期": "2023-12-28",
+      "成交价": "80万",
+      "成交单价": "8248元/平"
+    },
+    {
+      "建成年份": "2000年",
+      "面积": "95.12平米",
+      "签约日期": "2023-11-12",
+      "成交价": "87.5万",
+      "成交单价": "9199元/平"
+    }
+  ],
+  "images": [
+    "https://ke-image.ljcdn.com/hdic-resblock/0fc7234f-20c0-4844-aa11-f1ac8f38477c.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/58617c05-0acd-461f-b837-07b23fdc9c32.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/1a4f8c97-f773-421b-a736-95835ef66d10.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/589479c9-85a0-4b02-a184-2bc776da0ed0.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/b2a2947d-2c84-4fcb-b872-b6eed2d1f4d6.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/5d41a0e1-9d55-46b8-bdf3-23b461543b7a.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/0a8d413c-7948-463a-a10d-782a0179c687.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/3c71b868-edb0-404f-a610-b7b7891ed20f.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/c134b38f-fee6-4485-9db8-a0736702cd9f.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/1eac3db8-e1a9-472b-836e-b78ac0fb5353.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/7ffb4c88-9276-4dfe-867b-079478eb1f93.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/8c9020aa-c4d8-4f00-97a3-f6b831f859e9.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/07fcc0d5-411e-411b-8b35-9738f5e3ded3.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/3c64a966-3844-47a2-9278-74729b3a210d.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/8d3cb7da-28af-4fff-999d-9b6cc80cdc64.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/950843e9-e756-49b3-8ae8-808f2aedde49.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/07305bee-92b8-46a5-b987-74f175f5a77f.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/7596aa36-f3d2-4517-b65b-ba6d1342f4d3.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/02b50efb-a9c2-497f-bb67-a0feb827a073.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/896d2e7f-1a19-4765-856b-aa61cbd8e502.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/7f812cb4-a66f-4dc6-9c50-135a5e103651.jpg.710x400.jpg"
+  ],
+  "updatedAt": "2026-08-26T14:45:45.398Z",
+  "localImages": [
+    "1787755545409-0-00sg.jpg",
+    "1787755545427-1-iwcx.jpg",
+    "1787755545750-2-tlhg.jpg",
+    "1787755545764-3-avqa.jpg",
+    "1787755545777-4-xd38.jpg",
+    "1787755546140-5-7z7m.jpg",
+    "1787755546513-6-muxf.jpg",
+    "1787755546800-7-670y.jpg",
+    "1787755547134-8-f911.jpg",
+    "1787755547484-9-4xc6.jpg",
+    "1787755547754-10-sahg.jpg",
+    "1787755548070-11-vnbo.jpg",
+    "1787755548388-12-heau.jpg",
+    "1787755548670-13-gdro.jpg",
+    "1787755548974-14-rlx0.jpg",
+    "1787755549306-15-00hw.jpg",
+    "1787755549626-16-o8im.jpg",
+    "1787755549987-17-g5aa.jpg",
+    "1787755550338-18-v823.jpg",
+    "1787755550680-19-0r40.jpg",
+    "1787755551152-20-w2dw.jpg"
+  ]
+}

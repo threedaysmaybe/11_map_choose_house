@@ -176,7 +176,16 @@
       "url": "https://cd.ke.com/ershoufang/106127814209.html",
       "houseCode": "106127814209",
       "tihu": "2梯4户",
-      "structure": "钢混结构"
+      "structure": "钢混结构",
+      "diya": "有抵押",
+      "chanquan": "非共有",
+      "buildingType": "板塔结合",
+      "huxingStructure": "平层",
+      "usage": "普通住宅",
+      "listTime": "2026年05月29日",
+      "lastTrade": "2023年08月03日",
+      "sellingPoint": "此房满二年，省体育局单位房 ，户型通透，视野开阔，诚心出售",
+      "fangben": "已上传房本照片"
     },
     {
       "title": "成都锦江合江亭紫东苑 3室2厅 西南",
@@ -226,7 +235,16 @@
       "url": "https://cd.ke.com/ershoufang/106126882289.html",
       "houseCode": "106126882289",
       "tihu": "1梯2户",
-      "structure": "混合结构"
+      "structure": "混合结构",
+      "diya": "无抵押",
+      "chanquan": "非共有",
+      "buildingType": "板楼",
+      "huxingStructure": "错层",
+      "usage": "普通住宅",
+      "listTime": "2026年03月24日",
+      "lastTrade": "2006年03月28日",
+      "sellingPoint": "满五唯一，小区环境好，院内停车，已全部加装电梯 税费解析 首任业主",
+      "fangben": "已上传房本照片"
     }
   ],
   "features": [

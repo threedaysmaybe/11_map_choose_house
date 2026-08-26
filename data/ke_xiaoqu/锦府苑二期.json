@@ -1,0 +1,188 @@
+{
+  "name": "锦府苑二期",
+  "price": "15968",
+  "board": "莲花",
+  "info": {
+    "建筑类型": "板楼",
+    "房屋总数": "97户",
+    "楼栋总数": "1栋",
+    "绿化率": "20%",
+    "容积率": "2.2",
+    "交易权属": "商品房",
+    "建成年代": "2004-2006年",
+    "供暖类型": "暂无信息",
+    "用水类型": "民水",
+    "用电类型": "民电",
+    "物业费": "1.2元/平米/月",
+    "开发商": "无开发商"
+  },
+  "metro": [
+    {
+      "name": "三官堂",
+      "distance": "294米",
+      "lines": "地铁13号"
+    },
+    {
+      "name": "顺江路",
+      "distance": "1003米",
+      "lines": "地铁6号"
+    },
+    {
+      "name": "净居寺",
+      "distance": "1062米",
+      "lines": "地铁13号"
+    },
+    {
+      "name": "东光",
+      "distance": "1179米",
+      "lines": "地铁6号"
+    },
+    {
+      "name": "牛市口",
+      "distance": "1617米",
+      "lines": "地铁2号"
+    },
+    {
+      "name": "东湖公园",
+      "distance": "1633米",
+      "lines": "地铁8号"
+    },
+    {
+      "name": "东大路",
+      "distance": "1743米",
+      "lines": "地铁2号"
+    },
+    {
+      "name": "九眼桥",
+      "distance": "1760米",
+      "lines": "地铁13号"
+    }
+  ],
+  "deals": [
+    {
+      "建成年份": "2006年",
+      "面积": "136.57平米",
+      "签约日期": "2024-12-05",
+      "成交价": "216万",
+      "成交单价": "15817元/平"
+    },
+    {
+      "建成年份": "2006年",
+      "面积": "141.55平米",
+      "签约日期": "2024-05-12",
+      "成交价": "204.3万",
+      "成交单价": "14434元/平"
+    },
+    {
+      "建成年份": "2006年",
+      "面积": "149.94平米",
+      "签约日期": "2022-12-12",
+      "成交价": "232万",
+      "成交单价": "15473元/平"
+    }
+  ],
+  "images": [
+    "https://ke-image.ljcdn.com/hdic-resblock/1d86b301-4423-4215-96bd-07045f2a2d80.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/a363e30d-87de-4daf-a317-e3c6af38b447.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/08a186b7-476c-49da-819d-d9db2a9f9576.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/be1ec9eb-d59a-4b4a-8987-30fb699e6e03.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/a96bd55c-44d8-40f8-aa19-bfe9820b7585.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/538a337a-bf89-4d94-8918-f1703fcece3b.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/f0e4f9bd-3ae7-48f8-81a5-c6c1937c431a.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/384ef7d1-f2da-463e-a506-5831ea8bcfb4.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/5f1ce6f7-84e0-4836-83c0-1559ae36604a.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/8938a9f7-e851-43d9-91b6-0701bf340456.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/e104cdb0-cbf6-4c9a-a6b2-3eda468d9c56.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/cd49f560-a514-499e-9f00-74b9a16d8135.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/9d82e0d4-ec8c-4e5d-81b1-9a33fab2b028.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/a1af8ef0-becc-49cf-aa08-3529255e75ac.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/b41e405b-c56f-46d6-bea1-242caa06f3be.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/506177f0-cafe-43be-8811-b116f40433a9.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/c7a21070-776b-4ab6-bc2a-8586a189910a.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/0ad619ef-8e15-46a5-b2db-55e63fb2cf5b.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/69758bb0-e4f3-41b3-8429-7dcd7ec8575e.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/4b047528-49a3-4c4a-a345-dfcb8af897f8.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/88e9eef4-e742-4fd1-9b93-cc18722a249d.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/5c9be668-500f-47ce-b65e-88134a52527c.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/e06c5433-67ce-46b6-99e4-1d0051d95ebf.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/45a1ebf2-4139-45b3-ba7d-fedff0fa443f.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/532ff0b2-f00b-411e-9c74-11efff4a359c.jpg.710x400.jpg"
+  ],
+  "updatedAt": "2026-08-26T15:02:05.942Z",
+  "localImages": [
+    "1787756525976-0-0evi.jpg",
+    "1787756526004-1-4hw9.jpg",
+    "1787756526168-2-qhrr.jpg",
+    "1787756526194-3-qpeu.jpg",
+    "1787756526236-4-0sc4.jpg",
+    "1787756526264-5-p4yk.jpg",
+    "1787756526288-6-2ayh.jpg",
+    "1787756526312-7-4f2d.jpg",
+    "1787756526774-8-4bqb.jpg",
+    "1787756527218-9-37s3.jpg",
+    "1787756528018-10-o6nq.jpg",
+    "1787756528722-11-gttd.jpg",
+    "1787756529496-12-b04x.jpg",
+    "1787756530234-13-0poa.jpg",
+    "1787756530738-14-jd41.jpg",
+    "1787756531098-15-fhfw.jpg",
+    "1787756531456-16-g49a.jpg",
+    "1787756531789-17-lnoy.jpg",
+    "1787756532184-18-cfqc.jpg",
+    "1787756532549-19-li1m.jpg",
+    "1787756532984-20-ttc9.jpg",
+    "1787756533445-21-0vg9.jpg",
+    "1787756533934-22-255d.jpg",
+    "1787756534306-23-pb5w.jpg",
+    "1787756534625-24-r6ug.jpg"
+  ],
+  "houses": [
+    {
+      "title": "成都锦江莲花锦府苑二期 3室2厅 东南",
+      "room": "3室2厅",
+      "area": "152.62",
+      "taoneiArea": null,
+      "totalPrice": "248",
+      "unitPrice": "16250",
+      "floor": "高",
+      "totalFloors": "11",
+      "orientation": "东南",
+      "community": "锦府苑二期",
+      "district": "锦江",
+      "board": "莲花",
+      "features": [
+        "满五",
+        "精装",
+        "电梯"
+      ],
+      "tihu": "1梯2户",
+      "structure": "框架结构",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/apc_TWhDlqI4B_1.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc1_R0xQVM3J7_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_cE2agvGhd_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/apc_HGuF5GwKX_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_a5773667-54d0-470a-81e6-0731b661558c.png!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/apc_9HdHohkTe_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/apc_TWhDlqI4B_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106110798853.html",
+      "houseCode": "106110798853",
+      "localImages": [
+        "1787756537258-0-p4qt.jpg",
+        "1787756537694-1-c6l3.jpg",
+        "1787756537970-2-coam.jpg",
+        "1787756538259-3-m3mf.jpg",
+        "1787756538515-4-a43n.png",
+        "1787756538846-5-way8.jpg",
+        "1787756539091-6-pnet.jpg"
+      ]
+    }
+  ],
+  "district": "锦江",
+  "features": [
+    "满五",
+    "精装",
+    "电梯"
+  ]
+}

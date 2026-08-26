@@ -1,0 +1,157 @@
+{
+  "name": "翔宇苑二期",
+  "price": "11558",
+  "board": "紫荆",
+  "info": {
+    "建筑类型": "塔板结合",
+    "房屋总数": "440户",
+    "楼栋总数": "9栋",
+    "绿化率": "30%",
+    "容积率": "2",
+    "交易权属": "商品房",
+    "建成年代": "1997-2001年",
+    "供暖类型": "自采暖/无供暖",
+    "用水类型": "商水/民水",
+    "用电类型": "商电/民电",
+    "物业费": "0.8元/平米/月",
+    "开发商": "成都西南航空房地产开发有限公司",
+    "房屋性质": "单位房"
+  },
+  "metro": [
+    {
+      "name": "神仙树",
+      "distance": "718米",
+      "lines": "地铁5号"
+    },
+    {
+      "name": "桐梓林",
+      "distance": "1552米",
+      "lines": "地铁1号"
+    },
+    {
+      "name": "火车南站",
+      "distance": "1690米",
+      "lines": "地铁18号"
+    },
+    {
+      "name": "火车南站",
+      "distance": "1790米",
+      "lines": "地铁18号"
+    },
+    {
+      "name": "芳草街",
+      "distance": "1906米",
+      "lines": "地铁8号"
+    }
+  ],
+  "deals": [
+    {
+      "建成年份": "暂无信息",
+      "面积": "93.9平米",
+      "签约日期": "2026-06-01",
+      "成交价": "99.8万",
+      "成交单价": "10629元/平"
+    },
+    {
+      "建成年份": "2000年",
+      "面积": "123.98平米",
+      "签约日期": "2025-12-21",
+      "成交价": "145.6万",
+      "成交单价": "11744元/平"
+    },
+    {
+      "建成年份": "2000年",
+      "面积": "123.98平米",
+      "签约日期": "2025-10-24",
+      "成交价": "145.6万",
+      "成交单价": "11744元/平"
+    }
+  ],
+  "images": [
+    "https://ke-image.ljcdn.com/hdic-resblock/bf1e37b2-b210-4b75-9b49-2c5ca572daab.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/99ec5c18-b95a-4801-9f52-40623579de8d.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/bbeeb7c9-7771-474f-b493-6056d9ba2a5e.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/a9939621-5de7-4b4b-ac7a-ed248187d96a.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/504f150f-ef96-40f1-a432-1635a3b31dd5.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/480dfd22-db6e-4509-9347-34bb133c95c4.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/3a6f8cee-099f-4415-9ddb-3ae972bf2b51.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/c830c39f-e2ea-4f01-9a69-e928b69b239a.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/da6be8c2-4ce4-49d1-9fec-27f4b73a870f.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/719c2305-fb01-4bfd-91fb-53adefc7b83d.jpg.710x400.jpg"
+  ],
+  "updatedAt": "2026-08-26T15:11:59.631Z",
+  "localImages": [
+    "1787757119731-0-qepf.jpg",
+    "1787757119797-1-gk7x.jpg",
+    "1787757119862-2-li50.jpg",
+    "1787757119931-3-vhou.jpg",
+    "1787757119979-4-fxs1.jpg",
+    "1787757120015-5-6ivy.jpg",
+    "1787757120041-6-8u0h.jpg",
+    "1787757120077-7-d1fc.jpg",
+    "1787757120182-8-z5cv.jpg",
+    "1787757120209-9-up8j.jpg"
+  ],
+  "houses": [
+    {
+      "title": "成都高新紫荆翔宇苑二期 3室2厅 南",
+      "room": "3室2厅",
+      "area": "123.98",
+      "taoneiArea": null,
+      "totalPrice": "159.5",
+      "unitPrice": "12865",
+      "floor": "高",
+      "totalFloors": "7",
+      "orientation": "南",
+      "community": "翔宇苑二期",
+      "district": "高新",
+      "board": "紫荆",
+      "features": [
+        "单位房",
+        "满五",
+        "户型方正",
+        "电梯"
+      ],
+      "tihu": "1梯2户",
+      "structure": "混合结构",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/17698537090_WnMy1Fw8y.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17698537090_WnMy1Fw8y.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17698537380_zy05y3JXP.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1769853700782.jpeg!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17698537500_BW9Df6OjH.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17698537090_VGIK5KgRI.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17698537090_Vm422BriG.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106124242810.html",
+      "houseCode": "106124242810",
+      "localImages": [
+        "1787757123257-0-c33h.jpg",
+        "1787757123508-1-2a14.jpg",
+        "1787757123837-2-c70g.jpg",
+        "1787757124165-3-6aia.jpeg",
+        "1787757124432-4-0yzd.jpg",
+        "1787757124760-5-q19p.jpg",
+        "1787757125051-6-tdrj.jpg"
+      ],
+      "diya": "无抵押",
+      "chanquan": "非共有",
+      "buildingType": "板塔结合",
+      "huxingStructure": "平层",
+      "usage": "普通住宅",
+      "decoration": "简装",
+      "listTime": "2025年08月15日",
+      "lastTrade": "2018年02月24日",
+      "sellingPoint": "满五中间楼层，视野好，户型方正，正在安装电梯 小区介绍 小区介绍： 小区是2000年商品房小区，房子公摊很小，小区共有9栋，面积大，能基本满足小区业主地面停车，无地下车库，小区是外聘的物业公司管理规范，小区刷卡进入刷卡24小时安保",
+      "fangben": "已上传房本照片"
+    }
+  ],
+  "district": "高新",
+  "features": [
+    "单位房",
+    "满五",
+    "户型方正",
+    "电梯"
+  ],
+  "note": "小区很多户型奇怪，留作参考"
+}

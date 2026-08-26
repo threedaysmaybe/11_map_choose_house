@@ -50,7 +50,17 @@
         "1787674790549-11-8gdp.jpg",
         "1787674790856-12-696s.jpg"
       ],
-      "structure": "混合结构"
+      "structure": "混合结构",
+      "diya": "无抵押",
+      "chanquan": "非共有",
+      "buildingType": "板楼",
+      "huxingStructure": "平层",
+      "usage": "普通住宅",
+      "decoration": "精装",
+      "listTime": "2026年08月12日",
+      "lastTrade": "2019年07月09日",
+      "sellingPoint": "此房满五年 步梯2楼 精装 大套三双卫 中 央空调 可ling",
+      "fangben": "已上传房本照片"
     },
     {
       "title": "成都武侯棕北棕南正街6号 3室1厅 东南",
@@ -96,7 +106,17 @@
         "1787674795843-8-c61x.jpg",
         "1787674796223-9-gf6c.jpg"
       ],
-      "structure": "钢混结构"
+      "structure": "钢混结构",
+      "diya": "无抵押",
+      "chanquan": "非共有",
+      "buildingType": "板楼",
+      "huxingStructure": "平层",
+      "usage": "普通住宅",
+      "decoration": "简装",
+      "listTime": "2025年06月07日",
+      "lastTrade": "2022年10月24日",
+      "sellingPoint": "装修一般但是交通便利，pang边商场配套好小区属于棕北区域",
+      "fangben": "已上传房本照片"
     }
   ],
   "board": "棕北",
