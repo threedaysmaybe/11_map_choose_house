@@ -47,6 +47,69 @@
       "count": 5
     },
     {
+      "name": "绿地紫瑞里",
+      "board": "神仙树",
+      "district": "高新",
+      "anzhi": false,
+      "lon": 104.0391,
+      "lat": 30.616084,
+      "count": 0
+    },
+    {
+      "name": "神仙树大院",
+      "board": "神仙树",
+      "district": "高新",
+      "anzhi": false,
+      "lon": 104.040973,
+      "lat": 30.618785,
+      "count": 29
+    },
+    {
+      "name": "国际花园",
+      "board": "衣冠庙",
+      "district": "高新",
+      "anzhi": false,
+      "lon": 104.044795,
+      "lat": 30.632942,
+      "count": 12
+    },
+    {
+      "name": "黄金时代",
+      "board": "衣冠庙",
+      "district": "高新",
+      "anzhi": false,
+      "lon": 104.07352,
+      "lat": 30.570377,
+      "count": 21
+    },
+    {
+      "name": "黄金时代(永丰路)",
+      "board": "衣冠庙",
+      "district": "高新",
+      "anzhi": false,
+      "lon": 104.07352,
+      "lat": 30.570377,
+      "count": 21
+    },
+    {
+      "name": "南苑公寓",
+      "board": "衣冠庙",
+      "district": "高新",
+      "anzhi": false,
+      "lon": 104.040679,
+      "lat": 30.63681,
+      "count": 11
+    },
+    {
+      "name": "翔宇苑二期",
+      "board": "紫荆",
+      "district": "高新",
+      "anzhi": false,
+      "lon": 104.052157,
+      "lat": 30.612825,
+      "count": 31
+    },
+    {
       "name": "启明公寓",
       "board": "合江亭",
       "district": "锦江",
@@ -90,6 +153,15 @@
       "lon": 104.140606,
       "lat": 30.633566,
       "count": 10
+    },
+    {
+      "name": "锦府苑二期",
+      "board": "莲花",
+      "district": "锦江",
+      "anzhi": false,
+      "lon": 104.095071,
+      "lat": 30.631339,
+      "count": 4
     },
     {
       "name": "蜀都花园",
