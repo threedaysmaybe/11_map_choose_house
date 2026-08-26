@@ -238,7 +238,11 @@
             tihuHtml = ` · <span style="color:${color};font-weight:bold">${h.tihu}</span>`;
           }
         }
-        const structureTag = h.structure ? `<span class="tag">${h.structure}</span>` : '';
+        let structureTag = '';
+        if (h.structure) {
+          const scolor = h.structure === '框架结构' ? '#2ecc71' : '#f0c060';
+          structureTag = `<span class="tag" style="color:${scolor};font-weight:bold">${h.structure}</span>`;
+        }
         const link = h.url ? `<a href="${h.url}" target="_blank" style="color:#4fc3f7;font-size:12px">🔗 贝壳</a>` : '';
         html += `<div><div style="color:#fff;font-weight:bold">${h.room || '?'} ${h.area || '?'}㎡${floors}${deFang}${tihuHtml}</div><div>总价 ${h.totalPrice || '?'}万 · ${h.unitPrice || '?'}元/平 ${link}</div><div><span class="tag">${h.orientation || '朝向?'}</span><span class="tag">${h.floor || '?'}楼层</span>${structureTag}</div></div></div>`;
       });
