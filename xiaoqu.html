@@ -87,6 +87,7 @@
   const ADMIN_PWD = '593432'; // 管理员口令
   let isAdmin = false; // 是否解锁管理员模式（看所有人备注）
   let myName = localStorage.getItem('xq_username') || ''; // 我的昵称
+  let cloudTagMap = {}; // 当前小区云端标签 { houseCode: [{name,tag,time}] }
 
   // GitHub 读备注
   async function ghReadNotes(name) {
@@ -108,6 +109,36 @@
     const body = {
       message: '更新备注 ' + name,
       content: btoa(unescape(encodeURIComponent(JSON.stringify({ notes })))),
+    };
+    if (sha) body.sha = sha;
+    const r = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/contents/' + path, {
+      method: 'PUT',
+      headers: { Authorization: 'token ' + GITHUB_TOKEN, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    if (!r.ok) throw new Error('保存失败 HTTP ' + r.status);
+    return await r.json();
+  }
+  // GitHub 读标签
+  async function ghReadTags(name) {
+    const path = 'data/tags/' + encodeURIComponent(name) + '.json';
+    try {
+      const r = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/contents/' + path, {
+        headers: { Authorization: 'token ' + GITHUB_TOKEN, Accept: 'application/vnd.github.v3+json' },
+      });
+      if (r.status === 404) return { tags: [], sha: null };
+      if (!r.ok) return { tags: [], sha: null };
+      const d = await r.json();
+      const json = JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\s/g, '')))));
+      return { tags: json.tags || [], sha: d.sha };
+    } catch (e) { return { tags: [], sha: null }; }
+  }
+  // GitHub 写标签
+  async function ghWriteTags(name, tags, sha) {
+    const path = 'data/tags/' + encodeURIComponent(name) + '.json';
+    const body = {
+      message: '更新标签 ' + name,
+      content: btoa(unescape(encodeURIComponent(JSON.stringify({ tags })))),
     };
     if (sha) body.sha = sha;
     const r = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/contents/' + path, {
@@ -218,6 +249,12 @@
     const r = await fetch('data/ke_xiaoqu/' + encodeURIComponent(n) + '.json');
     const d = await r.json();
     const info = d.info || {};
+    // 加载云端标签（个人隔离）
+    cloudTagMap = {};
+    const tagRes = await ghReadTags(n);
+    for (const t of tagRes.tags) {
+      (cloudTagMap[t.houseCode] = cloudTagMap[t.houseCode] || []).push(t);
+    }
     document.getElementById('xqName').textContent = d.name || n;
     document.getElementById('xqSub').textContent = '抓取时间：' + (d.updatedAt || '').slice(0, 10);
 
@@ -319,6 +356,11 @@
         const spHtml = h.sellingPoint ? `<div style="color:#f0c060;font-weight:bold;font-size:12px;margin-top:4px;line-height:1.5">核心卖点：${h.sellingPoint}</div>` : '';
         // 信息放图片前面，单独一行
         html += `<div style="margin-bottom:6px;flex-basis:100%"><div style="color:#fff;font-weight:bold">${h.room || '?'} ${h.area || '?'}㎡${floors}${deFang}${tihuHtml}</div><div>总价 ${h.totalPrice || '?'}万 · ${h.unitPrice || '?'}元/平 ${link}</div><div><span class="tag">${h.orientation || '朝向?'}</span><span class="tag">${h.floor || '?'}楼层</span>${structureTag}${diyaHtml}${chanquanHtml}${usageHtml}${extraTags}</div>${spHtml}</div>`;
+        // 标签（云端，个人隔离）
+        const hc = h.houseCode || '';
+        const hTags3 = (cloudTagMap[hc] || []).filter(t => isAdmin || t.name === myName);
+        const xqTagsHtml = hTags3.map(t => `<span style="display:inline-block;background:rgba(139,195,74,0.15);color:#9ccc65;border:1px solid rgba(139,195,74,0.4);border-radius:10px;padding:1px 8px;font-size:11px;margin:2px 4px 2px 0">${isAdmin ? t.name + '：' : ''}${t.tag}</span>`).join('');
+        html += `<div style="margin-bottom:4px;flex-basis:100%">${xqTagsHtml}<a href="javascript:void(0)" class="xqAddTagBtn" data-hc="${hc}" style="color:#4fc3f7;font-size:12px;text-decoration:none">➕ 标签</a></div>`;
         if (h.localImages && h.localImages.length) html += h.localImages.map(img => `<img src="data/ke_xiaoqu/images/${encodeURIComponent(d.name || n)}/${img}">`).join('');
         html += `</div>`;
       });
@@ -333,6 +375,21 @@
     }
 
     document.getElementById('content').innerHTML = html;
+    // ---- 加标签（云端）----
+    document.querySelectorAll('.xqAddTagBtn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const hc = btn.dataset.hc;
+        if (!myName) { alert('请先在上方填昵称'); return; }
+        const tag = prompt('输入标签名：');
+        if (!tag || !tag.trim()) return;
+        try {
+          const res = await ghReadTags(n);
+          const tags = res.tags.concat([{ houseCode: hc, name: myName, tag: tag.trim(), time: new Date().toISOString() }]);
+          await ghWriteTags(n, tags, res.sha);
+          load(n);
+        } catch (e) { alert(e.message); }
+      });
+    });
     // ---- 云端备注逻辑 ----
     let curSha = null;
     async function renderNotes() {
