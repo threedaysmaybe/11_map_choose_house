@@ -1,5 +1,5 @@
 // 成都选房地图 Service Worker
-const CACHE = 'xuanfang-v2';
+const CACHE = 'xuanfang-v3';
 const CORE = [
   './',
   './index.html',
