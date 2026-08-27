@@ -73,13 +73,24 @@
     <option value="only" style="color:#fff">🔴 仅安置房</option>
   </select>
   <div id="tagFilterBox" style="margin:0 0 10px;font-size:13px;color:#a9adb8">🏷️ 标签筛选（我的）：加载中…</div>
-  <select id="xqSelect" style="width:100%;padding:11px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:#262a32;color:#fff;font-size:16px;margin:0 0 18px;outline:none">
+  <select id="xqSelect" style="width:100%;padding:11px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:#262a32;color:#fff;font-size:16px;margin:0 0 12px;outline:none">
     <option value="" style="color:#fff">📂 选择小区查看报告…</option>
   </select>
-  <div id="xqMap"></div>
-  <h1 id="xqName">小区报告</h1>
-  <div class="sub" id="xqSub"></div>
-  <div id="content"></div>
+  <a href="javascript:void(0)" id="openNoteBtn" style="display:block;text-align:center;padding:12px;border-radius:8px;background:rgba(255,224,130,0.12);border:1px solid rgba(255,224,130,0.4);color:#ffe082;font-size:16px;text-decoration:none;margin:0 0 18px">📝 看房 / 买房笔记</a>
+  <div id="reportArea">
+    <div id="xqMap"></div>
+    <h1 id="xqName">小区报告</h1>
+    <div class="sub" id="xqSub"></div>
+    <div id="content"></div>
+  </div>
+  <div id="noteView" style="display:none">
+    <a href="javascript:void(0)" id="noteBack" style="display:inline-block;padding:8px 14px;border-radius:8px;background:#262a32;border:1px solid rgba(255,255,255,0.2);color:#fff;text-decoration:none;font-size:14px;margin:0 0 12px">← 返回报告</a>
+    <h2 style="color:#fff;margin:0 0 6px">📝 看房 / 买房笔记</h2>
+    <div style="color:#a9adb8;font-size:12px;margin:0 0 10px;line-height:1.7">每行一条：<br>① <code style="color:#ffe082"># 大标题</code> ② <code style="color:#ffe082">## 小标题</code> ③ <code style="color:#ffe082">- 内容</code>（圆圈 ○）④ <code style="color:#ffe082">&gt; 内容</code>（箭头 →）⑤ 普通行（圆点 •）</div>
+    <textarea id="noteInput" rows="12" placeholder="例如：&#10;# 看房准备&#10;## 材料&#10;- 身份证&#10;&gt; 银行卡&#10;## 预算&#10;- 首付 50 万" style="width:100%;background:#262a32;border:1px solid rgba(255,255,255,0.2);border-radius:8px;color:#fff;padding:10px;font-size:14px;line-height:1.6;box-sizing:border-box;outline:none"></textarea>
+    <button id="noteSave" style="margin:10px 0;width:100%;padding:11px;border:none;border-radius:8px;background:#2e86de;color:#fff;font-size:15px;cursor:pointer">💾 保存笔记</button>
+    <div id="notePreview" style="background:rgba(255,255,255,0.04);border-radius:8px;padding:12px;line-height:1.8"></div>
+  </div>
 </div>
 <div id="lightbox"><img id="lightboxImg" src="" alt=""><div id="lbPrev" class="lb-arrow">‹</div><div id="lbNext" class="lb-arrow">›</div><div class="lb-count" id="lbCount"></div><div class="lb-hint">滚轮缩放 · 按住拖动 · 单击关闭</div></div>
 <script>
@@ -537,6 +548,43 @@
     locateByName(curName);
   });
   load(curName).catch(e => document.getElementById('content').innerHTML = '<div class="card">加载失败：' + e.message + '</div>');
+
+  // ---- 看房/买房笔记（个人提醒，localStorage）----
+  const NOTE_KEY = 'xq_house_note';
+  function renderNote(md) {
+    const lines = (md || '').split('\n');
+    let html = '';
+    for (const line of lines) {
+      const t = line.trim();
+      if (t.startsWith('# ')) html += `<div style="font-weight:bold;font-size:17px;color:#fff;margin:12px 0 4px">${t.slice(2)}</div>`;
+      else if (t.startsWith('## ')) html += `<div style="font-weight:bold;font-size:14px;color:#ffe082;margin:9px 0 3px;padding-left:10px">${t.slice(3)}</div>`;
+      else if (t.startsWith('- ')) html += `<div style="padding-left:22px;color:#c9ccd3">○ ${t.slice(2)}</div>`;
+      else if (t.startsWith('> ')) html += `<div style="padding-left:22px;color:#4fc3f7">→ ${t.slice(2)}</div>`;
+      else if (t) html += `<div style="padding-left:22px;color:#c9ccd3">• ${t}</div>`;
+    }
+    return html || '<div style="color:#8b8f99">（空笔记）</div>';
+  }
+  document.getElementById('openNoteBtn').addEventListener('click', () => {
+    document.getElementById('reportArea').style.display = 'none';
+    document.getElementById('noteView').style.display = 'block';
+    const saved = localStorage.getItem(NOTE_KEY) || '';
+    document.getElementById('noteInput').value = saved;
+    document.getElementById('notePreview').innerHTML = renderNote(saved);
+    window.scrollTo(0, 0);
+  });
+  document.getElementById('noteBack').addEventListener('click', () => {
+    document.getElementById('noteView').style.display = 'none';
+    document.getElementById('reportArea').style.display = 'block';
+  });
+  document.getElementById('noteInput').addEventListener('input', e => {
+    document.getElementById('notePreview').innerHTML = renderNote(e.target.value);
+  });
+  document.getElementById('noteSave').addEventListener('click', () => {
+    localStorage.setItem(NOTE_KEY, document.getElementById('noteInput').value);
+    const b = document.getElementById('noteSave');
+    b.textContent = '已保存 ✓';
+    setTimeout(() => b.textContent = '💾 保存笔记', 1200);
+  });
 
   // ---- 顶部用户状态（昵称 + 管理员）----
   function updateUserBar() {
