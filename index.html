@@ -202,7 +202,7 @@
         <div class="title" id="xqTitle" style="font-size:13px;cursor:pointer;user-select:none">🏠 小区档案（贝壳）<span id="xqToggle" style="float:right">▸</span></div>
         <div id="xqBody" style="display:none">
         <select id="anzhiSelect" style="width:100%;margin:6px 0;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:4px;color:#fff;font-size:12px;padding:4px"><option style="color:#333" value="all">全部小区</option><option style="color:#333" value="no">排除安置房</option><option style="color:#333" value="only">仅安置房</option></select>
-        <div id="tagFilterBox" style="margin:0 0 6px;font-size:11px;color:#a9adb8">🏷️ 标签筛选（我的）：加载中…</div>
+        <div id="tagFilterBox" style="margin:0 0 6px;font-size:11px;color:#a9adb8">🏷️ 标签筛选：加载中…</div>
         <select id="xqSelect" style="width:100%;margin:0 0 6px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:4px;color:#fff;font-size:12px;padding:4px"><option style="color:#333" value="">选择小区…</option></select>
         <div id="xqDetail" style="font-size:12px;color:#e8e9ec;line-height:1.8"></div>
         </div>
@@ -993,13 +993,13 @@
         const d = await r.json();
         const list = d.files || [];
         xiaoquList = list.map(x => x.name).filter(Boolean);
-        // 读所有云端标签（个人隔离），渲染筛选 chips + 筛选小区
+        // 读所有云端标签（数据版全局：显示所有人的标签），渲染筛选 chips + 筛选小区
         const allTagsRes = await ghReadAllTags();
-        const myTags = allTagsRes.filter(t => isAdmin || t.name === myName);
+        const myTags = allTagsRes;
         const allTagNames = [...new Set(myTags.map(t => t.tag))].sort();
         const tagBox = document.getElementById('tagFilterBox');
         if (tagBox) {
-          tagBox.innerHTML = (isAdmin ? '🏷️ 标签筛选（全部）：' : '🏷️ 标签筛选（我的）：') + (allTagNames.length ? allTagNames.map(t => {
+          tagBox.innerHTML = '🏷️ 标签筛选：' + (allTagNames.length ? allTagNames.map(t => {
             const inc = tagInclude.has(t), exc = tagExclude.has(t);
             const st = inc ? 'inc' : exc ? 'exc' : 'none';
             const style = inc ? 'background:rgba(46,204,113,0.25);color:#2ecc71;border:1px solid #2ecc71' : exc ? 'background:rgba(231,76,60,0.2);color:#e74c3c;border:1px solid #e74c3c' : 'background:rgba(255,255,255,0.08);color:#c9ccd3;border:1px solid rgba(255,255,255,0.2)';
@@ -1111,8 +1111,8 @@
           html += `<div style="margin-top:4px;color:#f0c060">在售房源：</div>`;
           d.houses.forEach((h, hi) => {
             const hc = h.houseCode || '';
-            // 房源级标签过滤（云端，个人隔离：包含 + 排除）
-            const hTags = (cloudTagMap[hc] || []).filter(t => isAdmin || t.name === myName).map(t => t.tag);
+            // 房源级标签过滤（云端，数据版全局：包含 + 排除）
+            const hTags = (cloudTagMap[hc] || []).map(t => t.tag);
             if (tagInclude.size && ![...tagInclude].every(t => hTags.includes(t))) return;
             if (tagExclude.size && [...tagExclude].some(t => hTags.includes(t))) return;
             const floors = h.totalFloors ? `共${h.totalFloors}层` : '';
@@ -1157,9 +1157,9 @@
             const extraTxt = [h.buildingType, h.huxingStructure, h.decoration, h.listTime ? '挂牌' + h.listTime : '', h.lastTrade ? '上次交易' + h.lastTrade : '', h.fangben].filter(Boolean).map(t => ` · ${t}`).join('');
             const spTxt = h.sellingPoint ? ` · <span style="color:#f0c060;font-weight:bold">[${h.sellingPoint}]</span>` : '';
             html += `<div style="color:#a9adb8">${h.room} ${h.area}㎡ ${h.totalPrice}万 ${h.orientation}${structureTxt}${floors ? ' · ' + floors : ''}${deFang}${tihuHtml}${diyaTxt}${chanquanTxt}${usageTxt}${extraTxt}${spTxt}${link} <a href="javascript:void(0)" class="delHouseBtn" data-hc="${hc}" data-hi="${hi}" style="color:#e74c3c;font-size:11px;margin-left:6px">🗑 删除</a></div>`;
-            // 用户标签（云端，个人隔离）
-            const hTags2 = (cloudTagMap[hc] || []).filter(t => isAdmin || t.name === myName);
-            const tagsHtml = hTags2.map(t => `<span style="display:inline-block;background:rgba(139,195,74,0.15);color:#9ccc65;border:1px solid rgba(139,195,74,0.4);border-radius:10px;padding:1px 8px;font-size:11px;margin:2px 4px 2px 0">${isAdmin ? t.name + '：' : ''}${t.tag}<a href="javascript:void(0)" class="rmTagBtn" data-hc="${hc}" data-tag="${t.tag}" style="color:#e74c3c;margin-left:4px;text-decoration:none">×</a></span>`).join('');
+            // 用户标签（云端，数据版全局：显示所有人标签带名字）
+            const hTags2 = (cloudTagMap[hc] || []);
+            const tagsHtml = hTags2.map(t => `<span style="display:inline-block;background:rgba(139,195,74,0.15);color:#9ccc65;border:1px solid rgba(139,195,74,0.4);border-radius:10px;padding:1px 8px;font-size:11px;margin:2px 4px 2px 0">${t.name + '：' + t.tag}<a href="javascript:void(0)" class="rmTagBtn" data-hc="${hc}" data-tag="${t.tag}" style="color:#e74c3c;margin-left:4px;text-decoration:none">×</a></span>`).join('');
             html += `<div style="margin-top:3px">${tagsHtml}<a href="javascript:void(0)" class="addTagBtn" data-hc="${hc}" style="color:#4fc3f7;font-size:11px;text-decoration:none">➕ 标签</a></div>`;
             if (h.localImages && h.localImages.length) {
               html += `<div style="display:flex;overflow-x:auto;gap:4px;margin:4px 0">`;
@@ -1205,8 +1205,8 @@
         detail.querySelectorAll('.addTagBtn').forEach(btn => {
           btn.addEventListener('click', async () => {
             const hc = btn.dataset.hc;
-            const curTags = (cloudTagMap[hc] || []).filter(t => isAdmin || t.name === myName).map(t => t.tag);
-            const allTags = [...new Set(Object.values(cloudTagMap).flat().filter(t => isAdmin || t.name === myName).map(t => t.tag))].sort();
+            const curTags = (cloudTagMap[hc] || []).map(t => t.tag);
+            const allTags = [...new Set(Object.values(cloudTagMap).flat().map(t => t.tag))].sort();
             const existing = allTags.filter(t => !curTags.includes(t));
             const panel = document.createElement('div');
             panel.style.cssText = 'margin-top:4px';
