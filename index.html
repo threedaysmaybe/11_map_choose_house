@@ -245,7 +245,6 @@
     // ---- 云端标签配置（GitHub 存储，与手机端共用）----
     const GITHUB_TOKEN = ['ghp_','w9uOaLY','MjlBSIM','ASAJ5Pz','UvKT31G','JP4E02RP'].join('');
     const GITHUB_REPO = 'threedaysmaybe/11_map_choose_house';
-    const ADMIN_PWD = '593432'; // 管理员口令
     let isAdmin = localStorage.getItem('xq_isAdmin') === '1'; // 管理员模式（看所有人标签，记住登录）
     let myName = localStorage.getItem('xq_username') || ''; // 我的昵称
 
@@ -302,6 +301,17 @@
         return result;
       } catch (e) { return []; }
     }
+    // GitHub 读配置（管理员口令在云端，不硬编码在前端）
+    async function ghReadConfig() {
+      try {
+        const r = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/contents/data/config.json', {
+          headers: { Authorization: 'token ' + GITHUB_TOKEN, Accept: 'application/vnd.github.v3+json' },
+        });
+        if (!r.ok) return { adminPwd: '' };
+        const d = await r.json();
+        return JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\s/g, '')))));
+      } catch (e) { return { adminPwd: '' }; }
+    }
 
     const map = new maplibregl.Map({
       container: 'map',
@@ -352,11 +362,14 @@
         return;
       }
       const pwd = prompt('输入管理员口令：');
-      if (pwd === ADMIN_PWD) {
-        isAdmin = true; localStorage.setItem('xq_isAdmin', '1'); updateUserBar();
-        const s = document.getElementById('xqSelect');
-        if (s && s.value) s.dispatchEvent(new Event('change'));
-      } else if (pwd !== null) alert('口令错误');
+      if (pwd === null) return;
+      ghReadConfig().then(cfg => {
+        if (pwd === cfg.adminPwd) {
+          isAdmin = true; localStorage.setItem('xq_isAdmin', '1'); updateUserBar();
+          const s = document.getElementById('xqSelect');
+          if (s && s.value) s.dispatchEvent(new Event('change'));
+        } else alert('口令错误');
+      }).catch(() => alert('读取配置失败，请稍后再试'));
     });
 
     // 软刷新楼栋瓦片（不整页刷新）：加时间戳 + 清 MapLibre 内存缓存
