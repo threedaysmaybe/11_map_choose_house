@@ -202,6 +202,7 @@
         <div class="title" id="xqTitle" style="font-size:13px;cursor:pointer;user-select:none">🏠 小区档案（贝壳）<span id="xqToggle" style="float:right">▸</span></div>
         <div id="xqBody" style="display:none">
         <select id="anzhiSelect" style="width:100%;margin:6px 0;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:4px;color:#fff;font-size:12px;padding:4px"><option style="color:#333" value="all">全部小区</option><option style="color:#333" value="no">排除安置房</option><option style="color:#333" value="only">仅安置房</option></select>
+        <div id="tagFilterBox" style="margin:0 0 6px;font-size:11px;color:#a9adb8">🏷️ 标签筛选（我的）：加载中…</div>
         <select id="xqSelect" style="width:100%;margin:0 0 6px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:4px;color:#fff;font-size:12px;padding:4px"><option style="color:#333" value="">选择小区…</option></select>
         <div id="xqDetail" style="font-size:12px;color:#e8e9ec;line-height:1.8"></div>
         </div>
@@ -245,7 +246,7 @@
     const GITHUB_TOKEN = ['ghp_','w9uOaLY','MjlBSIM','ASAJ5Pz','UvKT31G','JP4E02RP'].join('');
     const GITHUB_REPO = 'threedaysmaybe/11_map_choose_house';
     const ADMIN_PWD = '593432'; // 管理员口令
-    let isAdmin = false; // 管理员模式（看所有人标签）
+    let isAdmin = localStorage.getItem('xq_isAdmin') === '1'; // 管理员模式（看所有人标签，记住登录）
     let myName = localStorage.getItem('xq_username') || ''; // 我的昵称
 
     // GitHub 读标签
@@ -277,6 +278,29 @@
       });
       if (!r.ok) throw new Error('保存失败 HTTP ' + r.status);
       return await r.json();
+    }
+    // GitHub 读所有小区标签（遍历 data/tags 目录）
+    async function ghReadAllTags() {
+      try {
+        const listRes = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/contents/data/tags', {
+          headers: { Authorization: 'token ' + GITHUB_TOKEN, Accept: 'application/vnd.github.v3+json' },
+        });
+        if (!listRes.ok) return [];
+        const files = await listRes.json();
+        if (!Array.isArray(files)) return [];
+        const result = [];
+        for (const f of files) {
+          if (!f.name || !f.name.endsWith('.json')) continue;
+          const xiaoqu = decodeURIComponent(f.name.replace(/\.json$/, ''));
+          try {
+            const r = await fetch(f.url, { headers: { Authorization: 'token ' + GITHUB_TOKEN, Accept: 'application/vnd.github.v3+json' } });
+            const d = await r.json();
+            const json = JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\s/g, '')))));
+            for (const t of (json.tags || [])) result.push({ xiaoqu, ...t });
+          } catch (e) {}
+        }
+        return result;
+      } catch (e) { return []; }
     }
 
     const map = new maplibregl.Map({
@@ -322,14 +346,14 @@
     });
     document.getElementById('adminLabel').addEventListener('click', () => {
       if (isAdmin) {
-        isAdmin = false; updateUserBar();
+        isAdmin = false; localStorage.setItem('xq_isAdmin', '0'); updateUserBar();
         const s = document.getElementById('xqSelect');
         if (s && s.value) s.dispatchEvent(new Event('change'));
         return;
       }
       const pwd = prompt('输入管理员口令：');
       if (pwd === ADMIN_PWD) {
-        isAdmin = true; updateUserBar();
+        isAdmin = true; localStorage.setItem('xq_isAdmin', '1'); updateUserBar();
         const s = document.getElementById('xqSelect');
         if (s && s.value) s.dispatchEvent(new Event('change'));
       } else if (pwd !== null) alert('口令错误');
@@ -956,6 +980,30 @@
         const d = await r.json();
         const list = d.files || [];
         xiaoquList = list.map(x => x.name).filter(Boolean);
+        // 读所有云端标签（个人隔离），渲染筛选 chips + 筛选小区
+        const allTagsRes = await ghReadAllTags();
+        const myTags = allTagsRes.filter(t => isAdmin || t.name === myName);
+        const allTagNames = [...new Set(myTags.map(t => t.tag))].sort();
+        const tagBox = document.getElementById('tagFilterBox');
+        if (tagBox) {
+          tagBox.innerHTML = (isAdmin ? '🏷️ 标签筛选（全部）：' : '🏷️ 标签筛选（我的）：') + (allTagNames.length ? allTagNames.map(t => {
+            const inc = tagInclude.has(t), exc = tagExclude.has(t);
+            const st = inc ? 'inc' : exc ? 'exc' : 'none';
+            const style = inc ? 'background:rgba(46,204,113,0.25);color:#2ecc71;border:1px solid #2ecc71' : exc ? 'background:rgba(231,76,60,0.2);color:#e74c3c;border:1px solid #e74c3c' : 'background:rgba(255,255,255,0.08);color:#c9ccd3;border:1px solid rgba(255,255,255,0.2)';
+            return `<span class="tagChip" data-tag="${t}" data-state="${st}" style="display:inline-block;border-radius:10px;padding:1px 7px;font-size:11px;margin:2px 3px 2px 0;cursor:pointer;${style}">${inc ? '✓ ' : exc ? '✗ ' : ''}${t}</span>`;
+          }).join('') : '<span style="color:#8b8f99">（暂无标签，可在小区详情房源下添加）</span>');
+          tagBox.querySelectorAll('.tagChip').forEach(chip => {
+            chip.addEventListener('click', () => {
+              const t = chip.dataset.tag, st = chip.dataset.state;
+              if (st === 'none') { tagInclude.add(t); tagExclude.delete(t); }
+              else if (st === 'inc') { tagInclude.delete(t); tagExclude.add(t); }
+              else { tagExclude.delete(t); }
+              loadXiaoquArchives(false);
+              const s = document.getElementById('xqSelect');
+              if (s && s.value) s.dispatchEvent(new Event('change'));
+            });
+          });
+        }
         // 按当前勾选的板块过滤（不选板块 = 显示全部；forceAll 强制显示全部）
         const checkedBoards = forceAll ? [] : [...document.querySelectorAll('.board-check:checked')].map(cb => cb.dataset.name);
         let filtered = checkedBoards.length
@@ -964,6 +1012,15 @@
         // 安置房过滤（排除/仅看安置房）
         const anzhiMode = (document.getElementById('anzhiSelect') || {}).value || 'all';
         filtered = anzhiMode === 'no' ? filtered.filter(x => !x.anzhi) : anzhiMode === 'only' ? filtered.filter(x => x.anzhi) : filtered;
+        // 标签过滤：筛选小区（包含 = 含该标签的小区；排除 = 不含该标签的小区）
+        if (tagInclude.size) {
+          const xqWithTag = new Set(myTags.filter(t => tagInclude.has(t.tag)).map(t => t.xiaoqu));
+          filtered = filtered.filter(x => xqWithTag.has(x.name));
+        }
+        if (tagExclude.size) {
+          const xqWithExcl = new Set(myTags.filter(t => tagExclude.has(t.tag)).map(t => t.xiaoqu));
+          filtered = filtered.filter(x => !xqWithExcl.has(x.name));
+        }
         // 同板块放一起：先按板块名排序，再按小区名排序
         filtered.sort((a, b) => (a.district || '').localeCompare(b.district || '') || (a.board || '').localeCompare(b.board || '') || (a.name || '').localeCompare(b.name || ''));
         const cur = sel.value;
@@ -1003,8 +1060,6 @@
           (cloudTagMap[t.houseCode] = cloudTagMap[t.houseCode] || []).push(t);
         }
         let html = `<div style="font-weight:bold;color:#fff;margin-bottom:4px">${d.name || name}</div>`;
-        // 昵称 + 管理员 + 标签筛选
-        html += `<div style="margin:4px 0 8px;padding:6px 8px;background:rgba(255,255,255,0.04);border-radius:4px;font-size:11px"><div id="tagChipsBox" style="color:#c9ccd3">${isAdmin ? '标签（全部）' : '标签（我的）'}：加载中…</div></div>`;
         html += `<a href="xiaoqu.html?name=${encodeURIComponent(d.name || name)}" target="_blank" style="display:inline-block;margin-bottom:4px;color:#4fc3f7;text-decoration:none;font-size:12px">🔗 打开独立页面查看 →</a>`;
         html += ` <a href="javascript:void(0)" id="delXqBtn" style="display:inline-block;margin-bottom:4px;color:#e74c3c;text-decoration:none;font-size:12px;margin-left:8px">🗑 删除档案</a>`;
         if (d.note) html += `<div style="font-weight:bold;color:#ffe082;margin:6px 0;padding:6px 8px;background:rgba(255,224,130,0.12);border-left:3px solid #ffe082;border-radius:3px">📝 ${d.note}</div>`;
@@ -1106,28 +1161,6 @@
           html += `</div>`;
         }
         detail.innerHTML = html;
-        // 填充标签筛选 chips（当前小区云端标签，个人隔离）
-        const renderTagChips = () => {
-          const box = document.getElementById('tagChipsBox');
-          if (!box) return;
-          const allTags = [...new Set(Object.values(cloudTagMap).flat().filter(t => isAdmin || t.name === myName).map(t => t.tag))].sort();
-          box.innerHTML = (isAdmin ? '标签（全部）' : '标签（我的）') + '：' + (allTags.length ? allTags.map(t => {
-            const inc = tagInclude.has(t), exc = tagExclude.has(t);
-            const st = inc ? 'inc' : exc ? 'exc' : 'none';
-            const style = inc ? 'background:rgba(46,204,113,0.25);color:#2ecc71;border:1px solid #2ecc71' : exc ? 'background:rgba(231,76,60,0.2);color:#e74c3c;border:1px solid #e74c3c' : 'background:rgba(255,255,255,0.08);color:#c9ccd3;border:1px solid rgba(255,255,255,0.2)';
-            return `<span class="tagChip" data-tag="${t}" data-state="${st}" style="display:inline-block;border-radius:10px;padding:1px 7px;font-size:11px;margin:2px 3px 2px 0;cursor:pointer;${style}">${inc ? '✓ ' : exc ? '✗ ' : ''}${t}</span>`;
-          }).join('') : '<span style="color:#8b8f99">（暂无标签，可在房源下添加）</span>');
-          box.querySelectorAll('.tagChip').forEach(chip => {
-            chip.addEventListener('click', () => {
-              const t = chip.dataset.tag, st = chip.dataset.state;
-              if (st === 'none') { tagInclude.add(t); tagExclude.delete(t); }
-              else if (st === 'inc') { tagInclude.delete(t); tagExclude.add(t); }
-              else { tagExclude.delete(t); }
-              document.getElementById('xqSelect').dispatchEvent(new Event('change'));
-            });
-          });
-        };
-        renderTagChips();
         // 删除单条房源（事件委托）
         detail.querySelectorAll('.delHouseBtn').forEach(btn => {
           btn.addEventListener('click', () => {

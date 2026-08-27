@@ -72,6 +72,7 @@
     <option value="no" style="color:#fff">✅ 排除安置房</option>
     <option value="only" style="color:#fff">🔴 仅安置房</option>
   </select>
+  <div id="tagFilterBox" style="margin:0 0 10px;font-size:13px;color:#a9adb8">🏷️ 标签筛选（我的）：加载中…</div>
   <select id="xqSelect" style="width:100%;padding:11px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:#262a32;color:#fff;font-size:16px;margin:0 0 18px;outline:none">
     <option value="" style="color:#fff">📂 选择小区查看报告…</option>
   </select>
@@ -89,11 +90,12 @@
   const GITHUB_TOKEN = ['ghp_','w9uOaLY','MjlBSIM','ASAJ5Pz','UvKT31G','JP4E02RP'].join('');
   const GITHUB_REPO = 'threedaysmaybe/11_map_choose_house';
   const ADMIN_PWD = '593432'; // 管理员口令
-  let isAdmin = false; // 是否解锁管理员模式（看所有人备注）
+  let isAdmin = localStorage.getItem('xq_isAdmin') === '1'; // 是否解锁管理员模式（记住登录）
   let myName = localStorage.getItem('xq_username') || ''; // 我的昵称
   let cloudTagMap = {}; // 当前小区云端标签 { houseCode: [{name,tag,time}] }
   let tagInclude = new Set(); // 标签筛选：包含
   let tagExclude = new Set(); // 标签筛选：排除（反选）
+  let allTagRecords = []; // 所有小区标签记录 [{xiaoqu,houseCode,name,tag,time}]
 
   // GitHub 读备注
   async function ghReadNotes(name) {
@@ -155,6 +157,29 @@
     if (!r.ok) throw new Error('保存失败 HTTP ' + r.status);
     return await r.json();
   }
+  // GitHub 读所有小区标签（遍历 data/tags 目录）
+  async function ghReadAllTags() {
+    try {
+      const listRes = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/contents/data/tags', {
+        headers: { Authorization: 'token ' + GITHUB_TOKEN, Accept: 'application/vnd.github.v3+json' },
+      });
+      if (!listRes.ok) return [];
+      const files = await listRes.json();
+      if (!Array.isArray(files)) return [];
+      const result = [];
+      for (const f of files) {
+        if (!f.name || !f.name.endsWith('.json')) continue;
+        const xiaoqu = decodeURIComponent(f.name.replace(/\.json$/, ''));
+        try {
+          const r = await fetch(f.url, { headers: { Authorization: 'token ' + GITHUB_TOKEN, Accept: 'application/vnd.github.v3+json' } });
+          const d = await r.json();
+          const json = JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\s/g, '')))));
+          for (const t of (json.tags || [])) result.push({ xiaoqu, ...t });
+        } catch (e) {}
+      }
+      return result;
+    } catch (e) { return []; }
+  }
 
   let xiaoquCoords = [];
   let allFiles = []; // 缓存的小区列表（避免每次 change 都异步 fetch 导致下拉被关）
@@ -186,6 +211,16 @@
       if (boardSel.value) list = list.filter(x => x.board === boardSel.value);
       const anzhiMode = anzhiSelect.value || 'all';
       list = anzhiMode === 'no' ? list.filter(x => !x.anzhi) : anzhiMode === 'only' ? list.filter(x => x.anzhi) : list;
+      // 标签过滤（个人隔离）：筛选小区
+      const myTags = allTagRecords.filter(t => isAdmin || t.name === myName);
+      if (tagInclude.size) {
+        const xqWithTag = new Set(myTags.filter(t => tagInclude.has(t.tag)).map(t => t.xiaoqu));
+        list = list.filter(x => xqWithTag.has(x.name));
+      }
+      if (tagExclude.size) {
+        const xqWithExcl = new Set(myTags.filter(t => tagExclude.has(t.tag)).map(t => t.xiaoqu));
+        list = list.filter(x => !xqWithExcl.has(x.name));
+      }
       xiaoquCoords = list;
       sel.innerHTML = '<option value="" style="color:#fff">📂 选择小区查看报告…</option>' + list.map(x => `<option value="${x.name}" style="color:#fff">${x.anzhi ? '🔴' : ''}${x.name}${x.board ? '（' + (x.district ? x.district + '·' : '') + x.board + '）' : ''}</option>`).join('');
       if (curName && list.some(x => x.name === curName)) sel.value = curName;
@@ -198,6 +233,35 @@
       const d = await r.json();
       allFiles = (d.files || []).slice().sort((a, b) => (a.district || '').localeCompare(b.district || '') || (a.board || '').localeCompare(b.board || '') || (a.name || '').localeCompare(b.name || ''));
     } catch (e) {}
+    renderList();
+    refreshTagFilter();
+  }
+  // 读所有小区标签，渲染筛选 chips（异步，不阻塞下拉）
+  async function refreshTagFilter() {
+    try {
+      allTagRecords = await ghReadAllTags();
+    } catch (e) {}
+    const box = document.getElementById('tagFilterBox');
+    if (!box) return;
+    const myTags = allTagRecords.filter(t => isAdmin || t.name === myName);
+    const allTagNames = [...new Set(myTags.map(t => t.tag))].sort();
+    box.innerHTML = (isAdmin ? '🏷️ 标签筛选（全部）：' : '🏷️ 标签筛选（我的）：') + (allTagNames.length ? allTagNames.map(t => {
+      const inc = tagInclude.has(t), exc = tagExclude.has(t);
+      const st = inc ? 'inc' : exc ? 'exc' : 'none';
+      const style = inc ? 'background:rgba(46,204,113,0.25);color:#2ecc71;border:1px solid #2ecc71' : exc ? 'background:rgba(231,76,60,0.2);color:#e74c3c;border:1px solid #e74c3c' : 'background:rgba(255,255,255,0.08);color:#c9ccd3;border:1px solid rgba(255,255,255,0.2)';
+      return `<span class="tagChip" data-tag="${t}" data-state="${st}" style="display:inline-block;border-radius:12px;padding:3px 9px;font-size:12px;margin:3px 4px 3px 0;cursor:pointer;${style}">${inc ? '✓ ' : exc ? '✗ ' : ''}${t}</span>`;
+    }).join('') : '<span style="color:#8b8f99">（暂无标签）</span>');
+    box.querySelectorAll('.tagChip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const t = chip.dataset.tag, st = chip.dataset.state;
+        if (st === 'none') { tagInclude.add(t); tagExclude.delete(t); }
+        else if (st === 'inc') { tagInclude.delete(t); tagExclude.add(t); }
+        else { tagExclude.delete(t); }
+        renderList();
+        refreshTagFilter();
+        if (curName) load(curName);
+      });
+    });
     renderList();
   }
   document.getElementById('districtSelect').addEventListener('change', () => renderList());
@@ -311,19 +375,6 @@
       html += '</table></div>';
     }
 
-    // 标签筛选（个人隔离）
-    const allTags = [...new Set(Object.values(cloudTagMap).flat().filter(t => isAdmin || t.name === myName).map(t => t.tag))].sort();
-    if (allTags.length) {
-      html += `<div class="card" style="padding:10px"><div style="font-size:13px;color:#a9adb8;margin-bottom:6px">🏷️ 标签筛选（${isAdmin ? '全部' : '我的'}）：</div>`;
-      html += allTags.map(t => {
-        const inc = tagInclude.has(t), exc = tagExclude.has(t);
-        const st = inc ? 'inc' : exc ? 'exc' : 'none';
-        const style = inc ? 'background:rgba(46,204,113,0.25);color:#2ecc71;border:1px solid #2ecc71' : exc ? 'background:rgba(231,76,60,0.2);color:#e74c3c;border:1px solid #e74c3c' : 'background:rgba(255,255,255,0.08);color:#c9ccd3;border:1px solid rgba(255,255,255,0.2)';
-        return `<span class="tagChip" data-tag="${t}" data-state="${st}" style="display:inline-block;border-radius:12px;padding:3px 9px;font-size:12px;margin:3px 4px 3px 0;cursor:pointer;${style}">${inc ? '✓ ' : exc ? '✗ ' : ''}${t}</span>`;
-      }).join('');
-      html += `</div>`;
-    }
-
     // 房源（含户型图）
     if (d.houses && d.houses.length) {
       html += `<div class="card"><h2>在售房源（${d.houses.length} 套）</h2>`;
@@ -397,16 +448,6 @@
     }
 
     document.getElementById('content').innerHTML = html;
-    // ---- 标签筛选 chips 点击（三态）----
-    document.querySelectorAll('.tagChip').forEach(chip => {
-      chip.addEventListener('click', () => {
-        const t = chip.dataset.tag, st = chip.dataset.state;
-        if (st === 'none') { tagInclude.add(t); tagExclude.delete(t); }
-        else if (st === 'inc') { tagInclude.delete(t); tagExclude.add(t); }
-        else { tagExclude.delete(t); }
-        load(n);
-      });
-    });
     // ---- 加标签（云端）----
     document.querySelectorAll('.xqAddTagBtn').forEach(btn => {
       btn.addEventListener('click', async () => {
@@ -465,9 +506,9 @@
     // 管理员解锁
     const adminToggle = document.getElementById('adminToggle');
     if (adminToggle) adminToggle.addEventListener('click', () => {
-      if (isAdmin) { isAdmin = false; load(n); return; }
+      if (isAdmin) { isAdmin = false; localStorage.setItem('xq_isAdmin', '0'); load(n); return; }
       const pwd = prompt('输入管理员口令：');
-      if (pwd === ADMIN_PWD) { isAdmin = true; load(n); }
+      if (pwd === ADMIN_PWD) { isAdmin = true; localStorage.setItem('xq_isAdmin', '1'); load(n); }
       else if (pwd !== null) alert('口令错误');
     });
   }
@@ -497,9 +538,9 @@
     if (v !== null && v.trim()) { myName = v.trim(); localStorage.setItem('xq_username', myName); updateUserBar(); load(curName); }
   });
   document.getElementById('adminLabel').addEventListener('click', () => {
-    if (isAdmin) { isAdmin = false; updateUserBar(); load(curName); return; }
+    if (isAdmin) { isAdmin = false; localStorage.setItem('xq_isAdmin', '0'); updateUserBar(); load(curName); return; }
     const pwd = prompt('输入管理员口令：');
-    if (pwd === ADMIN_PWD) { isAdmin = true; updateUserBar(); load(curName); }
+    if (pwd === ADMIN_PWD) { isAdmin = true; localStorage.setItem('xq_isAdmin', '1'); updateUserBar(); load(curName); }
     else if (pwd !== null) alert('口令错误');
   });
 
