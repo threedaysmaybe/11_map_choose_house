@@ -462,12 +462,12 @@
     document.querySelectorAll('.xqAddTagBtn').forEach(btn => {
       btn.addEventListener('click', async () => {
         const hc = btn.dataset.hc;
-        if (!myName) { alert('请先在上方填昵称'); return; }
         const tag = prompt('输入标签名：');
         if (!tag || !tag.trim()) return;
         try {
+          const author = isAdmin ? ('管理员' + (myName ? '·' + myName : '')) : (myName || '匿名');
           const res = await ghReadTags(n);
-          const tags = res.tags.concat([{ houseCode: hc, name: myName, tag: tag.trim(), time: new Date().toISOString() }]);
+          const tags = res.tags.concat([{ houseCode: hc, name: author, tag: tag.trim(), time: new Date().toISOString() }]);
           await ghWriteTags(n, tags, res.sha);
           load(n);
         } catch (e) { alert(e.message); }
@@ -499,12 +499,12 @@
     const saveBtn = document.getElementById('saveNoteBtn');
     if (saveBtn) saveBtn.addEventListener('click', async () => {
       const txt = document.getElementById('noteInput').value.trim();
-      if (!myName) { alert('请先填昵称'); return; }
       if (!txt) { alert('请写备注内容'); return; }
       saveBtn.textContent = '保存中…'; saveBtn.disabled = true;
       try {
+        const author = isAdmin ? ('管理员' + (myName ? '·' + myName : '')) : (myName || '匿名');
         const res = await ghReadNotes(n); // 重新读拿最新 sha
-        const notes = res.notes.concat([{ name: myName, note: txt, time: new Date().toISOString() }]);
+        const notes = res.notes.concat([{ name: author, note: txt, time: new Date().toISOString() }]);
         await ghWriteNotes(n, notes, res.sha);
         document.getElementById('noteInput').value = '';
         saveBtn.textContent = '已保存 ✓';
