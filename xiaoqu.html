@@ -465,7 +465,7 @@
         const tag = prompt('输入标签名：');
         if (!tag || !tag.trim()) return;
         try {
-          const author = isAdmin ? ('管理员' + (myName ? '·' + myName : '')) : (myName || '匿名');
+          const author = isAdmin ? '管理员' : (myName || '匿名');
           const res = await ghReadTags(n);
           const tags = res.tags.concat([{ houseCode: hc, name: author, tag: tag.trim(), time: new Date().toISOString() }]);
           await ghWriteTags(n, tags, res.sha);
@@ -502,7 +502,7 @@
       if (!txt) { alert('请写备注内容'); return; }
       saveBtn.textContent = '保存中…'; saveBtn.disabled = true;
       try {
-        const author = isAdmin ? ('管理员' + (myName ? '·' + myName : '')) : (myName || '匿名');
+        const author = isAdmin ? '管理员' : (myName || '匿名');
         const res = await ghReadNotes(n); // 重新读拿最新 sha
         const notes = res.notes.concat([{ name: author, note: txt, time: new Date().toISOString() }]);
         await ghWriteNotes(n, notes, res.sha);
