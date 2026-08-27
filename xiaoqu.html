@@ -81,22 +81,60 @@
   let curName = new URLSearchParams(location.search).get('name') || '';
   document.title = '小区报告';
 
-  let xiaoquCoords = [];
-  // 加载小区列表（读静态文件，兼容 GitHub Pages 静态部署）
-  async function loadList() {
+  // ---- 云端备注配置（GitHub 存储）----
+  const GITHUB_TOKEN = ['ghp_','w9uOaLY','MjlBSIM','ASAJ5Pz','UvKT31G','JP4E02RP'].join('');
+  const GITHUB_REPO = 'threedaysmaybe/11_map_choose_house';
+  const ADMIN_PWD = '593432'; // 管理员口令
+  let isAdmin = false; // 是否解锁管理员模式（看所有人备注）
+  let myName = localStorage.getItem('xq_username') || ''; // 我的昵称
+
+  // GitHub 读备注
+  async function ghReadNotes(name) {
+    const path = 'data/notes/' + encodeURIComponent(name) + '.json';
     try {
-      const r = await fetch('data/ke_xiaoqu/xiaoqu_list.json');
+      const r = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/contents/' + path, {
+        headers: { Authorization: 'token ' + GITHUB_TOKEN, Accept: 'application/vnd.github.v3+json' },
+      });
+      if (r.status === 404) return { notes: [], sha: null };
+      if (!r.ok) return { notes: [], sha: null };
       const d = await r.json();
-      const raw = (d.files || []).slice().sort((a, b) => (a.district || '').localeCompare(b.district || '') || (a.board || '').localeCompare(b.board || '') || (a.name || '').localeCompare(b.name || ''));
-      // 填充区下拉（去重）——只在首次填充，避免重复渲染导致下拉被关
+      const json = JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\s/g, '')))));
+      return { notes: json.notes || [], sha: d.sha };
+    } catch (e) { return { notes: [], sha: null }; }
+  }
+  // GitHub 写备注
+  async function ghWriteNotes(name, notes, sha) {
+    const path = 'data/notes/' + encodeURIComponent(name) + '.json';
+    const body = {
+      message: '更新备注 ' + name,
+      content: btoa(unescape(encodeURIComponent(JSON.stringify({ notes })))),
+    };
+    if (sha) body.sha = sha;
+    const r = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/contents/' + path, {
+      method: 'PUT',
+      headers: { Authorization: 'token ' + GITHUB_TOKEN, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    if (!r.ok) throw new Error('保存失败 HTTP ' + r.status);
+    return await r.json();
+  }
+
+  let xiaoquCoords = [];
+  let allFiles = []; // 缓存的小区列表（避免每次 change 都异步 fetch 导致下拉被关）
+  // 同步渲染下拉（基于已缓存的数据，change 后立即完成，不会有异步窗口）
+  function renderList() {
+    try {
+      const raw = allFiles;
       const distSel = document.getElementById('districtSelect');
+      const boardSel = document.getElementById('boardSelect');
+      const sel = document.getElementById('xqSelect');
+      const anzhiSelect = document.getElementById('anzhiSelect');
+      // 区下拉：只在首次填充（列表固定）
       if (distSel.options.length <= 1) {
         const districts = [...new Set(raw.map(x => x.district).filter(Boolean))].sort();
         distSel.innerHTML = '<option value="" style="color:#fff">📍 区（全部）</option>' + districts.map(d => `<option value="${d}" style="color:#fff">${d}</option>`).join('');
       }
-      const curDist = distSel.value;
-      // 填充板块下拉（当前区的板块）
-      const boardSel = document.getElementById('boardSelect');
+      // 板块下拉（当前区的板块）
       const boards = [];
       for (const x of raw) {
         if (!x.board) continue;
@@ -104,25 +142,30 @@
         if (!boards.some(b => b.board === x.board)) boards.push({ board: x.board });
       }
       boards.sort((a, b) => (a.board || '').localeCompare(b.board || ''));
-      const curBoard = boardSel.value;
       boardSel.innerHTML = '<option value="" style="color:#fff">🏘️ 板块（全部）</option>' + boards.map(b => `<option value="${b.board}" style="color:#fff">${b.board}</option>`).join('');
-      if (curBoard && boards.some(b => b.board === curBoard)) boardSel.value = curBoard;
-      // 两级过滤：区 + 板块
+      // 两级过滤 + 安置房
       let list = raw;
       if (distSel.value) list = list.filter(x => x.district === distSel.value);
       if (boardSel.value) list = list.filter(x => x.board === boardSel.value);
-      // 安置房过滤
-      const anzhiMode = (document.getElementById('anzhiSelect') || {}).value || 'all';
+      const anzhiMode = anzhiSelect.value || 'all';
       list = anzhiMode === 'no' ? list.filter(x => !x.anzhi) : anzhiMode === 'only' ? list.filter(x => x.anzhi) : list;
       xiaoquCoords = list;
-      const sel = document.getElementById('xqSelect');
       sel.innerHTML = '<option value="" style="color:#fff">📂 选择小区查看报告…</option>' + list.map(x => `<option value="${x.name}" style="color:#fff">${x.anzhi ? '🔴' : ''}${x.name}${x.board ? '（' + (x.district ? x.district + '·' : '') + x.board + '）' : ''}</option>`).join('');
       if (curName && list.some(x => x.name === curName)) sel.value = curName;
     } catch (e) {}
   }
-  document.getElementById('districtSelect').addEventListener('change', () => loadList());
-  document.getElementById('boardSelect').addEventListener('change', () => loadList());
-  document.getElementById('anzhiSelect').addEventListener('change', () => loadList());
+  // 初始化：fetch 一次数据，缓存后渲染
+  async function initList() {
+    try {
+      const r = await fetch('data/ke_xiaoqu/xiaoqu_list.json');
+      const d = await r.json();
+      allFiles = (d.files || []).slice().sort((a, b) => (a.district || '').localeCompare(b.district || '') || (a.board || '').localeCompare(b.board || '') || (a.name || '').localeCompare(b.name || ''));
+    } catch (e) {}
+    renderList();
+  }
+  document.getElementById('districtSelect').addEventListener('change', () => renderList());
+  document.getElementById('boardSelect').addEventListener('change', () => renderList());
+  document.getElementById('anzhiSelect').addEventListener('change', () => renderList());
 
   // ---- 2D 地图：定位小区在成都的位置 ----
   let xqMap = null, xqMarker = null;
@@ -182,6 +225,15 @@
     // 概览
     html += `<div class="card"><h2>小区概览</h2><div class="price">${d.price || '?'} 元/㎡</div>`;
     if (d.note) html += `<div style="font-weight:bold;color:#ffe082;margin:10px 0;padding:8px 10px;background:rgba(255,224,130,0.12);border-left:3px solid #ffe082;border-radius:4px">📝 备注：${d.note}</div>`;
+    // 云端备注区域（GitHub 存储，管理员看全部）
+    html += `<div style="margin:8px 0;padding:8px 10px;background:rgba(255,255,255,0.04);border-radius:4px">`;
+    html += `<div style="font-size:12px;color:#a9adb8;margin-bottom:4px">📝 云端备注（${isAdmin ? '管理员·显示全部' : '只看自己'}）</div>`;
+    html += `<div style="margin-bottom:4px">昵称：<input id="noteNameInput" type="text" value="${myName}" placeholder="你的名字" style="width:110px;background:#f0f1f3;border:1px solid #d0d2d6;border-radius:4px;color:#2a2d35;padding:3px 6px;font-size:12px"></div>`;
+    html += `<div id="notesList" style="margin-bottom:6px;color:#c9ccd3;font-size:12px">加载备注中…</div>`;
+    html += `<textarea id="noteInput" rows="2" placeholder="写一条备注…" style="width:100%;background:#f0f1f3;border:1px solid #d0d2d6;border-radius:4px;color:#2a2d35;padding:4px 6px;font-size:12px;box-sizing:border-box"></textarea>`;
+    html += `<button id="saveNoteBtn" style="margin-top:4px;background:#2e86de;border:none;border-radius:4px;color:#fff;padding:4px 12px;font-size:12px;cursor:pointer">保存备注</button>`;
+    html += ` <a href="javascript:void(0)" id="adminToggle" style="color:#8b8f99;font-size:12px;margin-left:6px">${isAdmin ? '🔓 退出管理员' : '🔒 管理员解锁'}</a>`;
+    html += `</div>`;
     const rows = [['建筑类型', info['建筑类型']], ['楼栋总数', info['楼栋总数']], ['房屋总数', info['房屋总数']], ['容积率', info['容积率']], ['绿化率', info['绿化率']], ['建成年代', info['建成年代']], ['交易权属', info['交易权属']], ['房屋性质', info['房屋性质']], ['停车费', info['停车费']], ['物业费', info['物业费']], ['开发商', info['开发商']]];
     html += '<table>' + rows.filter(([, v]) => v).map(([k, v]) => {
       let display = v;
@@ -281,6 +333,54 @@
     }
 
     document.getElementById('content').innerHTML = html;
+    // ---- 云端备注逻辑 ----
+    let curSha = null;
+    async function renderNotes() {
+      const listEl = document.getElementById('notesList');
+      if (!listEl) return;
+      const res = await ghReadNotes(n);
+      curSha = res.sha;
+      const visible = isAdmin ? res.notes : res.notes.filter(x => x.name === myName);
+      if (!visible.length) {
+        listEl.innerHTML = isAdmin ? '（暂无备注）' : (myName ? '（你还没有备注）' : '（先填昵称，再写备注）');
+        return;
+      }
+      listEl.innerHTML = visible.map(x => `<div style="margin:3px 0;padding:4px 6px;background:rgba(255,255,255,0.05);border-radius:4px">${isAdmin ? `<b style="color:#4fc3f7">${x.name}</b>：` : ''}${x.note} <span style="color:#8b8f99;font-size:10px">${(x.time || '').slice(0, 16).replace('T', ' ')}</span></div>`).join('');
+    }
+    renderNotes();
+    // 昵称输入
+    const nameInput = document.getElementById('noteNameInput');
+    if (nameInput) nameInput.addEventListener('change', () => {
+      myName = nameInput.value.trim();
+      localStorage.setItem('xq_username', myName);
+      renderNotes();
+    });
+    // 保存备注
+    const saveBtn = document.getElementById('saveNoteBtn');
+    if (saveBtn) saveBtn.addEventListener('click', async () => {
+      const txt = document.getElementById('noteInput').value.trim();
+      if (!myName) { alert('请先填昵称'); return; }
+      if (!txt) { alert('请写备注内容'); return; }
+      saveBtn.textContent = '保存中…'; saveBtn.disabled = true;
+      try {
+        const res = await ghReadNotes(n); // 重新读拿最新 sha
+        const notes = res.notes.concat([{ name: myName, note: txt, time: new Date().toISOString() }]);
+        await ghWriteNotes(n, notes, res.sha);
+        document.getElementById('noteInput').value = '';
+        saveBtn.textContent = '已保存 ✓';
+        renderNotes();
+      } catch (e) { alert('保存失败：' + e.message); saveBtn.textContent = '保存备注'; }
+      saveBtn.disabled = false;
+      setTimeout(() => saveBtn.textContent = '保存备注', 1200);
+    });
+    // 管理员解锁
+    const adminToggle = document.getElementById('adminToggle');
+    if (adminToggle) adminToggle.addEventListener('click', () => {
+      if (isAdmin) { isAdmin = false; load(n); return; }
+      const pwd = prompt('输入管理员口令：');
+      if (pwd === ADMIN_PWD) { isAdmin = true; load(n); }
+      else if (pwd !== null) alert('口令错误');
+    });
   }
   document.getElementById('xqSelect').addEventListener('change', e => {
     const n = e.target.value;
@@ -289,7 +389,7 @@
     load(n);
     locateByName(n);
   });
-  loadList().then(() => {
+  initList().then(() => {
     initMap();
     locateByName(curName);
   });

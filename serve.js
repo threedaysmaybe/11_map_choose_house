@@ -218,7 +218,9 @@ const server = http.createServer((req, res) => {
           const board = d.board || '';
           const quanshu = (d.info && d.info['交易权属']) || '';
           const anzhi = /拆迁|安置|回迁/.test(quanshu);
-          return { name: d.name || f.replace(/\.json$/, ''), board, district: boardDistrict[board] || '', anzhi };
+          const tagSet = new Set();
+          for (const h of (d.houses || [])) for (const t of (h.tags || [])) tagSet.add(t);
+          return { name: d.name || f.replace(/\.json$/, ''), board, district: boardDistrict[board] || '', anzhi, tags: [...tagSet] };
         } catch (e) { return { name: f.replace(/\.json$/, ''), board: '', district: '', anzhi: false }; }
       });
       res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
@@ -331,8 +333,90 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // 给房源加标签
+  if (req.method === 'POST' && req.url === '/add-house-tag') {
+    let body = '';
+    req.on('data', c => body += c);
+    req.on('end', () => {
+      try {
+        const { name, houseCode, tag } = JSON.parse(body);
+        if (!name || !houseCode || !tag) { res.end(JSON.stringify({ ok: false, msg: '缺少参数' })); return; }
+        const file = path.join(ROOT, 'data', 'ke_xiaoqu', name + '.json');
+        if (!fs.existsSync(file)) { res.end(JSON.stringify({ ok: false, msg: '未找到小区档案' })); return; }
+        const d = JSON.parse(fs.readFileSync(file, 'utf8'));
+        const h = (d.houses || []).find(x => String(x.houseCode) === String(houseCode));
+        if (!h) { res.end(JSON.stringify({ ok: false, msg: '未找到房源' })); return; }
+        h.tags = h.tags || [];
+        if (!h.tags.includes(tag)) h.tags.push(tag);
+        fs.writeFileSync(file, JSON.stringify(d, null, 2));
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ ok: true, msg: '已添加标签「' + tag + '」', tags: h.tags }));
+      } catch (e) {
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ ok: false, msg: e.message }));
+      }
+    });
+    return;
+  }
+
+  // 移除房源标签
+  if (req.method === 'POST' && req.url === '/remove-house-tag') {
+    let body = '';
+    req.on('data', c => body += c);
+    req.on('end', () => {
+      try {
+        const { name, houseCode, tag } = JSON.parse(body);
+        if (!name || !houseCode || !tag) { res.end(JSON.stringify({ ok: false, msg: '缺少参数' })); return; }
+        const file = path.join(ROOT, 'data', 'ke_xiaoqu', name + '.json');
+        if (!fs.existsSync(file)) { res.end(JSON.stringify({ ok: false, msg: '未找到小区档案' })); return; }
+        const d = JSON.parse(fs.readFileSync(file, 'utf8'));
+        const h = (d.houses || []).find(x => String(x.houseCode) === String(houseCode));
+        if (!h) { res.end(JSON.stringify({ ok: false, msg: '未找到房源' })); return; }
+        h.tags = (h.tags || []).filter(t => t !== tag);
+        fs.writeFileSync(file, JSON.stringify(d, null, 2));
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ ok: true, msg: '已移除标签「' + tag + '」', tags: h.tags }));
+      } catch (e) {
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ ok: false, msg: e.message }));
+      }
+    });
+    return;
+  }
+
+  // 列出所有房源标签（去重）
+  if (req.url === '/list-tags') {
+    try {
+      const dir = path.join(ROOT, 'data', 'ke_xiaoqu');
+      const tagSet = new Set();
+      const files = fs.existsSync(dir) ? fs.readdirSync(dir).filter(f => f.endsWith('.json') && f !== 'xiaoqu_list.json') : [];
+      for (const f of files) {
+        try {
+          const d = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
+          for (const h of (d.houses || [])) {
+            for (const t of (h.tags || [])) tagSet.add(t);
+          }
+        } catch (e) {}
+      }
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+      res.end(JSON.stringify({ ok: true, tags: [...tagSet].sort() }));
+    } catch (e) {
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+      res.end(JSON.stringify({ ok: false, tags: [] }));
+    }
+    return;
+  }
+
   let urlPath = decodeURIComponent(req.url.split('?')[0]);
   if (urlPath === '/') urlPath = '/index.html';
+
+  // 内部中间数据（原始抓取数据/转换产物），不对浏览器服务，避免大文件压缩阻塞 serve
+  const INTERNAL_DATA = /(_raw\.json$|_extra\.json$|_full\.json$|_count\.json$|names_result\.json$|landuse_residential\.json$|ke_initdata\.json$|\.geojson\.bak$|_page\.txt$)/;
+  if (INTERNAL_DATA.test(urlPath)) {
+    res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+    res.end('404 Not Found');
+    return;
+  }
 
   const filePath = path.normalize(path.join(ROOT, urlPath));
   if (!filePath.startsWith(ROOT)) {
@@ -350,7 +434,8 @@ const server = http.createServer((req, res) => {
     const ext = path.extname(filePath).toLowerCase();
     const headers = { 'Content-Type': MIME[ext] || 'application/octet-stream' };
     // 对文本类资源 gzip 压缩（大幅加快 16MB GeoJSON 加载）
-    if (GZIP_EXT.includes(ext) && data.length > 1024 && (req.headers['accept-encoding'] || '').includes('gzip')) {
+    // 只对 <5MB 的文本资源 gzip；大文件（如 34MB 原始数据）直接返回，避免 gzipSync 同步压缩阻塞事件循环导致 serve 卡死
+    if (GZIP_EXT.includes(ext) && data.length > 1024 && data.length < 5 * 1024 * 1024 && (req.headers['accept-encoding'] || '').includes('gzip')) {
       headers['Content-Encoding'] = 'gzip';
       res.writeHead(200, headers);
       res.end(zlib.gzipSync(data));
