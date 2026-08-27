@@ -1214,7 +1214,7 @@
             panel.innerHTML = '<div style="font-size:11px;color:#a9adb8;margin-bottom:3px">点击已有标签添加，或输入自定义：</div><div style="margin-bottom:5px">' + chips + '</div><input type="text" class="newTagInput" placeholder="自定义标签" style="width:110px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:4px;color:#fff;padding:2px 6px;font-size:11px"><button class="newTagOk" style="margin-left:4px;background:#2e86de;border:none;border-radius:4px;color:#fff;padding:2px 8px;font-size:11px;cursor:pointer">添加</button>';
             btn.replaceWith(panel);
             const doAdd = async tag => {
-              const author = isAdmin ? '管理员' : (myName || '匿名');
+              const author = myName || '匿名';
               try {
                 const res = await ghReadTags(name);
                 const tags = res.tags.concat([{ houseCode: hc, name: author, tag, time: new Date().toISOString() }]);
