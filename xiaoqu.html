@@ -234,7 +234,7 @@
       const anzhiMode = anzhiSelect.value || 'all';
       list = anzhiMode === 'no' ? list.filter(x => !x.anzhi) : anzhiMode === 'only' ? list.filter(x => x.anzhi) : list;
       // 标签过滤（个人隔离，管理员看全部）：筛选小区
-      const myTags = allTagRecords.filter(t => isAdmin || !myName || t.name === myName);
+      const myTags = allTagRecords.filter(t => isAdmin || t.name === '管理员' || (myName && t.name === myName));
       if (tagInclude.size) {
         const xqWithTag = new Set(myTags.filter(t => tagInclude.has(t.tag)).map(t => t.xiaoqu));
         list = list.filter(x => xqWithTag.has(x.name));
@@ -265,7 +265,7 @@
     } catch (e) {}
     const box = document.getElementById('tagFilterBox');
     if (!box) return;
-    const myTags = allTagRecords.filter(t => isAdmin || !myName || t.name === myName);
+    const myTags = allTagRecords.filter(t => isAdmin || t.name === '管理员' || (myName && t.name === myName));
     const allTagNames = [...new Set(myTags.map(t => t.tag))].sort();
     box.innerHTML = (isAdmin ? '🏷️ 标签筛选（全部）：' : '🏷️ 标签筛选（我的）：') + (allTagNames.length ? allTagNames.map(t => {
       const inc = tagInclude.has(t), exc = tagExclude.has(t);
@@ -402,7 +402,7 @@
       html += `<div class="card"><h2>在售房源（${d.houses.length} 套）</h2>`;
       d.houses.forEach(h => {
         const hc = h.houseCode || '';
-        const hTags = (cloudTagMap[hc] || []).filter(t => isAdmin || !myName || t.name === myName).map(t => t.tag);
+        const hTags = (cloudTagMap[hc] || []).filter(t => isAdmin || t.name === '管理员' || (myName && t.name === myName)).map(t => t.tag);
         if (tagInclude.size && ![...tagInclude].every(t => hTags.includes(t))) return;
         if (tagExclude.size && [...tagExclude].some(t => hTags.includes(t))) return;
         html += `<div class="house">`;
@@ -453,7 +453,7 @@
         // 信息放图片前面，单独一行
         html += `<div style="margin-bottom:6px;flex-basis:100%"><div style="color:#fff;font-weight:bold">${h.room || '?'} ${h.area || '?'}㎡${floors}${deFang}${tihuHtml}</div><div>总价 ${h.totalPrice || '?'}万 · ${h.unitPrice || '?'}元/平 ${link}</div><div><span class="tag">${h.orientation || '朝向?'}</span><span class="tag">${h.floor || '?'}楼层</span>${structureTag}${diyaHtml}${chanquanHtml}${usageHtml}${extraTags}</div>${spHtml}</div>`;
         // 标签（云端，个人隔离，管理员看全部）
-        const hTags3 = (cloudTagMap[hc] || []).filter(t => isAdmin || !myName || t.name === myName);
+        const hTags3 = (cloudTagMap[hc] || []).filter(t => isAdmin || t.name === '管理员' || (myName && t.name === myName));
         const xqTagsHtml = hTags3.map(t => `<span style="display:inline-block;background:rgba(139,195,74,0.15);color:#9ccc65;border:1px solid rgba(139,195,74,0.4);border-radius:10px;padding:1px 8px;font-size:11px;margin:2px 4px 2px 0">${isAdmin ? t.name + '：' : ''}${t.tag}</span>`).join('');
         html += `<div style="margin-bottom:4px;flex-basis:100%">${xqTagsHtml}<a href="javascript:void(0)" class="xqAddTagBtn" data-hc="${hc}" style="color:#4fc3f7;font-size:12px;text-decoration:none">➕ 标签</a></div>`;
         if (h.localImages && h.localImages.length) html += h.localImages.map(img => `<img src="data/ke_xiaoqu/images/${encodeURIComponent(d.name || n)}/${img}">`).join('');
@@ -477,7 +477,7 @@
         const tag = prompt('输入标签名：');
         if (!tag || !tag.trim()) return;
         try {
-          const author = myName || '匿名';
+          const author = isAdmin ? '管理员' : (myName || '匿名');
           const res = await ghReadTags(n);
           const tags = res.tags.concat([{ houseCode: hc, name: author, tag: tag.trim(), time: new Date().toISOString() }]);
           await ghWriteTags(n, tags, res.sha);
@@ -493,12 +493,12 @@
       if (!listEl) return;
       const res = await ghReadNotes(n);
       curSha = res.sha;
-      const visible = (isAdmin || !myName) ? res.notes : res.notes.filter(x => x.name === myName); // 个人隔离，管理员/未登录看全部
+      const visible = res.notes.filter(x => isAdmin || x.name === '管理员' || (myName && x.name === myName)); // 管理员看所有，未登录看全局，填昵称看全局+个人
       if (!visible.length) {
         listEl.innerHTML = '（暂无备注）';
         return;
       }
-      listEl.innerHTML = visible.map(x => `<div style="margin:3px 0;padding:4px 6px;background:rgba(255,255,255,0.05);border-radius:4px">${(isAdmin || !myName) ? `<b style="color:#4fc3f7">${x.name}</b>：` : ''}${x.note} <span style="color:#8b8f99;font-size:10px">${(x.time || '').slice(0, 16).replace('T', ' ')}</span></div>`).join('');
+      listEl.innerHTML = visible.map(x => `<div style="margin:3px 0;padding:4px 6px;background:rgba(255,255,255,0.05);border-radius:4px"><b style="color:#4fc3f7">${x.name}</b>：${x.note} <span style="color:#8b8f99;font-size:10px">${(x.time || '').slice(0, 16).replace('T', ' ')}</span></div>`).join('');
     }
     renderNotes();
     // 昵称输入
@@ -515,7 +515,7 @@
       if (!txt) { alert('请写备注内容'); return; }
       saveBtn.textContent = '保存中…'; saveBtn.disabled = true;
       try {
-        const author = myName || '匿名';
+        const author = isAdmin ? '管理员' : (myName || '匿名');
         const res = await ghReadNotes(n); // 重新读拿最新 sha
         const notes = res.notes.concat([{ name: author, note: txt, time: new Date().toISOString() }]);
         await ghWriteNotes(n, notes, res.sha);
