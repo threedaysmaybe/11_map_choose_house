@@ -122,6 +122,11 @@
   <div id="map"></div>
   <div id="loading"><span class="spin"></span><span id="loadingText">正在加载楼栋数据…</span></div>
 
+  <div id="userBar" style="position:fixed;top:12px;right:12px;z-index:900;display:flex;gap:8px;align-items:center">
+    <span id="userNameLabel" style="cursor:pointer;background:rgba(20,22,30,0.82);color:#fff;padding:4px 12px;border-radius:14px;font-size:12px;border:1px solid rgba(255,255,255,0.2)">👤 未登录</span>
+    <span id="adminLabel" style="cursor:pointer;background:rgba(20,22,30,0.82);color:#fff;padding:4px 12px;border-radius:14px;font-size:12px;border:1px solid rgba(255,255,255,0.2)">🔒 管理员</span>
+  </div>
+
   <div class="left-col">
     <div class="panel">
       <div id="dragHandle" style="cursor:move;text-align:center;color:#6d717c;font-size:13px;user-select:none;line-height:1;padding:2px 0 6px" title="按住拖拽移动面板">⠿ 拖拽</div>
@@ -293,6 +298,42 @@
     map.addControl(new maplibregl.NavigationControl({ visualizePitch: true }), 'top-right');
     window.map = map; // 暴露给调试/截图脚本
     window.markTarget = markTarget;
+
+    // 右上角用户状态（昵称 + 管理员，类似登录）
+    function updateUserBar() {
+      const nameLabel = document.getElementById('userNameLabel');
+      const adminLabel = document.getElementById('adminLabel');
+      if (nameLabel) nameLabel.textContent = myName ? ('👤 ' + myName) : '👤 未登录';
+      if (adminLabel) {
+        adminLabel.textContent = isAdmin ? '🔓 管理员' : '🔒 管理员';
+        adminLabel.style.color = isAdmin ? '#f0c060' : '#fff';
+      }
+    }
+    updateUserBar();
+    document.getElementById('userNameLabel').addEventListener('click', () => {
+      const v = prompt('输入你的昵称：', myName);
+      if (v !== null && v.trim()) {
+        myName = v.trim();
+        localStorage.setItem('xq_username', myName);
+        updateUserBar();
+        const s = document.getElementById('xqSelect');
+        if (s && s.value) s.dispatchEvent(new Event('change'));
+      }
+    });
+    document.getElementById('adminLabel').addEventListener('click', () => {
+      if (isAdmin) {
+        isAdmin = false; updateUserBar();
+        const s = document.getElementById('xqSelect');
+        if (s && s.value) s.dispatchEvent(new Event('change'));
+        return;
+      }
+      const pwd = prompt('输入管理员口令：');
+      if (pwd === ADMIN_PWD) {
+        isAdmin = true; updateUserBar();
+        const s = document.getElementById('xqSelect');
+        if (s && s.value) s.dispatchEvent(new Event('change'));
+      } else if (pwd !== null) alert('口令错误');
+    });
 
     // 软刷新楼栋瓦片（不整页刷新）：加时间戳 + 清 MapLibre 内存缓存
     function softRefreshBuildings() {
@@ -963,7 +1004,7 @@
         }
         let html = `<div style="font-weight:bold;color:#fff;margin-bottom:4px">${d.name || name}</div>`;
         // 昵称 + 管理员 + 标签筛选
-        html += `<div style="margin:4px 0 8px;padding:6px 8px;background:rgba(255,255,255,0.04);border-radius:4px;font-size:11px"><div style="margin-bottom:4px">👤 昵称：<input id="tagNameInput" type="text" value="${myName}" placeholder="你的名字" style="width:90px;background:#f0f1f3;border:1px solid #d0d2d6;border-radius:4px;color:#2a2d35;padding:2px 5px"> <a href="javascript:void(0)" id="adminToggle" style="color:#8b8f99;margin-left:6px">${isAdmin ? '🔓 退出管理员' : '🔒 管理员'}</a></div><div id="tagChipsBox" style="color:#c9ccd3">${isAdmin ? '标签（全部）' : '标签（我的）'}：加载中…</div></div>`;
+        html += `<div style="margin:4px 0 8px;padding:6px 8px;background:rgba(255,255,255,0.04);border-radius:4px;font-size:11px"><div id="tagChipsBox" style="color:#c9ccd3">${isAdmin ? '标签（全部）' : '标签（我的）'}：加载中…</div></div>`;
         html += `<a href="xiaoqu.html?name=${encodeURIComponent(d.name || name)}" target="_blank" style="display:inline-block;margin-bottom:4px;color:#4fc3f7;text-decoration:none;font-size:12px">🔗 打开独立页面查看 →</a>`;
         html += ` <a href="javascript:void(0)" id="delXqBtn" style="display:inline-block;margin-bottom:4px;color:#e74c3c;text-decoration:none;font-size:12px;margin-left:8px">🗑 删除档案</a>`;
         if (d.note) html += `<div style="font-weight:bold;color:#ffe082;margin:6px 0;padding:6px 8px;background:rgba(255,224,130,0.12);border-left:3px solid #ffe082;border-radius:3px">📝 ${d.note}</div>`;
@@ -1087,22 +1128,6 @@
           });
         };
         renderTagChips();
-        // 昵称输入
-        const tnInput = document.getElementById('tagNameInput');
-        if (tnInput) tnInput.addEventListener('change', () => {
-          myName = tnInput.value.trim();
-          localStorage.setItem('xq_username', myName);
-          renderTagChips();
-          document.getElementById('xqSelect').dispatchEvent(new Event('change'));
-        });
-        // 管理员解锁
-        const admBtn = document.getElementById('adminToggle');
-        if (admBtn) admBtn.addEventListener('click', () => {
-          if (isAdmin) { isAdmin = false; document.getElementById('xqSelect').dispatchEvent(new Event('change')); return; }
-          const pwd = prompt('输入管理员口令：');
-          if (pwd === ADMIN_PWD) { isAdmin = true; document.getElementById('xqSelect').dispatchEvent(new Event('change')); }
-          else if (pwd !== null) alert('口令错误');
-        });
         // 删除单条房源（事件委托）
         detail.querySelectorAll('.delHouseBtn').forEach(btn => {
           btn.addEventListener('click', () => {

@@ -55,6 +55,10 @@
 <body>
 <div class="wrap">
   <a class="back" href="index.html">← 返回数据版</a>
+  <div style="display:flex;gap:8px;margin:0 0 10px;align-items:center">
+    <span id="userNameLabel" style="cursor:pointer;background:#262a32;color:#fff;padding:6px 12px;border-radius:16px;font-size:13px;border:1px solid rgba(255,255,255,0.2)">👤 未登录</span>
+    <span id="adminLabel" style="cursor:pointer;background:#262a32;color:#fff;padding:6px 12px;border-radius:16px;font-size:13px;border:1px solid rgba(255,255,255,0.2)">🔒 管理员</span>
+  </div>
   <div style="display:flex;gap:8px;margin:0 0 10px">
     <select id="districtSelect" style="flex:1;padding:11px 8px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:#262a32;color:#fff;font-size:15px;outline:none">
       <option value="" style="color:#fff">📍 区</option>
@@ -88,6 +92,8 @@
   let isAdmin = false; // 是否解锁管理员模式（看所有人备注）
   let myName = localStorage.getItem('xq_username') || ''; // 我的昵称
   let cloudTagMap = {}; // 当前小区云端标签 { houseCode: [{name,tag,time}] }
+  let tagInclude = new Set(); // 标签筛选：包含
+  let tagExclude = new Set(); // 标签筛选：排除（反选）
 
   // GitHub 读备注
   async function ghReadNotes(name) {
@@ -305,10 +311,27 @@
       html += '</table></div>';
     }
 
+    // 标签筛选（个人隔离）
+    const allTags = [...new Set(Object.values(cloudTagMap).flat().filter(t => isAdmin || t.name === myName).map(t => t.tag))].sort();
+    if (allTags.length) {
+      html += `<div class="card" style="padding:10px"><div style="font-size:13px;color:#a9adb8;margin-bottom:6px">🏷️ 标签筛选（${isAdmin ? '全部' : '我的'}）：</div>`;
+      html += allTags.map(t => {
+        const inc = tagInclude.has(t), exc = tagExclude.has(t);
+        const st = inc ? 'inc' : exc ? 'exc' : 'none';
+        const style = inc ? 'background:rgba(46,204,113,0.25);color:#2ecc71;border:1px solid #2ecc71' : exc ? 'background:rgba(231,76,60,0.2);color:#e74c3c;border:1px solid #e74c3c' : 'background:rgba(255,255,255,0.08);color:#c9ccd3;border:1px solid rgba(255,255,255,0.2)';
+        return `<span class="tagChip" data-tag="${t}" data-state="${st}" style="display:inline-block;border-radius:12px;padding:3px 9px;font-size:12px;margin:3px 4px 3px 0;cursor:pointer;${style}">${inc ? '✓ ' : exc ? '✗ ' : ''}${t}</span>`;
+      }).join('');
+      html += `</div>`;
+    }
+
     // 房源（含户型图）
     if (d.houses && d.houses.length) {
       html += `<div class="card"><h2>在售房源（${d.houses.length} 套）</h2>`;
       d.houses.forEach(h => {
+        const hc = h.houseCode || '';
+        const hTags = (cloudTagMap[hc] || []).filter(t => isAdmin || t.name === myName).map(t => t.tag);
+        if (tagInclude.size && ![...tagInclude].every(t => hTags.includes(t))) return;
+        if (tagExclude.size && [...tagExclude].some(t => hTags.includes(t))) return;
         html += `<div class="house">`;
         const floors = h.totalFloors ? ` · 共${h.totalFloors}层` : '';
         let deFang = '';
@@ -357,7 +380,6 @@
         // 信息放图片前面，单独一行
         html += `<div style="margin-bottom:6px;flex-basis:100%"><div style="color:#fff;font-weight:bold">${h.room || '?'} ${h.area || '?'}㎡${floors}${deFang}${tihuHtml}</div><div>总价 ${h.totalPrice || '?'}万 · ${h.unitPrice || '?'}元/平 ${link}</div><div><span class="tag">${h.orientation || '朝向?'}</span><span class="tag">${h.floor || '?'}楼层</span>${structureTag}${diyaHtml}${chanquanHtml}${usageHtml}${extraTags}</div>${spHtml}</div>`;
         // 标签（云端，个人隔离）
-        const hc = h.houseCode || '';
         const hTags3 = (cloudTagMap[hc] || []).filter(t => isAdmin || t.name === myName);
         const xqTagsHtml = hTags3.map(t => `<span style="display:inline-block;background:rgba(139,195,74,0.15);color:#9ccc65;border:1px solid rgba(139,195,74,0.4);border-radius:10px;padding:1px 8px;font-size:11px;margin:2px 4px 2px 0">${isAdmin ? t.name + '：' : ''}${t.tag}</span>`).join('');
         html += `<div style="margin-bottom:4px;flex-basis:100%">${xqTagsHtml}<a href="javascript:void(0)" class="xqAddTagBtn" data-hc="${hc}" style="color:#4fc3f7;font-size:12px;text-decoration:none">➕ 标签</a></div>`;
@@ -375,6 +397,16 @@
     }
 
     document.getElementById('content').innerHTML = html;
+    // ---- 标签筛选 chips 点击（三态）----
+    document.querySelectorAll('.tagChip').forEach(chip => {
+      chip.addEventListener('click', () => {
+        const t = chip.dataset.tag, st = chip.dataset.state;
+        if (st === 'none') { tagInclude.add(t); tagExclude.delete(t); }
+        else if (st === 'inc') { tagInclude.delete(t); tagExclude.add(t); }
+        else { tagExclude.delete(t); }
+        load(n);
+      });
+    });
     // ---- 加标签（云端）----
     document.querySelectorAll('.xqAddTagBtn').forEach(btn => {
       btn.addEventListener('click', async () => {
@@ -451,6 +483,25 @@
     locateByName(curName);
   });
   load(curName).catch(e => document.getElementById('content').innerHTML = '<div class="card">加载失败：' + e.message + '</div>');
+
+  // ---- 顶部用户状态（昵称 + 管理员）----
+  function updateUserBar() {
+    const nameLabel = document.getElementById('userNameLabel');
+    const adminLabel = document.getElementById('adminLabel');
+    if (nameLabel) nameLabel.textContent = myName ? ('👤 ' + myName) : '👤 未登录';
+    if (adminLabel) { adminLabel.textContent = isAdmin ? '🔓 管理员' : '🔒 管理员'; adminLabel.style.color = isAdmin ? '#f0c060' : '#fff'; }
+  }
+  updateUserBar();
+  document.getElementById('userNameLabel').addEventListener('click', () => {
+    const v = prompt('输入你的昵称：', myName);
+    if (v !== null && v.trim()) { myName = v.trim(); localStorage.setItem('xq_username', myName); updateUserBar(); load(curName); }
+  });
+  document.getElementById('adminLabel').addEventListener('click', () => {
+    if (isAdmin) { isAdmin = false; updateUserBar(); load(curName); return; }
+    const pwd = prompt('输入管理员口令：');
+    if (pwd === ADMIN_PWD) { isAdmin = true; updateUserBar(); load(curName); }
+    else if (pwd !== null) alert('口令错误');
+  });
 
   // ---- 图片灯箱：点击放大 + 滚轮缩放 + 按住拖动 + 单击关闭 ----
   const lb = document.getElementById('lightbox');
