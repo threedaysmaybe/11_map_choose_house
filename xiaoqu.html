@@ -58,6 +58,7 @@
   <div style="display:flex;gap:8px;margin:0 0 10px;align-items:center">
     <span id="userNameLabel" style="cursor:pointer;background:#262a32;color:#fff;padding:6px 12px;border-radius:16px;font-size:13px;border:1px solid rgba(255,255,255,0.2)">👤 未登录</span>
     <span id="adminLabel" style="cursor:pointer;background:#262a32;color:#fff;padding:6px 12px;border-radius:16px;font-size:13px;border:1px solid rgba(255,255,255,0.2)">🔒 管理员</span>
+    <span id="refreshBtn" style="margin-left:auto;cursor:pointer;background:#262a32;color:#fff;padding:6px 12px;border-radius:16px;font-size:13px;border:1px solid rgba(255,255,255,0.2)">🔄 刷新</span>
   </div>
   <div style="display:flex;gap:8px;margin:0 0 10px">
     <select id="districtSelect" style="flex:1;padding:11px 8px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:#262a32;color:#fff;font-size:15px;outline:none">
@@ -480,6 +481,7 @@
           const res = await ghReadTags(n);
           const tags = res.tags.concat([{ houseCode: hc, name: author, tag: tag.trim(), time: new Date().toISOString() }]);
           await ghWriteTags(n, tags, res.sha);
+          refreshTagFilter(); // 立即刷新标签筛选列表
           load(n);
         } catch (e) { alert(e.message); }
       });
@@ -606,6 +608,16 @@
       if (pwd === cfg.adminPwd) { isAdmin = true; localStorage.setItem('xq_isAdmin', '1'); updateUserBar(); load(curName); }
       else alert('口令错误');
     }).catch(() => alert('读取配置失败，请稍后再试'));
+  });
+  // 刷新按钮：重新加载列表 + 标签筛选 + 当前小区
+  document.getElementById('refreshBtn').addEventListener('click', async () => {
+    const b = document.getElementById('refreshBtn');
+    b.textContent = '🔄 刷新中…';
+    try {
+      await initList();          // 重新加载小区列表（含标签筛选）
+      await load(curName);        // 重新加载当前小区报告
+    } catch (e) {}
+    b.textContent = '🔄 刷新';
   });
 
   // ---- 图片灯箱：点击放大 + 滚轮缩放 + 按住拖动 + 单击关闭 ----
