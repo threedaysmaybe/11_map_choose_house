@@ -222,15 +222,18 @@
         const districts = [...new Set(raw.map(x => x.district).filter(Boolean))].sort();
         distSel.innerHTML = '<option value="" style="color:#fff">📍 区（全部）</option>' + districts.map(d => `<option value="${d}" style="color:#fff">${d}</option>`).join('');
       }
-      // 板块下拉（当前区的板块）
-      const boards = [];
-      for (const x of raw) {
-        if (!x.board) continue;
-        if (distSel.value && x.district !== distSel.value) continue;
-        if (!boards.some(b => b.board === x.board)) boards.push({ board: x.board });
-      }
-      boards.sort((a, b) => (a.board || '').localeCompare(b.board || ''));
-      boardSel.innerHTML = '<option value="" style="color:#fff">🏘️ 板块（全部）</option>' + boards.map(b => `<option value="${b.board}" style="color:#fff">${b.board}</option>`).join('');
+      // 板块下拉（当前区的板块）：延迟一帧更新，避免 change 同步里重置 DOM 导致移动端下拉闪现关闭
+      const curDist = distSel.value;
+      requestAnimationFrame(() => {
+        const boards = [];
+        for (const x of raw) {
+          if (!x.board) continue;
+          if (curDist && x.district !== curDist) continue;
+          if (!boards.some(b => b.board === x.board)) boards.push({ board: x.board });
+        }
+        boards.sort((a, b) => (a.board || '').localeCompare(b.board || ''));
+        boardSel.innerHTML = '<option value="" style="color:#fff">🏘️ 板块（全部）</option>' + boards.map(b => `<option value="${b.board}" style="color:#fff">${b.board}</option>`).join('');
+      });
       // 两级过滤 + 安置房
       let list = raw;
       if (distSel.value) list = list.filter(x => x.district === distSel.value);
@@ -248,8 +251,11 @@
         list = list.filter(x => !xqWithExcl.has(x.name));
       }
       xiaoquCoords = list;
-      sel.innerHTML = '<option value="" style="color:#fff">📂 选择小区查看报告…</option>' + list.map(x => `<option value="${x.name}" style="color:#fff">${x.anzhi ? '🔴' : ''}${x.name}${x.board ? '（' + (x.district ? x.district + '·' : '') + x.board + '）' : ''}</option>`).join('');
-      if (curName && list.some(x => x.name === curName)) sel.value = curName;
+      // 小区下拉：延迟一帧更新，避免 change 同步里重置 DOM 导致移动端下拉闪现关闭
+      requestAnimationFrame(() => {
+        sel.innerHTML = '<option value="" style="color:#fff">📂 选择小区查看报告…</option>' + list.map(x => `<option value="${x.name}" style="color:#fff">${x.anzhi ? '🔴' : ''}${x.name}${x.board ? '（' + (x.district ? x.district + '·' : '') + x.board + '）' : ''}</option>`).join('');
+        if (curName && list.some(x => x.name === curName)) sel.value = curName;
+      });
     } catch (e) {}
   }
   // 初始化：fetch 一次数据，缓存后渲染
