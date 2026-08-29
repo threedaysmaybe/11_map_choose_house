@@ -1303,7 +1303,7 @@
           curNotes = res.notes;
           curNotesSha = res.sha;
           if (!curNotes.length) { listEl.innerHTML = '（暂无备注）'; return; }
-          listEl.innerHTML = curNotes.map(x => `<div style="margin:2px 0;padding:3px 6px;background:rgba(255,255,255,0.05);border-radius:3px;display:flex;gap:4px"><div style="flex:1;word-break:break-all"><b style="color:#4fc3f7">${x.name}</b>：${x.note} <span style="color:#8b8f99;font-size:10px">${(x.time || '').slice(0, 16).replace('T', ' ')}</span></div><a href="javascript:void(0)" class="delCloudNote" data-note="${encodeURIComponent(x.note)}" data-time="${x.time || ''}" style="color:#e74c3c;text-decoration:none">×</a></div>`).join('');
+          listEl.innerHTML = curNotes.map(x => `<div style="margin:2px 0;padding:3px 6px;background:rgba(255,255,255,0.05);border-radius:3px;display:flex;gap:4px"><div style="flex:1;word-break:break-all">${x.name === '管理员' ? '' : `<b style="color:#4fc3f7">${x.name}</b>：`}<span style="${x.name === '管理员' ? 'font-weight:bold;color:#ffe082' : ''}">${x.note}</span> <span style="color:#8b8f99;font-size:10px">${(x.time || '').slice(0, 16).replace('T', ' ')}</span></div><a href="javascript:void(0)" class="delCloudNote" data-note="${encodeURIComponent(x.note)}" data-time="${x.time || ''}" style="color:#e74c3c;text-decoration:none">×</a></div>`).join('');
           document.querySelectorAll('.delCloudNote').forEach(btn => {
             btn.addEventListener('click', async () => {
               const note = decodeURIComponent(btn.dataset.note);
