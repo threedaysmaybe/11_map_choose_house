@@ -487,6 +487,7 @@
     // ---- 云端备注逻辑 ----
     let curSha = null;
     let curNotes = []; // 当前读到的全部备注（用于删除）
+    let editTarget = null; // 正在编辑的备注 {note, time}
     async function renderNotes() {
       const listEl = document.getElementById('notesList');
       if (!listEl) return;
@@ -498,19 +499,27 @@
         listEl.innerHTML = '（暂无备注）';
         return;
       }
-      listEl.innerHTML = visible.map(x => `<div style="margin:3px 0;padding:4px 6px;background:rgba(255,255,255,0.05);border-radius:4px;display:flex;align-items:flex-start;gap:4px"><div style="flex:1;word-break:break-all"><b style="color:#4fc3f7">${x.name}</b>：${x.note} <span style="color:#8b8f99;font-size:10px">${(x.time || '').slice(0, 16).replace('T', ' ')}</span></div>${(isAdmin || x.name === myName) ? `<a href="javascript:void(0)" class="delNoteBtn" data-note="${encodeURIComponent(x.note)}" data-time="${x.time || ''}" style="color:#e74c3c;font-size:15px;text-decoration:none">×</a>` : ''}</div>`).join('');
+      listEl.innerHTML = visible.map(x => `<div style="margin:3px 0;padding:4px 6px;background:rgba(255,255,255,0.05);border-radius:4px;display:flex;align-items:flex-start;gap:4px"><div style="flex:1;word-break:break-all"><b style="color:#4fc3f7">${x.name}</b>：${x.note} <span style="color:#8b8f99;font-size:10px">${(x.time || '').slice(0, 16).replace('T', ' ')}</span></div>${(isAdmin || x.name === myName) ? `<a href="javascript:void(0)" class="editNoteBtn" data-note="${encodeURIComponent(x.note)}" data-time="${x.time || ''}" style="color:#4fc3f7;font-size:13px;text-decoration:none">✎</a><a href="javascript:void(0)" class="delNoteBtn" data-note="${encodeURIComponent(x.note)}" data-time="${x.time || ''}" style="color:#e74c3c;font-size:15px;text-decoration:none">×</a>` : ''}</div>`).join('');
+      document.querySelectorAll('.editNoteBtn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          editTarget = { note: decodeURIComponent(btn.dataset.note), time: btn.dataset.time };
+          document.getElementById('noteInput').value = editTarget.note;
+          document.getElementById('noteInput').focus();
+        });
+      });
       document.querySelectorAll('.delNoteBtn').forEach(btn => {
         btn.addEventListener('click', async () => {
           const note = decodeURIComponent(btn.dataset.note);
           const time = btn.dataset.time;
           const newNotes = curNotes.filter(x => !(x.note === note && (x.time || '') === time));
           await ghWriteNotes(n, newNotes, curSha);
+          editTarget = null;
           renderNotes();
         });
       });
     }
     renderNotes();
-    // 保存备注
+    // 保存备注（支持编辑：点了✎后保存=替换该条）
     const saveBtn = document.getElementById('saveNoteBtn');
     if (saveBtn) saveBtn.addEventListener('click', async () => {
       const txt = document.getElementById('noteInput').value.trim();
@@ -519,7 +528,17 @@
       try {
         const author = isAdmin ? '管理员' : (myName || '匿名');
         const res = await ghReadNotes(n); // 重新读拿最新 sha
-        const notes = res.notes.concat([{ name: author, note: txt, time: new Date().toISOString() }]);
+        let notes;
+        if (editTarget) {
+          // 编辑模式：替换目标备注
+          notes = res.notes.map(x => {
+            if (x.note === editTarget.note && (x.time || '') === editTarget.time) return { ...x, note: txt, time: new Date().toISOString() };
+            return x;
+          });
+          editTarget = null;
+        } else {
+          notes = res.notes.concat([{ name: author, note: txt, time: new Date().toISOString() }]);
+        }
         await ghWriteNotes(n, notes, res.sha);
         document.getElementById('noteInput').value = '';
         saveBtn.textContent = '已保存 ✓';
