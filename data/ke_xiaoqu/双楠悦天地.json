@@ -1,0 +1,293 @@
+{
+  "houses": [
+    {
+      "title": "成都武侯红牌楼双楠悦天地 3室2厅 东北",
+      "room": "3室2厅",
+      "area": "137.35",
+      "taoneiArea": null,
+      "totalPrice": "269",
+      "unitPrice": "19586",
+      "floor": "低",
+      "totalFloors": "20",
+      "orientation": "东北",
+      "community": "双楠悦天地",
+      "district": "武侯",
+      "board": "红牌楼",
+      "features": [
+        "户型方正",
+        "电梯"
+      ],
+      "tihu": "2梯4户",
+      "structure": "钢混结构",
+      "diya": "无抵押",
+      "chanquan": "非共有",
+      "buildingType": "板楼",
+      "huxingStructure": "平层",
+      "usage": "公寓",
+      "decoration": "毛坯",
+      "listTime": "2026年04月21日",
+      "lastTrade": "2025年04月15日",
+      "sellingPoint": "伊藤洋华堂旁边的次新电梯房，对中庭，不临街，明厨明卫 小区介绍 小区人车分流，管理森严，需刷脸或刷卡进出，同时小区也配有相应的儿童游玩和休闲设施。 占地45亩，建筑面积249",
+      "fangben": "已上传房本照片",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/17767828680_aLIxRHtFq.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17767828680_aLIxRHtFq.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17767828790_sNgrV4e9g.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1776782908667.jpeg!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17767828870_TGV1d2VMh.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17767829410_GfNOHfMIZ.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17767829240_Zc6892YCj.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106127283781.html",
+      "houseCode": "106127283781",
+      "localImages": [
+        "1788020558773-0-9y1a.jpg",
+        "1788020559390-1-mk41.jpg",
+        "1788020560283-2-0myh.jpg",
+        "1788020561043-3-2ltp.jpeg",
+        "1788020561688-4-5gwt.jpg",
+        "1788020562659-5-yzjv.jpg",
+        "1788020563223-6-gd9v.jpg"
+      ]
+    },
+    {
+      "title": "成都武侯红牌楼双楠悦天地 3室2厅 西南",
+      "room": "3室2厅",
+      "area": "133.13",
+      "taoneiArea": null,
+      "totalPrice": "278",
+      "unitPrice": "20882",
+      "floor": "高",
+      "totalFloors": "19",
+      "orientation": "西南",
+      "community": "双楠悦天地",
+      "district": "武侯",
+      "board": "红牌楼",
+      "features": [
+        "电梯"
+      ],
+      "tihu": "2梯3户",
+      "structure": "框架结构",
+      "diya": "无抵押",
+      "chanquan": "共有",
+      "buildingType": "塔楼",
+      "huxingStructure": "平层",
+      "usage": "普通住宅",
+      "decoration": "毛坯",
+      "listTime": "2025年09月22日",
+      "lastTrade": "2025年08月08日",
+      "sellingPoint": "房屋户型好，明厨明卫，不临街，厨房的生活阳台也为您提供了",
+      "fangben": "已上传房本照片",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/17684784780_w65PI9y2a.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17684784780_w65PI9y2a.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17684784780_EMz8d1X2j.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1768478470776.jpeg!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17684785060_vivXISNfk.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17684784780_yjxswlLVu.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17684784780_TsUxmO7vv.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106124731126.html",
+      "houseCode": "106124731126",
+      "localImages": [
+        "1788020566446-0-ci78.jpg",
+        "1788020567782-1-iqe2.jpg",
+        "1788020568604-2-zcl8.jpg",
+        "1788020569270-3-mh7o.jpeg",
+        "1788020570195-4-5ocz.jpg",
+        "1788020570999-5-b0fe.jpg",
+        "1788020571758-6-ycvp.jpg"
+      ]
+    },
+    {
+      "title": "成都武侯红牌楼双楠悦天地 3室2厅 东南",
+      "room": "3室2厅",
+      "area": "117.17",
+      "taoneiArea": null,
+      "totalPrice": "288",
+      "unitPrice": "24580",
+      "floor": "低",
+      "totalFloors": "19",
+      "orientation": "东南",
+      "community": "双楠悦天地",
+      "district": "武侯",
+      "board": "红牌楼",
+      "features": [
+        "精装",
+        "电梯"
+      ],
+      "tihu": "2梯4户",
+      "structure": "未知结构",
+      "diya": "无抵押",
+      "chanquan": "共有",
+      "buildingType": "塔楼",
+      "huxingStructure": "平层",
+      "usage": "普通住宅",
+      "decoration": "简装",
+      "listTime": "2026年01月16日",
+      "lastTrade": "2026年01月22日",
+      "sellingPoint": "2环次新房，明厨明卫，视野开阔， 精装修 小区介绍 开发商为成都鸿顺置业有限公司、成都丰盛企业管理开发有限公司，物业公司是诚源联行",
+      "fangben": "已上传房本照片",
+      "images": [
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1772010842543.jpeg!m_fill,w_1000,h_750,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17720108520_6WCgoV953.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17720108520_cvoP5ScrV.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1772010842543.jpeg!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17720108520_eljTeC2Mk.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17720108520_5huVdoyiG.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17720108520_qk8cGeTwn.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106126109959.html",
+      "houseCode": "106126109959",
+      "localImages": [
+        "1788020575222-0-ex9f.jpeg",
+        "1788020576404-1-6z7d.jpg",
+        "1788020577652-2-kiks.jpg",
+        "1788020578789-3-qhya.jpeg",
+        "1788020580889-4-ipfn.jpg",
+        "1788020582109-5-7jce.jpg",
+        "1788020583740-6-sv63.jpg"
+      ]
+    },
+    {
+      "title": "成都武侯红牌楼双楠悦天地 3室2厅 西北",
+      "room": "3室2厅",
+      "area": "116.98",
+      "taoneiArea": "93.78",
+      "totalPrice": "255",
+      "unitPrice": "21799",
+      "floor": "高",
+      "totalFloors": "19",
+      "orientation": "西北",
+      "community": "双楠悦天地",
+      "district": "武侯",
+      "board": "红牌楼",
+      "features": [
+        "户型方正",
+        "电梯"
+      ],
+      "tihu": "2梯4户",
+      "structure": "未知结构",
+      "diya": "无抵押",
+      "chanquan": "共有",
+      "buildingType": "塔楼",
+      "huxingStructure": "平层",
+      "usage": "普通住宅",
+      "decoration": "毛坯",
+      "listTime": "2025年09月14日",
+      "lastTrade": "2025年09月16日",
+      "sellingPoint": "属于次新房，采光可以，明厨明卫。二环旁边 小区介绍 小区人车分流，管理森严，需刷脸或刷卡进出，同时小区也配有相应的儿童游玩和休闲设施。 适宜人群 本房适合老年人，年轻人等各类人群，小区的配套很成熟，适合居住和生活。 周边配套 小区配套成熟，",
+      "fangben": "已上传房本照片",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/pc1_X5MI4Dk5u_1.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc1_X5MI4Dk5u_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/apc_gdlNvvHTh_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/apc_hOYINyMiv_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_43c5bee4-dde8-4545-aa10-2ef17ae89754.png!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_6f0lMxsv0_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/apc_nnfWT1VVZ_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106124629321.html",
+      "houseCode": "106124629321",
+      "localImages": [
+        "1788020588399-0-z1cr.jpg",
+        "1788020589413-1-02xa.jpg",
+        "1788020590444-2-scid.jpg",
+        "1788020591819-3-n928.jpg",
+        "1788020592915-4-duhe.png",
+        "1788020593878-5-cnh8.jpg",
+        "1788020594686-6-u7n8.jpg"
+      ]
+    }
+  ],
+  "board": "红牌楼",
+  "district": "武侯",
+  "name": "双楠悦天地",
+  "info": {
+    "建筑类型": "塔楼/板楼/塔板结合",
+    "房屋总数": "1392户",
+    "楼栋总数": "10栋",
+    "绿化率": "30%",
+    "容积率": "4.27",
+    "交易权属": "商品房",
+    "建成年代": "2022-2024年",
+    "供暖类型": "自采暖/无供暖",
+    "用水类型": "商水/民水",
+    "用电类型": "商电/民电",
+    "物业费": "3.8元/平米/月",
+    "开发商": "成都鸿顺置业有限公司"
+  },
+  "features": [
+    "户型方正",
+    "电梯",
+    "精装"
+  ],
+  "price": "25227",
+  "metro": [
+    {
+      "name": "红牌楼",
+      "distance": "1101米",
+      "lines": "地铁10号"
+    },
+    {
+      "name": "清水河大桥",
+      "distance": "1357米",
+      "lines": "地铁17号"
+    },
+    {
+      "name": "武侯大道",
+      "distance": "1409米",
+      "lines": "地铁7号"
+    }
+  ],
+  "deals": [
+    {
+      "建成年份": "2023年",
+      "面积": "135.98平米",
+      "签约日期": "2026-06-21",
+      "成交价": "303万",
+      "成交单价": "22283元/平"
+    },
+    {
+      "建成年份": "2023年",
+      "面积": "146.96平米",
+      "签约日期": "2026-06-13",
+      "成交价": "330万",
+      "成交单价": "22456元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "133.13平米",
+      "签约日期": "2026-04-11",
+      "成交价": "310万",
+      "成交单价": "23286元/平"
+    }
+  ],
+  "images": [
+    "https://ke-image.ljcdn.com/hdic-resblock/527c025f-8174-4593-ad08-9432eeb21388.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/a6c5574a-421a-416f-aa36-476c0aa91096.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/c92c6a71-9038-49b8-a3ce-d777dcd7a2eb.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/66761028-f0ff-49b2-83af-03665b0d19cd.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/7e5a4eaa-0ea6-47f5-a568-09327aacb5da.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/dc892e7b-3f6d-41b5-9cc9-b9ff9653a6f8.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/1b03ce99-1616-4e21-bfb0-66f8bed07045.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/aac38d6b-95b1-4716-9585-711f4439b732.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/cc986862-159c-40da-8b05-6bb25bfa3730.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/bf77c4b7-3eb2-4ff7-b43c-31a380779f6f.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/ade493c7-2e6b-40ad-896a-a61bd2476424.jpg.710x400.jpg"
+  ],
+  "updatedAt": "2026-08-29T16:22:43.231Z",
+  "localImages": [
+    "1788020563245-0-h8cw.jpg",
+    "1788020563254-1-rxro.jpg",
+    "1788020563265-2-onia.jpg",
+    "1788020563278-3-ma0h.jpg",
+    "1788020563288-4-71pt.jpg",
+    "1788020563301-5-hd37.jpg",
+    "1788020563320-6-s8f7.jpg",
+    "1788020563333-7-msft.jpg",
+    "1788020563345-8-93tk.jpg",
+    "1788020563356-9-t5jc.jpg",
+    "1788020563370-10-4lj2.jpg"
+  ]
+}
