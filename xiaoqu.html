@@ -496,15 +496,13 @@
     });
     // ---- 云端备注逻辑 ----
     let curSha = null;
-    let curNotes = []; // 当前读到的全部备注（用于删除）
+    let curNotes = []; // 当前全部备注（本地状态，用于删除/编辑）
     let editTarget = null; // 正在编辑的备注 {note, time}
-    async function renderNotes() {
+    // 同步渲染备注（用本地 curNotes，不读 GitHub，避免 raw CDN 缓存延迟导致「没反应」）
+    function renderNotesHtml() {
       const listEl = document.getElementById('notesList');
       if (!listEl) return;
-      const res = await ghReadNotes(n);
-      curSha = res.sha;
-      curNotes = res.notes;
-      const visible = res.notes.filter(x => isAdmin || x.name === '管理员' || (myName && x.name === myName)); // 管理员看所有，未登录看全局，填昵称看全局+个人
+      const visible = curNotes.filter(x => isAdmin || x.name === '管理员' || (myName && x.name === myName)); // 管理员看所有，未登录看全局，填昵称看全局+个人
       if (!visible.length) {
         listEl.innerHTML = '（暂无备注）';
         return;
@@ -522,13 +520,22 @@
           const note = decodeURIComponent(btn.dataset.note);
           const time = btn.dataset.time;
           const newNotes = curNotes.filter(x => !(x.note === note && (x.time || '') === time));
-          await ghWriteNotes(n, newNotes, curSha);
+          const result = await ghWriteNotes(n, newNotes, curSha);
+          curNotes = newNotes;
+          curSha = result.content.sha;
           editTarget = null;
-          renderNotes();
+          renderNotesHtml();
         });
       });
     }
-    renderNotes();
+    // 异步读 GitHub 备注，更新本地状态后渲染
+    async function loadNotes() {
+      const res = await ghReadNotes(n);
+      curSha = res.sha;
+      curNotes = res.notes;
+      renderNotesHtml();
+    }
+    loadNotes();
     // 保存备注（支持编辑：点了✎后保存=替换该条）
     const saveBtn = document.getElementById('saveNoteBtn');
     if (saveBtn) saveBtn.addEventListener('click', async () => {
@@ -537,22 +544,23 @@
       saveBtn.textContent = '保存中…'; saveBtn.disabled = true;
       try {
         const author = isAdmin ? '管理员' : (myName || '匿名');
-        const res = await ghReadNotes(n); // 重新读拿最新 sha
         let notes;
         if (editTarget) {
           // 编辑模式：替换目标备注
-          notes = res.notes.map(x => {
+          notes = curNotes.map(x => {
             if (x.note === editTarget.note && (x.time || '') === editTarget.time) return { ...x, note: txt, time: new Date().toISOString() };
             return x;
           });
           editTarget = null;
         } else {
-          notes = res.notes.concat([{ name: author, note: txt, time: new Date().toISOString() }]);
+          notes = curNotes.concat([{ name: author, note: txt, time: new Date().toISOString() }]);
         }
-        await ghWriteNotes(n, notes, res.sha);
+        const result = await ghWriteNotes(n, notes, curSha);
+        curNotes = notes;
+        curSha = result.content.sha;
         document.getElementById('noteInput').value = '';
         saveBtn.textContent = '已保存 ✓';
-        renderNotes();
+        renderNotesHtml();
       } catch (e) { alert('保存失败：' + e.message); saveBtn.textContent = '保存备注'; }
       saveBtn.disabled = false;
       setTimeout(() => saveBtn.textContent = '保存备注', 1200);
