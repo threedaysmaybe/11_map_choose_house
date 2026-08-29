@@ -486,17 +486,28 @@
     });
     // ---- 云端备注逻辑 ----
     let curSha = null;
+    let curNotes = []; // 当前读到的全部备注（用于删除）
     async function renderNotes() {
       const listEl = document.getElementById('notesList');
       if (!listEl) return;
       const res = await ghReadNotes(n);
       curSha = res.sha;
+      curNotes = res.notes;
       const visible = res.notes.filter(x => isAdmin || x.name === '管理员' || (myName && x.name === myName)); // 管理员看所有，未登录看全局，填昵称看全局+个人
       if (!visible.length) {
         listEl.innerHTML = '（暂无备注）';
         return;
       }
-      listEl.innerHTML = visible.map(x => `<div style="margin:3px 0;padding:4px 6px;background:rgba(255,255,255,0.05);border-radius:4px"><b style="color:#4fc3f7">${x.name}</b>：${x.note} <span style="color:#8b8f99;font-size:10px">${(x.time || '').slice(0, 16).replace('T', ' ')}</span></div>`).join('');
+      listEl.innerHTML = visible.map(x => `<div style="margin:3px 0;padding:4px 6px;background:rgba(255,255,255,0.05);border-radius:4px;display:flex;align-items:flex-start;gap:4px"><div style="flex:1;word-break:break-all"><b style="color:#4fc3f7">${x.name}</b>：${x.note} <span style="color:#8b8f99;font-size:10px">${(x.time || '').slice(0, 16).replace('T', ' ')}</span></div>${(isAdmin || x.name === myName) ? `<a href="javascript:void(0)" class="delNoteBtn" data-note="${encodeURIComponent(x.note)}" data-time="${x.time || ''}" style="color:#e74c3c;font-size:15px;text-decoration:none">×</a>` : ''}</div>`).join('');
+      document.querySelectorAll('.delNoteBtn').forEach(btn => {
+        btn.addEventListener('click', async () => {
+          const note = decodeURIComponent(btn.dataset.note);
+          const time = btn.dataset.time;
+          const newNotes = curNotes.filter(x => !(x.note === note && (x.time || '') === time));
+          await ghWriteNotes(n, newNotes, curSha);
+          renderNotes();
+        });
+      });
     }
     renderNotes();
     // 保存备注
