@@ -278,6 +278,36 @@
       if (!r.ok) throw new Error('保存失败 HTTP ' + r.status);
       return await r.json();
     }
+    // GitHub 读备注（数据版=管理员视角，读全部）
+    async function ghReadNotes(name) {
+      const path = 'data/notes/' + encodeURIComponent(name) + '.json';
+      try {
+        const r = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/contents/' + path, {
+          headers: { Authorization: 'token ' + GITHUB_TOKEN, Accept: 'application/vnd.github.v3+json' },
+        });
+        if (r.status === 404) return { notes: [], sha: null };
+        if (!r.ok) return { notes: [], sha: null };
+        const d = await r.json();
+        const json = JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\s/g, '')))));
+        return { notes: json.notes || [], sha: d.sha };
+      } catch (e) { return { notes: [], sha: null }; }
+    }
+    // GitHub 写备注（数据版=管理员，name 用「管理员」）
+    async function ghWriteNotes(name, notes, sha) {
+      const path = 'data/notes/' + encodeURIComponent(name) + '.json';
+      const body = {
+        message: '更新备注 ' + name,
+        content: btoa(unescape(encodeURIComponent(JSON.stringify({ notes })))),
+      };
+      if (sha) body.sha = sha;
+      const r = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/contents/' + path, {
+        method: 'PUT',
+        headers: { Authorization: 'token ' + GITHUB_TOKEN, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      if (!r.ok) throw new Error('保存失败 HTTP ' + r.status);
+      return await r.json();
+    }
     // GitHub 读所有小区标签（遍历 data/tags 目录）
     async function ghReadAllTags() {
       try {
@@ -1076,7 +1106,9 @@
         html += `<a href="xiaoqu.html?name=${encodeURIComponent(d.name || name)}" target="_blank" style="display:inline-block;margin-bottom:4px;color:#4fc3f7;text-decoration:none;font-size:12px">🔗 打开独立页面查看 →</a>`;
         html += ` <a href="javascript:void(0)" id="delXqBtn" style="display:inline-block;margin-bottom:4px;color:#e74c3c;text-decoration:none;font-size:12px;margin-left:8px">🗑 删除档案</a>`;
         if (d.note) html += `<div style="font-weight:bold;color:#ffe082;margin:6px 0;padding:6px 8px;background:rgba(255,224,130,0.12);border-left:3px solid #ffe082;border-radius:3px">📝 ${d.note}</div>`;
-        html += `<div style="margin-top:4px"><input id="noteInput" type="text" value="${d.note || ''}" placeholder="添加备注…" style="width:calc(100% - 66px);background:#f0f1f3;border:1px solid #d0d2d6;border-radius:4px;color:#2a2d35;padding:3px 6px"> <button id="saveNoteBtn" class="res-btn" style="padding:3px 8px">保存</button></div>`;
+        html += `<div style="font-size:12px;color:#a9adb8;margin-top:4px">📝 云端备注（全部）</div>`;
+        html += `<div id="notesList" style="margin:4px 0;color:#c9ccd3;font-size:12px;max-height:150px;overflow-y:auto">加载备注中…</div>`;
+        html += `<div style="margin-top:4px"><input id="noteInput" type="text" placeholder="写一条备注…" style="width:calc(100% - 66px);background:#f0f1f3;border:1px solid #d0d2d6;border-radius:4px;color:#2a2d35;padding:3px 6px"> <button id="saveNoteBtn" class="res-btn" style="padding:3px 8px">保存</button></div>`;
         html += `<div>均价：<b>${d.price || '?'}</b> 元/㎡</div>`;
         const rows = [['建筑类型', info['建筑类型']], ['楼栋', info['楼栋总数']], ['房屋', info['房屋总数']], ['容积率', info['容积率']], ['绿化率', info['绿化率']], ['年代', info['建成年代']], ['权属', info['交易权属']], ['房屋性质', info['房屋性质']], ['停车费', info['停车费']], ['物业费', info['物业费']], ['开发商', info['开发商']]];
         rows.forEach(([k, v]) => {
@@ -1261,16 +1293,47 @@
             })
             .catch(e => alert('删除失败：' + e.message));
         });
+        // 渲染云端备注（数据版=管理员，显示全部带名字 + 删除）
+        let curNotes = [];
+        let curNotesSha = null;
+        async function renderCloudNotes() {
+          const listEl = document.getElementById('notesList');
+          if (!listEl) return;
+          const res = await ghReadNotes(name);
+          curNotes = res.notes;
+          curNotesSha = res.sha;
+          if (!curNotes.length) { listEl.innerHTML = '（暂无备注）'; return; }
+          listEl.innerHTML = curNotes.map(x => `<div style="margin:2px 0;padding:3px 6px;background:rgba(255,255,255,0.05);border-radius:3px;display:flex;gap:4px"><div style="flex:1;word-break:break-all"><b style="color:#4fc3f7">${x.name}</b>：${x.note} <span style="color:#8b8f99;font-size:10px">${(x.time || '').slice(0, 16).replace('T', ' ')}</span></div><a href="javascript:void(0)" class="delCloudNote" data-note="${encodeURIComponent(x.note)}" data-time="${x.time || ''}" style="color:#e74c3c;text-decoration:none">×</a></div>`).join('');
+          document.querySelectorAll('.delCloudNote').forEach(btn => {
+            btn.addEventListener('click', async () => {
+              const note = decodeURIComponent(btn.dataset.note);
+              const time = btn.dataset.time;
+              const newNotes = curNotes.filter(x => !(x.note === note && (x.time || '') === time));
+              const result = await ghWriteNotes(name, newNotes, curNotesSha);
+              curNotes = newNotes;
+              curNotesSha = result.content.sha;
+              renderCloudNotes();
+            });
+          });
+        }
+        renderCloudNotes();
+        // 保存备注（数据版=管理员，name 用「管理员」）
         const noteBtn = document.getElementById('saveNoteBtn');
-        if (noteBtn) noteBtn.addEventListener('click', () => {
-          const note = document.getElementById('noteInput').value;
-          fetch('/add-xiaoqu-note', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, note }) })
-            .then(r => r.json())
-            .then(dd => {
-              if (dd.ok) { document.getElementById('xqSelect').dispatchEvent(new Event('change')); }
-              else alert('保存失败：' + (dd.msg || ''));
-            })
-            .catch(e => alert('保存失败：' + e.message));
+        if (noteBtn) noteBtn.addEventListener('click', async () => {
+          const note = document.getElementById('noteInput').value.trim();
+          if (!note) { alert('请写备注内容'); return; }
+          noteBtn.textContent = '保存中…'; noteBtn.disabled = true;
+          try {
+            const res = await ghReadNotes(name);
+            const notes = res.notes.concat([{ name: '管理员', note, time: new Date().toISOString() }]);
+            const result = await ghWriteNotes(name, notes, res.sha);
+            curNotes = notes;
+            curNotesSha = result.content.sha;
+            document.getElementById('noteInput').value = '';
+            noteBtn.textContent = '保存';
+            renderCloudNotes();
+          } catch (e) { alert('保存失败：' + e.message); noteBtn.textContent = '保存'; }
+          noteBtn.disabled = false;
         });
       } catch (err) { detail.textContent = '加载失败：' + err.message; }
     });
