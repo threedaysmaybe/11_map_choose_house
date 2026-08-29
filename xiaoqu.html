@@ -108,34 +108,39 @@
   let tagExclude = new Set(); // 标签筛选：排除（反选）
   let allTagRecords = []; // 所有小区标签记录 [{xiaoqu,houseCode,name,tag,time}]
 
-  // 用 raw（CDN，快）读 JSON，返回对象或 null
-  async function rawRead(path) {
-    try {
-      const r = await fetch('https://raw.githubusercontent.com/' + GITHUB_REPO + '/main/' + path, { cache: 'no-store' });
-      if (!r.ok) return null;
-      return await r.json();
-    } catch (e) { return null; }
-  }
-  // 用 api 读 sha（写时用）
-  async function apiGetSha(path) {
+  // 备注/标签内存缓存（同小区切回用缓存避免重复读；写后即时更新）
+  const notesCache = {};
+  const tagsCache = {};
+  // 用 api 读 JSON（实时，拿 sha），返回 { json, sha } 或 null
+  async function apiReadJson(path) {
     try {
       const r = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/contents/' + path, {
         headers: { Authorization: 'token ' + GITHUB_TOKEN, Accept: 'application/vnd.github.v3+json' },
       });
+      if (r.status === 404) return { json: null, sha: null };
       if (!r.ok) return null;
-      return (await r.json()).sha;
+      const d = await r.json();
+      const json = JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\s/g, '')))));
+      return { json, sha: d.sha };
     } catch (e) { return null; }
   }
-  // GitHub 读备注（raw 快读，sha 写时再取）
+  // GitHub 读备注（内存缓存 + api 实时，无 CDN 缓存延迟）
   async function ghReadNotes(name) {
+    if (notesCache[name]) return notesCache[name];
     const path = 'data/notes/' + encodeURIComponent(name) + '.json';
-    const json = await rawRead(path);
-    return { notes: (json && json.notes) || [], sha: null };
+    const res = await apiReadJson(path);
+    const result = { notes: (res && res.json && res.json.notes) || [], sha: (res && res.sha) || null };
+    notesCache[name] = result;
+    return result;
   }
   // GitHub 写备注
   async function ghWriteNotes(name, notes, sha) {
     const path = 'data/notes/' + encodeURIComponent(name) + '.json';
-    if (!sha) sha = await apiGetSha(path);
+    if (!sha) {
+      const cached = notesCache[name];
+      if (cached && cached.sha) sha = cached.sha;
+      else { const r = await apiReadJson(path); if (r && r.sha) sha = r.sha; }
+    }
     const body = {
       message: '更新备注 ' + name,
       content: btoa(unescape(encodeURIComponent(JSON.stringify({ notes })))),
@@ -147,18 +152,27 @@
       body: JSON.stringify(body),
     });
     if (!r.ok) throw new Error('保存失败 HTTP ' + r.status);
-    return await r.json();
+    const result = await r.json();
+    notesCache[name] = { notes, sha: result.content.sha }; // 更新缓存
+    return result;
   }
-  // GitHub 读标签（raw 快读，sha 写时再取）
+  // GitHub 读标签（内存缓存 + api 实时）
   async function ghReadTags(name) {
+    if (tagsCache[name]) return tagsCache[name];
     const path = 'data/tags/' + encodeURIComponent(name) + '.json';
-    const json = await rawRead(path);
-    return { tags: (json && json.tags) || [], sha: null };
+    const res = await apiReadJson(path);
+    const result = { tags: (res && res.json && res.json.tags) || [], sha: (res && res.sha) || null };
+    tagsCache[name] = result;
+    return result;
   }
   // GitHub 写标签
   async function ghWriteTags(name, tags, sha) {
     const path = 'data/tags/' + encodeURIComponent(name) + '.json';
-    if (!sha) sha = await apiGetSha(path);
+    if (!sha) {
+      const cached = tagsCache[name];
+      if (cached && cached.sha) sha = cached.sha;
+      else { const r = await apiReadJson(path); if (r && r.sha) sha = r.sha; }
+    }
     const body = {
       message: '更新标签 ' + name,
       content: btoa(unescape(encodeURIComponent(JSON.stringify({ tags })))),
@@ -170,7 +184,9 @@
       body: JSON.stringify(body),
     });
     if (!r.ok) throw new Error('保存失败 HTTP ' + r.status);
-    return await r.json();
+    const result = await r.json();
+    tagsCache[name] = { tags, sha: result.content.sha }; // 更新缓存
+    return result;
   }
   // GitHub 读所有小区标签（遍历 data/tags 目录）
   async function ghReadAllTags() {
