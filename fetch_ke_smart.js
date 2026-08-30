@@ -22,10 +22,18 @@ async function grabXiaoquDetail(page, boardNames) {
   return await page.evaluate((boardNames) => {
     const txt = document.body.innerText.replace(/\s+/g, ' ');
     const grab = re => { const m = txt.match(re); return m ? m[1].trim() : null; };
-    // 小区名（从标题/页头）
-    const rawName = grab(/小区大全.*?([\u4e00-\u9fa5]{2,8}小区)/) || grab(/([\u4e00-\u9fa5]{2,8}小区)(?:房价|二手房|详情|大全)/) || grab(/([\u4e00-\u9fa5A-Za-z0-9·]{2,14}?)(?:房价|二手房|租房)/) || (document.querySelector('.detailTitle, .xiaoquTitle, h1')?.textContent || '').replace(/[·\s·]/g, '');
-    // 清理末尾噪音词（优质/精选/房源/房价等），避免「新界二期优质房源」被抓成「新界二期优质」
-    const name = (rawName || '').replace(/(优质|精选|推荐|房源|房价|二手房|租房|大全|详情|小区)+$/g, '').trim();
+    // 小区名：优先从页面固定元素（h1/detailTitle，形如「新界二期 (武侯) 太平园横二街55号」）提取括号前的部分
+    const headEl = document.querySelector('.detailTitle, .xiaoquTitle, h1');
+    let name = '';
+    if (headEl) {
+      const t = headEl.textContent.replace(/\s+/g, ' ').trim();
+      name = t.split(/[（(]/)[0].trim();
+      name = name.replace(/(优质|精选|推荐|房源|房价|二手房|租房|大全|详情|小区)+$/g, '').trim();
+    }
+    // fallback：标题正则（h1 拿不到时）
+    if (!name) {
+      name = grab(/小区大全.*?([\u4e00-\u9fa5]{2,8}小区)/) || grab(/([\u4e00-\u9fa5]{2,8}小区)(?:房价|二手房|详情|大全)/) || grab(/([\u4e00-\u9fa5A-Za-z0-9·]{2,14}?)(?:房价|二手房|租房)/) || '';
+    }
     // 均价
     const price = grab(/([\d,]+)元\/㎡/);
     // label-value 字段
