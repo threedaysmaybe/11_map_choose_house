@@ -148,7 +148,7 @@
     return s;
   }
 
-  function renderTable(groups, noteMap, xqData) {
+  function renderTable(groups, noteMap, xqData, xqNoteMap) {
     const area = document.getElementById('tableView');
     let html = '<div class="tbl-wrap"><table><thead><tr>';
     const cols = ['小区', '户型', '面积', '单价', '总价', '楼层', '梯户比', '得房率', '总高', '结构', '朝向', '卖点/备注', '最近成交'];
@@ -158,6 +158,7 @@
       const d = xqData[g.xiaoqu] || {};
       const info = d.info || {};
       const deals = d.deals || [];
+      const xqNotes = xqNoteMap[g.xiaoqu] || [];
       g.items.forEach((x, ii) => {
         const dr = derateRate(x);
         const notes = ((noteMap[g.xiaoqu] || {})[x.houseCode] || []).map(t => t.note);
@@ -167,6 +168,7 @@
           html += `<a class="xg" href="xiaoqu.html?name=${encodeURIComponent(g.xiaoqu)}" target="_blank">${g.xiaoqu}</a>`;
           html += `<a href="javascript:void(0)" class="groupUp" data-gi="${gi}" style="color:#4fc3f7;text-decoration:none;margin-left:4px">↑</a><a href="javascript:void(0)" class="groupDown" data-gi="${gi}" style="color:#4fc3f7;text-decoration:none;margin-left:2px">↓</a>`;
           html += xqInfoHtml(g.items[0], info);
+          if (xqNotes.length) html += xqNotes.map(n => `<div class="note" style="white-space:pre-wrap;margin-top:4px">📝 ${n}</div>`).join('');
           html += `</td>`;
         }
         html += `<td>${x.room || '—'}</td>`;
@@ -189,7 +191,7 @@
     area.innerHTML = html;
   }
 
-  async function renderList(groups, noteMap, tagMap, xqData) {
+  async function renderList(groups, noteMap, tagMap, xqData, xqNoteMap) {
     const area = document.getElementById('listView');
     let html = '';
     for (const [gi, g] of groups.entries()) {
@@ -202,6 +204,8 @@
       const quanshu = info['交易权属'] || f.quanshu;
       html += `<div class="group">`;
       html += `<div class="group-head">🏘️ <a href="xiaoqu.html?name=${encodeURIComponent(g.xiaoqu)}" target="_blank">${g.xiaoqu}</a>（${g.items.length}套）<a href="javascript:void(0)" class="groupUp" data-gi="${gi}" style="color:#4fc3f7;text-decoration:none;margin-left:auto">↑</a><a href="javascript:void(0)" class="groupDown" data-gi="${gi}" style="color:#4fc3f7;text-decoration:none;margin-left:2px">↓</a></div>`;
+      const xqNotes = xqNoteMap[g.xiaoqu] || [];
+      if (xqNotes.length) html += xqNotes.map(n => `<div class="note" style="white-space:pre-wrap;margin-bottom:6px">📝 ${n}</div>`).join('');
       html += `<div class="gh-info" style="margin-bottom:6px">建筑类型 ${info['建筑类型'] || '—'} · 楼栋 ${info['楼栋总数'] || '—'} · 容积率 ${colored(info['容积率'] || f.volumeRate, volColor(info['容积率'] || f.volumeRate))} · 绿化 ${info['绿化率'] || f.greening || '—'} · 物业 ${info['物业费'] || f.propertyFee || '—'} · ${info['建成年代'] || f.buildYear || '—'} · 权属 ${quanshuHtml(quanshu)}</div>`;
       if (f.metro) html += metroHtml(f.metro);
       // 小区图片
@@ -245,8 +249,8 @@
     const emptyHtml = '<div class="empty">（房源池为空，去小区里点「＋ 房源池」加入）</div>';
     if (!pool.length) { document.getElementById('tableView').innerHTML = emptyHtml; document.getElementById('listView').innerHTML = ''; return; }
     const groups = splitGroups(pool);
-    // 统一拉取小区档案 + 实时备注 + 标签（表格/列表共用）
-    const xqData = {}, noteMap = {}, tagMap = {}; // xqData: { [xiaoqu]: {info,deals,localImages,metro,houses} }
+    // 统一拉取小区档案 + 房源备注 + 标签 + 小区备注（表格/列表共用）
+    const xqData = {}, noteMap = {}, tagMap = {}, xqNoteMap = {}; // xqNoteMap: { [xiaoqu]: [备注字符串] }
     for (const g of groups) {
       try { const r = await fetch('data/ke_xiaoqu/' + encodeURIComponent(g.xiaoqu) + '.json?t=' + Date.now()); xqData[g.xiaoqu] = await r.json(); } catch (e) {}
       try {
@@ -261,9 +265,13 @@
         for (const t of (tr && tr.json && tr.json.tags) || []) (m[t.houseCode] = m[t.houseCode] || []).push(t);
         tagMap[g.xiaoqu] = m;
       } catch (e) {}
+      try {
+        const xn = await apiReadJson('data/notes/' + encodeURIComponent(g.xiaoqu) + '.json');
+        xqNoteMap[g.xiaoqu] = (xn && xn.json && xn.json.notes) ? xn.json.notes.map(t => t.note) : [];
+      } catch (e) {}
     }
-    renderTable(groups, noteMap, xqData);
-    await renderList(groups, noteMap, tagMap, xqData);
+    renderTable(groups, noteMap, xqData, xqNoteMap);
+    await renderList(groups, noteMap, tagMap, xqData, xqNoteMap);
     bindEvents();
   }
 

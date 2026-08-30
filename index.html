@@ -1225,8 +1225,7 @@
         let html = `<div style="font-weight:bold;color:#fff;margin-bottom:4px">${d.name || name}</div>`;
         html += `<a href="xiaoqu.html?name=${encodeURIComponent(d.name || name)}" target="_blank" style="display:inline-block;margin-bottom:4px;color:#4fc3f7;text-decoration:none;font-size:12px">🔗 打开独立页面查看 →</a>`;
         html += ` <a href="javascript:void(0)" id="delXqBtn" style="display:inline-block;margin-bottom:4px;color:#e74c3c;text-decoration:none;font-size:12px;margin-left:8px">🗑 删除档案</a>`;
-        if (d.note) html += `<div style="font-weight:bold;color:#ffe082;margin:6px 0;padding:6px 8px;background:rgba(255,224,130,0.12);border-left:3px solid #ffe082;border-radius:3px;white-space:pre-wrap">📝 ${d.note}</div>`;
-        html += `<div style="font-size:12px;color:#a9adb8;margin-top:4px">📝 云端备注（全部）</div>`;
+        html += `<div style="font-size:12px;color:#a9adb8;margin-top:4px">📝 小区备注</div>`;
         html += `<div id="notesList" style="margin:4px 0;color:#c9ccd3;font-size:12px;max-height:150px;overflow-y:auto">加载备注中…</div>`;
         html += `<div style="margin-top:4px"><input id="noteInput" type="text" placeholder="写一条备注…" style="width:calc(100% - 66px);background:#f0f1f3;border:1px solid #d0d2d6;border-radius:4px;color:#2a2d35;padding:3px 6px"> <button id="saveNoteBtn" class="res-btn" style="padding:3px 8px">保存</button></div>`;
         html += `<div>均价：<b>${d.price || '?'}</b> 元/㎡</div>`;
@@ -1518,15 +1517,36 @@
           const listEl = document.getElementById('notesList');
           if (!listEl) return;
           const res = await ghReadNotes(name);
-          curNotes = res.notes;
+          curNotes = res.notes || [];
+          // 合并 d.note（小区档案 note 字段）到备注列表，作为管理员备注，避免重复显示
+          if (d.note && !curNotes.some(x => x.note === d.note)) {
+            curNotes = [{ name: '管理员', note: d.note, time: '' }].concat(curNotes);
+          }
           curNotesSha = res.sha;
           if (!curNotes.length) { listEl.innerHTML = '（暂无备注）'; return; }
-          listEl.innerHTML = curNotes.map(x => `<div style="margin:2px 0;padding:3px 6px;background:rgba(255,255,255,0.05);border-radius:3px;display:flex;gap:4px"><div style="flex:1;word-break:break-all">${x.name === '管理员' ? '' : `<b style="color:#4fc3f7">${x.name}</b>：`}<span style="white-space:pre-wrap;${x.name === '管理员' ? 'font-weight:bold;color:#ffe082' : ''}">${x.note}</span> <span style="color:#8b8f99;font-size:10px">${(x.time || '').slice(0, 16).replace('T', ' ')}</span></div><a href="javascript:void(0)" class="delCloudNote" data-note="${encodeURIComponent(x.note)}" data-time="${x.time || ''}" style="color:#e74c3c;text-decoration:none">×</a></div>`).join('');
+          listEl.innerHTML = curNotes.map(x => {
+            const admin = x.name === '管理员';
+            const box = admin ? 'background:rgba(255,224,130,0.12);border-left:3px solid #ffe082;' : 'background:rgba(255,255,255,0.05);';
+            return `<div style="margin:3px 0;padding:6px 8px;${box}border-radius:3px;display:flex;gap:4px"><div style="flex:1;word-break:break-all">${admin ? '' : `<b style="color:#4fc3f7">${x.name}</b>：`}<span style="white-space:pre-wrap;${admin ? 'font-weight:bold;color:#ffe082' : ''}">${x.note}</span> <span style="color:#8b8f99;font-size:10px">${(x.time || '').slice(0, 16).replace('T', ' ')}</span></div><a href="javascript:void(0)" class="editCloudNote" data-note="${encodeURIComponent(x.note)}" data-time="${x.time || ''}" style="color:#4fc3f7;text-decoration:none">✎</a><a href="javascript:void(0)" class="delCloudNote" data-note="${encodeURIComponent(x.note)}" data-time="${x.time || ''}" style="color:#e74c3c;text-decoration:none">×</a></div>`;
+          }).join('');
           document.querySelectorAll('.delCloudNote').forEach(btn => {
             btn.addEventListener('click', async () => {
               const note = decodeURIComponent(btn.dataset.note);
               const time = btn.dataset.time;
               const newNotes = curNotes.filter(x => !(x.note === note && (x.time || '') === time));
+              const result = await ghWriteNotes(name, newNotes, curNotesSha);
+              curNotes = newNotes;
+              curNotesSha = result.content.sha;
+              renderCloudNotes();
+            });
+          });
+          document.querySelectorAll('.editCloudNote').forEach(btn => {
+            btn.addEventListener('click', async () => {
+              const note = decodeURIComponent(btn.dataset.note);
+              const time = btn.dataset.time;
+              const newText = await promptMultiline('修改备注：', note);
+              if (!newText || !newText.trim() || newText === note) return;
+              const newNotes = curNotes.map(x => (x.note === note && (x.time || '') === time) ? { ...x, note: newText.trim(), time: new Date().toISOString() } : x);
               const result = await ghWriteNotes(name, newNotes, curNotesSha);
               curNotes = newNotes;
               curNotesSha = result.content.sha;
