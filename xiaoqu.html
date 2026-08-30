@@ -497,7 +497,7 @@
 
   async function load(n) {
     if (!n) { document.getElementById('content').innerHTML = '<div class="card">请在上方选择小区查看报告</div>'; document.getElementById('xqName').textContent = '小区报告'; document.getElementById('xqSub').textContent = ''; return; }
-    const r = await fetch('data/ke_xiaoqu/' + encodeURIComponent(n) + '.json');
+    const r = await fetch('data/ke_xiaoqu/' + encodeURIComponent(n) + '.json?t=' + Date.now());
     const d = await r.json();
     const info = d.info || {};
     // 加载云端标签（个人隔离）
@@ -614,7 +614,7 @@
         // 核心卖点：标黄加粗
         const spHtml = h.sellingPoint ? `<div style="color:#f0c060;font-weight:bold;font-size:12px;margin-top:4px;line-height:1.5">核心卖点：${h.sellingPoint}</div>` : '';
         // 信息放图片前面，单独一行
-        html += `<div style="margin-bottom:6px;flex-basis:100%"><div style="color:#fff;font-weight:bold">${h.room || '?'} ${h.area || '?'}㎡${floors}${deFang}${tihuHtml}</div><div>总价 ${h.totalPrice || '?'}万 · ${h.unitPrice || '?'}元/平 ${link} <a href="javascript:void(0)" class="xqUpHouse" data-hi="${hi}" style="color:#4fc3f7;font-size:14px;text-decoration:none">↑</a> <a href="javascript:void(0)" class="xqDownHouse" data-hi="${hi}" style="color:#4fc3f7;font-size:14px;text-decoration:none">↓</a></div><div><span class="tag">${h.orientation || '朝向?'}</span><span class="tag">${h.floor || '?'}楼层</span>${structureTag}${diyaHtml}${chanquanHtml}${usageHtml}${extraTags}</div>${spHtml}</div>`;
+        html += `<div style="margin-bottom:6px;flex-basis:100%"><div style="color:#fff;font-weight:bold">${h.room || '?'} ${h.area || '?'}㎡${floors}${deFang}${tihuHtml}</div><div>总价 ${h.totalPrice || '?'}万 · ${h.unitPrice || '?'}元/平 ${link} <a href="javascript:void(0)" class="xqUpHouse" data-hi="${hi}" style="color:#4fc3f7;font-size:14px;text-decoration:none">↑</a> <a href="javascript:void(0)" class="xqDownHouse" data-hi="${hi}" style="color:#4fc3f7;font-size:14px;text-decoration:none">↓</a> <a href="javascript:void(0)" class="xqDelHouse" data-hi="${hi}" data-hc="${hc}" style="color:#e74c3c;font-size:13px;margin-left:4px;text-decoration:none">🗑</a></div><div><span class="tag">${h.orientation || '朝向?'}</span><span class="tag">${h.floor || '?'}楼层</span>${structureTag}${diyaHtml}${chanquanHtml}${usageHtml}${extraTags}</div>${spHtml}</div>`;
         // 标签（云端，个人隔离，管理员看全部）
         const hTags3 = (cloudTagMap[hc] || []).filter(t => isAdmin || t.name === '管理员' || (myName && t.name === myName));
         const xqTagsHtml = hTags3.map(t => `<span style="display:inline-block;background:rgba(139,195,74,0.15);color:#9ccc65;border:1px solid rgba(139,195,74,0.4);border-radius:10px;padding:1px 8px;font-size:11px;margin:2px 4px 2px 0">${t.name === '管理员' ? '' : (isAdmin ? t.name + '：' : '')}${t.tag}</span>`).join('');
@@ -753,8 +753,23 @@
         const tmp = houses[hi]; houses[hi] = houses[j]; houses[j] = tmp;
         try {
           await ghWriteXiaoqu(d.name || n, houses);
-          load(n);
+          d.houses = houses; // 本地立即更新
+          load(n); // 带时间戳重新加载，绕过 CDN 缓存
         } catch (e) { alert('调整失败：' + e.message); }
+      });
+    });
+    // 删除房源
+    document.querySelectorAll('.xqDelHouse').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const hc = btn.dataset.hc;
+        const h = (d.houses || []).find(x => x.houseCode === hc);
+        if (!confirm(`确认删除房源：${h ? h.room + ' ' + h.area + '㎡ ' + h.totalPrice + '万' : ''}？`)) return;
+        try {
+          const houses = (d.houses || []).filter(x => x.houseCode !== hc);
+          await ghWriteXiaoqu(d.name || n, houses);
+          d.houses = houses;
+          load(n);
+        } catch (e) { alert('删除失败：' + e.message); }
       });
     });
     // ---- 云端备注逻辑 ----
