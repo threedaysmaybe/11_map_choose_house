@@ -107,17 +107,19 @@
   function diyaColor(s) { return s === '无抵押' ? '#2ecc71' : '#e74c3c'; }
   function chanquanColor(s) { return s === '非共有' ? '#2ecc71' : '#f0c060'; }
   function usageColor(s) { return s === '普通住宅' ? '#2ecc71' : '#e74c3c'; }
-  function quanshuColor(s) {
-    if (!s) return '';
-    if (/拆迁|回迁|安置/.test(s)) return '#e74c3c';   // 拆迁/回迁/安置 红
-    if (/公房|房改|经适|集资/.test(s)) return '#f0c060'; // 公房类 黄
-    if (/商品房|普通住宅/.test(s)) return '#2ecc71';   // 商品房 绿
-    return '';
+  function quanshuHtml(s) {
+    if (!s) return '—';
+    // 按斜杠拆分，只给「拆迁/回迁/安置(红)、公房类(黄)」标色，商品房等不标
+    return String(s).split('/').map(tag => {
+      if (/拆迁|回迁|安置/.test(tag)) return `<span style="color:#e74c3c;font-weight:bold">${tag}</span>`;
+      if (/公房|房改|经适|集资/.test(tag)) return `<span style="color:#f0c060;font-weight:bold">${tag}</span>`;
+      return tag;
+    }).join('/');
   }
   function colored(v, color) { return color ? `<span style="color:${color};font-weight:bold">${v || '—'}</span>` : (v || '—'); }
   function metroHtml(metro) {
     if (!metro) return '';
-    const arr = String(metro).split(/[　\s]+/).filter(Boolean);
+    const arr = String(metro).split('　').filter(Boolean);
     if (!arr.length) return '';
     return '<div class="xq-info">' + arr.map(m => `<div style="padding-left:10px;text-indent:-10px">🚇 ${m}</div>`).join('') + '</div>';
   }
@@ -132,25 +134,30 @@
     return groups;
   }
 
-  function xqInfoHtml(f) {
+  function xqInfoHtml(f, info) {
     let s = '<div class="xq-info">';
     s += `<div><span class="lbl">容积率</span> ${colored(f.volumeRate, volColor(f.volumeRate))}</div>`;
     s += `<div><span class="lbl">绿化</span> ${f.greening || '—'}</div>`;
     s += `<div><span class="lbl">物业</span> ${f.propertyFee || '—'}</div>`;
     s += `<div><span class="lbl">年代</span> ${f.buildYear || '—'}</div>`;
-    s += `<div><span class="lbl">权属</span> ${colored(f.quanshu, quanshuColor(f.quanshu))}</div>`;
+    s += `<div><span class="lbl">权属</span> ${quanshuHtml(f.quanshu)}</div>`;
+    if (info && info['建筑类型']) s += `<div><span class="lbl">建筑类型</span> ${info['建筑类型']}</div>`;
+    if (info && info['楼栋总数']) s += `<div><span class="lbl">楼栋总数</span> ${info['楼栋总数']}</div>`;
     if (f.metro) s += `<div><span class="lbl">地铁</span></div>` + metroHtml(f.metro);
     s += '</div>';
     return s;
   }
 
-  function renderTable(groups, noteMap) {
+  function renderTable(groups, noteMap, xqData) {
     const area = document.getElementById('tableView');
     let html = '<div class="tbl-wrap"><table><thead><tr>';
-    const cols = ['小区', '户型', '面积', '单价', '总价', '楼层', '梯户比', '得房率', '总高', '结构', '朝向', '卖点/备注'];
+    const cols = ['小区', '户型', '面积', '单价', '总价', '楼层', '梯户比', '得房率', '总高', '结构', '朝向', '卖点/备注', '最近成交'];
     html += cols.map(c => `<th>${c}</th>`).join('') + '<th>操作</th></tr></thead><tbody>';
     groups.forEach((g, gi) => {
       const N = g.items.length;
+      const d = xqData[g.xiaoqu] || {};
+      const info = d.info || {};
+      const deals = d.deals || [];
       g.items.forEach((x, ii) => {
         const dr = derateRate(x);
         const notes = ((noteMap[g.xiaoqu] || {})[x.houseCode] || []).map(t => t.note);
@@ -159,7 +166,7 @@
           html += `<td rowspan="${N}" style="vertical-align:top;white-space:normal">`;
           html += `<a class="xg" href="xiaoqu.html?name=${encodeURIComponent(g.xiaoqu)}" target="_blank">${g.xiaoqu}</a>`;
           html += `<a href="javascript:void(0)" class="groupUp" data-gi="${gi}" style="color:#4fc3f7;text-decoration:none;margin-left:4px">↑</a><a href="javascript:void(0)" class="groupDown" data-gi="${gi}" style="color:#4fc3f7;text-decoration:none;margin-left:2px">↓</a>`;
-          html += xqInfoHtml(g.items[0]);
+          html += xqInfoHtml(g.items[0], info);
           html += `</td>`;
         }
         html += `<td>${x.room || '—'}</td>`;
@@ -173,6 +180,7 @@
         html += `<td>${colored(x.structure, structureColor(x.structure))}</td>`;
         html += `<td>${x.orientation || '—'}</td>`;
         html += `<td class="wrap" style="max-width:150px;line-height:1.6">${x.sellingPoint ? `<div>${x.sellingPoint}</div>` : ''}${notes.length ? notes.map(n => `<div class="note">📝 ${n}</div>`).join('') : (x.note ? `<div class="note">📝 ${x.note}</div>` : '')}</td>`;
+        html += `<td class="wrap">${deals[0] ? `${deals[0].签约日期 || ''} ${deals[0].成交价 || ''}`.trim() : '—'}</td>`;
         html += `<td class="op"><a href="${x.url || '#'}" target="_blank">🔗</a><a href="javascript:void(0)" class="rm danger" data-hc="${x.houseCode}">×</a><a href="javascript:void(0)" class="up" data-gi="${gi}" data-ii="${ii}">↑</a><a href="javascript:void(0)" class="down" data-gi="${gi}" data-ii="${ii}">↓</a></td>`;
         html += `</tr>`;
       });
@@ -181,14 +189,12 @@
     area.innerHTML = html;
   }
 
-  async function renderList(groups, noteMap, tagMap) {
+  async function renderList(groups, noteMap, tagMap, xqData) {
     const area = document.getElementById('listView');
     let html = '';
     for (const [gi, g] of groups.entries()) {
-      // 拉取小区档案（含房源图片、小区图片、完整信息）
-      let d = null;
-      try { const r = await fetch('data/ke_xiaoqu/' + encodeURIComponent(g.xiaoqu) + '.json?t=' + Date.now()); d = await r.json(); } catch (e) {}
-      const info = (d && d.info) || {};
+      const d = xqData[g.xiaoqu] || {};
+      const info = d.info || {};
       const curNoteMap = noteMap[g.xiaoqu] || {};
       const curTagMap = tagMap[g.xiaoqu] || {};
 
@@ -196,7 +202,7 @@
       const quanshu = info['交易权属'] || f.quanshu;
       html += `<div class="group">`;
       html += `<div class="group-head">🏘️ <a href="xiaoqu.html?name=${encodeURIComponent(g.xiaoqu)}" target="_blank">${g.xiaoqu}</a>（${g.items.length}套）<a href="javascript:void(0)" class="groupUp" data-gi="${gi}" style="color:#4fc3f7;text-decoration:none;margin-left:auto">↑</a><a href="javascript:void(0)" class="groupDown" data-gi="${gi}" style="color:#4fc3f7;text-decoration:none;margin-left:2px">↓</a></div>`;
-      html += `<div class="gh-info" style="margin-bottom:6px">容积率 ${colored(info['容积率'] || f.volumeRate, volColor(info['容积率'] || f.volumeRate))} · 绿化 ${info['绿化率'] || f.greening || '—'} · 物业 ${info['物业费'] || f.propertyFee || '—'} · ${info['建成年代'] || f.buildYear || '—'} · 权属 ${colored(quanshu, quanshuColor(quanshu))}</div>`;
+      html += `<div class="gh-info" style="margin-bottom:6px">建筑类型 ${info['建筑类型'] || '—'} · 楼栋 ${info['楼栋总数'] || '—'} · 容积率 ${colored(info['容积率'] || f.volumeRate, volColor(info['容积率'] || f.volumeRate))} · 绿化 ${info['绿化率'] || f.greening || '—'} · 物业 ${info['物业费'] || f.propertyFee || '—'} · ${info['建成年代'] || f.buildYear || '—'} · 权属 ${quanshuHtml(quanshu)}</div>`;
       if (f.metro) html += metroHtml(f.metro);
       // 小区图片
       const xqImgs = (d && d.localImages && d.localImages.length) ? d.localImages : [];
@@ -239,9 +245,10 @@
     const emptyHtml = '<div class="empty">（房源池为空，去小区里点「＋ 房源池」加入）</div>';
     if (!pool.length) { document.getElementById('tableView').innerHTML = emptyHtml; document.getElementById('listView').innerHTML = ''; return; }
     const groups = splitGroups(pool);
-    // 统一拉取实时备注 + 标签（表格/列表共用）
-    const noteMap = {}, tagMap = {}; // { [xiaoqu]: { [houseCode]: [...] } }
+    // 统一拉取小区档案 + 实时备注 + 标签（表格/列表共用）
+    const xqData = {}, noteMap = {}, tagMap = {}; // xqData: { [xiaoqu]: {info,deals,localImages,metro,houses} }
     for (const g of groups) {
+      try { const r = await fetch('data/ke_xiaoqu/' + encodeURIComponent(g.xiaoqu) + '.json?t=' + Date.now()); xqData[g.xiaoqu] = await r.json(); } catch (e) {}
       try {
         const nr = await apiReadJson('data/house_notes/' + encodeURIComponent(g.xiaoqu) + '.json');
         const m = {};
@@ -255,8 +262,8 @@
         tagMap[g.xiaoqu] = m;
       } catch (e) {}
     }
-    renderTable(groups, noteMap);
-    await renderList(groups, noteMap, tagMap);
+    renderTable(groups, noteMap, xqData);
+    await renderList(groups, noteMap, tagMap, xqData);
     bindEvents();
   }
 
