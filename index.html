@@ -1146,6 +1146,19 @@
       } catch (e) {}
     }
     document.getElementById('anzhiSelect').addEventListener('change', () => loadXiaoquArchives(false));
+    // 多行输入弹窗（支持回车换行）
+    function promptMultiline(title, defaultValue) {
+      return new Promise(resolve => {
+        const overlay = document.createElement('div');
+        overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:99999;display:flex;align-items:center;justify-content:center;padding:16px';
+        overlay.innerHTML = `<div style="background:#262a32;border-radius:10px;padding:16px;width:100%;max-width:420px;box-sizing:border-box"><div style="color:#fff;font-size:14px;margin-bottom:8px">${title}</div><textarea id="pmText" rows="5" style="width:100%;box-sizing:border-box;background:#1b1e24;border:1px solid rgba(255,255,255,0.25);border-radius:6px;color:#fff;padding:8px;font-size:14px;line-height:1.6;outline:none;resize:vertical">${defaultValue || ''}</textarea><div style="margin-top:10px;text-align:right"><button id="pmCancel" style="background:rgba(255,255,255,0.1);border:none;border-radius:6px;color:#fff;padding:6px 14px;font-size:13px;margin-right:8px;cursor:pointer">取消</button><button id="pmOk" style="background:#2e86de;border:none;border-radius:6px;color:#fff;padding:6px 14px;font-size:13px;cursor:pointer">确定</button></div></div>`;
+        document.body.appendChild(overlay);
+        const ta = overlay.querySelector('#pmText');
+        ta.focus();
+        overlay.querySelector('#pmCancel').onclick = () => { overlay.remove(); resolve(null); };
+        overlay.querySelector('#pmOk').onclick = () => { overlay.remove(); resolve(ta.value); };
+      });
+    }
     // 房源池（全局一份，横向对比表格）
     async function renderPool() {
       const listEl = document.getElementById('poolList');
@@ -1301,7 +1314,7 @@
             const tagsHtml = hTags2.map(t => `<span style="display:inline-block;background:rgba(139,195,74,0.15);color:#9ccc65;border:1px solid rgba(139,195,74,0.4);border-radius:10px;padding:1px 8px;font-size:11px;margin:2px 4px 2px 0">${t.name === '管理员' ? '' : t.name + '：'}${t.tag}<a href="javascript:void(0)" class="rmTagBtn" data-hc="${hc}" data-tag="${t.tag}" style="color:#e74c3c;margin-left:4px;text-decoration:none">×</a></span>`).join('');
             html += `<div style="margin-top:3px">${tagsHtml}<a href="javascript:void(0)" class="addTagBtn" data-hc="${hc}" style="color:#4fc3f7;font-size:11px;text-decoration:none">➕ 标签</a> <a href="javascript:void(0)" class="addHouseNote" data-hc="${hc}" style="color:#f0c060;font-size:11px;text-decoration:none">📝 备注</a> <a href="javascript:void(0)" class="addPool" data-hc="${hc}" style="color:#2ecc71;font-size:11px;text-decoration:none">＋ 房源池</a></div>`;
             const houseNotes = (houseNoteMap[hc] || []).filter(t => isAdmin || t.name === '管理员' || (myName && t.name === myName));
-            html += houseNotes.map(x => `<div style="color:${x.name === '管理员' ? '#ffd54f' : '#c9ccd3'};${x.name === '管理员' ? 'font-weight:bold' : ''};font-size:11px;margin-top:2px">📝 ${x.note}${(isAdmin || x.name === myName) ? ` <a href="javascript:void(0)" class="editHouseNote" data-hc="${hc}" data-note="${encodeURIComponent(x.note)}" data-time="${x.time || ''}" style="color:#4fc3f7;font-size:11px;text-decoration:none">✎</a> <a href="javascript:void(0)" class="delHouseNote" data-hc="${hc}" data-note="${encodeURIComponent(x.note)}" data-time="${x.time || ''}" style="color:#e74c3c;font-size:11px;text-decoration:none">×</a>` : ''}</div>`).join('');
+            html += houseNotes.map(x => `<div style="white-space:pre-wrap;color:${x.name === '管理员' ? '#ffd54f' : '#c9ccd3'};${x.name === '管理员' ? 'font-weight:bold' : ''};font-size:11px;margin-top:2px">📝 ${x.note}${(isAdmin || x.name === myName) ? ` <a href="javascript:void(0)" class="editHouseNote" data-hc="${hc}" data-note="${encodeURIComponent(x.note)}" data-time="${x.time || ''}" style="color:#4fc3f7;font-size:11px;text-decoration:none">✎</a> <a href="javascript:void(0)" class="delHouseNote" data-hc="${hc}" data-note="${encodeURIComponent(x.note)}" data-time="${x.time || ''}" style="color:#e74c3c;font-size:11px;text-decoration:none">×</a>` : ''}</div>`).join('');
             if (h.localImages && h.localImages.length) {
               html += `<div style="display:flex;overflow-x:auto;gap:4px;margin:4px 0">`;
               h.localImages.forEach(img => html += `<img src="data/ke_xiaoqu/images/${encodeURIComponent(d.name || name)}/${img}" style="width:120px;height:90px;object-fit:cover;border-radius:4px;flex-shrink:0">`);
@@ -1389,7 +1402,7 @@
         detail.querySelectorAll('.addHouseNote').forEach(btn => {
           btn.addEventListener('click', async () => {
             const hc = btn.dataset.hc;
-            const note = prompt('输入该房源的备注：');
+            const note = await promptMultiline('输入该房源的备注：');
             if (!note || !note.trim()) return;
             try {
               const res = await ghReadHouseNotes(name);
@@ -1443,7 +1456,7 @@
           btn.addEventListener('click', async () => {
             const oldNote = decodeURIComponent(btn.dataset.note);
             const time = btn.dataset.time;
-            const note = prompt('修改该房源的备注：', oldNote);
+            const note = await promptMultiline('修改该房源的备注：', oldNote);
             if (!note || !note.trim() || note === oldNote) return;
             try {
               const res = await ghReadHouseNotes(name);
