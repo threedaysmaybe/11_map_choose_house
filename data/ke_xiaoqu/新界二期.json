@@ -1,0 +1,64 @@
+{
+  "houses": [
+    {
+      "title": "成都武侯红牌楼新界二期 3室2厅 东北",
+      "room": "3室2厅",
+      "area": "123.89",
+      "taoneiArea": null,
+      "totalPrice": "215",
+      "unitPrice": "17355",
+      "floor": "高",
+      "totalFloors": "8",
+      "orientation": "东北",
+      "community": "新界二期",
+      "district": "武侯",
+      "board": "红牌楼",
+      "features": [
+        "满五",
+        "电梯"
+      ],
+      "tihu": "1梯2户",
+      "structure": "钢混结构",
+      "diya": "无抵押",
+      "chanquan": "非共有",
+      "buildingType": "板楼",
+      "huxingStructure": "平层",
+      "usage": "普通住宅",
+      "decoration": "",
+      "listTime": "2025年10月23日",
+      "lastTrade": "2018年09月01日",
+      "sellingPoint": "洋房一梯两户视野好、近大悦城、地铁三",
+      "fangben": "已上传房本照片",
+      "images": [
+        "https://ke-image.ljcdn.com/hdic-frame/standard_308dabc3-0376-455c-9652-3afb9a9a5ac7.png!m_fill,w_1000,h_750,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_WeU6ZNr35.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_HqaPSjyPB.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_308dabc3-0376-455c-9652-3afb9a9a5ac7.png!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_01q22BMKx.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_xqWrYhlmI.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_1FQMphVJj.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_ZN2B5MkwH.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106125084110.html",
+      "houseCode": "106125084110",
+      "localImages": [
+        "1788110972064-0-crr8.png",
+        "1788110972409-1-fa18.jpg",
+        "1788110972676-2-yrjr.jpg",
+        "1788110972919-3-ql2c.png",
+        "1788110973169-4-pkiw.jpg",
+        "1788110973482-5-fk3n.jpg",
+        "1788110973734-6-bu8x.jpg",
+        "1788110974021-7-k7u5.jpg"
+      ]
+    }
+  ],
+  "board": "红牌楼",
+  "district": "武侯",
+  "name": "新界二期",
+  "info": {},
+  "features": [
+    "满五",
+    "电梯"
+  ]
+}

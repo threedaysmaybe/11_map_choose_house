@@ -110,6 +110,33 @@
       "count": 31
     },
     {
+      "name": "鹭岛国际三期优质",
+      "board": "金沙",
+      "district": "金牛",
+      "anzhi": false,
+      "lon": 104.00808,
+      "lat": 30.648644,
+      "count": 0
+    },
+    {
+      "name": "鹭岛国际一二期优质",
+      "board": "金沙",
+      "district": "金牛",
+      "anzhi": false,
+      "lon": 104.009473,
+      "lat": 30.645629,
+      "count": 0
+    },
+    {
+      "name": "新界二期优质",
+      "board": "金沙",
+      "district": "金牛",
+      "anzhi": false,
+      "lon": 104.013092,
+      "lat": 30.631104,
+      "count": 0
+    },
+    {
       "name": "启明公寓",
       "board": "合江亭",
       "district": "锦江",
@@ -254,6 +281,15 @@
       "count": 9
     },
     {
+      "name": "新界二期",
+      "board": "红牌楼",
+      "district": "武侯",
+      "anzhi": false,
+      "lon": 104.012174,
+      "lat": 30.631215,
+      "count": 43
+    },
+    {
       "name": "新界三期",
       "board": "红牌楼",
       "district": "武侯",
@@ -368,6 +404,15 @@
       "anzhi": false,
       "lon": 104.00808,
       "lat": 30.648644,
+      "count": 0
+    },
+    {
+      "name": "鹭岛国际一二期",
+      "board": "外双楠",
+      "district": "武侯",
+      "anzhi": false,
+      "lon": 104.009473,
+      "lat": 30.645629,
       "count": 0
     },
     {
