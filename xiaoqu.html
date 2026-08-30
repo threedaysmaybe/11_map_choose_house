@@ -658,11 +658,14 @@
         const h = (d.houses || []).find(x => x.houseCode === hc);
         if (!h) { alert('未找到该房源'); return; }
         const info = d.info || {};
-        const metroAll = (d.metro || []).filter(m => {
+        const metrosRaw = d.metro || [];
+        let metrosNear = metrosRaw.filter(m => {
           const ds = m.distance || '';
           const dm = ds.includes('公里') ? parseFloat(ds) * 1000 : parseFloat(ds);
           return !isNaN(dm) && dm <= 1000;
-        }).map(m => `${m.name} ${m.distance}(${m.lines || ''})`).join('　');
+        });
+        if (!metrosNear.length && metrosRaw.length) metrosNear = [metrosRaw[0]]; // 1km 内没有就列最近一条
+        const metroAll = metrosNear.map(m => `${m.name} ${m.distance}(${m.lines || ''})`).join('　');
         const item = {
           houseCode: h.houseCode || '',
           xiaoqu: d.name || h.community || '',
