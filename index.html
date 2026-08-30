@@ -210,7 +210,7 @@
       <div style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.12)">
         <div class="title" id="poolTitle" style="font-size:13px;cursor:pointer;user-select:none">🏠 房源池（对比）<span id="poolToggle" style="float:right">▸</span></div>
         <div id="poolBody" style="display:none">
-          <button id="openPoolBtn" class="res-btn" style="margin-top:6px;width:100%">🔄 刷新房源池</button>
+          <button id="openPoolBtn" class="res-btn" style="margin-top:6px;width:100%">🏠 打开房源池（对比）</button>
           <div id="poolList" style="margin-top:6px;overflow-x:auto;max-height:320px"></div>
         </div>
       </div>
@@ -1172,7 +1172,7 @@
         });
       });
     }
-    document.getElementById('openPoolBtn').addEventListener('click', renderPool);
+    document.getElementById('openPoolBtn').addEventListener('click', () => { window.open('pool.html', '_blank'); });
     document.getElementById('xqSelect').addEventListener('change', async e => {
       const name = e.target.value;
       const detail = document.getElementById('xqDetail');
@@ -1420,10 +1420,14 @@
               room: h.room || '', area: h.area || '', unitPrice: h.unitPrice || '', totalPrice: h.totalPrice || '',
               floor: h.floor || '', tihu: h.tihu || '', taoneiArea: h.taoneiArea || '', totalFloors: h.totalFloors || '',
               structure: h.structure || '', orientation: h.orientation || '',
+              decoration: h.decoration || '', lastTrade: h.lastTrade || '', fangben: h.fangben || '',
               volumeRate: info['容积率'] || '', greening: info['绿化率'] || '', propertyFee: info['物业费'] || '',
               buildYear: info['建成年代'] || '', quanshu: info['交易权属'] || '',
+              houseCount: info['房屋总数'] || '', buildingCount: info['楼栋总数'] || '', developer: info['开发商'] || '',
               metro: metroAll,
               url: h.url || '', sellingPoint: h.sellingPoint || '', listTime: h.listTime || '',
+              note: (houseNoteMap[hc] || []).map(t => t.note).join('；'),
+              tags: (cloudTagMap[hc] || []).map(t => t.tag),
               time: new Date().toISOString(),
             };
             try {

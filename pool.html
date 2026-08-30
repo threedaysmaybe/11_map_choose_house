@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>房源池</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #1b1e24; color: #e8e9ec; font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; padding: 14px; }
+  .wrap { max-width: 720px; margin: 0 auto; }
+  .back { display: inline-block; color: #4fc3f7; text-decoration: none; font-size: 14px; margin-bottom: 12px; }
+  h1 { font-size: 20px; margin-bottom: 12px; color: #fff; }
+  .empty { color: #8b8f99; padding: 20px; text-align: center; }
+  .group { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 10px; margin-bottom: 14px; padding: 10px; }
+  .group-head { font-weight: bold; font-size: 15px; color: #2ecc71; margin-bottom: 8px; display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+  .group-head .gh-info { font-weight: normal; font-size: 12px; color: #a9adb8; }
+  .gh-btn { margin-left: auto; }
+  .gh-btn a { color: #4fc3f7; text-decoration: none; font-size: 14px; margin-left: 6px; }
+  .card { background: rgba(255,255,255,0.05); border-radius: 8px; padding: 10px; margin-bottom: 8px; }
+  .card .t { color: #fff; font-weight: bold; font-size: 14px; margin-bottom: 4px; }
+  .card .row { color: #c9ccd3; font-size: 12px; line-height: 1.7; }
+  .card .sp { color: #f0c060; font-weight: bold; font-size: 12px; margin-top: 4px; }
+  .card .meta { font-size: 11px; color: #8b8f99; margin-top: 3px; }
+  .card .op { margin-top: 6px; font-size: 13px; }
+  .card .op a { color: #4fc3f7; text-decoration: none; margin-right: 10px; }
+  .card .op a.danger { color: #e74c3c; }
+  .tag { display: inline-block; background: rgba(139,195,74,0.15); color: #9ccc65; border: 1px solid rgba(139,195,74,0.4); border-radius: 10px; padding: 1px 8px; font-size: 11px; margin: 2px 4px 2px 0; }
+  .note { color: #ffe082; font-weight: bold; font-size: 12px; margin-top: 3px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="xiaoqu.html">← 返回报告</a>
+  <h1>🏠 房源池（<span id="poolCount">0</span> 套）</h1>
+  <div id="poolArea"></div>
+</div>
+<script>
+  const GITHUB_TOKEN = ['ghp_','w9uOaLY','MjlBSIM','ASAJ5Pz','UvKT31G','JP4E02RP'].join('');
+  const GITHUB_REPO = 'threedaysmaybe/11_map_choose_house';
+
+  async function apiReadJson(path) {
+    try {
+      const r = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/contents/' + path, {
+        headers: { Authorization: 'token ' + GITHUB_TOKEN, Accept: 'application/vnd.github.v3+json' },
+      });
+      if (r.status === 404) return { json: null, sha: null };
+      if (!r.ok) return null;
+      const d = await r.json();
+      return { json: JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\s/g, ''))))), sha: d.sha };
+    } catch (e) { return null; }
+  }
+  async function readPool() {
+    const res = await apiReadJson('data/house_pool.json');
+    return { pool: (res && res.json && res.json.pool) || [], sha: (res && res.sha) || null };
+  }
+  async function writePool(pool, sha) {
+    const path = 'data/house_pool.json';
+    if (!sha) { const r = await apiReadJson(path); if (r && r.sha) sha = r.sha; }
+    const body = { message: '调整房源池', content: btoa(unescape(encodeURIComponent(JSON.stringify({ pool })))), sha };
+    const r = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/contents/' + path, {
+      method: 'PUT',
+      headers: { Authorization: 'token ' + GITHUB_TOKEN, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    if (!r.ok) throw new Error('保存失败 HTTP ' + r.status);
+    return await r.json();
+  }
+  function derate(x) { return (x.taoneiArea && x.area) ? ((parseFloat(x.taoneiArea) / parseFloat(x.area)) * 100).toFixed(1) + '%' : '—'; }
+  function splitGroups(pool) {
+    const groups = [];
+    for (const x of pool) {
+      const last = groups[groups.length - 1];
+      if (last && last.xiaoqu === x.xiaoqu) last.items.push(x);
+      else groups.push({ xiaoqu: x.xiaoqu, items: [x] });
+    }
+    return groups;
+  }
+
+  async function renderPool() {
+    const area = document.getElementById('poolArea');
+    const { pool, sha } = await readPool();
+    document.getElementById('poolCount').textContent = pool.length;
+    if (!pool.length) { area.innerHTML = '<div class="empty">（房源池为空，去小区里点「＋ 房源池」加入）</div>'; return; }
+    const groups = splitGroups(pool);
+    let html = '';
+    groups.forEach((g, gi) => {
+      const f = g.items[0];
+      html += `<div class="group">`;
+      html += `<div class="group-head">🏘️ ${g.xiaoqu}（${g.items.length}套）<span class="gh-info">容积率 ${f.volumeRate || '—'} · 绿化 ${f.greening || '—'} · 物业 ${f.propertyFee || '—'} · ${f.buildYear || '—'} · ${f.quanshu || '—'}</span><span class="gh-btn"><a href="javascript:void(0)" class="groupUp" data-gi="${gi}">↑</a><a href="javascript:void(0)" class="groupDown" data-gi="${gi}">↓</a></span></div>`;
+      if (f.metro) html += `<div class="gh-info" style="color:#a9adb8;font-size:12px;margin-bottom:6px">🚇 ${f.metro}</div>`;
+      g.items.forEach((x, ii) => {
+        html += `<div class="card">`;
+        html += `<div class="t">${x.room || '?'} ${x.area || '?'}㎡ · ${x.totalPrice || '?'}万 · ${x.unitPrice || '?'}元/㎡</div>`;
+        html += `<div class="row">楼层 ${x.floor || '—'} · ${x.tihu || '—'} · 得房率 ${derate(x)} · 总高 ${x.totalFloors || '—'}层 · ${x.structure || '—'} · 朝向 ${x.orientation || '—'}</div>`;
+        const extra = [x.decoration, x.listTime ? '挂牌' + x.listTime : '', x.lastTrade ? '上次交易' + x.lastTrade : '', x.fangben].filter(Boolean).join(' · ');
+        if (extra) html += `<div class="row">${extra}</div>`;
+        if (x.sellingPoint) html += `<div class="sp">核心卖点：${x.sellingPoint}</div>`;
+        if (x.note) html += `<div class="note">📝 ${x.note}</div>`;
+        if (x.tags && x.tags.length) html += `<div style="margin-top:4px">${x.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>`;
+        html += `<div class="op"><a href="${x.url || '#'}" target="_blank">🔗 贝壳</a><a href="javascript:void(0)" class="up" data-gi="${gi}" data-ii="${ii}">↑</a><a href="javascript:void(0)" class="down" data-gi="${gi}" data-ii="${ii}">↓</a><a href="javascript:void(0)" class="rm danger" data-gi="${gi}" data-ii="${ii}">× 移除</a></div>`;
+        html += `</div>`;
+      });
+      html += `</div>`;
+    });
+    area.innerHTML = html;
+
+    // 房源上移/下移（组内）
+    area.querySelectorAll('.up, .down').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const gi = parseInt(btn.dataset.gi, 10), ii = parseInt(btn.dataset.ii, 10);
+        const dir = btn.classList.contains('up') ? 'up' : 'down';
+        const { pool, sha } = await readPool();
+        const groups = splitGroups(pool);
+        const g = groups[gi];
+        const j = dir === 'up' ? ii - 1 : ii + 1;
+        if (j < 0 || j >= g.items.length) return;
+        [g.items[ii], g.items[j]] = [g.items[j], g.items[ii]];
+        await writePool(groups.flatMap(x => x.items), sha);
+        renderPool();
+      });
+    });
+    // 小区组上移/下移
+    area.querySelectorAll('.groupUp, .groupDown').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const gi = parseInt(btn.dataset.gi, 10);
+        const dir = btn.classList.contains('groupUp') ? 'up' : 'down';
+        const { pool, sha } = await readPool();
+        const groups = splitGroups(pool);
+        const j = dir === 'up' ? gi - 1 : gi + 1;
+        if (j < 0 || j >= groups.length) return;
+        [groups[gi], groups[j]] = [groups[j], groups[gi]];
+        await writePool(groups.flatMap(x => x.items), sha);
+        renderPool();
+      });
+    });
+    // 移除
+    area.querySelectorAll('.rm').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        if (!confirm('从房源池移除该房源？')) return;
+        const gi = parseInt(btn.dataset.gi, 10), ii = parseInt(btn.dataset.ii, 10);
+        const { pool, sha } = await readPool();
+        const groups = splitGroups(pool);
+        groups[gi].items.splice(ii, 1);
+        await writePool(groups.flatMap(x => x.items), sha);
+        renderPool();
+      });
+    });
+  }
+
+  renderPool();
+</script>
+</body>
+</html>

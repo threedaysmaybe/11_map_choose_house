@@ -674,10 +674,14 @@
           room: h.room || '', area: h.area || '', unitPrice: h.unitPrice || '', totalPrice: h.totalPrice || '',
           floor: h.floor || '', tihu: h.tihu || '', taoneiArea: h.taoneiArea || '', totalFloors: h.totalFloors || '',
           structure: h.structure || '', orientation: h.orientation || '',
+          decoration: h.decoration || '', lastTrade: h.lastTrade || '', fangben: h.fangben || '',
           volumeRate: info['容积率'] || '', greening: info['绿化率'] || '', propertyFee: info['物业费'] || '',
           buildYear: info['建成年代'] || '', quanshu: info['交易权属'] || '',
+          houseCount: info['房屋总数'] || '', buildingCount: info['楼栋总数'] || '', developer: info['开发商'] || '',
           metro: metroAll,
           url: h.url || '', sellingPoint: h.sellingPoint || '', listTime: h.listTime || '',
+          note: (houseNoteMap[hc] || []).map(t => t.note).join('；'),
+          tags: (cloudTagMap[hc] || []).map(t => t.tag),
           time: new Date().toISOString(),
         };
         try {
@@ -897,11 +901,7 @@
     });
   }
   document.getElementById('openPoolBtn').addEventListener('click', () => {
-    document.getElementById('reportArea').style.display = 'none';
-    document.getElementById('noteView').style.display = 'none';
-    document.getElementById('poolView').style.display = 'block';
-    window.scrollTo(0, 0);
-    renderPool();
+    location.href = 'pool.html';
   });
   document.getElementById('poolBack').addEventListener('click', () => {
     document.getElementById('poolView').style.display = 'none';
