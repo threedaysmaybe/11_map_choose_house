@@ -180,11 +180,12 @@ const server = http.createServer((req, res) => {
   // 智能抓取贝壳（自动识别所有打开的页面，有啥抓啥）
   if (req.method === 'POST' && req.url === '/fetch-ke-smart') {
     // 异步执行，避免阻塞 serve（否则抓取期间其它请求会 fail to fetch）
+    // stdio:'inherit'：子进程继承 serve 的 stdio，规避 Windows 下 pipe stdio 触发 libuv process_title 断言崩溃
     const { execFile } = require('child_process');
-    execFile(process.execPath, ['fetch_ke_smart.js'], { cwd: ROOT, timeout: 180000, maxBuffer: 1024 * 1024 * 10 }, (err, stdout) => {
+    execFile(process.execPath, ['fetch_ke_smart.js'], { cwd: ROOT, timeout: 180000, stdio: 'inherit' }, (err) => {
       res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-      if (err) res.end(JSON.stringify({ ok: false, msg: (stdout || '').trim() || err.message }));
-      else res.end(JSON.stringify({ ok: true, msg: (stdout || '').trim() }));
+      if (err) res.end(JSON.stringify({ ok: false, msg: err.message }));
+      else res.end(JSON.stringify({ ok: true, msg: '抓取完成（结果见 serve 日志）' }));
     });
     return;
   }
