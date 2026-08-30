@@ -308,6 +308,36 @@
       if (!r.ok) throw new Error('保存失败 HTTP ' + r.status);
       return await r.json();
     }
+    // GitHub 读房源备注
+    async function ghReadHouseNotes(name) {
+      const path = 'data/house_notes/' + encodeURIComponent(name) + '.json';
+      try {
+        const r = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/contents/' + path, {
+          headers: { Authorization: 'token ' + GITHUB_TOKEN, Accept: 'application/vnd.github.v3+json' },
+        });
+        if (r.status === 404) return { notes: [], sha: null };
+        if (!r.ok) return { notes: [], sha: null };
+        const d = await r.json();
+        const json = JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\s/g, '')))));
+        return { notes: json.notes || [], sha: d.sha };
+      } catch (e) { return { notes: [], sha: null }; }
+    }
+    // GitHub 写房源备注
+    async function ghWriteHouseNotes(name, notes, sha) {
+      const path = 'data/house_notes/' + encodeURIComponent(name) + '.json';
+      const body = {
+        message: '更新房源备注 ' + name,
+        content: btoa(unescape(encodeURIComponent(JSON.stringify({ notes })))),
+      };
+      if (sha) body.sha = sha;
+      const r = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/contents/' + path, {
+        method: 'PUT',
+        headers: { Authorization: 'token ' + GITHUB_TOKEN, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      if (!r.ok) throw new Error('保存失败 HTTP ' + r.status);
+      return await r.json();
+    }
     // GitHub 读所有小区标签（遍历 data/tags 目录）
     async function ghReadAllTags() {
       try {
@@ -1016,6 +1046,7 @@
     let tagInclude = new Set(); // 标签筛选：包含
     let tagExclude = new Set(); // 标签筛选：排除（反选）
     let cloudTagMap = {}; // 当前小区云端标签 { houseCode: [{name,tag,time}] }
+    let houseNoteMap = {}; // 当前小区云端房源备注 { houseCode: [{name,note,time}] }
     async function loadXiaoquArchives(forceAll) {
       const sel = document.getElementById('xqSelect');
       try {
@@ -1101,6 +1132,12 @@
         const tagRes = await ghReadTags(name);
         for (const t of tagRes.tags) {
           (cloudTagMap[t.houseCode] = cloudTagMap[t.houseCode] || []).push(t);
+        }
+        // 加载云端房源备注
+        houseNoteMap = {};
+        const hnRes = await ghReadHouseNotes(name);
+        for (const t of hnRes.notes) {
+          (houseNoteMap[t.houseCode] = houseNoteMap[t.houseCode] || []).push(t);
         }
         let html = `<div style="font-weight:bold;color:#fff;margin-bottom:4px">${d.name || name}</div>`;
         html += `<a href="xiaoqu.html?name=${encodeURIComponent(d.name || name)}" target="_blank" style="display:inline-block;margin-bottom:4px;color:#4fc3f7;text-decoration:none;font-size:12px">🔗 打开独立页面查看 →</a>`;
@@ -1192,7 +1229,9 @@
             // 用户标签（云端，数据版全局：显示所有人标签带名字）
             const hTags2 = (cloudTagMap[hc] || []);
             const tagsHtml = hTags2.map(t => `<span style="display:inline-block;background:rgba(139,195,74,0.15);color:#9ccc65;border:1px solid rgba(139,195,74,0.4);border-radius:10px;padding:1px 8px;font-size:11px;margin:2px 4px 2px 0">${t.name === '管理员' ? '' : t.name + '：'}${t.tag}<a href="javascript:void(0)" class="rmTagBtn" data-hc="${hc}" data-tag="${t.tag}" style="color:#e74c3c;margin-left:4px;text-decoration:none">×</a></span>`).join('');
-            html += `<div style="margin-top:3px">${tagsHtml}<a href="javascript:void(0)" class="addTagBtn" data-hc="${hc}" style="color:#4fc3f7;font-size:11px;text-decoration:none">➕ 标签</a></div>`;
+            html += `<div style="margin-top:3px">${tagsHtml}<a href="javascript:void(0)" class="addTagBtn" data-hc="${hc}" style="color:#4fc3f7;font-size:11px;text-decoration:none">➕ 标签</a> <a href="javascript:void(0)" class="addHouseNote" data-hc="${hc}" style="color:#f0c060;font-size:11px;text-decoration:none">📝 备注</a></div>`;
+            const houseNotes = (houseNoteMap[hc] || []).filter(t => isAdmin || t.name === '管理员' || (myName && t.name === myName));
+            html += houseNotes.map(x => `<div style="color:${x.name === '管理员' ? '#ffe082' : '#c9ccd3'};${x.name === '管理员' ? 'font-weight:bold' : ''};font-size:11px;margin-top:2px">📝 ${x.note}</div>`).join('');
             if (h.localImages && h.localImages.length) {
               html += `<div style="display:flex;overflow-x:auto;gap:4px;margin:4px 0">`;
               h.localImages.forEach(img => html += `<img src="data/ke_xiaoqu/images/${encodeURIComponent(d.name || name)}/${img}" style="width:120px;height:90px;object-fit:cover;border-radius:4px;flex-shrink:0">`);
@@ -1274,6 +1313,20 @@
               if (!v) { alert('请输入标签'); return; }
               doAdd(v);
             });
+          });
+        });
+        // 房源备注（数据版=管理员，写全局）
+        detail.querySelectorAll('.addHouseNote').forEach(btn => {
+          btn.addEventListener('click', async () => {
+            const hc = btn.dataset.hc;
+            const note = prompt('输入该房源的备注：');
+            if (!note || !note.trim()) return;
+            try {
+              const res = await ghReadHouseNotes(name);
+              const notes = res.notes.concat([{ houseCode: hc, name: '管理员', note: note.trim(), time: new Date().toISOString() }]);
+              await ghWriteHouseNotes(name, notes, res.sha);
+              document.getElementById('xqSelect').dispatchEvent(new Event('change'));
+            } catch (e) { alert('备注失败：' + e.message); }
           });
         });
         // 套内面积输入框（回车保存，算得房率）
