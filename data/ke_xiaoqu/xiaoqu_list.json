@@ -290,6 +290,15 @@
       "count": 11
     },
     {
+      "name": "盘谷花园",
+      "board": "棕北",
+      "district": "武侯",
+      "anzhi": true,
+      "lon": 104.066672,
+      "lat": 30.625941,
+      "count": 28
+    },
+    {
       "name": "盛隆街2号",
       "board": "棕北",
       "district": "武侯",
