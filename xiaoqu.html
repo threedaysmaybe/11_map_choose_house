@@ -495,10 +495,11 @@
     if (item && item.lon && item.lat) focusXiaoqu(item.lon, item.lat);
   }
 
-  async function load(n) {
+  async function load(n, presetD) {
     if (!n) { document.getElementById('content').innerHTML = '<div class="card">请在上方选择小区查看报告</div>'; document.getElementById('xqName').textContent = '小区报告'; document.getElementById('xqSub').textContent = ''; return; }
-    const r = await fetch('data/ke_xiaoqu/' + encodeURIComponent(n) + '.json?t=' + Date.now());
-    const d = await r.json();
+    let d;
+    if (presetD) { d = presetD; }
+    else { const r = await fetch('data/ke_xiaoqu/' + encodeURIComponent(n) + '.json?t=' + Date.now()); d = await r.json(); }
     const info = d.info || {};
     // 加载云端标签（个人隔离）
     cloudTagMap = {};
@@ -755,7 +756,7 @@
         try {
           await ghWriteXiaoqu(d.name || n, houses);
           d.houses = houses; // 本地立即更新
-          load(n); // 带时间戳重新加载，绕过 CDN 缓存
+          load(n, d); // 用本地数据重渲染，跳过 CDN 缓存
         } catch (e) { alert('调整失败：' + e.message); }
       });
     });
@@ -770,7 +771,7 @@
           const houses = (d.houses || []).filter(x => x.houseCode !== hc);
           await ghWriteXiaoqu(d.name || n, houses);
           d.houses = houses;
-          load(n);
+          load(n, d); // 用本地数据重渲染，跳过 CDN 缓存
         } catch (e) { alert('删除失败：' + e.message); }
       });
     });
