@@ -23,7 +23,7 @@ async function grabXiaoquDetail(page, boardNames) {
     const txt = document.body.innerText.replace(/\s+/g, ' ');
     const grab = re => { const m = txt.match(re); return m ? m[1].trim() : null; };
     // 小区名（从标题/页头）
-    const name = grab(/小区大全.*?([\u4e00-\u9fa5]{2,8}小区)/) || grab(/([\u4e00-\u9fa5]{2,8}小区)(?:房价|二手房|详情|大全)/) || (document.querySelector('.detailTitle, .xiaoquTitle, h1')?.textContent || '').replace(/[·\s·]/g, '');
+    const name = grab(/小区大全.*?([\u4e00-\u9fa5]{2,8}小区)/) || grab(/([\u4e00-\u9fa5]{2,8}小区)(?:房价|二手房|详情|大全)/) || grab(/([\u4e00-\u9fa5A-Za-z0-9·]{2,14}?)(?:房价|二手房|租房)/) || (document.querySelector('.detailTitle, .xiaoquTitle, h1')?.textContent || '').replace(/[·\s·]/g, '');
     // 均价
     const price = grab(/([\d,]+)元\/㎡/);
     // label-value 字段

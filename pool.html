@@ -150,27 +150,28 @@
 
   function renderTable(groups, noteMap, xqData, xqNoteMap) {
     const area = document.getElementById('tableView');
-    const cols = ['户型', '面积', '单价', '总价', '楼层', '梯户比', '得房率', '总高', '结构', '朝向', '卖点/备注', '最近成交'];
-    const colCount = cols.length + 1; // + 操作列
     let html = '<div class="tbl-wrap"><table><thead><tr>';
+    const cols = ['小区', '户型', '面积', '单价', '总价', '楼层', '梯户比', '得房率', '总高', '结构', '朝向', '卖点/备注', '最近成交'];
     html += cols.map(c => `<th>${c}</th>`).join('') + '<th>操作</th></tr></thead><tbody>';
     groups.forEach((g, gi) => {
+      const N = g.items.length;
       const d = xqData[g.xiaoqu] || {};
       const info = d.info || {};
       const deals = d.deals || [];
       const xqNotes = xqNoteMap[g.xiaoqu] || [];
       const f = g.items[0];
-      // 小区信息行（跨整表，不占用列宽）
-      html += `<tr style="background:rgba(255,255,255,0.04)"><td colspan="${colCount}" style="white-space:normal;padding:8px 6px">`;
-      html += `<div style="margin-bottom:4px"><a class="xg" href="xiaoqu.html?name=${encodeURIComponent(g.xiaoqu)}" target="_blank" style="font-size:14px">${g.xiaoqu}</a><a href="javascript:void(0)" class="groupUp" data-gi="${gi}" style="color:#4fc3f7;text-decoration:none;margin-left:4px">↑</a><a href="javascript:void(0)" class="groupDown" data-gi="${gi}" style="color:#4fc3f7;text-decoration:none;margin-left:2px">↓</a></div>`;
-      html += xqInfoHtml(f, info);
-      if (xqNotes.length) html += xqNotes.map(n => `<div class="note" style="white-space:pre-wrap;margin-top:4px">📝 ${n}</div>`).join('');
-      html += `</td></tr>`;
-      // 房源行
       g.items.forEach((x, ii) => {
         const dr = derateRate(x);
         const notes = ((noteMap[g.xiaoqu] || {})[x.houseCode] || []).map(t => t.note);
         html += `<tr>`;
+        if (ii === 0) {
+          html += `<td rowspan="${N}" style="vertical-align:top;white-space:normal">`;
+          html += `<a class="xg" href="xiaoqu.html?name=${encodeURIComponent(g.xiaoqu)}" target="_blank">${g.xiaoqu}</a>`;
+          html += `<a href="javascript:void(0)" class="groupUp" data-gi="${gi}" style="color:#4fc3f7;text-decoration:none;margin-left:4px">↑</a><a href="javascript:void(0)" class="groupDown" data-gi="${gi}" style="color:#4fc3f7;text-decoration:none;margin-left:2px">↓</a>`;
+          html += xqInfoHtml(f, info);
+          if (xqNotes.length) html += xqNotes.map(n => `<div class="note" style="white-space:pre-wrap;margin-top:4px">📝 ${n}</div>`).join('');
+          html += `</td>`;
+        }
         html += `<td>${x.room || '—'}</td>`;
         html += `<td>${x.area || '—'}</td>`;
         html += `<td>${x.unitPrice || '—'}</td>`;
