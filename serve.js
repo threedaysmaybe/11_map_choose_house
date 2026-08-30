@@ -349,6 +349,29 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // 写小区房源顺序/删除到本地文件（电脑端报告页操作时同步本地，刷新后不丢）
+  if (req.method === 'POST' && req.url === '/write-xiaoqu') {
+    let body = '';
+    req.on('data', c => body += c);
+    req.on('end', () => {
+      try {
+        const { name, houses } = JSON.parse(body);
+        if (!name || !Array.isArray(houses)) { res.end(JSON.stringify({ ok: false, msg: '参数错误' })); return; }
+        const file = path.join(ROOT, 'data', 'ke_xiaoqu', name + '.json');
+        if (!fs.existsSync(file)) { res.end(JSON.stringify({ ok: false, msg: '未找到该小区档案' })); return; }
+        const d = JSON.parse(fs.readFileSync(file, 'utf8'));
+        d.houses = houses;
+        fs.writeFileSync(file, JSON.stringify(d, null, 2));
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ ok: true }));
+      } catch (e) {
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ ok: false, msg: e.message }));
+      }
+    });
+    return;
+  }
+
   // 设置房源套内面积（用户手动输入，算得房率）
   if (req.method === 'POST' && req.url === '/set-taonei-area') {
     let body = '';

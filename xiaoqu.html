@@ -192,6 +192,10 @@
       body: JSON.stringify(body),
     });
     if (!r.ok) throw new Error('保存失败 HTTP ' + r.status);
+    // 同时写本地文件（电脑端通过 serve.js 打开时同步，刷新/切小区后不丢）
+    try {
+      await fetch('/write-xiaoqu', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, houses }) });
+    } catch (e) {}
     return await r.json();
   }
   // GitHub 读标签（内存缓存 + api 实时）
@@ -648,7 +652,7 @@
           const tags = res.tags.concat([{ houseCode: hc, name: author, tag: tag.trim(), time: new Date().toISOString() }]);
           await ghWriteTags(n, tags, res.sha);
           refreshTagFilter(); // 立即刷新标签筛选列表
-          load(n);
+          load(n, d); // 用本地数据重渲染，保留已调整的顺序
         } catch (e) { alert(e.message); }
       });
     });
@@ -706,7 +710,7 @@
           const notes = res.notes.concat([{ houseCode: hc, name: author, note: note.trim(), time: new Date().toISOString() }]);
           const result = await ghWriteHouseNotes(n, notes, res.sha);
           houseNotesCache[n] = { notes, sha: result.content.sha };
-          load(n);
+          load(n, d); // 用本地数据重渲染，保留已调整的顺序
         } catch (e) { alert('备注失败：' + e.message); }
       });
     });
@@ -723,7 +727,7 @@
           const notes = res.notes.map(x => (x.note === oldNote && (x.time || '') === time) ? { ...x, note: note.trim(), time: new Date().toISOString() } : x);
           const result = await ghWriteHouseNotes(n, notes, res.sha);
           houseNotesCache[n] = { notes, sha: result.content.sha };
-          load(n);
+          load(n, d); // 用本地数据重渲染，保留已调整的顺序
         } catch (e) { alert('修改失败：' + e.message); }
       });
     });
@@ -739,7 +743,7 @@
           const notes = res.notes.filter(x => !(x.note === note && (x.time || '') === time));
           const result = await ghWriteHouseNotes(n, notes, res.sha);
           houseNotesCache[n] = { notes, sha: result.content.sha };
-          load(n);
+          load(n, d); // 用本地数据重渲染，保留已调整的顺序
         } catch (e) { alert('删除失败：' + e.message); }
       });
     });
