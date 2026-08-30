@@ -91,7 +91,7 @@ const server = http.createServer((req, res) => {
   if (req.method === 'POST' && req.url === '/set-building-height') {
     let body = '';
     req.on('data', c => body += c);
-    req.on('end', () => {
+    req.on('end', async () => {
       try {
         const { id, floors } = JSON.parse(body);
         const fl = parseFloat(floors);
@@ -100,27 +100,27 @@ const server = http.createServer((req, res) => {
           res.end(JSON.stringify({ ok: false, msg: '参数错误' }));
           return;
         }
+        const fsx = fs.promises;
         // 记录到 manual_heights.json
         const mf = path.join(ROOT, 'data', 'manual_heights.json');
         let manual = {};
-        if (fs.existsSync(mf)) manual = JSON.parse(fs.readFileSync(mf, 'utf8'));
+        if (fs.existsSync(mf)) manual = JSON.parse(await fsx.readFile(mf, 'utf8'));
         manual[id] = fl;
-        fs.writeFileSync(mf, JSON.stringify(manual));
-        // 更新 buildings.geojson
+        await fsx.writeFile(mf, JSON.stringify(manual));
+        // 更新 buildings.geojson（24MB，异步读写避免阻塞 serve 事件循环）
         const bf = path.join(ROOT, 'data', 'buildings.geojson');
-        const b = JSON.parse(fs.readFileSync(bf, 'utf8'));
+        const b = JSON.parse(await fsx.readFile(bf, 'utf8'));
         const f = b.features.find(x => String(x.id) === String(id));
         if (!f) { res.end(JSON.stringify({ ok: false, msg: '未找到该楼栋' })); return; }
         f.properties.height = Math.round(fl * 3);
         f.properties.levels = fl;
         f.properties.heightSource = 'manual';
-        fs.writeFileSync(bf, JSON.stringify(b));
+        await fsx.writeFile(bf, JSON.stringify(b));
         // 先响应，瓦片后台生成（不阻塞前端等待）
         res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
         res.end(JSON.stringify({ ok: true, msg: '已设为 ' + fl + ' 层，正在后台渲染…' }));
         const { execFile } = require('child_process');
         execFile(process.execPath, ['generate_tiles.js'], { cwd: ROOT, timeout: 120000 }, () => {});
-        return;
       } catch (e) {
         res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
         res.end(JSON.stringify({ ok: false, msg: e.message }));
@@ -133,16 +133,17 @@ const server = http.createServer((req, res) => {
   if (req.method === 'POST' && req.url === '/fix-building') {
     let body = '';
     req.on('data', c => body += c);
-    req.on('end', () => {
+    req.on('end', async () => {
       try {
         const { id, name, floors } = JSON.parse(body);
         if (!id) { res.end(JSON.stringify({ ok: false, msg: '缺少 id' })); return; }
+        const fsx = fs.promises;
         const ff = path.join(ROOT, 'data', 'manual_fixes.json');
         let fixes = {};
-        if (fs.existsSync(ff)) fixes = JSON.parse(fs.readFileSync(ff, 'utf8'));
+        if (fs.existsSync(ff)) fixes = JSON.parse(await fsx.readFile(ff, 'utf8'));
         const entry = fixes[id] || {};
         const bf = path.join(ROOT, 'data', 'buildings.geojson');
-        const b = JSON.parse(fs.readFileSync(bf, 'utf8'));
+        const b = JSON.parse(await fsx.readFile(bf, 'utf8'));
         const f = b.features.find(x => String(x.id) === String(id));
         if (!f) { res.end(JSON.stringify({ ok: false, msg: '未找到该楼栋' })); return; }
         const done = [];
@@ -161,14 +162,13 @@ const server = http.createServer((req, res) => {
         }
         if (!done.length) { res.end(JSON.stringify({ ok: false, msg: '未提供 name 或 floors' })); return; }
         fixes[id] = entry;
-        fs.writeFileSync(ff, JSON.stringify(fixes));
-        fs.writeFileSync(bf, JSON.stringify(b));
+        await fsx.writeFile(ff, JSON.stringify(fixes));
+        await fsx.writeFile(bf, JSON.stringify(b));
         // 先响应，瓦片后台生成（不阻塞前端等待）
         res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
         res.end(JSON.stringify({ ok: true, msg: '已修正 ' + done.join('，') + '，正在后台渲染…' }));
         const { execFile } = require('child_process');
         execFile(process.execPath, ['generate_tiles.js'], { cwd: ROOT, timeout: 120000 }, () => {});
-        return;
       } catch (e) {
         res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
         res.end(JSON.stringify({ ok: false, msg: e.message }));
