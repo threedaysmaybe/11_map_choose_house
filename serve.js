@@ -308,6 +308,38 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // 调整房源顺序（上移/下移）
+  if (req.method === 'POST' && req.url === '/reorder-houses') {
+    let body = '';
+    req.on('data', c => body += c);
+    req.on('end', () => {
+      try {
+        const { name, hi, dir } = JSON.parse(body);
+        if (!name) { res.end(JSON.stringify({ ok: false, msg: '缺少小区名' })); return; }
+        const file = path.join(ROOT, 'data', 'ke_xiaoqu', name + '.json');
+        if (!fs.existsSync(file)) { res.end(JSON.stringify({ ok: false, msg: '未找到该小区档案' })); return; }
+        const d = JSON.parse(fs.readFileSync(file, 'utf8'));
+        const houses = d.houses || [];
+        const i = parseInt(hi, 10);
+        const j = dir === 'up' ? i - 1 : i + 1;
+        if (i >= 0 && j >= 0 && i < houses.length && j < houses.length) {
+          const tmp = houses[i];
+          houses[i] = houses[j];
+          houses[j] = tmp;
+          fs.writeFileSync(file, JSON.stringify(d, null, 2));
+          res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+          res.end(JSON.stringify({ ok: true, msg: '已调整顺序' }));
+        } else {
+          res.end(JSON.stringify({ ok: false, msg: '已到边界，无法移动' }));
+        }
+      } catch (e) {
+        res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+        res.end(JSON.stringify({ ok: false, msg: e.message }));
+      }
+    });
+    return;
+  }
+
   // 设置房源套内面积（用户手动输入，算得房率）
   if (req.method === 'POST' && req.url === '/set-taonei-area') {
     let body = '';

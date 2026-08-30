@@ -1188,7 +1188,7 @@
             }
             const extraTxt = [h.buildingType, h.huxingStructure, h.decoration, h.listTime ? '挂牌' + h.listTime : '', h.lastTrade ? '上次交易' + h.lastTrade : '', h.fangben].filter(Boolean).map(t => ` · ${t}`).join('');
             const spTxt = h.sellingPoint ? ` · <span style="color:#f0c060;font-weight:bold">[${h.sellingPoint}]</span>` : '';
-            html += `<div style="color:#a9adb8">${h.room} ${h.area}㎡ ${h.totalPrice}万 ${h.orientation}${structureTxt}${floors ? ' · ' + floors : ''}${deFang}${tihuHtml}${diyaTxt}${chanquanTxt}${usageTxt}${extraTxt}${spTxt}${link} <a href="javascript:void(0)" class="delHouseBtn" data-hc="${hc}" data-hi="${hi}" style="color:#e74c3c;font-size:11px;margin-left:6px">🗑 删除</a></div>`;
+            html += `<div style="color:#a9adb8">${h.room} ${h.area}㎡ ${h.totalPrice}万 ${h.orientation}${structureTxt}${floors ? ' · ' + floors : ''}${deFang}${tihuHtml}${diyaTxt}${chanquanTxt}${usageTxt}${extraTxt}${spTxt}${link} <a href="javascript:void(0)" class="upHouseBtn" data-hi="${hi}" style="color:#4fc3f7;font-size:13px;margin-left:6px;text-decoration:none">↑</a><a href="javascript:void(0)" class="downHouseBtn" data-hi="${hi}" style="color:#4fc3f7;font-size:13px;margin-left:3px;text-decoration:none">↓</a><a href="javascript:void(0)" class="delHouseBtn" data-hc="${hc}" data-hi="${hi}" style="color:#e74c3c;font-size:11px;margin-left:6px">🗑 删除</a></div>`;
             // 用户标签（云端，数据版全局：显示所有人标签带名字）
             const hTags2 = (cloudTagMap[hc] || []);
             const tagsHtml = hTags2.map(t => `<span style="display:inline-block;background:rgba(139,195,74,0.15);color:#9ccc65;border:1px solid rgba(139,195,74,0.4);border-radius:10px;padding:1px 8px;font-size:11px;margin:2px 4px 2px 0">${t.name + '：' + t.tag}<a href="javascript:void(0)" class="rmTagBtn" data-hc="${hc}" data-tag="${t.tag}" style="color:#e74c3c;margin-left:4px;text-decoration:none">×</a></span>`).join('');
@@ -1219,6 +1219,20 @@
                 else alert('删除失败：' + (dd.msg || ''));
               })
               .catch(e => alert('删除失败：' + e.message));
+          });
+        });
+        // 上移/下移房源
+        detail.querySelectorAll('.upHouseBtn, .downHouseBtn').forEach(btn => {
+          btn.addEventListener('click', () => {
+            const hi = parseInt(btn.dataset.hi, 10);
+            const dir = btn.classList.contains('upHouseBtn') ? 'up' : 'down';
+            fetch('/reorder-houses', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name, hi, dir }) })
+              .then(r => r.json())
+              .then(dd => {
+                if (dd.ok) document.getElementById('xqSelect').dispatchEvent(new Event('change'));
+                else alert(dd.msg || '移动失败');
+              })
+              .catch(e => alert('移动失败：' + e.message));
           });
         });
         // 移除标签（云端）

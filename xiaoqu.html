@@ -164,6 +164,29 @@
     notesCache[name] = { notes, sha: result.content.sha }; // 更新缓存
     return result;
   }
+  // GitHub 写小区档案（调整房源顺序）
+  async function ghWriteXiaoqu(name, houses) {
+    const path = 'data/ke_xiaoqu/' + encodeURIComponent(name) + '.json';
+    const r0 = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/contents/' + path, {
+      headers: { Authorization: 'token ' + GITHUB_TOKEN, Accept: 'application/vnd.github.v3+json' },
+    });
+    if (!r0.ok) throw new Error('读取档案失败 HTTP ' + r0.status);
+    const d0 = await r0.json();
+    const full = JSON.parse(decodeURIComponent(escape(atob(d0.content.replace(/\s/g, '')))));
+    full.houses = houses;
+    const body = {
+      message: '调整房源顺序 ' + name,
+      content: btoa(unescape(encodeURIComponent(JSON.stringify(full)))),
+      sha: d0.sha,
+    };
+    const r = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/contents/' + path, {
+      method: 'PUT',
+      headers: { Authorization: 'token ' + GITHUB_TOKEN, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    if (!r.ok) throw new Error('保存失败 HTTP ' + r.status);
+    return await r.json();
+  }
   // GitHub 读标签（内存缓存 + api 实时）
   async function ghReadTags(name) {
     if (tagsCache[name]) return tagsCache[name];
@@ -462,7 +485,7 @@
     // 房源（含户型图）
     if (d.houses && d.houses.length) {
       html += `<div class="card"><h2>在售房源（${d.houses.length} 套）</h2>`;
-      d.houses.forEach(h => {
+      d.houses.forEach((h, hi) => {
         const hc = h.houseCode || '';
         const hTags = (cloudTagMap[hc] || []).filter(t => isAdmin || t.name === '管理员' || (myName && t.name === myName)).map(t => t.tag);
         if (tagInclude.size && ![...tagInclude].every(t => hTags.includes(t))) return;
@@ -513,7 +536,7 @@
         // 核心卖点：标黄加粗
         const spHtml = h.sellingPoint ? `<div style="color:#f0c060;font-weight:bold;font-size:12px;margin-top:4px;line-height:1.5">核心卖点：${h.sellingPoint}</div>` : '';
         // 信息放图片前面，单独一行
-        html += `<div style="margin-bottom:6px;flex-basis:100%"><div style="color:#fff;font-weight:bold">${h.room || '?'} ${h.area || '?'}㎡${floors}${deFang}${tihuHtml}</div><div>总价 ${h.totalPrice || '?'}万 · ${h.unitPrice || '?'}元/平 ${link}</div><div><span class="tag">${h.orientation || '朝向?'}</span><span class="tag">${h.floor || '?'}楼层</span>${structureTag}${diyaHtml}${chanquanHtml}${usageHtml}${extraTags}</div>${spHtml}</div>`;
+        html += `<div style="margin-bottom:6px;flex-basis:100%"><div style="color:#fff;font-weight:bold">${h.room || '?'} ${h.area || '?'}㎡${floors}${deFang}${tihuHtml}</div><div>总价 ${h.totalPrice || '?'}万 · ${h.unitPrice || '?'}元/平 ${link} <a href="javascript:void(0)" class="xqUpHouse" data-hi="${hi}" style="color:#4fc3f7;font-size:14px;text-decoration:none">↑</a> <a href="javascript:void(0)" class="xqDownHouse" data-hi="${hi}" style="color:#4fc3f7;font-size:14px;text-decoration:none">↓</a></div><div><span class="tag">${h.orientation || '朝向?'}</span><span class="tag">${h.floor || '?'}楼层</span>${structureTag}${diyaHtml}${chanquanHtml}${usageHtml}${extraTags}</div>${spHtml}</div>`;
         // 标签（云端，个人隔离，管理员看全部）
         const hTags3 = (cloudTagMap[hc] || []).filter(t => isAdmin || t.name === '管理员' || (myName && t.name === myName));
         const xqTagsHtml = hTags3.map(t => `<span style="display:inline-block;background:rgba(139,195,74,0.15);color:#9ccc65;border:1px solid rgba(139,195,74,0.4);border-radius:10px;padding:1px 8px;font-size:11px;margin:2px 4px 2px 0">${isAdmin ? t.name + '：' : ''}${t.tag}</span>`).join('');
@@ -546,6 +569,21 @@
           refreshTagFilter(); // 立即刷新标签筛选列表
           load(n);
         } catch (e) { alert(e.message); }
+      });
+    });
+    // ---- 房源上移/下移 ----
+    document.querySelectorAll('.xqUpHouse, .xqDownHouse').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const hi = parseInt(btn.dataset.hi, 10);
+        const dir = btn.classList.contains('xqUpHouse') ? 'up' : 'down';
+        const houses = (d.houses || []).slice();
+        const j = dir === 'up' ? hi - 1 : hi + 1;
+        if (hi < 0 || j < 0 || hi >= houses.length || j >= houses.length) { alert('已到边界'); return; }
+        const tmp = houses[hi]; houses[hi] = houses[j]; houses[j] = tmp;
+        try {
+          await ghWriteXiaoqu(d.name || n, houses);
+          load(n);
+        } catch (e) { alert('调整失败：' + e.message); }
       });
     });
     // ---- 云端备注逻辑 ----
