@@ -107,7 +107,20 @@
   function diyaColor(s) { return s === '无抵押' ? '#2ecc71' : '#e74c3c'; }
   function chanquanColor(s) { return s === '非共有' ? '#2ecc71' : '#f0c060'; }
   function usageColor(s) { return s === '普通住宅' ? '#2ecc71' : '#e74c3c'; }
+  function quanshuColor(s) {
+    if (!s) return '';
+    if (/拆迁|回迁|安置/.test(s)) return '#e74c3c';   // 拆迁/回迁/安置 红
+    if (/公房|房改|经适|集资/.test(s)) return '#f0c060'; // 公房类 黄
+    if (/商品房|普通住宅/.test(s)) return '#2ecc71';   // 商品房 绿
+    return '';
+  }
   function colored(v, color) { return color ? `<span style="color:${color};font-weight:bold">${v || '—'}</span>` : (v || '—'); }
+  function metroHtml(metro) {
+    if (!metro) return '';
+    const arr = String(metro).split(/[　\s]+/).filter(Boolean);
+    if (!arr.length) return '';
+    return '<div class="xq-info">' + arr.map(m => `<div style="padding-left:10px;text-indent:-10px">🚇 ${m}</div>`).join('') + '</div>';
+  }
 
   function splitGroups(pool) {
     const groups = [];
@@ -125,13 +138,13 @@
     s += `<div><span class="lbl">绿化</span> ${f.greening || '—'}</div>`;
     s += `<div><span class="lbl">物业</span> ${f.propertyFee || '—'}</div>`;
     s += `<div><span class="lbl">年代</span> ${f.buildYear || '—'}</div>`;
-    s += `<div><span class="lbl">权属</span> ${f.quanshu || '—'}</div>`;
-    if (f.metro) s += `<div><span class="lbl">地铁</span> ${f.metro}</div>`;
+    s += `<div><span class="lbl">权属</span> ${colored(f.quanshu, quanshuColor(f.quanshu))}</div>`;
+    if (f.metro) s += `<div><span class="lbl">地铁</span></div>` + metroHtml(f.metro);
     s += '</div>';
     return s;
   }
 
-  function renderTable(groups) {
+  function renderTable(groups, noteMap) {
     const area = document.getElementById('tableView');
     let html = '<div class="tbl-wrap"><table><thead><tr>';
     const cols = ['小区', '户型', '面积', '单价', '总价', '楼层', '梯户比', '得房率', '总高', '结构', '朝向', '卖点/备注'];
@@ -140,9 +153,10 @@
       const N = g.items.length;
       g.items.forEach((x, ii) => {
         const dr = derateRate(x);
+        const notes = ((noteMap[g.xiaoqu] || {})[x.houseCode] || []).map(t => t.note);
         html += `<tr>`;
         if (ii === 0) {
-          html += `<td rowspan="${N}" style="vertical-align:top;white-space:normal;min-width:150px">`;
+          html += `<td rowspan="${N}" style="vertical-align:top;white-space:normal">`;
           html += `<a class="xg" href="xiaoqu.html?name=${encodeURIComponent(g.xiaoqu)}" target="_blank">${g.xiaoqu}</a>`;
           html += `<a href="javascript:void(0)" class="groupUp" data-gi="${gi}" style="color:#4fc3f7;text-decoration:none;margin-left:4px">↑</a><a href="javascript:void(0)" class="groupDown" data-gi="${gi}" style="color:#4fc3f7;text-decoration:none;margin-left:2px">↓</a>`;
           html += xqInfoHtml(g.items[0]);
@@ -158,7 +172,7 @@
         html += `<td>${x.totalFloors || '—'}层</td>`;
         html += `<td>${colored(x.structure, structureColor(x.structure))}</td>`;
         html += `<td>${x.orientation || '—'}</td>`;
-        html += `<td class="wrap" style="max-width:150px;line-height:1.6">${x.sellingPoint ? `<div>${x.sellingPoint}</div>` : ''}${x.note ? `<div class="note">📝 ${x.note}</div>` : ''}</td>`;
+        html += `<td class="wrap" style="max-width:150px;line-height:1.6">${x.sellingPoint ? `<div>${x.sellingPoint}</div>` : ''}${notes.length ? notes.map(n => `<div class="note">📝 ${n}</div>`).join('') : (x.note ? `<div class="note">📝 ${x.note}</div>` : '')}</td>`;
         html += `<td class="op"><a href="${x.url || '#'}" target="_blank">🔗</a><a href="javascript:void(0)" class="rm danger" data-hc="${x.houseCode}">×</a><a href="javascript:void(0)" class="up" data-gi="${gi}" data-ii="${ii}">↑</a><a href="javascript:void(0)" class="down" data-gi="${gi}" data-ii="${ii}">↓</a></td>`;
         html += `</tr>`;
       });
@@ -167,7 +181,7 @@
     area.innerHTML = html;
   }
 
-  async function renderList(groups) {
+  async function renderList(groups, noteMap, tagMap) {
     const area = document.getElementById('listView');
     let html = '';
     for (const [gi, g] of groups.entries()) {
@@ -175,24 +189,23 @@
       let d = null;
       try { const r = await fetch('data/ke_xiaoqu/' + encodeURIComponent(g.xiaoqu) + '.json?t=' + Date.now()); d = await r.json(); } catch (e) {}
       const info = (d && d.info) || {};
-      // 实时备注 + 标签
-      let noteMap = {}, tagMap = {};
-      try { const nr = await apiReadJson('data/house_notes/' + encodeURIComponent(g.xiaoqu) + '.json'); for (const t of (nr && nr.json && nr.json.notes) || []) (noteMap[t.houseCode] = noteMap[t.houseCode] || []).push(t); } catch (e) {}
-      try { const tr = await apiReadJson('data/tags/' + encodeURIComponent(g.xiaoqu) + '.json'); for (const t of (tr && tr.json && tr.json.tags) || []) (tagMap[t.houseCode] = tagMap[t.houseCode] || []).push(t); } catch (e) {}
+      const curNoteMap = noteMap[g.xiaoqu] || {};
+      const curTagMap = tagMap[g.xiaoqu] || {};
 
       const f = g.items[0];
+      const quanshu = info['交易权属'] || f.quanshu;
       html += `<div class="group">`;
       html += `<div class="group-head">🏘️ <a href="xiaoqu.html?name=${encodeURIComponent(g.xiaoqu)}" target="_blank">${g.xiaoqu}</a>（${g.items.length}套）<a href="javascript:void(0)" class="groupUp" data-gi="${gi}" style="color:#4fc3f7;text-decoration:none;margin-left:auto">↑</a><a href="javascript:void(0)" class="groupDown" data-gi="${gi}" style="color:#4fc3f7;text-decoration:none;margin-left:2px">↓</a></div>`;
-      html += `<div class="gh-info" style="margin-bottom:6px">容积率 ${colored(info['容积率'] || f.volumeRate, volColor(info['容积率'] || f.volumeRate))} · 绿化 ${info['绿化率'] || f.greening || '—'} · 物业 ${info['物业费'] || f.propertyFee || '—'} · ${info['建成年代'] || f.buildYear || '—'} · ${info['交易权属'] || f.quanshu || '—'}</div>`;
-      if (f.metro) html += `<div class="gh-info" style="margin-bottom:6px">🚇 ${f.metro}</div>`;
+      html += `<div class="gh-info" style="margin-bottom:6px">容积率 ${colored(info['容积率'] || f.volumeRate, volColor(info['容积率'] || f.volumeRate))} · 绿化 ${info['绿化率'] || f.greening || '—'} · 物业 ${info['物业费'] || f.propertyFee || '—'} · ${info['建成年代'] || f.buildYear || '—'} · 权属 ${colored(quanshu, quanshuColor(quanshu))}</div>`;
+      if (f.metro) html += metroHtml(f.metro);
       // 小区图片
       const xqImgs = (d && d.localImages && d.localImages.length) ? d.localImages : [];
       if (xqImgs.length) html += `<div class="det-img" style="margin-bottom:8px">` + xqImgs.map(img => `<img src="data/ke_xiaoqu/images/${encodeURIComponent(g.xiaoqu)}/${img}" loading="lazy">`).join('') + `</div>`;
 
       g.items.forEach((x, ii) => {
         const h = (d && d.houses) ? d.houses.find(hh => String(hh.houseCode) === String(x.houseCode)) : null;
-        const notes = (noteMap[x.houseCode] || []).map(t => t.note);
-        const tags = (tagMap[x.houseCode] || []).map(t => t.tag);
+        const notes = (curNoteMap[x.houseCode] || []).map(t => t.note);
+        const tags = (curTagMap[x.houseCode] || []).map(t => t.tag);
         html += `<div class="card">`;
         html += `<div class="t">${x.room || '?'} ${x.area || '?'}㎡ · ${x.totalPrice || '?'}万 · ${x.unitPrice || '?'}元/㎡</div>`;
         let row = `楼层 ${x.floor || '—'} · ${colored(x.tihu, tihuColor(x.tihu))} · 得房率 ${colored(derate(x), derateRate(x) != null ? rateColor(derateRate(x)) : '')} · 总高 ${x.totalFloors || '—'}层 · ${colored(x.structure, structureColor(x.structure))} · 朝向 ${x.orientation || '—'}`;
@@ -226,8 +239,24 @@
     const emptyHtml = '<div class="empty">（房源池为空，去小区里点「＋ 房源池」加入）</div>';
     if (!pool.length) { document.getElementById('tableView').innerHTML = emptyHtml; document.getElementById('listView').innerHTML = ''; return; }
     const groups = splitGroups(pool);
-    renderTable(groups);
-    await renderList(groups);
+    // 统一拉取实时备注 + 标签（表格/列表共用）
+    const noteMap = {}, tagMap = {}; // { [xiaoqu]: { [houseCode]: [...] } }
+    for (const g of groups) {
+      try {
+        const nr = await apiReadJson('data/house_notes/' + encodeURIComponent(g.xiaoqu) + '.json');
+        const m = {};
+        for (const t of (nr && nr.json && nr.json.notes) || []) (m[t.houseCode] = m[t.houseCode] || []).push(t);
+        noteMap[g.xiaoqu] = m;
+      } catch (e) {}
+      try {
+        const tr = await apiReadJson('data/tags/' + encodeURIComponent(g.xiaoqu) + '.json');
+        const m = {};
+        for (const t of (tr && tr.json && tr.json.tags) || []) (m[t.houseCode] = m[t.houseCode] || []).push(t);
+        tagMap[g.xiaoqu] = m;
+      } catch (e) {}
+    }
+    renderTable(groups, noteMap);
+    await renderList(groups, noteMap, tagMap);
     bindEvents();
   }
 
