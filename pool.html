@@ -16,13 +16,16 @@
   .tabs button.active { background: #2e86de; color: #fff; border-color: #2e86de; }
   .tbl-wrap { overflow-x: auto; background: rgba(255,255,255,0.03); border-radius: 8px; }
   table { border-collapse: collapse; min-width: 100%; }
-  th { padding: 7px 6px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.07); color: #e8e9ec; font-size: 11px; white-space: nowrap; position: sticky; top: 0; }
-  td { padding: 6px; border: 1px solid rgba(255,255,255,0.09); color: #c9ccd3; font-size: 11px; white-space: nowrap; }
+  th { padding: 6px 5px; border: 1px solid rgba(255,255,255,0.14); background: rgba(255,255,255,0.07); color: #e8e9ec; font-size: 11px; white-space: nowrap; position: sticky; top: 0; }
+  td { padding: 6px 5px; border: 1px solid rgba(255,255,255,0.09); color: #c9ccd3; font-size: 11px; white-space: nowrap; }
   td b { color: #fff; }
+  td.wrap { white-space: normal; }
   .xg { color: #4fc3f7; text-decoration: none; font-weight: bold; }
-  .op a { color: #4fc3f7; text-decoration: none; margin: 0 3px; font-size: 12px; }
+  .op a { color: #4fc3f7; text-decoration: none; margin: 0 2px; font-size: 12px; }
   .op a.danger { color: #e74c3c; }
   .note { color: #ffe082; font-weight: bold; }
+  .xq-info { color: #a9adb8; font-size: 10px; line-height: 1.6; white-space: normal; }
+  .xq-info .lbl { color: #7f848c; }
   .det-label { color: #8b8f99; font-size: 10px; }
   .det-val { color: #e8e9ec; font-size: 11px; }
   .det-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 6px; margin-bottom: 8px; }
@@ -35,13 +38,15 @@
   .gh-info { font-weight: normal; font-size: 12px; color: #a9adb8; }
   .card { background: rgba(255,255,255,0.05); border-radius: 8px; padding: 10px; margin-bottom: 8px; }
   .card .t { color: #fff; font-weight: bold; font-size: 14px; margin-bottom: 4px; }
-  .card .row { color: #c9ccd3; font-size: 12px; line-height: 1.7; }
+  .card .row { color: #c9ccd3; font-size: 12px; line-height: 1.8; }
   .card .sp { color: #f0c060; font-weight: bold; font-size: 12px; margin-top: 4px; }
-  .card .note { color: #ffe082; font-weight: bold; font-size: 12px; margin-top: 3px; }
+  .card .note { color: #ffe082; font-weight: bold; font-size: 12px; margin-top: 3px; white-space: pre-wrap; }
   .card .op { margin-top: 6px; font-size: 13px; }
   .card .op a { color: #4fc3f7; text-decoration: none; margin-right: 10px; }
   .card .op a.danger { color: #e74c3c; }
   .tag { display: inline-block; background: rgba(139,195,74,0.15); color: #9ccc65; border: 1px solid rgba(139,195,74,0.4); border-radius: 10px; padding: 1px 7px; font-size: 10px; margin: 1px 3px 1px 0; }
+  .tag.r { color: #e74c3c; border-color: rgba(231,76,60,0.4); background: rgba(231,76,60,0.12); }
+  .tag.y { color: #f0c060; border-color: rgba(240,192,96,0.4); background: rgba(240,192,96,0.12); }
 </style>
 </head>
 <body>
@@ -99,6 +104,9 @@
   }
   function volColor(v) { const n = parseFloat(v); if (isNaN(n)) return ''; return n < 2.8 ? '#2ecc71' : n < 4 ? '#f0c060' : '#e74c3c'; }
   function structureColor(s) { return s === '框架结构' ? '#2ecc71' : '#f0c060'; }
+  function diyaColor(s) { return s === '无抵押' ? '#2ecc71' : '#e74c3c'; }
+  function chanquanColor(s) { return s === '非共有' ? '#2ecc71' : '#f0c060'; }
+  function usageColor(s) { return s === '普通住宅' ? '#2ecc71' : '#e74c3c'; }
   function colored(v, color) { return color ? `<span style="color:${color};font-weight:bold">${v || '—'}</span>` : (v || '—'); }
 
   function splitGroups(pool) {
@@ -111,16 +119,35 @@
     return groups;
   }
 
-  async function renderTable(pool, groups) {
+  function xqInfoHtml(f) {
+    let s = '<div class="xq-info">';
+    s += `<div><span class="lbl">容积率</span> ${colored(f.volumeRate, volColor(f.volumeRate))}</div>`;
+    s += `<div><span class="lbl">绿化</span> ${f.greening || '—'}</div>`;
+    s += `<div><span class="lbl">物业</span> ${f.propertyFee || '—'}</div>`;
+    s += `<div><span class="lbl">年代</span> ${f.buildYear || '—'}</div>`;
+    s += `<div><span class="lbl">权属</span> ${f.quanshu || '—'}</div>`;
+    if (f.metro) s += `<div><span class="lbl">地铁</span> ${f.metro}</div>`;
+    s += '</div>';
+    return s;
+  }
+
+  function renderTable(groups) {
     const area = document.getElementById('tableView');
     let html = '<div class="tbl-wrap"><table><thead><tr>';
-    const cols = ['小区', '户型', '面积㎡', '单价', '总价', '楼层', '梯户比', '得房率', '总高', '结构', '朝向', '核心卖点', '备注'];
+    const cols = ['小区', '户型', '面积', '单价', '总价', '楼层', '梯户比', '得房率', '总高', '结构', '朝向', '卖点/备注'];
     html += cols.map(c => `<th>${c}</th>`).join('') + '<th>操作</th></tr></thead><tbody>';
     groups.forEach((g, gi) => {
+      const N = g.items.length;
       g.items.forEach((x, ii) => {
         const dr = derateRate(x);
         html += `<tr>`;
-        html += `<td><a class="xg" href="xiaoqu.html?name=${encodeURIComponent(x.xiaoqu)}" target="_blank">${x.xiaoqu}</a>${ii === 0 ? `<a href="javascript:void(0)" class="groupUp" data-gi="${gi}" style="color:#4fc3f7;text-decoration:none;margin-left:4px">↑</a><a href="javascript:void(0)" class="groupDown" data-gi="${gi}" style="color:#4fc3f7;text-decoration:none;margin-left:2px">↓</a>` : ''}</td>`;
+        if (ii === 0) {
+          html += `<td rowspan="${N}" style="vertical-align:top;white-space:normal;min-width:150px">`;
+          html += `<a class="xg" href="xiaoqu.html?name=${encodeURIComponent(g.xiaoqu)}" target="_blank">${g.xiaoqu}</a>`;
+          html += `<a href="javascript:void(0)" class="groupUp" data-gi="${gi}" style="color:#4fc3f7;text-decoration:none;margin-left:4px">↑</a><a href="javascript:void(0)" class="groupDown" data-gi="${gi}" style="color:#4fc3f7;text-decoration:none;margin-left:2px">↓</a>`;
+          html += xqInfoHtml(g.items[0]);
+          html += `</td>`;
+        }
         html += `<td>${x.room || '—'}</td>`;
         html += `<td>${x.area || '—'}</td>`;
         html += `<td>${x.unitPrice || '—'}</td>`;
@@ -131,41 +158,65 @@
         html += `<td>${x.totalFloors || '—'}层</td>`;
         html += `<td>${colored(x.structure, structureColor(x.structure))}</td>`;
         html += `<td>${x.orientation || '—'}</td>`;
-        html += `<td style="max-width:110px;overflow:hidden;text-overflow:ellipsis" title="${x.sellingPoint || ''}">${x.sellingPoint || '—'}</td>`;
-        html += `<td style="max-width:130px;overflow:hidden;text-overflow:ellipsis;white-space:normal" title="${x.note || ''}">${x.note ? `<span class="note">${x.note}</span>` : '—'}</td>`;
-        html += `<td class="op"><a href="${x.url || '#'}" target="_blank">🔗</a><a href="javascript:void(0)" class="detBtn" data-xiaoqu="${encodeURIComponent(x.xiaoqu)}">▾小区</a><a href="javascript:void(0)" class="rm danger" data-hc="${x.houseCode}">×</a><a href="javascript:void(0)" class="up" data-gi="${gi}" data-ii="${ii}">↑</a><a href="javascript:void(0)" class="down" data-gi="${gi}" data-ii="${ii}">↓</a></td>`;
+        html += `<td class="wrap" style="max-width:150px;line-height:1.6">${x.sellingPoint ? `<div>${x.sellingPoint}</div>` : ''}${x.note ? `<div class="note">📝 ${x.note}</div>` : ''}</td>`;
+        html += `<td class="op"><a href="${x.url || '#'}" target="_blank">🔗</a><a href="javascript:void(0)" class="rm danger" data-hc="${x.houseCode}">×</a><a href="javascript:void(0)" class="up" data-gi="${gi}" data-ii="${ii}">↑</a><a href="javascript:void(0)" class="down" data-gi="${gi}" data-ii="${ii}">↓</a></td>`;
         html += `</tr>`;
-        html += `<tr class="detail-row" data-detail="${encodeURIComponent(x.xiaoqu)}" style="display:none"><td colspan="14"><div class="det-load" style="color:#8b8f99">加载中…</div></td></tr>`;
       });
     });
     html += '</tbody></table></div>';
     area.innerHTML = html;
   }
 
-  async function renderList(pool, groups) {
+  async function renderList(groups) {
     const area = document.getElementById('listView');
     let html = '';
-    groups.forEach((g, gi) => {
+    for (const [gi, g] of groups.entries()) {
+      // 拉取小区档案（含房源图片、小区图片、完整信息）
+      let d = null;
+      try { const r = await fetch('data/ke_xiaoqu/' + encodeURIComponent(g.xiaoqu) + '.json?t=' + Date.now()); d = await r.json(); } catch (e) {}
+      const info = (d && d.info) || {};
+      // 实时备注 + 标签
+      let noteMap = {}, tagMap = {};
+      try { const nr = await apiReadJson('data/house_notes/' + encodeURIComponent(g.xiaoqu) + '.json'); for (const t of (nr && nr.json && nr.json.notes) || []) (noteMap[t.houseCode] = noteMap[t.houseCode] || []).push(t); } catch (e) {}
+      try { const tr = await apiReadJson('data/tags/' + encodeURIComponent(g.xiaoqu) + '.json'); for (const t of (tr && tr.json && tr.json.tags) || []) (tagMap[t.houseCode] = tagMap[t.houseCode] || []).push(t); } catch (e) {}
+
       const f = g.items[0];
       html += `<div class="group">`;
       html += `<div class="group-head">🏘️ <a href="xiaoqu.html?name=${encodeURIComponent(g.xiaoqu)}" target="_blank">${g.xiaoqu}</a>（${g.items.length}套）<a href="javascript:void(0)" class="groupUp" data-gi="${gi}" style="color:#4fc3f7;text-decoration:none;margin-left:auto">↑</a><a href="javascript:void(0)" class="groupDown" data-gi="${gi}" style="color:#4fc3f7;text-decoration:none;margin-left:2px">↓</a></div>`;
-      html += `<div class="gh-info" style="margin-bottom:6px">容积率 ${colored(f.volumeRate, volColor(f.volumeRate))} · 绿化 ${f.greening || '—'} · 物业 ${f.propertyFee || '—'} · ${f.buildYear || '—'} · ${f.quanshu || '—'}</div>`;
+      html += `<div class="gh-info" style="margin-bottom:6px">容积率 ${colored(info['容积率'] || f.volumeRate, volColor(info['容积率'] || f.volumeRate))} · 绿化 ${info['绿化率'] || f.greening || '—'} · 物业 ${info['物业费'] || f.propertyFee || '—'} · ${info['建成年代'] || f.buildYear || '—'} · ${info['交易权属'] || f.quanshu || '—'}</div>`;
       if (f.metro) html += `<div class="gh-info" style="margin-bottom:6px">🚇 ${f.metro}</div>`;
+      // 小区图片
+      const xqImgs = (d && d.localImages && d.localImages.length) ? d.localImages : [];
+      if (xqImgs.length) html += `<div class="det-img" style="margin-bottom:8px">` + xqImgs.map(img => `<img src="data/ke_xiaoqu/images/${encodeURIComponent(g.xiaoqu)}/${img}" loading="lazy">`).join('') + `</div>`;
+
       g.items.forEach((x, ii) => {
+        const h = (d && d.houses) ? d.houses.find(hh => String(hh.houseCode) === String(x.houseCode)) : null;
+        const notes = (noteMap[x.houseCode] || []).map(t => t.note);
+        const tags = (tagMap[x.houseCode] || []).map(t => t.tag);
         html += `<div class="card">`;
         html += `<div class="t">${x.room || '?'} ${x.area || '?'}㎡ · ${x.totalPrice || '?'}万 · ${x.unitPrice || '?'}元/㎡</div>`;
-        html += `<div class="row">楼层 ${x.floor || '—'} · ${colored(x.tihu, tihuColor(x.tihu))} · 得房率 ${colored(derate(x), derateRate(x) != null ? rateColor(derateRate(x)) : '')} · 总高 ${x.totalFloors || '—'}层 · ${colored(x.structure, structureColor(x.structure))} · 朝向 ${x.orientation || '—'}</div>`;
-        const extra = [x.decoration, x.listTime ? '挂牌' + x.listTime : '', x.lastTrade ? '上次交易' + x.lastTrade : '', x.fangben].filter(Boolean).join(' · ');
+        let row = `楼层 ${x.floor || '—'} · ${colored(x.tihu, tihuColor(x.tihu))} · 得房率 ${colored(derate(x), derateRate(x) != null ? rateColor(derateRate(x)) : '')} · 总高 ${x.totalFloors || '—'}层 · ${colored(x.structure, structureColor(x.structure))} · 朝向 ${x.orientation || '—'}`;
+        if (h) {
+          if (h.diya) row += ` · ${colored(h.diya, diyaColor(h.diya))}`;
+          if (h.chanquan) row += ` · ${colored(h.chanquan, chanquanColor(h.chanquan))}`;
+          if (h.usage) row += ` · ${colored(h.usage, usageColor(h.usage))}`;
+        }
+        html += `<div class="row">${row}</div>`;
+        const extra = [h ? h.decoration : x.decoration, h ? (h.listTime ? '挂牌' + h.listTime : '') : '', h ? (h.lastTrade ? '上次交易' + h.lastTrade : '') : ''].filter(Boolean).join(' · ');
         if (extra) html += `<div class="row">${extra}</div>`;
         if (x.sellingPoint) html += `<div class="sp">核心卖点：${x.sellingPoint}</div>`;
-        if (x.note) html += `<div class="note">📝 ${x.note}</div>`;
-        if (x.tags && x.tags.length) html += `<div style="margin-top:4px">${x.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>`;
-        html += `<div class="op"><a href="${x.url || '#'}" target="_blank">🔗 贝壳</a><a href="javascript:void(0)" class="detBtn" data-xiaoqu="${encodeURIComponent(x.xiaoqu)}">▾小区照片</a><a href="javascript:void(0)" class="up" data-gi="${gi}" data-ii="${ii}">↑</a><a href="javascript:void(0)" class="down" data-gi="${gi}" data-ii="${ii}">↓</a><a href="javascript:void(0)" class="rm danger" data-hc="${x.houseCode}">× 移除</a></div>`;
-        html += `<div class="det-slot" data-xiaoqu="${encodeURIComponent(x.xiaoqu)}" style="display:none;margin-top:6px"></div>`;
+        if (notes.length) html += notes.map(n => `<div class="note">📝 ${n}</div>`).join('');
+        else if (x.note) html += `<div class="note">📝 ${x.note}</div>`;
+        if (tags.length) html += `<div style="margin-top:4px">${tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>`;
+        else if (x.tags && x.tags.length) html += `<div style="margin-top:4px">${x.tags.map(t => `<span class="tag">${t}</span>`).join('')}</div>`;
+        // 房源图片
+        const hImgs = (h && h.localImages && h.localImages.length) ? h.localImages : [];
+        if (hImgs.length) html += `<div class="det-img" style="margin-top:6px">` + hImgs.map(img => `<img src="data/ke_xiaoqu/images/${encodeURIComponent(g.xiaoqu)}/${img}" loading="lazy">`).join('') + `</div>`;
+        html += `<div class="op"><a href="${x.url || '#'}" target="_blank">🔗 贝壳</a><a href="javascript:void(0)" class="up" data-gi="${gi}" data-ii="${ii}">↑</a><a href="javascript:void(0)" class="down" data-gi="${gi}" data-ii="${ii}">↓</a><a href="javascript:void(0)" class="rm danger" data-hc="${x.houseCode}">× 移除</a></div>`;
         html += `</div>`;
       });
       html += `</div>`;
-    });
+    }
     area.innerHTML = html;
   }
 
@@ -175,57 +226,13 @@
     const emptyHtml = '<div class="empty">（房源池为空，去小区里点「＋ 房源池」加入）</div>';
     if (!pool.length) { document.getElementById('tableView').innerHTML = emptyHtml; document.getElementById('listView').innerHTML = ''; return; }
     const groups = splitGroups(pool);
-    await renderTable(pool, groups);
-    await renderList(pool, groups);
+    renderTable(groups);
+    await renderList(groups);
     bindEvents();
   }
 
   function bindEvents() {
     const area = document.body;
-    // 展开小区信息/照片
-    area.querySelectorAll('.detBtn').forEach(btn => {
-      btn.addEventListener('click', async () => {
-        const xq = decodeURIComponent(btn.dataset.xiaoqu);
-        const row = area.querySelector(`tr[data-detail="${btn.dataset.xiaoqu}"]`);
-        const slot = area.querySelector(`.det-slot[data-xiaoqu="${btn.dataset.xiaoqu}"]`);
-        const target = row || slot;
-        if (!target) return;
-        const isRow = !!row;
-        if (!isRow) {
-          if (target.style.display !== 'none') { target.style.display = 'none'; return; }
-          target.style.display = 'block';
-        } else {
-          if (target.style.display !== 'none') { target.style.display = 'none'; return; }
-          target.style.display = '';
-        }
-        const cell = isRow ? target.querySelector('td') : target;
-        cell.innerHTML = '<div style="color:#8b8f99">加载中…</div>';
-        try {
-          const r = await fetch('data/ke_xiaoqu/' + encodeURIComponent(xq) + '.json?t=' + Date.now());
-          const d = await r.json();
-          const info = d.info || {};
-          const fields = [
-            ['容积率', info['容积率'], volColor(info['容积率'])],
-            ['绿化率', info['绿化率'], ''],
-            ['物业费', info['物业费'], ''],
-            ['建成年代', info['建成年代'], ''],
-            ['交易权属', info['交易权属'], ''],
-            ['房屋总数', info['房屋总数'], ''],
-            ['楼栋总数', info['楼栋总数'], ''],
-            ['开发商', info['开发商'], ''],
-          ];
-          let detHtml = '<div class="det-grid">';
-          for (const [k, v, c] of fields) detHtml += `<div><span class="det-label">${k}</span><div class="det-val">${colored(v, c)}</div></div>`;
-          if (d.metro && d.metro.length) detHtml += `<div><span class="det-label">地铁</span><div class="det-val">${d.metro.map(m => m.name + ' ' + m.distance).join(' · ')}</div></div>`;
-          detHtml += '</div>';
-          const imgs = (d.localImages && d.localImages.length) ? d.localImages : [];
-          if (imgs.length) detHtml += '<div class="det-img">' + imgs.map(img => `<img src="data/ke_xiaoqu/images/${encodeURIComponent(xq)}/${img}" loading="lazy">`).join('') + '</div>';
-          else detHtml += '<div style="color:#8b8f99;font-size:11px">（该小区暂无照片）</div>';
-          cell.innerHTML = detHtml;
-        } catch (e) { cell.innerHTML = '<div style="color:#e74c3c">加载失败</div>'; }
-      });
-    });
-    // 房源上移/下移
     area.querySelectorAll('.up, .down').forEach(btn => {
       btn.addEventListener('click', async () => {
         const gi = parseInt(btn.dataset.gi, 10), ii = parseInt(btn.dataset.ii, 10);
@@ -242,7 +249,6 @@
         } catch (e) { alert('调整失败：' + e.message); }
       });
     });
-    // 小区组上移/下移
     area.querySelectorAll('.groupUp, .groupDown').forEach(btn => {
       btn.addEventListener('click', async () => {
         const gi = parseInt(btn.dataset.gi, 10);
@@ -258,7 +264,6 @@
         } catch (e) { alert('调整失败：' + e.message); }
       });
     });
-    // 移除
     area.querySelectorAll('.rm').forEach(btn => {
       btn.addEventListener('click', async () => {
         if (!confirm('从房源池移除该房源？')) return;
@@ -272,7 +277,6 @@
     });
   }
 
-  // tab 切换
   document.getElementById('tabTable').addEventListener('click', () => {
     document.getElementById('tabTable').classList.add('active');
     document.getElementById('tabList').classList.remove('active');
