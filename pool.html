@@ -56,7 +56,8 @@
   async function writePool(pool, sha) {
     const path = 'data/house_pool.json';
     if (!sha) { const r = await apiReadJson(path); if (r && r.sha) sha = r.sha; }
-    const body = { message: '调整房源池', content: btoa(unescape(encodeURIComponent(JSON.stringify({ pool })))), sha };
+    const body = { message: '调整房源池', content: btoa(unescape(encodeURIComponent(JSON.stringify({ pool })))) };
+    if (sha) body.sha = sha;
     const r = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/contents/' + path, {
       method: 'PUT',
       headers: { Authorization: 'token ' + GITHUB_TOKEN, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
@@ -109,14 +110,16 @@
       btn.addEventListener('click', async () => {
         const gi = parseInt(btn.dataset.gi, 10), ii = parseInt(btn.dataset.ii, 10);
         const dir = btn.classList.contains('up') ? 'up' : 'down';
-        const { pool, sha } = await readPool();
-        const groups = splitGroups(pool);
-        const g = groups[gi];
-        const j = dir === 'up' ? ii - 1 : ii + 1;
-        if (j < 0 || j >= g.items.length) return;
-        [g.items[ii], g.items[j]] = [g.items[j], g.items[ii]];
-        await writePool(groups.flatMap(x => x.items), sha);
-        renderPool();
+        try {
+          const { pool, sha } = await readPool();
+          const groups = splitGroups(pool);
+          const g = groups[gi];
+          const j = dir === 'up' ? ii - 1 : ii + 1;
+          if (j < 0 || j >= g.items.length) return;
+          [g.items[ii], g.items[j]] = [g.items[j], g.items[ii]];
+          await writePool(groups.flatMap(x => x.items), sha);
+          renderPool();
+        } catch (e) { alert('调整失败：' + e.message); }
       });
     });
     // 小区组上移/下移
@@ -124,13 +127,15 @@
       btn.addEventListener('click', async () => {
         const gi = parseInt(btn.dataset.gi, 10);
         const dir = btn.classList.contains('groupUp') ? 'up' : 'down';
-        const { pool, sha } = await readPool();
-        const groups = splitGroups(pool);
-        const j = dir === 'up' ? gi - 1 : gi + 1;
-        if (j < 0 || j >= groups.length) return;
-        [groups[gi], groups[j]] = [groups[j], groups[gi]];
-        await writePool(groups.flatMap(x => x.items), sha);
-        renderPool();
+        try {
+          const { pool, sha } = await readPool();
+          const groups = splitGroups(pool);
+          const j = dir === 'up' ? gi - 1 : gi + 1;
+          if (j < 0 || j >= groups.length) return;
+          [groups[gi], groups[j]] = [groups[j], groups[gi]];
+          await writePool(groups.flatMap(x => x.items), sha);
+          renderPool();
+        } catch (e) { alert('调整失败：' + e.message); }
       });
     });
     // 移除
@@ -138,11 +143,13 @@
       btn.addEventListener('click', async () => {
         if (!confirm('从房源池移除该房源？')) return;
         const gi = parseInt(btn.dataset.gi, 10), ii = parseInt(btn.dataset.ii, 10);
-        const { pool, sha } = await readPool();
-        const groups = splitGroups(pool);
-        groups[gi].items.splice(ii, 1);
-        await writePool(groups.flatMap(x => x.items), sha);
-        renderPool();
+        try {
+          const { pool, sha } = await readPool();
+          const groups = splitGroups(pool);
+          groups[gi].items.splice(ii, 1);
+          await writePool(groups.flatMap(x => x.items), sha);
+          renderPool();
+        } catch (e) { alert('移除失败：' + e.message); }
       });
     });
   }
