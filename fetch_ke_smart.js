@@ -359,5 +359,10 @@ async function downloadImages(page, urls, subdir) {
     console.log('\n⚠️ 自检失败:', e.message);
   }
 
+  // 写抓取结果到文件，供 serve 返回给前端（stdio inherit 后前端拿不到 stdout）
+  try {
+    fs.writeFileSync(path.join(__dirname, 'data', 'fetch_result.json'), JSON.stringify(result, null, 2));
+  } catch (e) {}
+
   browser.disconnect();
 })().catch(e => { console.error('失败:', e.message); process.exit(1); });

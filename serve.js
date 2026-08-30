@@ -184,8 +184,16 @@ const server = http.createServer((req, res) => {
     const { execFile } = require('child_process');
     execFile(process.execPath, ['fetch_ke_smart.js'], { cwd: ROOT, timeout: 180000, stdio: 'inherit' }, (err) => {
       res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-      if (err) res.end(JSON.stringify({ ok: false, msg: err.message }));
-      else res.end(JSON.stringify({ ok: true, msg: '抓取完成（结果见 serve 日志）' }));
+      if (err) { res.end(JSON.stringify({ ok: false, msg: err.message })); return; }
+      // 读抓取结果文件，返回详细结果给前端
+      try {
+        const result = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'fetch_result.json'), 'utf8'));
+        const parts = [];
+        for (const k of ['小区', '房源', '列表', '其他']) {
+          if (result[k] && result[k].length) parts.push(`【${k}】${result[k].length}个\n` + result[k].map(x => '· ' + x).join('\n'));
+        }
+        res.end(JSON.stringify({ ok: true, msg: parts.join('\n') || '抓取完成' }));
+      } catch (e) { res.end(JSON.stringify({ ok: true, msg: '抓取完成' })); }
     });
     return;
   }
