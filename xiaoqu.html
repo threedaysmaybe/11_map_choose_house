@@ -85,7 +85,8 @@
     <div class="cs-value" id="cs_xq_value">📂 选择小区查看报告…</div>
     <div class="cs-drop" id="cs_xq_drop"></div>
   </div>
-  <a href="javascript:void(0)" id="openNoteBtn" style="display:block;text-align:center;padding:12px;border-radius:8px;background:rgba(255,224,130,0.12);border:1px solid rgba(255,224,130,0.4);color:#ffe082;font-size:16px;text-decoration:none;margin:0 0 18px">📝 看房 / 买房笔记</a>
+  <a href="javascript:void(0)" id="openNoteBtn" style="display:block;text-align:center;padding:12px;border-radius:8px;background:rgba(255,224,130,0.12);border:1px solid rgba(255,224,130,0.4);color:#ffe082;font-size:16px;text-decoration:none;margin:0 0 12px">📝 看房 / 买房笔记</a>
+  <a href="javascript:void(0)" id="openPoolBtn" style="display:block;text-align:center;padding:12px;border-radius:8px;background:rgba(46,204,113,0.12);border:1px solid rgba(46,204,113,0.4);color:#2ecc71;font-size:16px;text-decoration:none;margin:0 0 18px">🏠 房源池（对比）</a>
   <div id="reportArea">
     <div id="xqMap"></div>
     <h1 id="xqName">小区报告</h1>
@@ -99,6 +100,11 @@
     <textarea id="noteInput" rows="12" placeholder="例如：&#10;# 看房准备&#10;## 材料&#10;- 身份证&#10;&gt; 银行卡&#10;## 预算&#10;- 首付 50 万" style="width:100%;background:#262a32;border:1px solid rgba(255,255,255,0.2);border-radius:8px;color:#fff;padding:10px;font-size:14px;line-height:1.6;box-sizing:border-box;outline:none"></textarea>
     <button id="noteSave" style="margin:10px 0;width:100%;padding:11px;border:none;border-radius:8px;background:#2e86de;color:#fff;font-size:15px;cursor:pointer">💾 保存笔记</button>
     <div id="notePreview" style="background:rgba(255,255,255,0.04);border-radius:8px;padding:12px;line-height:1.8"></div>
+  </div>
+  <div id="poolView" style="display:none">
+    <a href="javascript:void(0)" id="poolBack" style="display:inline-block;padding:8px 14px;border-radius:8px;background:#262a32;border:1px solid rgba(255,255,255,0.2);color:#fff;text-decoration:none;font-size:14px;margin:0 0 12px">← 返回报告</a>
+    <h2 style="color:#fff;margin:0 0 10px">🏠 房源池（<span id="poolCount">0</span> 套）</h2>
+    <div id="poolList" style="overflow-x:auto;background:rgba(255,255,255,0.03);border-radius:8px;padding:6px"></div>
   </div>
 </div>
 <div id="lightbox"><img id="lightboxImg" src="" alt=""><div id="lbPrev" class="lb-arrow">‹</div><div id="lbNext" class="lb-arrow">›</div><div class="lb-count" id="lbCount"></div><div class="lb-hint">滚轮缩放 · 按住拖动 · 单击关闭</div></div>
@@ -251,6 +257,38 @@
     if (!r.ok) throw new Error('保存失败 HTTP ' + r.status);
     const result = await r.json();
     houseNotesCache[name] = { notes, sha: result.content.sha };
+    return result;
+  }
+  // GitHub 读房源池（全局一份）
+  const poolCache = {};
+  async function ghReadPool() {
+    if (poolCache.pool) return poolCache.pool;
+    const path = 'data/house_pool.json';
+    const res = await apiReadJson(path);
+    const result = { pool: (res && res.json && res.json.pool) || [], sha: (res && res.sha) || null };
+    poolCache.pool = result;
+    return result;
+  }
+  // GitHub 写房源池（全局一份）
+  async function ghWritePool(pool, sha) {
+    const path = 'data/house_pool.json';
+    if (!sha) {
+      const r = await apiReadJson(path);
+      if (r && r.sha) sha = r.sha;
+    }
+    const body = {
+      message: '更新房源池',
+      content: btoa(unescape(encodeURIComponent(JSON.stringify({ pool })))),
+    };
+    if (sha) body.sha = sha;
+    const r = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/contents/' + path, {
+      method: 'PUT',
+      headers: { Authorization: 'token ' + GITHUB_TOKEN, Accept: 'application/vnd.github.v3+json', 'Content-Type': 'application/json' },
+      body: JSON.stringify(body),
+    });
+    if (!r.ok) throw new Error('保存失败 HTTP ' + r.status);
+    const result = await r.json();
+    poolCache.pool = { pool, sha: result.content.sha };
     return result;
   }
   // GitHub 读所有小区标签（遍历 data/tags 目录）
@@ -580,7 +618,7 @@
         // 标签（云端，个人隔离，管理员看全部）
         const hTags3 = (cloudTagMap[hc] || []).filter(t => isAdmin || t.name === '管理员' || (myName && t.name === myName));
         const xqTagsHtml = hTags3.map(t => `<span style="display:inline-block;background:rgba(139,195,74,0.15);color:#9ccc65;border:1px solid rgba(139,195,74,0.4);border-radius:10px;padding:1px 8px;font-size:11px;margin:2px 4px 2px 0">${t.name === '管理员' ? '' : (isAdmin ? t.name + '：' : '')}${t.tag}</span>`).join('');
-        html += `<div style="margin-bottom:4px;flex-basis:100%">${xqTagsHtml}<a href="javascript:void(0)" class="xqAddTagBtn" data-hc="${hc}" style="color:#4fc3f7;font-size:12px;text-decoration:none">➕ 标签</a> <a href="javascript:void(0)" class="xqAddHouseNote" data-hc="${hc}" style="color:#f0c060;font-size:12px;text-decoration:none">📝 备注</a></div>`;
+        html += `<div style="margin-bottom:4px;flex-basis:100%">${xqTagsHtml}<a href="javascript:void(0)" class="xqAddTagBtn" data-hc="${hc}" style="color:#4fc3f7;font-size:12px;text-decoration:none">➕ 标签</a> <a href="javascript:void(0)" class="xqAddHouseNote" data-hc="${hc}" style="color:#f0c060;font-size:12px;text-decoration:none">📝 备注</a> <a href="javascript:void(0)" class="xqAddPool" data-hc="${hc}" style="color:#2ecc71;font-size:12px;text-decoration:none">＋ 房源池</a></div>`;
         const houseNotes = (houseNoteMap[hc] || []).filter(t => isAdmin || t.name === '管理员' || (myName && t.name === myName));
         html += houseNotes.map(x => `<div style="color:${x.name === '管理员' ? '#ffe082' : '#c9ccd3'};${x.name === '管理员' ? 'font-weight:bold' : ''};font-size:12px;margin-top:2px">📝 ${x.note}${(isAdmin || x.name === myName) ? ` <a href="javascript:void(0)" class="xqEditHouseNote" data-hc="${hc}" data-note="${encodeURIComponent(x.note)}" data-time="${x.time || ''}" style="color:#4fc3f7;font-size:11px;text-decoration:none">✎</a> <a href="javascript:void(0)" class="xqDelHouseNote" data-hc="${hc}" data-note="${encodeURIComponent(x.note)}" data-time="${x.time || ''}" style="color:#e74c3c;font-size:12px;text-decoration:none">×</a>` : ''}</div>`).join('');
         if (h.localImages && h.localImages.length) html += h.localImages.map(img => `<img src="data/ke_xiaoqu/images/${encodeURIComponent(d.name || n)}/${img}">`).join('');
@@ -611,6 +649,37 @@
           refreshTagFilter(); // 立即刷新标签筛选列表
           load(n);
         } catch (e) { alert(e.message); }
+      });
+    });
+    // ---- 加入房源池（全局一份）----
+    document.querySelectorAll('.xqAddPool').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const hc = btn.dataset.hc;
+        const h = (d.houses || []).find(x => x.houseCode === hc);
+        if (!h) { alert('未找到该房源'); return; }
+        const info = d.info || {};
+        const metro0 = (d.metro || [])[0];
+        const item = {
+          houseCode: h.houseCode || '',
+          xiaoqu: d.name || h.community || '',
+          board: d.board || h.board || '',
+          district: d.district || h.district || '',
+          room: h.room || '', area: h.area || '', unitPrice: h.unitPrice || '', totalPrice: h.totalPrice || '',
+          floor: h.floor || '', tihu: h.tihu || '', taoneiArea: h.taoneiArea || '', totalFloors: h.totalFloors || '',
+          structure: h.structure || '', orientation: h.orientation || '',
+          volumeRate: info['容积率'] || '', greening: info['绿化率'] || '', propertyFee: info['物业费'] || '',
+          buildYear: info['建成年代'] || '', quanshu: info['交易权属'] || '',
+          metro: metro0 ? (metro0.name + ' ' + metro0.distance) : '',
+          url: h.url || '', sellingPoint: h.sellingPoint || '', listTime: h.listTime || '',
+          time: new Date().toISOString(),
+        };
+        try {
+          const res = await ghReadPool();
+          if (res.pool.some(x => x.houseCode === hc)) { alert('该房源已在房源池'); return; }
+          const pool = res.pool.concat([item]);
+          await ghWritePool(pool, res.sha);
+          alert('已加入房源池');
+        } catch (e) { alert('加入失败：' + e.message); }
       });
     });
     // ---- 房源备注（三级权限）----
@@ -790,6 +859,46 @@
     const b = document.getElementById('noteSave');
     b.textContent = '已保存 ✓';
     setTimeout(() => b.textContent = '💾 保存笔记', 1200);
+  });
+
+  // ---- 房源池（全局一份，横向对比表格）----
+  async function renderPool() {
+    const listEl = document.getElementById('poolList');
+    if (!listEl) return;
+    const res = await ghReadPool();
+    const pool = res.pool;
+    document.getElementById('poolCount').textContent = pool.length;
+    if (!pool.length) { listEl.innerHTML = '<div style="color:#8b8f99;padding:12px">（房源池为空，去小区里点「＋ 房源池」加入）</div>'; return; }
+    const cols = ['小区', '户型', '面积㎡', '单价', '总价', '楼层', '梯户比', '得房率', '总高', '结构', '朝向', '容积率', '绿化率', '物业费', '年代', '权属', '最近地铁', '核心卖点'];
+    const th = cols.map(c => `<th style="padding:6px 8px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.06);color:#e8e9ec;font-size:11px;white-space:nowrap;position:sticky;top:0">${c}</th>`).join('');
+    const rows = pool.map(x => {
+      const derate = (x.taoneiArea && x.area) ? ((parseFloat(x.taoneiArea) / parseFloat(x.area)) * 100).toFixed(1) + '%' : '—';
+      const vals = [x.xiaoqu, x.room, x.area, x.unitPrice, x.totalPrice, x.floor, x.tihu, derate, x.totalFloors, x.structure, x.orientation, x.volumeRate, x.greening, x.propertyFee, x.buildYear, x.quanshu, x.metro, x.sellingPoint];
+      const tds = vals.map(v => `<td style="padding:6px 8px;border:1px solid rgba(255,255,255,0.1);color:#c9ccd3;font-size:11px;white-space:nowrap">${v || '—'}</td>`).join('');
+      return `<tr>${tds}<td style="padding:6px 8px;border:1px solid rgba(255,255,255,0.1);white-space:nowrap"><a href="${x.url || '#'}" target="_blank" style="color:#4fc3f7;font-size:11px">🔗</a> <a href="javascript:void(0)" class="rmPool" data-hc="${x.houseCode}" style="color:#e74c3c;font-size:13px;text-decoration:none">×</a></td></tr>`;
+    }).join('');
+    listEl.innerHTML = `<table style="border-collapse:collapse;min-width:100%"><thead><tr>${th}<th style="padding:6px 8px;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.06);font-size:11px;white-space:nowrap">操作</th></tr></thead><tbody>${rows}</tbody></table>`;
+    listEl.querySelectorAll('.rmPool').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        if (!confirm('从房源池移除？')) return;
+        const hc = btn.dataset.hc;
+        const r = await ghReadPool();
+        const pool2 = r.pool.filter(x => x.houseCode !== hc);
+        await ghWritePool(pool2, r.sha);
+        renderPool();
+      });
+    });
+  }
+  document.getElementById('openPoolBtn').addEventListener('click', () => {
+    document.getElementById('reportArea').style.display = 'none';
+    document.getElementById('noteView').style.display = 'none';
+    document.getElementById('poolView').style.display = 'block';
+    window.scrollTo(0, 0);
+    renderPool();
+  });
+  document.getElementById('poolBack').addEventListener('click', () => {
+    document.getElementById('poolView').style.display = 'none';
+    document.getElementById('reportArea').style.display = 'block';
   });
 
   // ---- 顶部用户状态（昵称 + 管理员）----
