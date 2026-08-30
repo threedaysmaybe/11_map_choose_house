@@ -168,7 +168,7 @@
           html += `<a class="xg" href="xiaoqu.html?name=${encodeURIComponent(g.xiaoqu)}" target="_blank">${g.xiaoqu}</a>`;
           html += `<a href="javascript:void(0)" class="groupUp" data-gi="${gi}" style="color:#4fc3f7;text-decoration:none;margin-left:4px">↑</a><a href="javascript:void(0)" class="groupDown" data-gi="${gi}" style="color:#4fc3f7;text-decoration:none;margin-left:2px">↓</a>`;
           html += xqInfoHtml(g.items[0], info);
-          if (xqNotes.length) html += xqNotes.map(n => `<div class="note" style="white-space:pre-wrap;margin-top:4px">📝 ${n}</div>`).join('');
+          if (xqNotes.length) html += xqNotes.map(n => `<div class="note" style="white-space:pre-wrap;margin-top:4px;padding-left:1.5em;text-indent:-1.5em;max-width:200px">📝 ${n}</div>`).join('');
           html += `</td>`;
         }
         html += `<td>${x.room || '—'}</td>`;
@@ -205,7 +205,7 @@
       html += `<div class="group">`;
       html += `<div class="group-head">🏘️ <a href="xiaoqu.html?name=${encodeURIComponent(g.xiaoqu)}" target="_blank">${g.xiaoqu}</a>（${g.items.length}套）<a href="javascript:void(0)" class="groupUp" data-gi="${gi}" style="color:#4fc3f7;text-decoration:none;margin-left:auto">↑</a><a href="javascript:void(0)" class="groupDown" data-gi="${gi}" style="color:#4fc3f7;text-decoration:none;margin-left:2px">↓</a></div>`;
       const xqNotes = xqNoteMap[g.xiaoqu] || [];
-      if (xqNotes.length) html += xqNotes.map(n => `<div class="note" style="white-space:pre-wrap;margin-bottom:6px">📝 ${n}</div>`).join('');
+      if (xqNotes.length) html += xqNotes.map(n => `<div class="note" style="white-space:pre-wrap;margin-bottom:6px;padding-left:1.5em;text-indent:-1.5em">📝 ${n}</div>`).join('');
       html += `<div class="gh-info" style="margin-bottom:6px">建筑类型 ${info['建筑类型'] || '—'} · 楼栋 ${info['楼栋总数'] || '—'} · 容积率 ${colored(info['容积率'] || f.volumeRate, volColor(info['容积率'] || f.volumeRate))} · 绿化 ${info['绿化率'] || f.greening || '—'} · 物业 ${info['物业费'] || f.propertyFee || '—'} · ${info['建成年代'] || f.buildYear || '—'} · 权属 ${quanshuHtml(quanshu)}</div>`;
       if (f.metro) html += metroHtml(f.metro);
       // 小区图片
