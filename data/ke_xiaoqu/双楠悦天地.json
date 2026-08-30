@@ -4,7 +4,7 @@
       "title": "成都武侯红牌楼双楠悦天地 3室2厅 东北",
       "room": "3室2厅",
       "area": "137.35",
-      "taoneiArea": null,
+      "taoneiArea": "",
       "totalPrice": "269",
       "unitPrice": "19586",
       "floor": "低",
@@ -14,7 +14,6 @@
       "district": "武侯",
       "board": "红牌楼",
       "features": [
-        "户型方正",
         "电梯"
       ],
       "tihu": "2梯4户",
@@ -41,13 +40,13 @@
       "url": "https://cd.ke.com/ershoufang/106127283781.html",
       "houseCode": "106127283781",
       "localImages": [
-        "1788020558773-0-9y1a.jpg",
-        "1788020559390-1-mk41.jpg",
-        "1788020560283-2-0myh.jpg",
-        "1788020561043-3-2ltp.jpeg",
-        "1788020561688-4-5gwt.jpg",
-        "1788020562659-5-yzjv.jpg",
-        "1788020563223-6-gd9v.jpg"
+        "1788108515880-0-ldof.jpg",
+        "1788108516005-1-dqa7.jpg",
+        "1788108516077-2-vfjj.jpg",
+        "1788108516162-3-m12x.jpeg",
+        "1788108516227-4-tet2.jpg",
+        "1788108516284-5-ygup.jpg",
+        "1788108516402-6-pm1j.jpg"
       ]
     },
     {
@@ -156,9 +155,58 @@
       "taoneiArea": "93.78",
       "totalPrice": "255",
       "unitPrice": "21799",
-      "floor": "高",
+      "floor": "低",
       "totalFloors": "19",
       "orientation": "西北",
+      "community": "双楠悦天地",
+      "district": "武侯",
+      "board": "红牌楼",
+      "features": [
+        "户型方正",
+        "精装",
+        "电梯"
+      ],
+      "tihu": "2梯4户",
+      "structure": "未知结构",
+      "diya": "有抵押",
+      "chanquan": "非共有",
+      "buildingType": "塔楼",
+      "huxingStructure": "平层",
+      "usage": "普通住宅",
+      "decoration": "精装",
+      "listTime": "2025年09月09日",
+      "lastTrade": "2025年09月11日",
+      "sellingPoint": "欧式典雅装修风格、温馨视觉效果，拎包入住。 小区介绍 开发商为成都鸿顺置业有限公司、成都丰盛企业管理开发有限公司，物业公司是诚源联行",
+      "fangben": "已上传房本照片",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/pc1_dUATd3YLd_1.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc1_dUATd3YLd_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_iviAe28y5_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_FIAIO6N74_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_3903ee4a-62d9-45f0-ac8c-6e3d58157038.png!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_jTSsSEroj_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106124573398.html",
+      "houseCode": "106124573398",
+      "localImages": [
+        "1788108475713-0-wib9.jpg",
+        "1788108476045-1-klhy.jpg",
+        "1788108476330-2-m7kp.jpg",
+        "1788108476592-3-mmq9.jpg",
+        "1788108476902-4-9the.png",
+        "1788108477188-5-hbtl.jpg"
+      ]
+    },
+    {
+      "title": "成都武侯红牌楼双楠悦天地 3室2厅 南 北",
+      "room": "3室2厅",
+      "area": "116.9",
+      "taoneiArea": null,
+      "totalPrice": "235",
+      "unitPrice": "20103",
+      "floor": "高",
+      "totalFloors": "19",
+      "orientation": "南",
       "community": "双楠悦天地",
       "district": "武侯",
       "board": "红牌楼",
@@ -168,35 +216,35 @@
       ],
       "tihu": "2梯4户",
       "structure": "未知结构",
-      "diya": "无抵押",
-      "chanquan": "共有",
+      "diya": "有抵押",
+      "chanquan": "非共有",
       "buildingType": "塔楼",
       "huxingStructure": "平层",
       "usage": "普通住宅",
       "decoration": "毛坯",
-      "listTime": "2025年09月14日",
-      "lastTrade": "2025年09月16日",
-      "sellingPoint": "属于次新房，采光可以，明厨明卫。二环旁边 小区介绍 小区人车分流，管理森严，需刷脸或刷卡进出，同时小区也配有相应的儿童游玩和休闲设施。 适宜人群 本房适合老年人，年轻人等各类人群，小区的配套很成熟，适合居住和生活。 周边配套 小区配套成熟，",
+      "listTime": "2026年03月02日",
+      "lastTrade": "2024年11月22日",
+      "sellingPoint": "房屋属于次新房，不临街朝中庭，明厨明卫，视野开阔。 小区介绍 开发商为成都鸿顺置业有限公司、成都丰盛企业管理开发有限公司，物业公司是诚源联行",
       "fangben": "已上传房本照片",
       "images": [
-        "https://ke-image.ljcdn.com/110000-inspection/pc1_X5MI4Dk5u_1.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
-        "https://ke-image.ljcdn.com/110000-inspection/pc1_X5MI4Dk5u_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
-        "https://ke-image.ljcdn.com/110000-inspection/apc_gdlNvvHTh_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
-        "https://ke-image.ljcdn.com/110000-inspection/apc_hOYINyMiv_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
-        "https://ke-image.ljcdn.com/hdic-frame/standard_43c5bee4-dde8-4545-aa10-2ef17ae89754.png!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
-        "https://ke-image.ljcdn.com/110000-inspection/pc0_6f0lMxsv0_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
-        "https://ke-image.ljcdn.com/110000-inspection/apc_nnfWT1VVZ_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+        "https://ke-image.ljcdn.com/110000-inspection/17730672880_epExR2One.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17730672880_epExR2One.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17730672910_HJVdtNgCx.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1773067347970.jpeg!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17730672970_cq2QXklee.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17730673700_ZQnxXO5Oz.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17730673020_acedL4bFV.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
       ],
-      "url": "https://cd.ke.com/ershoufang/106124629321.html",
-      "houseCode": "106124629321",
+      "url": "https://cd.ke.com/ershoufang/106126532521.html",
+      "houseCode": "106126532521",
       "localImages": [
-        "1788020588399-0-z1cr.jpg",
-        "1788020589413-1-02xa.jpg",
-        "1788020590444-2-scid.jpg",
-        "1788020591819-3-n928.jpg",
-        "1788020592915-4-duhe.png",
-        "1788020593878-5-cnh8.jpg",
-        "1788020594686-6-u7n8.jpg"
+        "1788108528036-0-bc0d.jpg",
+        "1788108528289-1-bx3t.jpg",
+        "1788108528546-2-apn0.jpg",
+        "1788108528798-3-v200.jpeg",
+        "1788108529034-4-j144.jpg",
+        "1788108529345-5-kdn9.jpg",
+        "1788108529640-6-swst.jpg"
       ]
     }
   ],
@@ -264,7 +312,6 @@
     }
   ],
   "images": [
-    "https://ke-image.ljcdn.com/hdic-resblock/527c025f-8174-4593-ad08-9432eeb21388.jpg.710x400.jpg",
     "https://ke-image.ljcdn.com/hdic-resblock/a6c5574a-421a-416f-aa36-476c0aa91096.jpg.710x400.jpg",
     "https://ke-image.ljcdn.com/hdic-resblock/c92c6a71-9038-49b8-a3ce-d777dcd7a2eb.jpg.710x400.jpg",
     "https://ke-image.ljcdn.com/hdic-resblock/66761028-f0ff-49b2-83af-03665b0d19cd.jpg.710x400.jpg",
@@ -274,9 +321,10 @@
     "https://ke-image.ljcdn.com/hdic-resblock/aac38d6b-95b1-4716-9585-711f4439b732.jpg.710x400.jpg",
     "https://ke-image.ljcdn.com/hdic-resblock/cc986862-159c-40da-8b05-6bb25bfa3730.jpg.710x400.jpg",
     "https://ke-image.ljcdn.com/hdic-resblock/bf77c4b7-3eb2-4ff7-b43c-31a380779f6f.jpg.710x400.jpg",
-    "https://ke-image.ljcdn.com/hdic-resblock/ade493c7-2e6b-40ad-896a-a61bd2476424.jpg.710x400.jpg"
+    "https://ke-image.ljcdn.com/hdic-resblock/ade493c7-2e6b-40ad-896a-a61bd2476424.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/527c025f-8174-4593-ad08-9432eeb21388.jpg.710x400.jpg"
   ],
-  "updatedAt": "2026-08-29T16:22:43.231Z",
+  "updatedAt": "2026-08-30T16:48:40.540Z",
   "localImages": [
     "1788020563245-0-h8cw.jpg",
     "1788020563254-1-rxro.jpg",
@@ -288,6 +336,17 @@
     "1788020563333-7-msft.jpg",
     "1788020563345-8-93tk.jpg",
     "1788020563356-9-t5jc.jpg",
-    "1788020563370-10-4lj2.jpg"
+    "1788020563370-10-4lj2.jpg",
+    "1788108520551-0-2hih.jpg",
+    "1788108520560-1-3d0p.jpg",
+    "1788108520570-2-31e6.jpg",
+    "1788108520581-3-4k91.jpg",
+    "1788108520590-4-gqeg.jpg",
+    "1788108520599-5-6dkl.jpg",
+    "1788108520608-6-0kh9.jpg",
+    "1788108520617-7-12kk.jpg",
+    "1788108520627-8-qmz7.jpg",
+    "1788108520640-9-hu3m.jpg",
+    "1788108520649-10-ovnd.jpg"
   ]
 }

@@ -209,6 +209,24 @@
       "count": 0
     },
     {
+      "name": "双楠名城二期",
+      "board": "红牌楼",
+      "district": "武侯",
+      "anzhi": true,
+      "lon": 104.020302,
+      "lat": 30.641433,
+      "count": 22
+    },
+    {
+      "name": "双楠忆景",
+      "board": "红牌楼",
+      "district": "武侯",
+      "anzhi": false,
+      "lon": 104.012346,
+      "lat": 30.634277,
+      "count": 7
+    },
+    {
       "name": "双楠悦天地",
       "board": "红牌楼",
       "district": "武侯",
@@ -216,6 +234,24 @@
       "lon": 104.022032,
       "lat": 30.644017,
       "count": 9
+    },
+    {
+      "name": "新界三期",
+      "board": "红牌楼",
+      "district": "武侯",
+      "anzhi": false,
+      "lon": 104.012174,
+      "lat": 30.631215,
+      "count": 43
+    },
+    {
+      "name": "中环晓院",
+      "board": "红牌楼",
+      "district": "武侯",
+      "anzhi": false,
+      "lon": 104.015327,
+      "lat": 30.63319,
+      "count": 5
     },
     {
       "name": "国嘉南苑一期",
@@ -288,6 +324,15 @@
       "lon": 104.062108,
       "lat": 30.64746,
       "count": 11
+    },
+    {
+      "name": "鹭岛国际三期",
+      "board": "外双楠",
+      "district": "武侯",
+      "anzhi": false,
+      "lon": 104.00808,
+      "lat": 30.648644,
+      "count": 0
     },
     {
       "name": "盘谷花园",

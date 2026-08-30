@@ -1,0 +1,141 @@
+{
+  "name": "鹭岛国际三期",
+  "price": "22052",
+  "board": "外双楠",
+  "info": {
+    "建筑类型": "塔板结合",
+    "房屋总数": "1311户",
+    "楼栋总数": "8栋",
+    "绿化率": "43%",
+    "容积率": "3.25",
+    "交易权属": "商品房",
+    "建成年代": "2010-2012年",
+    "供暖类型": "自采暖/无供暖",
+    "用水类型": "商水/民水",
+    "用电类型": "商电/民电",
+    "物业费": "1.9至3.5元/平米/月",
+    "开发商": "成都滕王阁房地产开发有限公司"
+  },
+  "metro": [
+    {
+      "name": "龙爪堰",
+      "distance": "734米",
+      "lines": "地铁17号"
+    },
+    {
+      "name": "武侯大道",
+      "distance": "1151米",
+      "lines": "地铁7号"
+    },
+    {
+      "name": "清水河大桥",
+      "distance": "1341米",
+      "lines": "地铁17号"
+    },
+    {
+      "name": "阳公桥",
+      "distance": "1664米",
+      "lines": "地铁17号"
+    },
+    {
+      "name": "东坡路",
+      "distance": "1929米",
+      "lines": "地铁13号"
+    }
+  ],
+  "deals": [
+    {
+      "建成年份": "暂无信息",
+      "面积": "146.64平米",
+      "签约日期": "2026-07-27",
+      "成交价": "263.8万",
+      "成交单价": "17990元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "146.76平米",
+      "签约日期": "2026-07-03",
+      "成交价": "246万",
+      "成交单价": "16763元/平"
+    },
+    {
+      "建成年份": "2010年",
+      "面积": "284.8平米",
+      "签约日期": "2026-06-03",
+      "成交价": "363万",
+      "成交单价": "12746元/平"
+    }
+  ],
+  "images": [
+    "https://ke-image.ljcdn.com/hdic-resblock/61b6f1a1-8a7e-4121-9ac7-9261eb6f3b57.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/492c7b58-4e22-4575-932d-5cd785f36bcd.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/a9677684-6fcd-49dd-8f46-d3fc84df5374.jpg.710x400.jpg"
+  ],
+  "updatedAt": "2026-08-30T16:48:36.405Z",
+  "localImages": [
+    "1788108516424-0-9jkf.jpg",
+    "1788108516450-1-j21v.jpg",
+    "1788108516468-2-p66o.jpg"
+  ],
+  "houses": [
+    {
+      "title": "成都武侯外双楠鹭岛国际三期 3室2厅 南",
+      "room": "3室2厅",
+      "area": "139.5",
+      "taoneiArea": "120.65",
+      "totalPrice": "268",
+      "unitPrice": "19212",
+      "floor": "中",
+      "totalFloors": "16",
+      "orientation": "南",
+      "community": "鹭岛国际三期",
+      "district": "武侯",
+      "board": "外双楠",
+      "features": [
+        "满五",
+        "电梯"
+      ],
+      "tihu": "2梯4户",
+      "structure": "框架结构",
+      "diya": "有抵押",
+      "chanquan": "非共有",
+      "buildingType": "板塔结合",
+      "huxingStructure": "",
+      "usage": "普通住宅",
+      "decoration": "简装",
+      "listTime": "2025年09月21日",
+      "lastTrade": "2011年03月15日",
+      "sellingPoint": "满五年 中楼层 户型通透 装修保养好 采光充足 视野宽阔 户型介绍 房子有10多平入户花园，中楼层，户型通透，采光充足，视野宽阔，装修保养好 周边配套 小区位于武侯区外双楠板块，处于中环路内侧，成熟商圈，配套成熟，大型的购物满足日常所需，小",
+      "fangben": "已上传房本照片",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/pc1_acM4W7kOm.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc1_acM4W7kOm.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17591627050_OgnBaAvvs.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17591627100_ikG0W3JcQ.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1759162672466.jpeg!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17591627170_XKIrbsru9.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17591627220_TiII4k930.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17591627270_wB77uqi7t.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106124726894.html",
+      "houseCode": "106124726894",
+      "localImages": [
+        "1788108536716-0-gv01.jpg",
+        "1788108537072-1-3e79.jpg",
+        "1788108537364-2-mouw.jpg",
+        "1788108537691-3-0274.jpg",
+        "1788108537983-4-6qmv.jpeg",
+        "1788108538278-5-u8nt.jpg",
+        "1788108538591-6-wytb.jpg",
+        "1788108538852-7-tauf.jpg"
+      ]
+    }
+  ],
+  "district": "武侯",
+  "features": [
+    "满五",
+    "户型方正",
+    "精装",
+    "电梯"
+  ]
+}
