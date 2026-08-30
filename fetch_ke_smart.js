@@ -308,10 +308,12 @@ async function downloadImages(page, urls, subdir) {
         if (pk && !existing.info['停车费']) existing.info['停车费'] = pk.replace('停车费', '');
         existing.features = [...new Set([...(existing.features || []), ...data.features])];
       }
-      // 找已存在的同一房源：优先 houseCode，其次 title（旧房源没有 houseCode）
+      // 找已存在的同一房源：优先 houseCode，其次 title+面积（title 相同但面积不同=不同房源，避免误顶）
       let dupIdx = -1;
       if (houseCode) dupIdx = existing.houses.findIndex(h => h.houseCode === houseCode);
-      if (dupIdx < 0) dupIdx = existing.houses.findIndex(h => h.title && h.title === data.title);
+      if (dupIdx < 0 && data.title) {
+        dupIdx = existing.houses.findIndex(h => h.title && h.title === data.title && (!data.area || !h.area || String(h.area) === String(data.area)));
+      }
       if (dupIdx >= 0) {
         // 已存在：更新（补充总层高/链接等新字段，保留旧图片）
         const old = existing.houses[dupIdx];
