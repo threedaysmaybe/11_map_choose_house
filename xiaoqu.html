@@ -688,11 +688,14 @@
   document.getElementById('refreshBtn').addEventListener('click', async () => {
     const b = document.getElementById('refreshBtn');
     b.textContent = '🔄 刷新中…';
+    // 先更新 Service Worker，再重载页面，确保拿到最新代码 + 最新数据
     try {
-      await initList();          // 重新加载小区列表（含标签筛选）
-      await load(curName);        // 重新加载当前小区报告
+      if ('serviceWorker' in navigator) {
+        const reg = await navigator.serviceWorker.getRegistration();
+        if (reg) await reg.update();
+      }
     } catch (e) {}
-    b.textContent = '🔄 刷新';
+    location.reload();
   });
 
   // ---- 图片灯箱：点击放大 + 滚轮缩放 + 按住拖动 + 单击关闭 ----
@@ -767,7 +770,7 @@
 </script>
 <script>
   if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js?v=4').catch(() => {}); });
+    window.addEventListener('load', () => { navigator.serviceWorker.register('sw.js?v=5').catch(() => {}); });
   }
 </script>
 </body>
