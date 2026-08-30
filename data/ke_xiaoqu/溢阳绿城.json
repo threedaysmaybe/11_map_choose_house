@@ -1,0 +1,167 @@
+{
+  "name": "溢阳绿城",
+  "price": "22052",
+  "board": "外双楠",
+  "info": {
+    "建筑类型": "板楼",
+    "房屋总数": "674户",
+    "楼栋总数": "7栋",
+    "绿化率": "58%",
+    "容积率": "1.7",
+    "交易权属": "商品房",
+    "建成年代": "2002-2004年",
+    "供暖类型": "自采暖/无供暖",
+    "用水类型": "民水",
+    "用电类型": "民电",
+    "物业费": "1.5至1.86元/平米/月",
+    "开发商": "成都天合凯旋置业有限公司"
+  },
+  "metro": [
+    {
+      "name": "清水河大桥",
+      "distance": "892米",
+      "lines": "地铁17号"
+    },
+    {
+      "name": "龙爪堰",
+      "distance": "943米",
+      "lines": "地铁17号"
+    },
+    {
+      "name": "武侯大道",
+      "distance": "1206米",
+      "lines": "地铁7号"
+    }
+  ],
+  "deals": [
+    {
+      "建成年份": "暂无信息",
+      "面积": "176.71平米",
+      "签约日期": "2026-07-27",
+      "成交价": "304万",
+      "成交单价": "17204元/平"
+    },
+    {
+      "建成年份": "2002年",
+      "面积": "197.57平米",
+      "签约日期": "2026-07-15",
+      "成交价": "306万",
+      "成交单价": "15489元/平"
+    },
+    {
+      "建成年份": "2002年",
+      "面积": "183.99平米",
+      "签约日期": "2026-06-29",
+      "成交价": "217.6万",
+      "成交单价": "11827元/平"
+    }
+  ],
+  "images": [
+    "https://ke-image.ljcdn.com/hdic-resblock/d3006262-e731-412a-88cc-8410f869d981.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/88fd016d-6cd3-48ea-929a-0afa45f912fe.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/54a07209-e797-4fd6-bf00-1882d7fc773a.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/e9408c4f-597e-46e7-9aca-1736f1e6e869.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/4308d82c-9b5e-4838-955f-5d4e06a77d7f.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/aaa99dd4-3f07-4446-bcdf-70ff50bbb1da.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/119d594a-f77e-4f97-94f6-e16e22facddd.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/8ce94579-e564-4ad2-a443-7ce549439290.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/38935504-de81-4df0-bb6b-4ef6edead685.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/3dfa7ccc-1540-45f7-8a60-5cde9d9b903c.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/f82bbc3b-0c9a-44fc-bfda-8cf8650cffe0.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/29a2554c-df69-4220-bf34-7842995c9c9c.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/57358016-7ccf-42e8-8758-c0cb749c6486.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/023095b4-48d0-47ff-be70-d9f20b628da5.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/cf5793a1-9c6d-4478-8f33-acaf3fb085e2.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/25a95a11-2de9-4469-9f5a-a5e9501ee8f6.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/a5d78be3-7287-4150-b832-6a5940733680.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/3dac881a-0f63-49a3-b49c-ad6e4e81698c.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/286a277b-e8f8-409f-af17-fca1ace78b5d.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/4b1ce0d0-924f-4040-bd94-448f7cb70393.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/4049da58-5216-4f61-86a8-c65bc8c60b60.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/a9677292-872d-4840-8204-5a613cd483ab.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/dba72c34-6995-40fa-9ab5-ba4dcfa0b111.jpg.710x400.jpg"
+  ],
+  "updatedAt": "2026-08-30T17:50:25.032Z",
+  "localImages": [
+    "1788112225045-0-eclj.jpg",
+    "1788112225081-1-yssa.jpg",
+    "1788112225112-2-5nj8.jpg",
+    "1788112225155-3-h013.jpg",
+    "1788112225224-4-072b.jpg",
+    "1788112225269-5-tl0b.jpg",
+    "1788112225315-6-a5ta.jpg",
+    "1788112225362-7-0jzn.jpg",
+    "1788112225409-8-7lzh.jpg",
+    "1788112225449-9-306i.jpg",
+    "1788112225634-10-nlkh.jpg",
+    "1788112225708-11-udig.jpg",
+    "1788112225782-12-diq4.jpg",
+    "1788112225865-13-yt2a.jpg",
+    "1788112225934-14-2rg5.jpg",
+    "1788112226042-15-84mb.jpg",
+    "1788112226092-16-w197.jpg",
+    "1788112226178-17-ywz1.jpg",
+    "1788112226301-18-s0fo.jpg",
+    "1788112226389-19-cbun.jpg",
+    "1788112226467-20-74hq.jpg",
+    "1788112226523-21-2xik.jpg",
+    "1788112226577-22-941s.jpg"
+  ],
+  "houses": [
+    {
+      "title": "成都武侯外双楠溢阳绿城 4室2厅 西北",
+      "room": "4室2厅",
+      "area": "161.32",
+      "taoneiArea": "140.33",
+      "totalPrice": "266",
+      "unitPrice": "16489",
+      "floor": "高",
+      "totalFloors": "11",
+      "orientation": "西北",
+      "community": "溢阳绿城",
+      "district": "武侯",
+      "board": "外双楠",
+      "features": [
+        "满五",
+        "电梯"
+      ],
+      "tihu": "2梯3户",
+      "structure": "框架结构",
+      "diya": "无抵押",
+      "chanquan": "共有",
+      "buildingType": "板楼",
+      "huxingStructure": "平层",
+      "usage": "普通住宅",
+      "decoration": "简装",
+      "listTime": "2026年05月05日",
+      "lastTrade": "2009年03月03日",
+      "sellingPoint": "业主诚心出售，随时可以看房，电梯高楼层标准套四。 小区介绍 溢阳绿城，仿若隐匿于都市的",
+      "fangben": "已上传房本照片",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_nRi6duVjR.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_nRi6duVjR.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_QBIpPR43y.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_6b1b5b8d-aca9-46a8-b47b-fdf484968ff1.png!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_oYNXfED8c.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_uycDgaLkp.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_3MtNauOoh.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106127464281.html",
+      "houseCode": "106127464281",
+      "localImages": [
+        "1788112253056-0-16z8.jpg",
+        "1788112253402-1-r4gt.jpg",
+        "1788112253730-2-1noe.jpg",
+        "1788112253999-3-0g7n.png",
+        "1788112254373-4-00x3.jpg",
+        "1788112254663-5-c6nx.jpg",
+        "1788112255027-6-17cf.jpg"
+      ]
+    }
+  ],
+  "district": "武侯",
+  "features": [
+    "满五",
+    "电梯"
+  ]
+}

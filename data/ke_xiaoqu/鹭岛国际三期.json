@@ -71,14 +71,17 @@
     "https://ke-image.ljcdn.com/hdic-resblock/492c7b58-4e22-4575-932d-5cd785f36bcd.jpg.710x400.jpg",
     "https://ke-image.ljcdn.com/hdic-resblock/a9677684-6fcd-49dd-8f46-d3fc84df5374.jpg.710x400.jpg"
   ],
-  "updatedAt": "2026-08-30T17:10:33.582Z",
+  "updatedAt": "2026-08-30T17:50:43.625Z",
   "localImages": [
     "1788108516424-0-9jkf.jpg",
     "1788108516450-1-j21v.jpg",
     "1788108516468-2-p66o.jpg",
     "1788109833590-0-og97.jpg",
     "1788109833618-1-bw12.jpg",
-    "1788109833639-2-ux6n.jpg"
+    "1788109833639-2-ux6n.jpg",
+    "1788112243634-0-01ox.jpg",
+    "1788112243642-1-6qyr.jpg",
+    "1788112243650-2-n0ir.jpg"
   ],
   "houses": [
     {
@@ -123,14 +126,64 @@
       "url": "https://cd.ke.com/ershoufang/106124726894.html",
       "houseCode": "106124726894",
       "localImages": [
-        "1788110976642-0-118a.jpg",
-        "1788110976648-1-czl3.jpg",
-        "1788110976654-2-xocw.jpg",
-        "1788110976660-3-nlwu.jpg",
-        "1788110976666-4-8yqv.jpeg",
-        "1788110976672-5-6qzh.jpg",
-        "1788110976678-6-tfuj.jpg",
-        "1788110976684-7-i598.jpg"
+        "1788112260640-0-xqbr.jpg",
+        "1788112260648-1-dca3.jpg",
+        "1788112260655-2-rdit.jpg",
+        "1788112260663-3-87mt.jpg",
+        "1788112260670-4-4u63.jpeg",
+        "1788112260678-5-lcy1.jpg",
+        "1788112260685-6-js37.jpg",
+        "1788112260693-7-iqaj.jpg"
+      ]
+    },
+    {
+      "title": "成都武侯外双楠鹭岛国际三期 3室2厅 南",
+      "room": "3室2厅",
+      "area": "143.76",
+      "taoneiArea": "126.54",
+      "totalPrice": "260",
+      "unitPrice": "18086",
+      "floor": "中",
+      "totalFloors": "15",
+      "orientation": "南",
+      "community": "鹭岛国际三期",
+      "district": "武侯",
+      "board": "外双楠",
+      "features": [
+        "满五",
+        "户型方正",
+        "精装",
+        "电梯"
+      ],
+      "tihu": "2梯4户",
+      "structure": "框架结构",
+      "diya": "无抵押",
+      "chanquan": "共有",
+      "buildingType": "板塔结合",
+      "huxingStructure": "平层",
+      "usage": "普通住宅",
+      "decoration": "精装",
+      "listTime": "2026年04月10日",
+      "lastTrade": "2018年07月01日",
+      "sellingPoint": "中庭不临街，满五，业主很少居住保养好",
+      "fangben": "已上传房本照片",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/17761859890_jkOx3jqj6.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17761859670_AO8t90moq.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17761859830_KD2mMXiUs.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1776185937961.jpeg!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17761859890_jkOx3jqj6.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17761859940_mf1Fq1wvD.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106127138831.html",
+      "houseCode": "106127138831",
+      "localImages": [
+        "1788112250649-0-m22y.jpg",
+        "1788112250657-1-xujc.jpg",
+        "1788112250663-2-mk21.jpg",
+        "1788112250670-3-t431.jpeg",
+        "1788112250677-4-gjos.jpg",
+        "1788112250685-5-6kzc.jpg"
       ]
     }
   ],

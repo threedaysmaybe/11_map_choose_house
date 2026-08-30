@@ -43,20 +43,20 @@
       "url": "https://cd.ke.com/ershoufang/106114855416.html",
       "houseCode": "106114855416",
       "localImages": [
-        "1788110957070-0-j8ek.jpg",
-        "1788110957321-1-4nme.jpg",
-        "1788110957583-2-3yyd.jpg",
-        "1788110957849-3-6qi5.jpg",
-        "1788110958126-4-m3jx.png",
-        "1788110958552-5-fgs6.jpg",
-        "1788110958814-6-vprv.jpg"
+        "1788112204698-0-uj35.jpg",
+        "1788112204735-1-151s.jpg",
+        "1788112204767-2-0c30.jpg",
+        "1788112204802-3-cesc.jpg",
+        "1788112204827-4-99wf.png",
+        "1788112204870-5-gjx4.jpg",
+        "1788112204918-6-qhaz.jpg"
       ]
     },
     {
       "title": "成都武侯外双楠鹭岛国际一二期 3室1厅 东南",
       "room": "3室1厅",
       "area": "129.74",
-      "taoneiArea": null,
+      "taoneiArea": "",
       "totalPrice": "230",
       "unitPrice": "17728",
       "floor": "中",
@@ -94,24 +94,137 @@
       "url": "https://cd.ke.com/ershoufang/106128503438.html",
       "houseCode": "106128503438",
       "localImages": [
-        "1788110964015-0-zn8x.jpg",
-        "1788110964259-1-ilgd.jpg",
-        "1788110964592-2-ou6h.jpg",
-        "1788110964952-3-rfju.jpeg",
-        "1788110965300-4-fluk.jpg",
-        "1788110965574-5-nq0x.jpg",
-        "1788110965856-6-febj.jpg"
+        "1788112219664-0-gg4z.jpg",
+        "1788112219693-1-1qyy.jpg",
+        "1788112219718-2-wew5.jpg",
+        "1788112219749-3-7pu3.jpeg",
+        "1788112219772-4-8x67.jpg",
+        "1788112219801-5-gupe.jpg",
+        "1788112219835-6-nngc.jpg"
       ]
     }
   ],
   "board": "外双楠",
   "district": "武侯",
   "name": "鹭岛国际一二期",
-  "info": {},
+  "info": {
+    "建筑类型": "塔楼/板楼",
+    "房屋总数": "2008户",
+    "楼栋总数": "33栋",
+    "绿化率": "62%",
+    "容积率": "2.3",
+    "交易权属": "商品房/私产",
+    "建成年代": "2006-2016年",
+    "供暖类型": "自采暖",
+    "用水类型": "商水/民水",
+    "用电类型": "商电/民电",
+    "物业费": "1.43至5元/平米/月",
+    "开发商": "成都滕王阁房地产开发有限公司"
+  },
   "features": [
     "满五",
     "户型方正",
     "精装",
     "电梯"
+  ],
+  "price": "22052",
+  "metro": [
+    {
+      "name": "武侯大道",
+      "distance": "747米",
+      "lines": "地铁7号"
+    },
+    {
+      "name": "龙爪堰",
+      "distance": "1153米",
+      "lines": "地铁17号"
+    },
+    {
+      "name": "清水河大桥",
+      "distance": "1420米",
+      "lines": "地铁17号"
+    }
+  ],
+  "deals": [
+    {
+      "建成年份": "暂无信息",
+      "面积": "259.78平米",
+      "签约日期": "2026-07-22",
+      "成交价": "538万",
+      "成交单价": "20710元/平"
+    },
+    {
+      "建成年份": "2006年",
+      "面积": "143.67平米",
+      "签约日期": "2026-07-19",
+      "成交价": "270万",
+      "成交单价": "18794元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "159.31平米",
+      "签约日期": "2026-07-04",
+      "成交价": "273万",
+      "成交单价": "17137元/平"
+    }
+  ],
+  "images": [
+    "https://ke-image.ljcdn.com/hdic-resblock/2974412f-df58-47c1-9120-1d55025a5ee9.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/b727a7e5-e03a-46f4-b0e5-4b05c1739702.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/f21f6a75-7b80-4119-ad55-1db8bfcc79c3.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/c669a4f4-f24a-4ad9-bbe2-1758a7822222.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/bb65d48a-8de8-4a0c-9d1f-5a161498213b.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/f926e3e5-85bf-4835-9be6-7ac94ae0b2ff.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/34699612-12f6-4574-86fb-0dc7cb06b36d.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/a08bb16e-31cb-44d7-af30-9c2db5498914.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/e1a04351-053a-4167-a7fa-786214379c09.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/33f07aad-9673-4483-9d02-acba50c21ad6.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/bb99f39a-f587-4464-b866-0b988bd0abb6.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/223592b2-2fa7-4ed5-aa38-ec08cea024dd.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/6c68245e-c999-4c8c-ae1c-4a4ba0eb001e.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/81381fd2-593a-4a90-9424-54745d190deb.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/48cc9036-4d19-4210-9546-7dc7e86ff42b.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/0cc0ecc3-6b90-4c11-b6cb-5c9267b793d8.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/2b4c9712-bde0-4cd9-969d-f3760b7057ec.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/78ca7fa3-f906-4f51-8381-942849e9862d.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/218c9b84-2570-41f4-8750-fea10f4997b0.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/7f4dd414-8149-450b-a8b0-3fca9c8093cd.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/c9cf2347-beec-40ad-aaeb-688eef2739ee.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/45663bed-9835-452a-bae3-f794faba85bd.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/f3e58681-c55d-4f13-9bc4-298677809745.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/1da9a0a5-ce9b-4a9b-85f3-6961dcf9ce2c.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/bb25a670-0631-4b87-a509-eb7b8b2834c9.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/a7c25b88-9dc7-4166-8d4f-985c1d052fb1.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/d42ef1c5-5678-4868-a1c2-9df29e78b6bd.jpg.710x400.jpg"
+  ],
+  "updatedAt": "2026-08-30T17:50:42.813Z",
+  "localImages": [
+    "1788112242820-0-63k1.jpg",
+    "1788112242831-1-9inm.JPG",
+    "1788112242854-2-t1ge.JPG",
+    "1788112242860-3-r50a.jpg",
+    "1788112242871-4-n2b7.JPG",
+    "1788112242887-5-74nh.JPG",
+    "1788112242905-6-vdz3.jpg",
+    "1788112242938-7-1gp7.JPG",
+    "1788112242961-8-aike.JPG",
+    "1788112243002-9-8tg7.JPG",
+    "1788112243026-10-xevk.JPG",
+    "1788112243068-11-igrx.JPG",
+    "1788112243101-12-zbud.JPG",
+    "1788112243123-13-ok9n.JPG",
+    "1788112243139-14-bc08.jpg",
+    "1788112243261-15-mvs8.jpg",
+    "1788112243278-16-02z6.jpg",
+    "1788112243294-17-tc6g.jpg",
+    "1788112243326-18-mp3e.jpg",
+    "1788112243350-19-c0t4.jpg",
+    "1788112243378-20-6tfa.jpg",
+    "1788112243419-21-5g47.JPG",
+    "1788112243461-22-bwty.JPG",
+    "1788112243523-23-u3bm.jpg",
+    "1788112243568-24-agce.JPG",
+    "1788112243598-25-ty1s.JPG",
+    "1788112243621-26-kbp2.jpg"
   ]
 }

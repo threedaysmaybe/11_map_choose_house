@@ -4,7 +4,7 @@
       "title": "成都武侯红牌楼新界二期 3室2厅 东北",
       "room": "3室2厅",
       "area": "123.89",
-      "taoneiArea": null,
+      "taoneiArea": "",
       "totalPrice": "215",
       "unitPrice": "17355",
       "floor": "高",
@@ -42,23 +42,103 @@
       "url": "https://cd.ke.com/ershoufang/106125084110.html",
       "houseCode": "106125084110",
       "localImages": [
-        "1788110972064-0-crr8.png",
-        "1788110972409-1-fa18.jpg",
-        "1788110972676-2-yrjr.jpg",
-        "1788110972919-3-ql2c.png",
-        "1788110973169-4-pkiw.jpg",
-        "1788110973482-5-fk3n.jpg",
-        "1788110973734-6-bu8x.jpg",
-        "1788110974021-7-k7u5.jpg"
+        "1788112257662-0-8so0.png",
+        "1788112257701-1-pwbc.jpg",
+        "1788112257719-2-ylj8.jpg",
+        "1788112257763-3-4buu.png",
+        "1788112257804-4-hnwc.jpg",
+        "1788112257836-5-0uvu.jpg",
+        "1788112257865-6-os3p.jpg",
+        "1788112257893-7-a1f8.jpg"
       ]
     }
   ],
   "board": "红牌楼",
   "district": "武侯",
   "name": "新界二期",
-  "info": {},
+  "info": {
+    "建筑类型": "板楼",
+    "房屋总数": "563户",
+    "楼栋总数": "8栋",
+    "绿化率": "48%",
+    "容积率": "2.81",
+    "交易权属": "商品房/使用权",
+    "建成年代": "2009-2012年",
+    "供暖类型": "自采暖/无供暖",
+    "用水类型": "商水/民水",
+    "用电类型": "商电/民电",
+    "物业费": "1.6至3元/平米/月",
+    "开发商": "中铁二局房地产集团有限公司"
+  },
   "features": [
     "满五",
     "电梯"
+  ],
+  "price": "19493",
+  "metro": [
+    {
+      "name": "太平园",
+      "distance": "745米",
+      "lines": "地铁10号"
+    },
+    {
+      "name": "武侯大道",
+      "distance": "1146米",
+      "lines": "地铁7号"
+    },
+    {
+      "name": "川藏立交",
+      "distance": "1327米",
+      "lines": "地铁3号"
+    },
+    {
+      "name": "红牌楼",
+      "distance": "1759米",
+      "lines": "地铁10号"
+    }
+  ],
+  "deals": [
+    {
+      "建成年份": "2010年",
+      "面积": "122.43平米",
+      "签约日期": "2026-06-20",
+      "成交价": "209.2万",
+      "成交单价": "17088元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "146.8平米",
+      "签约日期": "2025-12-01",
+      "成交价": "242万",
+      "成交单价": "16486元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "33.93平米",
+      "签约日期": "2025-06-22",
+      "成交价": "30万",
+      "成交单价": "8842元/平"
+    }
+  ],
+  "images": [
+    "https://ke-image.ljcdn.com/hdic-resblock/25b1da29-f339-433f-8f57-6937ec0ace4b.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/4944b3d4-cdb3-4bd3-8886-c08eebd42a8b.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/94271a9f-bca0-4ad6-b2ba-67d8e3a9d319.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/e4dc5aa0-07cc-4066-89a3-66fa1e54c5bc.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/963484bd-bdf6-499f-86b7-91f68729596d.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/5969261e-a2aa-4ebd-b237-1d4644b0e8c8.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/dd5520c9-1d5a-4496-ba48-f5c3ea77f461.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/3b536661-e1ff-4108-8352-44615ecaf665.JPG.710x400.jpg"
+  ],
+  "updatedAt": "2026-08-30T17:50:16.725Z",
+  "localImages": [
+    "1788112216736-0-zvzz.JPG",
+    "1788112216757-1-kxtt.JPG",
+    "1788112216778-2-197q.JPG",
+    "1788112216798-3-ru99.JPG",
+    "1788112216839-4-inbo.JPG",
+    "1788112216859-5-baqj.JPG",
+    "1788112216904-6-6ums.JPG",
+    "1788112216924-7-17xs.JPG"
   ]
 }

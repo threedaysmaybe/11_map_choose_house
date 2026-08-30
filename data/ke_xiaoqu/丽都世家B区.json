@@ -1,0 +1,204 @@
+{
+  "name": "丽都世家B区",
+  "price": "21086",
+  "board": "丽都",
+  "info": {
+    "建筑类型": "塔楼/板楼/塔板结合",
+    "房屋总数": "738户",
+    "楼栋总数": "4栋",
+    "绿化率": "30%",
+    "容积率": "4.09",
+    "交易权属": "商品房",
+    "建成年代": "2010-2016年",
+    "供暖类型": "自采暖",
+    "用水类型": "民水",
+    "用电类型": "民电",
+    "物业费": "2.4元/平米/月",
+    "开发商": "成都长城实业集团有限公司"
+  },
+  "metro": [
+    {
+      "name": "太平园",
+      "distance": "574米",
+      "lines": "地铁10号"
+    },
+    {
+      "name": "红牌楼",
+      "distance": "1238米",
+      "lines": "地铁10号"
+    },
+    {
+      "name": "高朋大道",
+      "distance": "1309米",
+      "lines": "地铁7号"
+    },
+    {
+      "name": "科园",
+      "distance": "1320米",
+      "lines": "地铁5号"
+    },
+    {
+      "name": "九兴大道",
+      "distance": "1479米",
+      "lines": "地铁5号"
+    }
+  ],
+  "deals": [
+    {
+      "建成年份": "2014年",
+      "面积": "87.81平米",
+      "签约日期": "2026-07-17",
+      "成交价": "165.7万",
+      "成交单价": "18867元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "116平米",
+      "签约日期": "2026-06-13",
+      "成交价": "226万",
+      "成交单价": "19483元/平"
+    },
+    {
+      "建成年份": "2014年",
+      "面积": "75.09平米",
+      "签约日期": "2026-06-01",
+      "成交价": "139.5万",
+      "成交单价": "18578元/平"
+    }
+  ],
+  "images": [
+    "https://ke-image.ljcdn.com/hdic-resblock/d33f33e3-823b-450d-a039-1e84f4e049bb.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/0dd6d37a-d5f2-4f77-be8a-9d454569a494.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/c5630542-ed99-424c-958b-c4d6462c8393.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/9999a32f-ff0a-41f8-a3ed-c11b3c609bb6.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/84c8e1d8-b213-4bdf-8f9d-c7633241752b.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/23f426c9-a0fe-437b-a014-66efccf067e0.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/9fa5965b-5b18-4555-a5c5-e3d0bda751d7.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/74bb770e-6994-4202-9afe-119af90adb9e.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/b1b2e148-beb6-4808-8c4a-661275ea33ac.jpg.710x400.jpg"
+  ],
+  "updatedAt": "2026-08-30T17:50:13.997Z",
+  "localImages": [
+    "1788112214018-0-5a10.jpg",
+    "1788112214048-1-ig0h.jpg",
+    "1788112214067-2-6s38.jpg",
+    "1788112214084-3-aiuu.jpg",
+    "1788112214123-4-74u3.jpg",
+    "1788112214151-5-ifdp.jpg",
+    "1788112214196-6-twzo.jpg",
+    "1788112214215-7-qp1w.jpg",
+    "1788112214247-8-zgx5.jpg"
+  ],
+  "houses": [
+    {
+      "title": "成都武侯丽都丽都世家B区 4室2厅 西南",
+      "room": "4室2厅",
+      "area": "139.65",
+      "taoneiArea": null,
+      "totalPrice": "285",
+      "unitPrice": "20409",
+      "floor": "中",
+      "totalFloors": "17",
+      "orientation": "西南",
+      "community": "丽都世家B区",
+      "district": "武侯",
+      "board": "丽都",
+      "features": [
+        "满五",
+        "精装",
+        "电梯"
+      ],
+      "tihu": "2梯4户",
+      "structure": "钢混结构",
+      "diya": "无抵押",
+      "chanquan": "共有",
+      "buildingType": "塔楼",
+      "huxingStructure": "平层",
+      "usage": "普通住宅",
+      "decoration": "精装",
+      "listTime": "2026年06月24日",
+      "lastTrade": "2017年11月20日",
+      "sellingPoint": "装修好，保养也好，正对小区中庭，无遮挡，西南向 小区介绍 开发商：长城实业集团有限公司",
+      "fangben": "已上传房本照片",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/17827434380_8SpVu1dHs.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17827434110_S0KQspkdx.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17827434190_P7QNG3ZQy.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1782743371406.jpeg!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17827434380_8SpVu1dHs.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17827434280_Ow7BAjdCS.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17827434510_mdWWTbk0S.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106128175243.html",
+      "houseCode": "106128175243",
+      "localImages": [
+        "1788112223013-0-w6ki.jpg",
+        "1788112223352-1-w0ss.jpg",
+        "1788112223645-2-tnqy.jpg",
+        "1788112223923-3-4dgz.jpeg",
+        "1788112224268-4-tdc9.jpg",
+        "1788112224643-5-1c4m.jpg",
+        "1788112225028-6-7rer.jpg"
+      ]
+    },
+    {
+      "title": "成都武侯丽都丽都世家B区 4室2厅 东南",
+      "room": "4室2厅",
+      "area": "139.65",
+      "taoneiArea": null,
+      "totalPrice": "279",
+      "unitPrice": "19979",
+      "floor": "中",
+      "totalFloors": "17",
+      "orientation": "东南",
+      "community": "丽都世家B区",
+      "district": "武侯",
+      "board": "丽都",
+      "features": [
+        "满五",
+        "精装",
+        "电梯"
+      ],
+      "tihu": "2梯4户",
+      "structure": "钢混结构",
+      "diya": "无抵押",
+      "chanquan": "共有",
+      "buildingType": "塔楼",
+      "huxingStructure": "平层",
+      "usage": "普通住宅",
+      "decoration": "精装",
+      "listTime": "2026年07月10日",
+      "lastTrade": "2020年10月28日",
+      "sellingPoint": "房子3年前重新精装修过的，位置安静 ，通透户型，拎包入住。 小区介绍 小区是长城实业开发，共4栋房子，总高17楼到顶，2015年交房，小区保安24小时值班管理很好，干净整洁安全，物管费2",
+      "fangben": "已上传房本照片",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/17838648400_J1T3CVm6G.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17838648400_J1T3CVm6G.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17838648440_IIlFXlj27.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1783864818103.jpeg!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17838648710_Zkt7Hq9Wy.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17838648570_En4MyxVKZ.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17838648510_9VZZXDCIp.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17838648650_rZlACyf3Y.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106128420168.html",
+      "houseCode": "106128420168",
+      "localImages": [
+        "1788112245927-0-errl.jpg",
+        "1788112246178-1-i6vs.jpg",
+        "1788112246397-2-z6xc.jpg",
+        "1788112246721-3-2ci2.jpeg",
+        "1788112247048-4-tm3s.jpg",
+        "1788112247348-5-jemk.jpg",
+        "1788112247650-6-sfc8.jpg",
+        "1788112247940-7-tryq.jpg"
+      ]
+    }
+  ],
+  "district": "武侯",
+  "features": [
+    "满五",
+    "精装",
+    "电梯"
+  ]
+}

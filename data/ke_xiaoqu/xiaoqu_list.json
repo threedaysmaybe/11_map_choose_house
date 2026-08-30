@@ -56,6 +56,15 @@
       "count": 5
     },
     {
+      "name": "罗浮世家二期",
+      "board": "高升桥",
+      "district": "高新",
+      "anzhi": false,
+      "lon": 104.035603,
+      "lat": 30.638856,
+      "count": 10
+    },
+    {
       "name": "绿地紫瑞里",
       "board": "神仙树",
       "district": "高新",
@@ -398,12 +407,30 @@
       "count": 11
     },
     {
+      "name": "交大归谷国际社区",
+      "board": "丽都",
+      "district": "武侯",
+      "anzhi": false,
+      "lon": 104.022233,
+      "lat": 30.625216,
+      "count": 0
+    },
+    {
+      "name": "丽都世家B区",
+      "board": "丽都",
+      "district": "武侯",
+      "anzhi": false,
+      "lon": 104.02409,
+      "lat": 30.628001,
+      "count": 0
+    },
+    {
       "name": "鹭岛国际三期",
       "board": "外双楠",
       "district": "武侯",
       "anzhi": false,
-      "lon": 104.00808,
-      "lat": 30.648644,
+      "lon": null,
+      "lat": null,
       "count": 0
     },
     {
@@ -411,9 +438,18 @@
       "board": "外双楠",
       "district": "武侯",
       "anzhi": false,
-      "lon": 104.009473,
-      "lat": 30.645629,
+      "lon": null,
+      "lat": null,
       "count": 0
+    },
+    {
+      "name": "溢阳绿城",
+      "board": "外双楠",
+      "district": "武侯",
+      "anzhi": false,
+      "lon": 104.012534,
+      "lat": 30.649239,
+      "count": 11
     },
     {
       "name": "盘谷花园",
@@ -438,8 +474,8 @@
       "board": "棕北",
       "district": "武侯",
       "anzhi": false,
-      "lon": null,
-      "lat": null,
+      "lon": 104.072599,
+      "lat": 30.624247,
       "count": 0
     }
   ]
