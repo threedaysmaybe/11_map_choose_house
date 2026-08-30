@@ -1,0 +1,169 @@
+{
+  "houses": [
+    {
+      "title": "成都武侯红牌楼怡安花园 3室2厅 南",
+      "room": "3室2厅",
+      "area": "116.8",
+      "taoneiArea": null,
+      "totalPrice": "216",
+      "unitPrice": "18494",
+      "floor": "高",
+      "totalFloors": "9",
+      "orientation": "南",
+      "community": "怡安花园",
+      "district": "武侯",
+      "board": "红牌楼",
+      "features": [
+        "户型方正",
+        "南北通透",
+        "精装",
+        "电梯"
+      ],
+      "tihu": "1梯2户",
+      "structure": "框架结构",
+      "diya": "有抵押",
+      "chanquan": "非共有",
+      "buildingType": "板楼",
+      "huxingStructure": "平层",
+      "usage": "普通住宅",
+      "decoration": "精装",
+      "listTime": "2025年02月26日",
+      "lastTrade": "2022年08月26日",
+      "sellingPoint": "精装修2年不到，2012年小区，电梯小高层，楼层好， 小区介绍 小区建成于2012年，属于安置房，产权清晰正常过户交易；小区一共有3栋，8楼或者9楼到顶，一梯七户，小区物业费0",
+      "fangben": "已上传房本照片",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/pc1_NsbDhLWOK.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc1_NsbDhLWOK.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_eiPdcuDdn.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_ssy2aL7ln.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_2557a107-7805-482e-91ba-91168ddf0019.png!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_ZMJAusJpL.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_yDBc3ERvj.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106121949259.html",
+      "houseCode": "106121949259",
+      "localImages": [
+        "1788109839685-0-kz4c.jpg",
+        "1788109840069-1-216p.jpg",
+        "1788109840373-2-ahtu.jpg",
+        "1788109840773-3-s3cd.jpg",
+        "1788109841258-4-pa0c.png",
+        "1788109841579-5-k2nc.jpg",
+        "1788109841894-6-m9ap.jpg"
+      ]
+    }
+  ],
+  "board": "红牌楼",
+  "district": "武侯",
+  "name": "怡安花园",
+  "info": {
+    "建筑类型": "板楼",
+    "房屋总数": "467户",
+    "楼栋总数": "3栋",
+    "绿化率": "30%",
+    "容积率": "2",
+    "交易权属": "商品房/拆迁安置房",
+    "建成年代": "2003-2013年",
+    "供暖类型": "自采暖",
+    "用水类型": "民水",
+    "用电类型": "民电",
+    "物业费": "0.4元/平米/月",
+    "开发商": "无开发商"
+  },
+  "features": [
+    "户型方正",
+    "南北通透",
+    "精装",
+    "电梯"
+  ],
+  "price": "15139",
+  "metro": [
+    {
+      "name": "武侯大道",
+      "distance": "521米",
+      "lines": "地铁7号"
+    },
+    {
+      "name": "川藏立交",
+      "distance": "1545米",
+      "lines": "地铁3号"
+    },
+    {
+      "name": "太平园",
+      "distance": "1724米",
+      "lines": "地铁10号"
+    }
+  ],
+  "deals": [
+    {
+      "建成年份": "暂无信息",
+      "面积": "47.49平米",
+      "签约日期": "2026-05-16",
+      "成交价": "56万",
+      "成交单价": "11792元/平"
+    },
+    {
+      "建成年份": "2003年",
+      "面积": "45.09平米",
+      "签约日期": "2026-05-10",
+      "成交价": "51.5万",
+      "成交单价": "11422元/平"
+    },
+    {
+      "建成年份": "2003年",
+      "面积": "52.31平米",
+      "签约日期": "2026-01-22",
+      "成交价": "55万",
+      "成交单价": "10515元/平"
+    }
+  ],
+  "images": [
+    "https://ke-image.ljcdn.com/hdic-resblock/382dd9ef-9402-409f-9d3a-2f91ad545769.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/1ee43369-f6fc-4385-bc57-04432c53559e.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/fdf6fab1-0f4d-472a-8eb1-6406bdeda95c.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/9726da7b-8595-4523-98e3-4c1672f3fa39.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/4afe7e7d-833a-490b-9dc9-aad16035ea28.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/4ffa0c62-7cfd-4359-8516-d73a5e8c09f0.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/89d6fb7c-3c54-413b-9fa5-b5fe17ad370e.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/1b372421-b440-4a96-9cb8-bbb2c889255c.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/ade7d7ed-4d73-4d17-87c5-05711f54742c.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/4b0719b4-39d1-4375-b42c-5930cd76badb.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/93b3e9a6-9209-4c7b-856f-a5137db9e2d6.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/daaf1d4c-a40f-4fb0-ad02-e9001f2ed44c.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/76bd5b6f-73ce-4546-922b-8f236c6fb1df.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/4481edf6-7ee5-49e4-ba35-b197ac3d479c.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/f8768130-c2c2-419e-b32b-8477d29672c0.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/6340872d-2c94-4554-bac1-34edf60c4962.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/441296dc-5d3c-4728-ad98-577b4224d30c.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/a4841ed6-1844-4ca6-b9cb-0fe068abc1b4.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/5ec46dac-c2c8-4217-95a8-8a7b7f8604f0.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/0139d11c-b9bd-4cc2-b15b-3e8d702e4006.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/4d069015-f961-427c-ba57-7a8390132e32.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/0fba0af9-0608-4d25-951b-acaf8ca4d4e4.jpg.710x400.jpg"
+  ],
+  "updatedAt": "2026-08-30T17:10:41.901Z",
+  "localImages": [
+    "1788109841918-0-1577.jpg",
+    "1788109841934-1-s2fu.jpg",
+    "1788109841951-2-zhqa.jpg",
+    "1788109841970-3-2vfx.jpg",
+    "1788109841978-4-5qgm.jpg",
+    "1788109841984-5-1yo9.jpg",
+    "1788109841989-6-vjmh.jpg",
+    "1788109842009-7-5v59.jpg",
+    "1788109842028-8-gobu.jpg",
+    "1788109842047-9-cng1.jpg",
+    "1788109842070-10-9f85.jpg",
+    "1788109842106-11-2hbb.jpg",
+    "1788109842118-12-go0j.jpg",
+    "1788109842132-13-iefk.jpg",
+    "1788109842582-14-jdss.jpg",
+    "1788109842649-15-2t86.jpg",
+    "1788109843008-16-2f7z.jpg",
+    "1788109843439-17-tkcc.jpg",
+    "1788109844054-18-bjo9.jpg",
+    "1788109844714-19-z1df.jpg",
+    "1788109845479-20-k27e.jpg",
+    "1788109846164-21-dpwg.jpg"
+  ]
+}

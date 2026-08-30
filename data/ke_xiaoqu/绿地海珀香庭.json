@@ -1,0 +1,166 @@
+{
+  "houses": [
+    {
+      "title": "成都武侯红牌楼绿地海珀香庭 3室1厅 南",
+      "room": "3室1厅",
+      "area": "162",
+      "taoneiArea": null,
+      "totalPrice": "285",
+      "unitPrice": "17593",
+      "floor": "中",
+      "totalFloors": "11",
+      "orientation": "南",
+      "community": "绿地海珀香庭",
+      "district": "武侯",
+      "board": "红牌楼",
+      "features": [
+        "满五",
+        "电梯"
+      ],
+      "tihu": "2梯2户",
+      "structure": "框架结构",
+      "diya": "有抵押",
+      "chanquan": "共有",
+      "buildingType": "板楼",
+      "huxingStructure": "平层",
+      "usage": "普通住宅",
+      "decoration": "简装",
+      "listTime": "2025年02月12日",
+      "lastTrade": "2020年09月19日",
+      "sellingPoint": "10年小区，绿地品质，小区环境优美，物业管理安全 小区介绍 开发商是绿地，品质开发商，物业公司是太平戴维斯，上市公司，3",
+      "fangben": "已上传房本照片",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_geg72nrQS_1.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_geg72nrQS_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_XVmPkHxnk_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_19060440-8e03-4178-b14e-110ca3dc028a.png!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_ZnGt0UTPW_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_l4S717gt4_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_AHGnnM2L1_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106121731958.html",
+      "houseCode": "106121731958",
+      "localImages": [
+        "1788109819013-0-dd5l.jpg",
+        "1788109819370-1-kxo7.jpg",
+        "1788109819664-2-r53w.jpg",
+        "1788109819932-3-ft6i.png",
+        "1788109820165-4-hoj8.jpg",
+        "1788109820444-5-l1qn.jpg",
+        "1788109820742-6-2n32.jpg"
+      ]
+    }
+  ],
+  "board": "红牌楼",
+  "district": "武侯",
+  "name": "绿地海珀香庭",
+  "info": {
+    "建筑类型": "板楼/塔板结合",
+    "房屋总数": "567户",
+    "楼栋总数": "5栋",
+    "绿化率": "35%",
+    "容积率": "2",
+    "交易权属": "商品房",
+    "建成年代": "2010-2013年",
+    "供暖类型": "自采暖/无供暖",
+    "用水类型": "商水/民水",
+    "用电类型": "商电/民电",
+    "物业费": "1.98至4元/平米/月",
+    "开发商": "上海绿地集团成都公司"
+  },
+  "features": [
+    "满五",
+    "电梯"
+  ],
+  "price": "16576",
+  "metro": [
+    {
+      "name": "武侯大道",
+      "distance": "917米",
+      "lines": "地铁7号"
+    },
+    {
+      "name": "红牌楼",
+      "distance": "1116米",
+      "lines": "地铁10号"
+    },
+    {
+      "name": "太平园",
+      "distance": "1696米",
+      "lines": "地铁10号"
+    },
+    {
+      "name": "清水河大桥",
+      "distance": "1702米",
+      "lines": "地铁17号"
+    }
+  ],
+  "deals": [
+    {
+      "建成年份": "暂无信息",
+      "面积": "49.02平米",
+      "签约日期": "2026-06-13",
+      "成交价": "69.2万",
+      "成交单价": "14117元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "160.86平米",
+      "签约日期": "2026-06-04",
+      "成交价": "279万",
+      "成交单价": "17345元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "47.48平米",
+      "签约日期": "2026-05-26",
+      "成交价": "70万",
+      "成交单价": "14744元/平"
+    }
+  ],
+  "images": [
+    "https://ke-image.ljcdn.com/hdic-resblock/65259b4b-4341-46c9-902c-92fb4134c0b7.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/174fcc8a-0b54-4ea4-8eeb-b6cffc3a1205.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/eca893f6-b23f-47cb-84cd-68d6fd5a3b72.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/37c4202d-7a29-4042-8d5d-e3bd65e1c2de.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/58d30275-8620-4f36-8cfa-e4cdb9718a9e.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/8ed3cc96-b81c-48c1-a912-b60940d0f4c3.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/c0c07099-c338-4d65-aa11-93525e4f0ef8.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/f48e9e21-578e-4f6a-ab34-6d5566b0e9cf.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/407b4f89-43e1-4f9f-a997-587d25b98000.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/76a9b831-e185-4bdf-b9f4-aa290cdabc59.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/0d155948-3e61-4877-b258-0e3426509934.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/a17c61e9-f457-4b13-a068-8cbd0ac6c9fa.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/62a0f3ef-a550-4725-b37d-1c31427aaa77.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/3d3e9665-87ee-4c82-be24-4c955825f2cb.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/9bd1d61b-e2e9-42ee-b150-afee2667ce80.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/1b29a7bf-59ed-437a-9f0f-b4a25c9d09c3.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/da1fd6e5-b53e-4035-9337-37c56b581c56.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/a70f9fbb-bf1a-4a73-97b7-609edf2a0ac7.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/1649e315-4e86-4524-865d-167ed81042a3.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/e5fc1f34-2504-48b8-803a-671b2fdaeb55.jpg.710x400.jpg"
+  ],
+  "updatedAt": "2026-08-30T17:10:32.303Z",
+  "localImages": [
+    "1788109832317-0-tkf9.jpg",
+    "1788109832349-1-08qc.JPG",
+    "1788109832386-2-fgvq.JPG",
+    "1788109832419-3-hmwx.JPG",
+    "1788109832459-4-r9zc.JPG",
+    "1788109832498-5-fff0.JPG",
+    "1788109832534-6-50cp.JPG",
+    "1788109832570-7-lbcy.JPG",
+    "1788109832599-8-xemm.JPG",
+    "1788109832641-9-wko6.JPG",
+    "1788109832725-10-vhk0.JPG",
+    "1788109832758-11-rexg.JPG",
+    "1788109832796-12-2icm.jpg",
+    "1788109832836-13-davj.jpg",
+    "1788109832885-14-oycu.jpg",
+    "1788109833410-15-a6ke.jpg",
+    "1788109833462-16-wjx7.jpg",
+    "1788109833500-17-5s0v.jpg",
+    "1788109833538-18-28qs.jpg",
+    "1788109833579-19-pw5h.jpg"
+  ]
+}

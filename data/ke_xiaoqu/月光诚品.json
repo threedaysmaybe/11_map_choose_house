@@ -1,0 +1,153 @@
+{
+  "houses": [
+    {
+      "title": "成都武侯红牌楼月光诚品 3室1厅 西北",
+      "room": "3室1厅",
+      "area": "133.16",
+      "taoneiArea": null,
+      "totalPrice": "209",
+      "unitPrice": "15696",
+      "floor": "高",
+      "totalFloors": "12",
+      "orientation": "西北",
+      "community": "月光诚品",
+      "district": "武侯",
+      "board": "红牌楼",
+      "features": [
+        "满五",
+        "户型方正",
+        "南北通透",
+        "电梯"
+      ],
+      "tihu": "2梯4户",
+      "structure": "钢混结构",
+      "diya": "无抵押",
+      "chanquan": "共有",
+      "buildingType": "板楼",
+      "huxingStructure": "平层",
+      "usage": "普通住宅",
+      "decoration": "简装",
+      "listTime": "2025年07月23日",
+      "lastTrade": "2016年06月01日",
+      "sellingPoint": "业主诚心 户型方正， 满五年 采光好 小区介绍 2011年围合式小区，由台湾旭阳地产开发商开发，物业为忠信物业公司，一共有4栋，其中1、2、4栋是住宅，3栋是与小区独立分开的写字楼，中庭有绿化和水景；小区房屋很安静，2栋和4栋完全不临街，1",
+      "fangben": "已上传房本照片",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/88f36b97-5f88-4a65-b309-dc0535a318db_1000.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/88f36b97-5f88-4a65-b309-dc0535a318db_1000.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/57ea1e27-dfe8-4fce-9f1b-9660394a6e14_1000.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_F19WBbe6B.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_b04472ff-d05d-4635-954a-f8cd2638af3c.png!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_BiNKTd1Cl.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_xwf37WQp7.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/pc0_lwpSqjSX9.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106123953716.html",
+      "houseCode": "106123953716",
+      "localImages": [
+        "1788109811680-0-456v.jpg",
+        "1788109812487-1-6qge.jpg",
+        "1788109813164-2-jc0f.jpg",
+        "1788109814235-3-hq2b.jpg",
+        "1788109814519-4-86i0.png",
+        "1788109814914-5-3loo.jpg",
+        "1788109815508-6-dtn6.jpg",
+        "1788109816145-7-v0hb.jpg"
+      ]
+    }
+  ],
+  "board": "红牌楼",
+  "district": "武侯",
+  "name": "月光诚品",
+  "info": {
+    "建筑类型": "板楼",
+    "房屋总数": "669户",
+    "楼栋总数": "4栋",
+    "绿化率": "20%",
+    "容积率": "3.78",
+    "交易权属": "商品房",
+    "建成年代": "2009-2012年",
+    "供暖类型": "自采暖",
+    "用水类型": "商水/民水",
+    "用电类型": "商电/民电",
+    "物业费": "1.6至1.8元/平米/月",
+    "开发商": "成都旭阳房地产开发有限公司"
+  },
+  "features": [
+    "满五",
+    "户型方正",
+    "南北通透",
+    "电梯"
+  ],
+  "price": "16995",
+  "metro": [
+    {
+      "name": "武侯大道",
+      "distance": "427米",
+      "lines": "地铁7号"
+    },
+    {
+      "name": "川藏立交",
+      "distance": "1607米",
+      "lines": "地铁3号"
+    },
+    {
+      "name": "太平园",
+      "distance": "1667米",
+      "lines": "地铁10号"
+    }
+  ],
+  "deals": [
+    {
+      "建成年份": "暂无信息",
+      "面积": "85.66平米",
+      "签约日期": "2026-05-13",
+      "成交价": "138.5万",
+      "成交单价": "16169元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "81.06平米",
+      "签约日期": "2026-03-28",
+      "成交价": "133.5万",
+      "成交单价": "16470元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "79.53平米",
+      "签约日期": "2026-03-27",
+      "成交价": "137万",
+      "成交单价": "17227元/平"
+    }
+  ],
+  "images": [
+    "https://ke-image.ljcdn.com/hdic-resblock/d399b163-c837-4eea-a462-449c8895ed3c.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/09670468-dfd0-4d60-aeec-0b577837ff0e.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/8e5a826f-078e-499e-ba31-f0bb412c0053.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/4b33b630-3f61-48bf-8c3f-56c48c375a04.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/51f12924-f947-4c24-bc94-b9019d068c19.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/d9725c12-1fc3-4755-89bc-97a57f625f56.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/a2f0a031-6414-494f-b114-7b1c454d5a06.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/340adc59-1b0b-42fe-a94b-e6f862b7f4da.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/f8b05fd7-09e0-4cea-8ae3-cc826ad03a50.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/b93af32d-e9b3-4a21-a9c4-7c4251ba27f7.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/2cd9cb28-3c47-4355-bb37-6eaba7687070.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/da0a86b6-f94f-4771-aa7c-711de7bca6d4.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/fbc1b427-6f19-45dc-815f-52caaf55658d.jpg.710x400.jpg"
+  ],
+  "updatedAt": "2026-08-30T17:10:33.642Z",
+  "localImages": [
+    "1788109833661-0-9qkx.jpg",
+    "1788109833705-1-21l3.jpg",
+    "1788109833734-2-0tpr.jpg",
+    "1788109833759-3-6a2f.jpg",
+    "1788109833790-4-dhx8.jpg",
+    "1788109833809-5-9qjx.jpg",
+    "1788109833827-6-r6ub.jpg",
+    "1788109833863-7-b5j8.jpg",
+    "1788109833900-8-t0ja.jpg",
+    "1788109833956-9-lkjq.jpg",
+    "1788109833993-10-qg1s.jpg",
+    "1788109834028-11-ii2n.jpg",
+    "1788109834064-12-iqn1.jpg"
+  ]
+}

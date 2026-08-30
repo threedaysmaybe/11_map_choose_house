@@ -209,6 +209,24 @@
       "count": 0
     },
     {
+      "name": "绿地海珀香庭",
+      "board": "红牌楼",
+      "district": "武侯",
+      "anzhi": false,
+      "lon": 104.017524,
+      "lat": 30.640008,
+      "count": 6
+    },
+    {
+      "name": "戎盛苑",
+      "board": "红牌楼",
+      "district": "武侯",
+      "anzhi": false,
+      "lon": 104.018069,
+      "lat": 30.638668,
+      "count": 0
+    },
+    {
       "name": "双楠名城二期",
       "board": "红牌楼",
       "district": "武侯",
@@ -243,6 +261,24 @@
       "lon": 104.012174,
       "lat": 30.631215,
       "count": 43
+    },
+    {
+      "name": "怡安花园",
+      "board": "红牌楼",
+      "district": "武侯",
+      "anzhi": true,
+      "lon": 104.008005,
+      "lat": 30.636507,
+      "count": 0
+    },
+    {
+      "name": "月光诚品",
+      "board": "红牌楼",
+      "district": "武侯",
+      "anzhi": false,
+      "lon": 104.008851,
+      "lat": 30.636574,
+      "count": 5
     },
     {
       "name": "中环晓院",
@@ -357,8 +393,8 @@
       "board": "棕北",
       "district": "武侯",
       "anzhi": false,
-      "lon": 104.072599,
-      "lat": 30.624247,
+      "lon": null,
+      "lat": null,
       "count": 0
     }
   ]
