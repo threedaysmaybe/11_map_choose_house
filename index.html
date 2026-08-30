@@ -205,8 +205,13 @@
         <div id="tagFilterBox" style="margin:0 0 6px;font-size:11px;color:#a9adb8">🏷️ 标签筛选：加载中…</div>
         <select id="xqSelect" style="width:100%;margin:0 0 6px;background:rgba(255,255,255,0.12);border:1px solid rgba(255,255,255,0.25);border-radius:4px;color:#fff;font-size:12px;padding:4px"><option style="color:#333" value="">选择小区…</option></select>
         <div id="xqDetail" style="font-size:12px;color:#e8e9ec;line-height:1.8"></div>
-        <button id="openPoolBtn" class="res-btn" style="margin-top:6px;width:100%">🏠 房源池（对比）</button>
-        <div id="poolList" style="margin-top:6px;overflow-x:auto;max-height:320px"></div>
+        </div>
+      </div>
+      <div style="margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,0.12)">
+        <div class="title" id="poolTitle" style="font-size:13px;cursor:pointer;user-select:none">🏠 房源池（对比）<span id="poolToggle" style="float:right">▸</span></div>
+        <div id="poolBody" style="display:none">
+          <button id="openPoolBtn" class="res-btn" style="margin-top:6px;width:100%">🔄 刷新房源池</button>
+          <div id="poolList" style="margin-top:6px;overflow-x:auto;max-height:320px"></div>
         </div>
       </div>
     </div>
@@ -907,6 +912,12 @@
       if (body.style.display === 'none') { body.style.display = ''; tg.textContent = '▾'; }
       else { body.style.display = 'none'; tg.textContent = '▸'; }
     });
+    document.getElementById('poolTitle').addEventListener('click', () => {
+      const body = document.getElementById('poolBody');
+      const tg = document.getElementById('poolToggle');
+      if (body.style.display === 'none') { body.style.display = ''; tg.textContent = '▾'; renderPool(); }
+      else { body.style.display = 'none'; tg.textContent = '▸'; }
+    });
     document.getElementById('infoTitle').addEventListener('click', () => {
       const body = document.getElementById('infoBody');
       const tg = document.getElementById('infoToggle');
@@ -1395,7 +1406,7 @@
             const h = (d.houses || []).find(x => x.houseCode === hc);
             if (!h) { alert('未找到该房源'); return; }
             const info = d.info || {};
-            const metro0 = (d.metro || [])[0];
+            const metroAll = (d.metro || []).slice(0, 3).map(m => `${m.name} ${m.distance}(${m.lines || ''})`).join('　');
             const item = {
               houseCode: h.houseCode || '',
               xiaoqu: d.name || h.community || '', board: d.board || h.board || '', district: d.district || h.district || '',
@@ -1404,7 +1415,7 @@
               structure: h.structure || '', orientation: h.orientation || '',
               volumeRate: info['容积率'] || '', greening: info['绿化率'] || '', propertyFee: info['物业费'] || '',
               buildYear: info['建成年代'] || '', quanshu: info['交易权属'] || '',
-              metro: metro0 ? (metro0.name + ' ' + metro0.distance) : '',
+              metro: metroAll,
               url: h.url || '', sellingPoint: h.sellingPoint || '', listTime: h.listTime || '',
               time: new Date().toISOString(),
             };

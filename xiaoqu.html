@@ -658,7 +658,7 @@
         const h = (d.houses || []).find(x => x.houseCode === hc);
         if (!h) { alert('未找到该房源'); return; }
         const info = d.info || {};
-        const metro0 = (d.metro || [])[0];
+        const metroAll = (d.metro || []).slice(0, 3).map(m => `${m.name} ${m.distance}(${m.lines || ''})`).join('　');
         const item = {
           houseCode: h.houseCode || '',
           xiaoqu: d.name || h.community || '',
@@ -669,7 +669,7 @@
           structure: h.structure || '', orientation: h.orientation || '',
           volumeRate: info['容积率'] || '', greening: info['绿化率'] || '', propertyFee: info['物业费'] || '',
           buildYear: info['建成年代'] || '', quanshu: info['交易权属'] || '',
-          metro: metro0 ? (metro0.name + ' ' + metro0.distance) : '',
+          metro: metroAll,
           url: h.url || '', sellingPoint: h.sellingPoint || '', listTime: h.listTime || '',
           time: new Date().toISOString(),
         };
