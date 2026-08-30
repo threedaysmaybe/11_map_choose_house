@@ -644,7 +644,10 @@
     document.querySelectorAll('.xqAddTagBtn').forEach(btn => {
       btn.addEventListener('click', async () => {
         const hc = btn.dataset.hc;
-        const tag = prompt('输入标签名：');
+        const curTags = (cloudTagMap[hc] || []).map(t => t.tag);
+        const allTags = [...new Set(Object.values(cloudTagMap).flat().map(t => t.tag))].sort();
+        const existing = allTags.filter(t => !curTags.includes(t));
+        const tag = await promptTag(existing);
         if (!tag || !tag.trim()) return;
         try {
           const author = isAdmin ? '管理员' : (myName || '匿名');
@@ -905,6 +908,20 @@
       ta.focus();
       overlay.querySelector('#pmCancel').onclick = () => { overlay.remove(); resolve(null); };
       overlay.querySelector('#pmOk').onclick = () => { overlay.remove(); resolve(ta.value); };
+    });
+  }
+
+  // 标签选择弹窗：已有标签快速点选 + 自定义输入
+  function promptTag(existingTags) {
+    return new Promise(resolve => {
+      const overlay = document.createElement('div');
+      overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:99999;display:flex;align-items:center;justify-content:center;padding:16px';
+      const chips = (existingTags || []).map(t => `<span class="tagPick" data-tag="${t}" style="display:inline-block;background:rgba(139,195,74,0.15);color:#9ccc65;border:1px solid rgba(139,195,74,0.4);border-radius:12px;padding:4px 10px;font-size:13px;margin:3px 4px 3px 0;cursor:pointer">${t}</span>`).join('');
+      overlay.innerHTML = `<div style="background:#262a32;border-radius:10px;padding:16px;width:100%;max-width:420px;box-sizing:border-box"><div style="color:#fff;font-size:14px;margin-bottom:8px">点选已有标签，或输入自定义：</div><div style="margin-bottom:10px;max-height:160px;overflow-y:auto">${chips || '<span style="color:#8b8f99;font-size:12px">暂无已有标签</span>'}</div><input id="pmTag" type="text" placeholder="自定义标签" style="width:100%;box-sizing:border-box;background:#1b1e24;border:1px solid rgba(255,255,255,0.25);border-radius:6px;color:#fff;padding:8px;font-size:14px;outline:none"><div style="margin-top:10px;text-align:right"><button id="pmTagCancel" style="background:rgba(255,255,255,0.1);border:none;border-radius:6px;color:#fff;padding:6px 14px;font-size:13px;margin-right:8px;cursor:pointer">取消</button><button id="pmTagOk" style="background:#2e86de;border:none;border-radius:6px;color:#fff;padding:6px 14px;font-size:13px;cursor:pointer">确定</button></div></div>`;
+      document.body.appendChild(overlay);
+      overlay.querySelectorAll('.tagPick').forEach(chip => chip.addEventListener('click', () => { overlay.remove(); resolve(chip.dataset.tag); }));
+      overlay.querySelector('#pmTagCancel').onclick = () => { overlay.remove(); resolve(null); };
+      overlay.querySelector('#pmTagOk').onclick = () => { overlay.remove(); resolve(overlay.querySelector('#pmTag').value.trim()); };
     });
   }
 
