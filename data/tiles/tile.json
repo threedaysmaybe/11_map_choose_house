@@ -1,0 +1,21 @@
+{
+  "tilejson": "2.2.0",
+  "name": "chengdu-buildings",
+  "scheme": "xyz",
+  "tiles": ["http://localhost:8080/data/tiles/{z}/{x}/{y}.pbf"],
+  "minzoom": 0,
+  "maxzoom": 17,
+  "vector_layers": [
+    {
+      "id": "buildings",
+      "fields": {
+        "height": "Number",
+        "levels": "Number",
+        "name": "String",
+        "building": "String",
+        "heightSource": "String",
+        "area": "Number"
+      }
+    }
+  ]
+}

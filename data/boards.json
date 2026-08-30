@@ -1,0 +1,1592 @@
+[
+  {
+    "name": "川师",
+    "district": "锦江",
+    "location": "105.945310,31.154440",
+    "count": 10
+  },
+  {
+    "name": "大面",
+    "district": "锦江",
+    "location": "106.644456,31.301653",
+    "count": 10
+  },
+  {
+    "name": "东大路",
+    "district": "锦江",
+    "location": "110.618306,32.554051",
+    "count": 10
+  },
+  {
+    "name": "东光小区",
+    "district": "锦江",
+    "location": "106.773417,31.399390",
+    "count": 10
+  },
+  {
+    "name": "东湖",
+    "district": "锦江",
+    "location": "107.946226,31.751887",
+    "count": 10
+  },
+  {
+    "name": "东客站",
+    "district": "锦江",
+    "location": "105.406387,31.004077",
+    "count": 10
+  },
+  {
+    "name": "合江亭",
+    "district": "锦江",
+    "location": "107.235027,31.580968",
+    "count": 10
+  },
+  {
+    "name": "红星路",
+    "district": "锦江",
+    "location": "109.563454,32.278648",
+    "count": 10
+  },
+  {
+    "name": "净居寺",
+    "district": "锦江",
+    "location": "109.057728,32.080887",
+    "count": 10
+  },
+  {
+    "name": "金融城东",
+    "district": "锦江",
+    "location": "130.096577,38.226477",
+    "count": 10
+  },
+  {
+    "name": "金融城三期",
+    "district": "锦江",
+    "location": "107.794180,31.675034",
+    "count": 10
+  },
+  {
+    "name": "九眼桥",
+    "district": "锦江",
+    "location": "107.068965,31.517110",
+    "count": 10
+  },
+  {
+    "name": "蓝谷地",
+    "district": "锦江",
+    "location": "106.728680,31.373789",
+    "count": 10
+  },
+  {
+    "name": "莲花",
+    "district": "锦江",
+    "location": "107.069487,31.513002",
+    "count": 10
+  },
+  {
+    "name": "琉璃场",
+    "district": "锦江",
+    "location": "105.557943,31.018459",
+    "count": 10
+  },
+  {
+    "name": "攀成钢",
+    "district": "锦江",
+    "location": "107.824109,31.725932",
+    "count": 10
+  },
+  {
+    "name": "三官堂",
+    "district": "锦江",
+    "location": "106.568997,31.356618",
+    "count": 10
+  },
+  {
+    "name": "三圣乡",
+    "district": "锦江",
+    "location": "105.656771,31.031052",
+    "count": 10
+  },
+  {
+    "name": "沙河堡",
+    "district": "锦江",
+    "location": "105.486933,31.029080",
+    "count": 10
+  },
+  {
+    "name": "水碾河",
+    "district": "锦江",
+    "location": "108.102619,31.825043",
+    "count": 10
+  },
+  {
+    "name": "太升路",
+    "district": "锦江",
+    "location": "112.740438,33.221837",
+    "count": 10
+  },
+  {
+    "name": "盐市口",
+    "district": "锦江",
+    "location": "106.194273,31.281524",
+    "count": 10
+  },
+  {
+    "name": "卓锦城",
+    "district": "锦江",
+    "location": "108.470516,31.874675",
+    "count": 10
+  },
+  {
+    "name": "八宝街",
+    "district": "青羊",
+    "location": "107.415120,31.666942",
+    "count": 10
+  },
+  {
+    "name": "贝森",
+    "district": "青羊",
+    "location": "111.996791,33.031467",
+    "count": 10
+  },
+  {
+    "name": "草市街",
+    "district": "青羊",
+    "location": "109.553559,32.290706",
+    "count": 10
+  },
+  {
+    "name": "草堂",
+    "district": "青羊",
+    "location": "108.980530,32.123912",
+    "count": 10
+  },
+  {
+    "name": "府南新区",
+    "district": "青羊",
+    "location": "107.176155,31.608935",
+    "count": 10
+  },
+  {
+    "name": "光华泡小",
+    "district": "青羊",
+    "location": "107.456533,31.685385",
+    "count": 10
+  },
+  {
+    "name": "浣花溪",
+    "district": "青羊",
+    "location": "108.549019,31.992914",
+    "count": 10
+  },
+  {
+    "name": "金沙",
+    "district": "青羊",
+    "location": "105.680876,31.183728",
+    "count": 10
+  },
+  {
+    "name": "宽窄巷子",
+    "district": "青羊",
+    "location": "109.007170,32.127518",
+    "count": 10
+  },
+  {
+    "name": "人民公园",
+    "district": "青羊",
+    "location": "108.781661,32.050360",
+    "count": 10
+  },
+  {
+    "name": "蜀汉路",
+    "district": "青羊",
+    "location": "105.898828,31.248760",
+    "count": 10
+  },
+  {
+    "name": "太升路",
+    "district": "青羊",
+    "location": "112.740438,33.221837",
+    "count": 10
+  },
+  {
+    "name": "外光华",
+    "district": "青羊",
+    "location": "104.960777,31.000504",
+    "count": 10
+  },
+  {
+    "name": "外金沙",
+    "district": "青羊",
+    "location": "105.412675,31.121732",
+    "count": 10
+  },
+  {
+    "name": "万家湾",
+    "district": "青羊",
+    "location": "105.849578,31.222376",
+    "count": 10
+  },
+  {
+    "name": "西南财大",
+    "district": "青羊",
+    "location": "109.486912,32.274367",
+    "count": 10
+  },
+  {
+    "name": "盐市口",
+    "district": "青羊",
+    "location": "106.194273,31.281524",
+    "count": 10
+  },
+  {
+    "name": "优品道",
+    "district": "青羊",
+    "location": "108.161235,31.890732",
+    "count": 10
+  },
+  {
+    "name": "草金立交",
+    "district": "武侯",
+    "location": "106.385339,31.368332",
+    "count": 10
+  },
+  {
+    "name": "川大",
+    "district": "武侯",
+    "location": "109.038904,32.088742",
+    "count": 10
+  },
+  {
+    "name": "川音",
+    "district": "武侯",
+    "location": "110.579959,32.559417",
+    "count": 10
+  },
+  {
+    "name": "簇桥",
+    "district": "武侯",
+    "location": "106.239471,31.273075",
+    "count": 10
+  },
+  {
+    "name": "高攀",
+    "district": "武侯",
+    "location": "110.200131,32.414743",
+    "count": 10
+  },
+  {
+    "name": "高升桥",
+    "district": "武侯",
+    "location": "112.039287,32.996270",
+    "count": 10
+  },
+  {
+    "name": "广福桥",
+    "district": "武侯",
+    "location": "115.593426,34.050521",
+    "count": 10
+  },
+  {
+    "name": "航空路",
+    "district": "武侯",
+    "location": "124.881600,36.743807",
+    "count": 10
+  },
+  {
+    "name": "红牌楼",
+    "district": "武侯",
+    "location": "110.951818,32.677488",
+    "count": 10
+  },
+  {
+    "name": "华西",
+    "district": "武侯",
+    "location": "109.257457,32.176953",
+    "count": 10
+  },
+  {
+    "name": "丽都",
+    "district": "武侯",
+    "location": "107.615103,31.682813",
+    "count": 10
+  },
+  {
+    "name": "龙湾",
+    "district": "武侯",
+    "location": "109.487302,32.269805",
+    "count": 10
+  },
+  {
+    "name": "双楠",
+    "district": "武侯",
+    "location": "108.551176,31.982327",
+    "count": 10
+  },
+  {
+    "name": "桐梓林",
+    "district": "武侯",
+    "location": "115.620523,34.019032",
+    "count": 10
+  },
+  {
+    "name": "外双楠",
+    "district": "武侯",
+    "location": "110.947135,32.692812",
+    "count": 10
+  },
+  {
+    "name": "五大花园",
+    "district": "武侯",
+    "location": "106.253689,31.324595",
+    "count": 10
+  },
+  {
+    "name": "武侯祠",
+    "district": "武侯",
+    "location": "109.521231,32.263599",
+    "count": 10
+  },
+  {
+    "name": "武侯立交",
+    "district": "武侯",
+    "location": "109.198659,32.170077",
+    "count": 10
+  },
+  {
+    "name": "新双楠",
+    "district": "武侯",
+    "location": "106.973393,31.484974",
+    "count": 10
+  },
+  {
+    "name": "衣冠庙",
+    "district": "武侯",
+    "location": "109.514556,32.245122",
+    "count": 10
+  },
+  {
+    "name": "玉林",
+    "district": "武侯",
+    "location": "113.517790,33.414717",
+    "count": 10
+  },
+  {
+    "name": "棕北",
+    "district": "武侯",
+    "location": "110.193085,32.432693",
+    "count": 10
+  },
+  {
+    "name": "城南宜家",
+    "district": "高新",
+    "location": "112.057052,32.959312",
+    "count": 10
+  },
+  {
+    "name": "大源",
+    "district": "高新",
+    "location": "130.063624,38.216006",
+    "count": 10
+  },
+  {
+    "name": "大源-保利心语",
+    "district": "高新",
+    "location": "121.378928,35.631213",
+    "count": 10
+  },
+  {
+    "name": "大源-南华路以西",
+    "district": "高新",
+    "location": "112.687418,33.086771",
+    "count": 10
+  },
+  {
+    "name": "大源-世豪广场",
+    "district": "高新",
+    "location": "121.378907,35.650792",
+    "count": 10
+  },
+  {
+    "name": "大源-中央公园",
+    "district": "高新",
+    "location": "113.514559,33.317081",
+    "count": 10
+  },
+  {
+    "name": "大源-综合市场",
+    "district": "高新",
+    "location": "113.492650,33.338884",
+    "count": 10
+  },
+  {
+    "name": "东苑",
+    "district": "高新",
+    "location": "110.585211,32.517696",
+    "count": 10
+  },
+  {
+    "name": "芳草",
+    "district": "高新",
+    "location": "109.830255,32.333067",
+    "count": 10
+  },
+  {
+    "name": "孵化园",
+    "district": "高新",
+    "location": "114.460713,33.631546",
+    "count": 10
+  },
+  {
+    "name": "高朋",
+    "district": "高新",
+    "location": "107.093602,31.526034",
+    "count": 10
+  },
+  {
+    "name": "高升桥",
+    "district": "高新",
+    "location": "112.039287,32.996270",
+    "count": 10
+  },
+  {
+    "name": "桂溪生态公园西区",
+    "district": "高新",
+    "location": "111.485596,32.743767",
+    "count": 10
+  },
+  {
+    "name": "华阳",
+    "district": "高新",
+    "location": "105.787011,31.031535",
+    "count": 10
+  },
+  {
+    "name": "火车南站",
+    "district": "高新",
+    "location": "130.086394,38.256918",
+    "count": 10
+  },
+  {
+    "name": "锦城湖",
+    "district": "高新",
+    "location": "110.165285,32.365116",
+    "count": 10
+  },
+  {
+    "name": "警院",
+    "district": "高新",
+    "location": "118.874458,34.893194",
+    "count": 10
+  },
+  {
+    "name": "金融城",
+    "district": "高新",
+    "location": "109.527432,32.198263",
+    "count": 10
+  },
+  {
+    "name": "金融城三期",
+    "district": "高新",
+    "location": "107.794180,31.675034",
+    "count": 10
+  },
+  {
+    "name": "凯德世纪名邸",
+    "district": "高新",
+    "location": "130.042501,38.207582",
+    "count": 10
+  },
+  {
+    "name": "庆安",
+    "district": "高新",
+    "location": "118.890248,34.972584",
+    "count": 10
+  },
+  {
+    "name": "神仙树",
+    "district": "高新",
+    "location": "109.246452,32.150539",
+    "count": 10
+  },
+  {
+    "name": "世纪城",
+    "district": "高新",
+    "location": "106.441251,31.243753",
+    "count": 10
+  },
+  {
+    "name": "石羊",
+    "district": "高新",
+    "location": "112.030324,32.940533",
+    "count": 10
+  },
+  {
+    "name": "市一医院",
+    "district": "高新",
+    "location": "117.059793,34.421571",
+    "count": 10
+  },
+  {
+    "name": "天府长城",
+    "district": "高新",
+    "location": "138.768439,40.800721",
+    "count": 10
+  },
+  {
+    "name": "新北",
+    "district": "高新",
+    "location": "112.036473,32.968930",
+    "count": 10
+  },
+  {
+    "name": "新川北",
+    "district": "高新",
+    "location": "107.158590,31.433410",
+    "count": 10
+  },
+  {
+    "name": "新川南",
+    "district": "高新",
+    "location": "105.339285,30.871904",
+    "count": 10
+  },
+  {
+    "name": "衣冠庙",
+    "district": "高新",
+    "location": "109.514556,32.245122",
+    "count": 10
+  },
+  {
+    "name": "中德",
+    "district": "高新",
+    "location": "130.136611,38.155185",
+    "count": 10
+  },
+  {
+    "name": "中和-府河东",
+    "district": "高新",
+    "location": "108.423227,31.834970",
+    "count": 10
+  },
+  {
+    "name": "中和-利州大道西",
+    "district": "高新",
+    "location": "109.300524,32.093381",
+    "count": 10
+  },
+  {
+    "name": "中和西",
+    "district": "高新",
+    "location": "107.439168,31.533085",
+    "count": 10
+  },
+  {
+    "name": "中和-张家寺东",
+    "district": "高新",
+    "location": "109.586095,32.159932",
+    "count": 10
+  },
+  {
+    "name": "中和-张家寺西",
+    "district": "高新",
+    "location": "108.428498,31.822673",
+    "count": 10
+  },
+  {
+    "name": "紫荆",
+    "district": "高新",
+    "location": "109.004227,32.073465",
+    "count": 10
+  },
+  {
+    "name": "八里小区",
+    "district": "成华",
+    "location": "105.441231,31.078211",
+    "count": 10
+  },
+  {
+    "name": "成渝立交",
+    "district": "成华",
+    "location": "109.938488,32.331166",
+    "count": 10
+  },
+  {
+    "name": "东郊记忆",
+    "district": "成华",
+    "location": "106.934788,31.504058",
+    "count": 10
+  },
+  {
+    "name": "东客站",
+    "district": "成华",
+    "location": "105.406387,31.004077",
+    "count": 10
+  },
+  {
+    "name": "动物园",
+    "district": "成华",
+    "location": "105.549534,31.143923",
+    "count": 10
+  },
+  {
+    "name": "洪河",
+    "district": "成华",
+    "location": "106.703303,31.365406",
+    "count": 10
+  },
+  {
+    "name": "建设路",
+    "district": "成华",
+    "location": "109.582697,32.283209",
+    "count": 10
+  },
+  {
+    "name": "理工大",
+    "district": "成华",
+    "location": "105.884507,31.192327",
+    "count": 10
+  },
+  {
+    "name": "李家沱",
+    "district": "成华",
+    "location": "106.460333,31.388341",
+    "count": 10
+  },
+  {
+    "name": "龙潭寺",
+    "district": "成华",
+    "location": "105.651987,31.139143",
+    "count": 10
+  },
+  {
+    "name": "猛追湾",
+    "district": "成华",
+    "location": "106.134213,31.266614",
+    "count": 10
+  },
+  {
+    "name": "沙河堡",
+    "district": "成华",
+    "location": "105.486933,31.029080",
+    "count": 10
+  },
+  {
+    "name": "十陵",
+    "district": "成华",
+    "location": "108.706672,31.986062",
+    "count": 10
+  },
+  {
+    "name": "驷马桥",
+    "district": "成华",
+    "location": "105.181604,31.031920",
+    "count": 10
+  },
+  {
+    "name": "SM广场",
+    "district": "成华",
+    "location": "110.619338,32.592374",
+    "count": 10
+  },
+  {
+    "name": "万年场",
+    "district": "成华",
+    "location": "105.140266,30.947903",
+    "count": 10
+  },
+  {
+    "name": "万象城",
+    "district": "成华",
+    "location": "105.696374,31.120417",
+    "count": 10
+  },
+  {
+    "name": "新华公园",
+    "district": "成华",
+    "location": "105.532267,31.077676",
+    "count": 10
+  },
+  {
+    "name": "八宝街",
+    "district": "金牛",
+    "location": "107.415120,31.666942",
+    "count": 10
+  },
+  {
+    "name": "保利公园",
+    "district": "金牛",
+    "location": "105.076097,31.027816",
+    "count": 10
+  },
+  {
+    "name": "茶店子",
+    "district": "金牛",
+    "location": "106.989192,31.578273",
+    "count": 10
+  },
+  {
+    "name": "成外",
+    "district": "金牛",
+    "location": "106.797178,31.571117",
+    "count": 10
+  },
+  {
+    "name": "抚琴小区",
+    "district": "金牛",
+    "location": "110.534766,32.602309",
+    "count": 10
+  },
+  {
+    "name": "高家庄",
+    "district": "金牛",
+    "location": "104.745457,30.935833",
+    "count": 10
+  },
+  {
+    "name": "高新西",
+    "district": "金牛",
+    "location": "104.979332,31.069630",
+    "count": 10
+  },
+  {
+    "name": "国宾",
+    "district": "金牛",
+    "location": "105.994183,31.312184",
+    "count": 10
+  },
+  {
+    "name": "花牌坊",
+    "district": "金牛",
+    "location": "105.064106,30.979509",
+    "count": 10
+  },
+  {
+    "name": "华侨城",
+    "district": "金牛",
+    "location": "104.846296,30.984220",
+    "count": 10
+  },
+  {
+    "name": "花照壁",
+    "district": "金牛",
+    "location": "107.000013,31.585783",
+    "count": 10
+  },
+  {
+    "name": "金府",
+    "district": "金牛",
+    "location": "106.126467,31.333454",
+    "count": 10
+  },
+  {
+    "name": "金牛万达",
+    "district": "金牛",
+    "location": "105.937863,31.240642",
+    "count": 10
+  },
+  {
+    "name": "金沙",
+    "district": "金牛",
+    "location": "105.680876,31.183728",
+    "count": 10
+  },
+  {
+    "name": "九里堤",
+    "district": "金牛",
+    "location": "106.179053,31.331562",
+    "count": 10
+  },
+  {
+    "name": "马鞍路",
+    "district": "金牛",
+    "location": "107.440266,31.668713",
+    "count": 10
+  },
+  {
+    "name": "沙湾",
+    "district": "金牛",
+    "location": "105.908301,31.239391",
+    "count": 10
+  },
+  {
+    "name": "石人小区",
+    "district": "金牛",
+    "location": "105.767341,31.187453",
+    "count": 10
+  },
+  {
+    "name": "蜀汉路",
+    "district": "金牛",
+    "location": "105.898828,31.248760",
+    "count": 10
+  },
+  {
+    "name": "驷马桥",
+    "district": "金牛",
+    "location": "105.181604,31.031920",
+    "count": 10
+  },
+  {
+    "name": "天回镇",
+    "district": "金牛",
+    "location": "106.300057,31.437100",
+    "count": 10
+  },
+  {
+    "name": "通惠门",
+    "district": "金牛",
+    "location": "106.353633,31.353945",
+    "count": 10
+  },
+  {
+    "name": "五块石",
+    "district": "金牛",
+    "location": "104.944437,30.974905",
+    "count": 10
+  },
+  {
+    "name": "西南交大",
+    "district": "金牛",
+    "location": "107.019756,31.583809",
+    "count": 10
+  },
+  {
+    "name": "营门口",
+    "district": "金牛",
+    "location": "108.560830,32.033146",
+    "count": 10
+  },
+  {
+    "name": "一品天下",
+    "district": "金牛",
+    "location": "106.145937,31.315507",
+    "count": 10
+  },
+  {
+    "name": "中海国际",
+    "district": "金牛",
+    "location": "106.444060,31.461892",
+    "count": 10
+  },
+  {
+    "name": "公兴",
+    "district": "天府新区",
+    "location": "106.027379,31.050643",
+    "count": 10
+  },
+  {
+    "name": "海洋公园",
+    "district": "天府新区",
+    "location": "108.412850,31.758865",
+    "count": 10
+  },
+  {
+    "name": "华阳",
+    "district": "天府新区",
+    "location": "105.787011,31.031535",
+    "count": 10
+  },
+  {
+    "name": "煎茶",
+    "district": "天府新区",
+    "location": "113.490090,33.130127",
+    "count": 10
+  },
+  {
+    "name": "锦江生态带",
+    "district": "天府新区",
+    "location": "106.579229,31.215020",
+    "count": 10
+  },
+  {
+    "name": "籍田",
+    "district": "天府新区",
+    "location": "111.016465,32.328949",
+    "count": 10
+  },
+  {
+    "name": "麓湖生态城",
+    "district": "天府新区",
+    "location": "106.594549,31.202598",
+    "count": 10
+  },
+  {
+    "name": "麓山",
+    "district": "天府新区",
+    "location": "106.905695,31.318907",
+    "count": 10
+  },
+  {
+    "name": "鹿溪",
+    "district": "天府新区",
+    "location": "107.295721,31.365615",
+    "count": 10
+  },
+  {
+    "name": "南湖",
+    "district": "天府新区",
+    "location": "107.195823,31.426168",
+    "count": 10
+  },
+  {
+    "name": "彭山",
+    "district": "天府新区",
+    "location": "138.653309,40.424323",
+    "count": 10
+  },
+  {
+    "name": "仁寿",
+    "district": "天府新区",
+    "location": "112.086341,32.393764",
+    "count": 10
+  },
+  {
+    "name": "太平",
+    "district": "天府新区",
+    "location": "110.677866,32.374022",
+    "count": 10
+  },
+  {
+    "name": "天府半岛",
+    "district": "天府新区",
+    "location": "109.535702,32.086294",
+    "count": 10
+  },
+  {
+    "name": "天府公园东",
+    "district": "天府新区",
+    "location": "109.559023,32.038353",
+    "count": 10
+  },
+  {
+    "name": "天府公园西",
+    "district": "天府新区",
+    "location": "108.057276,31.610245",
+    "count": 10
+  },
+  {
+    "name": "天府前湾",
+    "district": "天府新区",
+    "location": "112.100686,32.805450",
+    "count": 10
+  },
+  {
+    "name": "兴隆湖",
+    "district": "天府新区",
+    "location": "107.955852,31.536530",
+    "count": 10
+  },
+  {
+    "name": "新兴",
+    "district": "天府新区",
+    "location": "107.378151,31.480746",
+    "count": 10
+  },
+  {
+    "name": "雅居乐",
+    "district": "天府新区",
+    "location": "107.286343,31.416609",
+    "count": 10
+  },
+  {
+    "name": "永兴",
+    "district": "天府新区",
+    "location": "108.468410,31.633268",
+    "count": 10
+  },
+  {
+    "name": "正兴",
+    "district": "天府新区",
+    "location": "106.353147,31.100733",
+    "count": 10
+  },
+  {
+    "name": "百草路",
+    "district": "高新西",
+    "location": "111.968643,33.104298",
+    "count": 10
+  },
+  {
+    "name": "成外",
+    "district": "高新西",
+    "location": "106.797178,31.571117",
+    "count": 10
+  },
+  {
+    "name": "高家庄",
+    "district": "高新西",
+    "location": "104.745457,30.935833",
+    "count": 10
+  },
+  {
+    "name": "高新西",
+    "district": "高新西",
+    "location": "104.979332,31.069630",
+    "count": 10
+  },
+  {
+    "name": "郫县城区",
+    "district": "高新西",
+    "location": "105.202906,31.223971",
+    "count": 10
+  },
+  {
+    "name": "外光华",
+    "district": "高新西",
+    "location": "104.960777,31.000504",
+    "count": 10
+  },
+  {
+    "name": "永宁",
+    "district": "高新西",
+    "location": "107.251460,31.715740",
+    "count": 10
+  },
+  {
+    "name": "中海国际",
+    "district": "高新西",
+    "location": "106.444060,31.461892",
+    "count": 10
+  },
+  {
+    "name": "簇桥",
+    "district": "双流",
+    "location": "106.239471,31.273075",
+    "count": 10
+  },
+  {
+    "name": "东升镇",
+    "district": "双流",
+    "location": "105.983095,31.194695",
+    "count": 10
+  },
+  {
+    "name": "公兴",
+    "district": "双流",
+    "location": "106.027379,31.050643",
+    "count": 10
+  },
+  {
+    "name": "航空港",
+    "district": "双流",
+    "location": "105.627775,31.050972",
+    "count": 10
+  },
+  {
+    "name": "华府",
+    "district": "双流",
+    "location": "108.361322,31.782754",
+    "count": 10
+  },
+  {
+    "name": "花源",
+    "district": "双流",
+    "location": "106.756842,31.325705",
+    "count": 10
+  },
+  {
+    "name": "蛟龙港",
+    "district": "双流",
+    "location": "105.356488,31.058964",
+    "count": 10
+  },
+  {
+    "name": "警院",
+    "district": "双流",
+    "location": "118.874458,34.893194",
+    "count": 10
+  },
+  {
+    "name": "九龙湖",
+    "district": "双流",
+    "location": "105.978596,31.086052",
+    "count": 10
+  },
+  {
+    "name": "牧马山",
+    "district": "双流",
+    "location": "105.764099,31.040502",
+    "count": 10
+  },
+  {
+    "name": "南湖",
+    "district": "双流",
+    "location": "107.195823,31.426168",
+    "count": 10
+  },
+  {
+    "name": "双流城区",
+    "district": "双流",
+    "location": "107.244296,31.534852",
+    "count": 10
+  },
+  {
+    "name": "文星镇",
+    "district": "双流",
+    "location": "107.060212,31.449430",
+    "count": 10
+  },
+  {
+    "name": "羊马",
+    "district": "双流",
+    "location": "107.746084,31.817663",
+    "count": 10
+  },
+  {
+    "name": "怡心湖",
+    "district": "双流",
+    "location": "115.572793,33.863762",
+    "count": 10
+  },
+  {
+    "name": "高新西",
+    "district": "温江",
+    "location": "104.979332,31.069630",
+    "count": 10
+  },
+  {
+    "name": "光华大道沿线",
+    "district": "温江",
+    "location": "107.467243,31.738841",
+    "count": 10
+  },
+  {
+    "name": "国色天乡",
+    "district": "温江",
+    "location": "106.542475,31.543330",
+    "count": 10
+  },
+  {
+    "name": "花都大道",
+    "district": "温江",
+    "location": "105.865227,31.282040",
+    "count": 10
+  },
+  {
+    "name": "蛟龙港",
+    "district": "温江",
+    "location": "105.356488,31.058964",
+    "count": 10
+  },
+  {
+    "name": "郫县城区",
+    "district": "温江",
+    "location": "105.202906,31.223971",
+    "count": 10
+  },
+  {
+    "name": "外光华",
+    "district": "温江",
+    "location": "104.960777,31.000504",
+    "count": 10
+  },
+  {
+    "name": "温江大学城",
+    "district": "温江",
+    "location": "107.047494,31.633258",
+    "count": 10
+  },
+  {
+    "name": "温江老城",
+    "district": "温江",
+    "location": "108.780716,32.165798",
+    "count": 10
+  },
+  {
+    "name": "温江新城",
+    "district": "温江",
+    "location": "111.267539,32.874797",
+    "count": 10
+  },
+  {
+    "name": "羊马",
+    "district": "温江",
+    "location": "107.746084,31.817663",
+    "count": 10
+  },
+  {
+    "name": "永宁",
+    "district": "温江",
+    "location": "107.251460,31.715740",
+    "count": 10
+  },
+  {
+    "name": "珠江新城",
+    "district": "温江",
+    "location": "106.119288,31.357643",
+    "count": 10
+  },
+  {
+    "name": "成外",
+    "district": "郫都区",
+    "location": "106.797178,31.571117",
+    "count": 10
+  },
+  {
+    "name": "国宾",
+    "district": "郫都区",
+    "location": "105.994183,31.312184",
+    "count": 10
+  },
+  {
+    "name": "红光",
+    "district": "郫都区",
+    "location": "107.299984,31.781469",
+    "count": 10
+  },
+  {
+    "name": "华侨城",
+    "district": "郫都区",
+    "location": "104.846296,30.984220",
+    "count": 10
+  },
+  {
+    "name": "郫县城区",
+    "district": "郫都区",
+    "location": "105.202906,31.223971",
+    "count": 10
+  },
+  {
+    "name": "郫县万达",
+    "district": "郫都区",
+    "location": "107.157009,31.768594",
+    "count": 10
+  },
+  {
+    "name": "橡树湾",
+    "district": "郫都区",
+    "location": "107.093138,31.703303",
+    "count": 10
+  },
+  {
+    "name": "犀浦",
+    "district": "郫都区",
+    "location": "105.647107,31.239076",
+    "count": 10
+  },
+  {
+    "name": "中海国际",
+    "district": "郫都区",
+    "location": "106.444060,31.461892",
+    "count": 10
+  },
+  {
+    "name": "保利公园",
+    "district": "龙泉驿",
+    "location": "105.076097,31.027816",
+    "count": 10
+  },
+  {
+    "name": "大面",
+    "district": "龙泉驿",
+    "location": "106.644456,31.301653",
+    "count": 10
+  },
+  {
+    "name": "东安湖",
+    "district": "龙泉驿",
+    "location": "113.716904,33.366988",
+    "count": 10
+  },
+  {
+    "name": "东山",
+    "district": "龙泉驿",
+    "location": "107.405778,31.464443",
+    "count": 10
+  },
+  {
+    "name": "航天",
+    "district": "龙泉驿",
+    "location": "106.938788,31.333304",
+    "count": 10
+  },
+  {
+    "name": "洪河",
+    "district": "龙泉驿",
+    "location": "106.703303,31.365406",
+    "count": 10
+  },
+  {
+    "name": "龙泉驿城区",
+    "district": "龙泉驿",
+    "location": "106.954565,31.354576",
+    "count": 10
+  },
+  {
+    "name": "龙潭寺",
+    "district": "龙泉驿",
+    "location": "105.651987,31.139143",
+    "count": 10
+  },
+  {
+    "name": "三圣乡",
+    "district": "龙泉驿",
+    "location": "105.656771,31.031052",
+    "count": 10
+  },
+  {
+    "name": "十陵",
+    "district": "龙泉驿",
+    "location": "108.706672,31.986062",
+    "count": 10
+  },
+  {
+    "name": "石桥片区",
+    "district": "龙泉驿",
+    "location": "110.614611,32.233734",
+    "count": 10
+  },
+  {
+    "name": "西河",
+    "district": "龙泉驿",
+    "location": "108.981426,32.048475",
+    "count": 10
+  },
+  {
+    "name": "阳光城",
+    "district": "龙泉驿",
+    "location": "104.813669,30.757288",
+    "count": 10
+  },
+  {
+    "name": "保利公园",
+    "district": "新都",
+    "location": "105.076097,31.027816",
+    "count": 10
+  },
+  {
+    "name": "大丰",
+    "district": "新都",
+    "location": "104.684438,30.980811",
+    "count": 10
+  },
+  {
+    "name": "龙潭寺",
+    "district": "新都",
+    "location": "105.651987,31.139143",
+    "count": 10
+  },
+  {
+    "name": "毗河",
+    "district": "新都",
+    "location": "109.117049,32.256301",
+    "count": 10
+  },
+  {
+    "name": "新都城区",
+    "district": "新都",
+    "location": "105.611582,31.299000",
+    "count": 10
+  },
+  {
+    "name": "籍田",
+    "district": "天府新区南区",
+    "location": "111.016465,32.328949",
+    "count": 10
+  },
+  {
+    "name": "青白江",
+    "district": "青白江",
+    "location": "105.894956,31.333442",
+    "count": 10
+  },
+  {
+    "name": "都江堰城区",
+    "district": "都江堰",
+    "location": "105.815454,31.655495",
+    "count": 10
+  },
+  {
+    "name": "都江堰万达",
+    "district": "都江堰",
+    "location": "107.038107,32.025383",
+    "count": 10
+  },
+  {
+    "name": "街子古镇",
+    "district": "都江堰",
+    "location": "112.988702,33.600355",
+    "count": 10
+  },
+  {
+    "name": "青城山",
+    "district": "都江堰",
+    "location": "106.726977,31.889127",
+    "count": 10
+  },
+  {
+    "name": "彭州",
+    "district": "彭州",
+    "location": "106.581276,31.834896",
+    "count": 10
+  },
+  {
+    "name": "城北片区",
+    "district": "简阳",
+    "location": "110.684856,32.188076",
+    "count": 10
+  },
+  {
+    "name": "城东片区",
+    "district": "简阳",
+    "location": "117.619611,34.193414",
+    "count": 10
+  },
+  {
+    "name": "城南片区",
+    "district": "简阳",
+    "location": "106.924999,31.073313",
+    "count": 10
+  },
+  {
+    "name": "城西片区",
+    "district": "简阳",
+    "location": "107.617562,31.277374",
+    "count": 10
+  },
+  {
+    "name": "城中片区",
+    "district": "简阳",
+    "location": "113.259025,32.927757",
+    "count": 10
+  },
+  {
+    "name": "东部新区",
+    "district": "简阳",
+    "location": "109.878052,31.882357",
+    "count": 10
+  },
+  {
+    "name": "东溪片区",
+    "district": "简阳",
+    "location": "113.282938,32.916419",
+    "count": 10
+  },
+  {
+    "name": "高铁新区",
+    "district": "简阳",
+    "location": "108.424663,31.483482",
+    "count": 10
+  },
+  {
+    "name": "河东新区",
+    "district": "简阳",
+    "location": "114.994767,33.455065",
+    "count": 10
+  },
+  {
+    "name": "石桥片区",
+    "district": "简阳",
+    "location": "110.614611,32.233734",
+    "count": 10
+  },
+  {
+    "name": "大邑",
+    "district": "新津区",
+    "location": "105.056900,31.096129",
+    "count": 10
+  },
+  {
+    "name": "花源",
+    "district": "新津区",
+    "location": "106.756842,31.325705",
+    "count": 10
+  },
+  {
+    "name": "牧马山",
+    "district": "新津区",
+    "location": "105.764099,31.040502",
+    "count": 10
+  },
+  {
+    "name": "普兴",
+    "district": "新津区",
+    "location": "106.761900,31.257718",
+    "count": 10
+  },
+  {
+    "name": "邛崃",
+    "district": "新津区",
+    "location": "106.191312,31.238134",
+    "count": 10
+  },
+  {
+    "name": "双流城区",
+    "district": "新津区",
+    "location": "107.244296,31.534852",
+    "count": 10
+  },
+  {
+    "name": "五津",
+    "district": "新津区",
+    "location": "105.791223,31.004620",
+    "count": 10
+  },
+  {
+    "name": "新津",
+    "district": "新津区",
+    "location": "138.472294,40.523051",
+    "count": 10
+  },
+  {
+    "name": "崇州城区",
+    "district": "崇州",
+    "location": "106.080350,31.324530",
+    "count": 10
+  },
+  {
+    "name": "街子古镇",
+    "district": "崇州",
+    "location": "112.988702,33.600355",
+    "count": 10
+  },
+  {
+    "name": "羊马",
+    "district": "崇州",
+    "location": "107.746084,31.817663",
+    "count": 10
+  },
+  {
+    "name": "崇州",
+    "district": "大邑",
+    "location": "137.578468,40.942824",
+    "count": 10
+  },
+  {
+    "name": "大邑",
+    "district": "大邑",
+    "location": "105.056900,31.096129",
+    "count": 10
+  },
+  {
+    "name": "金堂",
+    "district": "金堂",
+    "location": "106.128080,31.305672",
+    "count": 10
+  },
+  {
+    "name": "蒲江",
+    "district": "蒲江",
+    "location": "109.250346,31.891253",
+    "count": 10
+  },
+  {
+    "name": "大邑",
+    "district": "邛崃",
+    "location": "105.056900,31.096129",
+    "count": 10
+  },
+  {
+    "name": "邛崃",
+    "district": "邛崃",
+    "location": "106.191312,31.238134",
+    "count": 10
+  },
+  {
+    "name": "五津",
+    "district": "邛崃",
+    "location": "105.791223,31.004620",
+    "count": 10
+  }
+]

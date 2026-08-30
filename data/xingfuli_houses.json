@@ -1,0 +1,2290 @@
+[
+  {
+    "community": "杜鹃园(和兴街)",
+    "price": "60万",
+    "area": "171.05平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "高楼层/共6层"
+  },
+  {
+    "community": "堰上",
+    "price": "42万",
+    "area": "121.61平",
+    "room": "3室2厅",
+    "orientation": "南北",
+    "floor": "高楼层/共5层"
+  },
+  {
+    "community": "银桂花园",
+    "price": "25万",
+    "area": "99.95平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "高楼层/共6层"
+  },
+  {
+    "community": "香林名宅",
+    "price": "32万",
+    "area": "91.87平",
+    "room": "3室2厅",
+    "orientation": "西南",
+    "floor": "中楼层/共6层"
+  },
+  {
+    "community": "西宸铂悦",
+    "price": "55.6万",
+    "area": "100.08平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "高楼层/共26层"
+  },
+  {
+    "community": "西华雅苑",
+    "price": "80万",
+    "area": "120.35平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "高楼层/共6层"
+  },
+  {
+    "community": "联盟北路78号",
+    "price": "48.8万",
+    "area": "120.57平",
+    "room": "3室2厅",
+    "orientation": "西南",
+    "floor": "中楼层/共4层"
+  },
+  {
+    "community": "城北山水",
+    "price": "27万",
+    "area": "71.17平",
+    "room": "2室1厅",
+    "orientation": "东南",
+    "floor": "高楼层/共6层"
+  },
+  {
+    "community": "明顺园",
+    "price": "31.8万",
+    "area": "86.66平",
+    "room": "2室2厅",
+    "orientation": "东",
+    "floor": "中楼层/共6层"
+  },
+  {
+    "community": "星星卡纳湾畔",
+    "price": "56.8万",
+    "area": "109平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "低楼层/共26层"
+  },
+  {
+    "community": "新油乐园",
+    "price": "62万",
+    "area": "104.25平",
+    "room": "3室2厅",
+    "orientation": "东",
+    "floor": "中楼层/共6层"
+  },
+  {
+    "community": "百花苑(莲花南路)",
+    "price": "70万",
+    "area": "163.43平",
+    "room": "5室2厅",
+    "orientation": "东南",
+    "floor": "中楼层/共6层"
+  },
+  {
+    "community": "丰桥苑",
+    "price": "25万",
+    "area": "76.98平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "中楼层/共7层"
+  },
+  {
+    "community": "怡和新居",
+    "price": "75万",
+    "area": "109.57平",
+    "room": "3室1厅",
+    "orientation": "南",
+    "floor": "高楼层/共6层"
+  },
+  {
+    "community": "水榭花都",
+    "price": "79万",
+    "area": "119.57平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "中楼层/共6层"
+  },
+  {
+    "community": "宝信青城",
+    "price": "60万",
+    "area": "77.15平",
+    "room": "3室1厅",
+    "orientation": "东",
+    "floor": "高楼层/共5层"
+  },
+  {
+    "community": "源上湾国际社区(千叶郡南区)",
+    "price": "82万",
+    "area": "92.63平",
+    "room": "3室2厅",
+    "orientation": "西",
+    "floor": "高楼层/共18层"
+  },
+  {
+    "community": "金都华府",
+    "price": "45.8万",
+    "area": "118.95平",
+    "room": "3室2厅",
+    "orientation": "-",
+    "floor": "低楼层/共33层"
+  },
+  {
+    "community": "香水城",
+    "price": "79.8万",
+    "area": "100.37平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "低楼层/共32层"
+  },
+  {
+    "community": "嘉美华凯(南区)",
+    "price": "58万",
+    "area": "58.32平",
+    "room": "1室1厅",
+    "orientation": "西",
+    "floor": "中楼层/共17层"
+  },
+  {
+    "community": "置信逸都丹郡(D区)",
+    "price": "58.8万",
+    "area": "74.99平",
+    "room": "2室1厅",
+    "orientation": "南",
+    "floor": "中楼层/共8层"
+  },
+  {
+    "community": "汀兰湾",
+    "price": "65万",
+    "area": "84.68平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "低楼层/共18层"
+  },
+  {
+    "community": "玺印上院",
+    "price": "86万",
+    "area": "119.96平",
+    "room": "3室2厅",
+    "orientation": "-",
+    "floor": "中楼层/共6层"
+  },
+  {
+    "community": "成发莱茵北郡",
+    "price": "62万",
+    "area": "78.91平",
+    "room": "2室2厅",
+    "orientation": "东南",
+    "floor": "中楼层/共16层"
+  },
+  {
+    "community": "新兴嘉园",
+    "price": "100万",
+    "area": "176.67平",
+    "room": "4室2厅",
+    "orientation": "东北",
+    "floor": "中楼层/共5层"
+  },
+  {
+    "community": "金色海岸(简阳)",
+    "price": "59.8万",
+    "area": "109.36平",
+    "room": "3室1厅",
+    "orientation": "东南",
+    "floor": "低楼层/共6层"
+  },
+  {
+    "community": "万达华府(三期)",
+    "price": "66万",
+    "area": "69.33平",
+    "room": "3室1厅",
+    "orientation": "西南",
+    "floor": "高楼层/共32层"
+  },
+  {
+    "community": "国际名都",
+    "price": "74万",
+    "area": "122.78平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "中楼层/共11层"
+  },
+  {
+    "community": "西丽苑",
+    "price": "146万",
+    "area": "89.19平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "高楼层/共7层"
+  },
+  {
+    "community": "金色海岸(简阳)",
+    "price": "46万",
+    "area": "109.34平",
+    "room": "3室1厅",
+    "orientation": "东",
+    "floor": "高楼层/共6层"
+  },
+  {
+    "community": "众合北尚二期",
+    "price": "85万",
+    "area": "117.35平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "高楼层/共6层"
+  },
+  {
+    "community": "中铁堰澜山",
+    "price": "65万",
+    "area": "112平",
+    "room": "3室2厅",
+    "orientation": "南北",
+    "floor": "中楼层/共7层"
+  },
+  {
+    "community": "林涧上馆",
+    "price": "49万",
+    "area": "83.34平",
+    "room": "2室1厅",
+    "orientation": "西南",
+    "floor": "低楼层/共6层"
+  },
+  {
+    "community": "香水城",
+    "price": "86万",
+    "area": "95.3平",
+    "room": "3室1厅",
+    "orientation": "西南",
+    "floor": "高楼层/共26层"
+  },
+  {
+    "community": "上东国际",
+    "price": "109.9万",
+    "area": "90.15平",
+    "room": "3室1厅",
+    "orientation": "南",
+    "floor": "中楼层/共33层"
+  },
+  {
+    "community": "荟文苑",
+    "price": "72万",
+    "area": "159.36平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "高楼层/共6层"
+  },
+  {
+    "community": "幸福里(福庆路)",
+    "price": "88万",
+    "area": "80.19平",
+    "room": "2室1厅",
+    "orientation": "北",
+    "floor": "低楼层/共11层"
+  },
+  {
+    "community": "柏林河畔",
+    "price": "56万",
+    "area": "127平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "高楼层/共6层"
+  },
+  {
+    "community": "上东一号(三期)",
+    "price": "165万",
+    "area": "118.45平",
+    "room": "3室2厅",
+    "orientation": "西",
+    "floor": "高楼层/共18层"
+  },
+  {
+    "community": "东南苑(彭州)",
+    "price": "56.8万",
+    "area": "115.53平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "中楼层/共5层"
+  },
+  {
+    "community": "堰上",
+    "price": "68万",
+    "area": "86.41平",
+    "room": "2室2厅",
+    "orientation": "南北",
+    "floor": "低楼层/共5层"
+  },
+  {
+    "community": "御嶺春天",
+    "price": "89.8万",
+    "area": "106.33平",
+    "room": "3室2厅",
+    "orientation": "-",
+    "floor": "高楼层/共25层"
+  },
+  {
+    "community": "上东国际",
+    "price": "140万",
+    "area": "122.38平",
+    "room": "3室1厅",
+    "orientation": "南",
+    "floor": "高楼层/共33层"
+  },
+  {
+    "community": "林涧上馆",
+    "price": "49.8万",
+    "area": "83.12平",
+    "room": "2室1厅",
+    "orientation": "东北",
+    "floor": "中楼层/共6层"
+  },
+  {
+    "community": "青城鉴山",
+    "price": "39万",
+    "area": "36.04平",
+    "room": "1室1厅",
+    "orientation": "南",
+    "floor": "低楼层/共3层"
+  },
+  {
+    "community": "都会风尚",
+    "price": "278万",
+    "area": "118.5平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "中楼层/共32层"
+  },
+  {
+    "community": "香林名宅",
+    "price": "35万",
+    "area": "106.93平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "高楼层/共6层"
+  },
+  {
+    "community": "丽阳晶舍",
+    "price": "59万",
+    "area": "74.01平",
+    "room": "2室2厅",
+    "orientation": "-",
+    "floor": "高楼层/共11层"
+  },
+  {
+    "community": "馨苑",
+    "price": "38万",
+    "area": "123.61平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "中楼层/共18层"
+  },
+  {
+    "community": "巴黎阳光(简阳)",
+    "price": "63.8万",
+    "area": "101.38平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "低楼层/共22层"
+  },
+  {
+    "community": "保利城(三期)",
+    "price": "71万",
+    "area": "74平",
+    "room": "2室2厅",
+    "orientation": "西",
+    "floor": "高楼层/共18层"
+  },
+  {
+    "community": "恒大帝景",
+    "price": "70万",
+    "area": "109.68平",
+    "room": "3室1厅",
+    "orientation": "东北",
+    "floor": "高楼层/共30层"
+  },
+  {
+    "community": "恒宇时代天街",
+    "price": "59.8万",
+    "area": "85平",
+    "room": "3室2厅",
+    "orientation": "东",
+    "floor": "中楼层/共25层"
+  },
+  {
+    "community": "香水城",
+    "price": "43万",
+    "area": "60平",
+    "room": "2室1厅",
+    "orientation": "东南",
+    "floor": "中楼层/共32层"
+  },
+  {
+    "community": "安轻路480号",
+    "price": "42万",
+    "area": "136平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "中楼层/共5层"
+  },
+  {
+    "community": "幸福里(福庆路)",
+    "price": "57.5万",
+    "area": "48.92平",
+    "room": "1室1厅",
+    "orientation": "东南",
+    "floor": "中楼层/共11层"
+  },
+  {
+    "community": "天和天逸花园",
+    "price": "32万",
+    "area": "72.79平",
+    "room": "2室1厅",
+    "orientation": "东南",
+    "floor": "高楼层/共6层"
+  },
+  {
+    "community": "北京建工花汀集",
+    "price": "42万",
+    "area": "85.11平",
+    "room": "2室2厅",
+    "orientation": "西南",
+    "floor": "中楼层/共11层"
+  },
+  {
+    "community": "东原城",
+    "price": "69.6万",
+    "area": "95.78平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "低楼层/共34层"
+  },
+  {
+    "community": "玉垒名居",
+    "price": "47万",
+    "area": "124.22平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "高楼层/共6层"
+  },
+  {
+    "community": "芙蓉花开",
+    "price": "94.5万",
+    "area": "120.6平",
+    "room": "3室2厅",
+    "orientation": "西南",
+    "floor": "中楼层/共6层"
+  },
+  {
+    "community": "都会风尚",
+    "price": "269万",
+    "area": "117.79平",
+    "room": "3室1厅",
+    "orientation": "南",
+    "floor": "中楼层/共32层"
+  },
+  {
+    "community": "上东国际",
+    "price": "116万",
+    "area": "107.3平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "低楼层/共33层"
+  },
+  {
+    "community": "百花小区(水乡街)",
+    "price": "36万",
+    "area": "84.9平",
+    "room": "2室2厅",
+    "orientation": "东",
+    "floor": "中楼层/共5层"
+  },
+  {
+    "community": "恒大帝景",
+    "price": "54万",
+    "area": "80.25平",
+    "room": "2室1厅",
+    "orientation": "南",
+    "floor": "高楼层/共29层"
+  },
+  {
+    "community": "锦水苑(都江堰)",
+    "price": "65万",
+    "area": "124.38平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "中楼层/共6层"
+  },
+  {
+    "community": "北辰香麓",
+    "price": "285万",
+    "area": "115.58平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "高楼层/共28层"
+  },
+  {
+    "community": "麓山国际茵特拉肯(A区)",
+    "price": "192万",
+    "area": "128.09平",
+    "room": "3室1厅",
+    "orientation": "南",
+    "floor": "中楼层/共27层"
+  },
+  {
+    "community": "万科玖西堂",
+    "price": "178万",
+    "area": "142.95平",
+    "room": "4室2厅",
+    "orientation": "西北",
+    "floor": "高楼层/共23层"
+  },
+  {
+    "community": "成都万达1号",
+    "price": "218万",
+    "area": "129.65平",
+    "room": "4室2厅",
+    "orientation": "西南",
+    "floor": "低楼层/共32层"
+  },
+  {
+    "community": "玺印上院",
+    "price": "85万",
+    "area": "96平",
+    "room": "3室2厅",
+    "orientation": "-",
+    "floor": "中楼层/共6层"
+  },
+  {
+    "community": "广汇御园",
+    "price": "205万",
+    "area": "135.83平",
+    "room": "4室2厅",
+    "orientation": "西",
+    "floor": "中楼层/共33层"
+  },
+  {
+    "community": "朗诗曜龙湾",
+    "price": "66万",
+    "area": "92.09平",
+    "room": "3室1厅",
+    "orientation": "南",
+    "floor": "低楼层/共18层"
+  },
+  {
+    "community": "嘉美华凯",
+    "price": "98万",
+    "area": "132.03平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "高楼层/共6层"
+  },
+  {
+    "community": "青城山水",
+    "price": "25.8万",
+    "area": "43.8平",
+    "room": "1室1厅",
+    "orientation": "东南",
+    "floor": "中楼层/共6层"
+  },
+  {
+    "community": "金色海岸(简阳)",
+    "price": "68万",
+    "area": "122.98平",
+    "room": "3室2厅",
+    "orientation": "西南",
+    "floor": "低楼层/共19层"
+  },
+  {
+    "community": "万科城臻园",
+    "price": "123万",
+    "area": "90.01平",
+    "room": "3室2厅",
+    "orientation": "西南",
+    "floor": "中楼层/共21层"
+  },
+  {
+    "community": "万和阳光城",
+    "price": "23.8万",
+    "area": "81.27平",
+    "room": "2室2厅",
+    "orientation": "南",
+    "floor": "中楼层/共6层"
+  },
+  {
+    "community": "鑫苑鑫都汇南区",
+    "price": "109万",
+    "area": "84.92平",
+    "room": "3室2厅",
+    "orientation": "西",
+    "floor": "高楼层/共33层"
+  },
+  {
+    "community": "华丰园",
+    "price": "62万",
+    "area": "83.67平",
+    "room": "2室2厅",
+    "orientation": "西北",
+    "floor": "中楼层/共6层"
+  },
+  {
+    "community": "绿地国际花都(三期)",
+    "price": "56.8万",
+    "area": "73.75平",
+    "room": "2室2厅",
+    "orientation": "西北",
+    "floor": "高楼层/共32层"
+  },
+  {
+    "community": "观山墅(一区)",
+    "price": "150万",
+    "area": "191.57平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "低楼层/共3层"
+  },
+  {
+    "community": "广汇御园",
+    "price": "182万",
+    "area": "103.85平",
+    "room": "3室1厅",
+    "orientation": "东",
+    "floor": "低楼层/共33层"
+  },
+  {
+    "community": "青城郡",
+    "price": "40万",
+    "area": "47.51平",
+    "room": "1室1厅",
+    "orientation": "西南",
+    "floor": "低楼层/共3层"
+  },
+  {
+    "community": "半岛云著",
+    "price": "128万",
+    "area": "151.67平",
+    "room": "4室1厅",
+    "orientation": "南",
+    "floor": "中楼层/共6层"
+  },
+  {
+    "community": "广汇御园",
+    "price": "228万",
+    "area": "136.22平",
+    "room": "4室1厅",
+    "orientation": "东",
+    "floor": "高楼层/共33层"
+  },
+  {
+    "community": "芙蓉山水",
+    "price": "62万",
+    "area": "85.59平",
+    "room": "2室2厅",
+    "orientation": "东南",
+    "floor": "高楼层/共6层"
+  },
+  {
+    "community": "上善栖",
+    "price": "60万",
+    "area": "65.67平",
+    "room": "1室1厅",
+    "orientation": "西南",
+    "floor": "低楼层/共3层"
+  },
+  {
+    "community": "锦绣家园",
+    "price": "90万",
+    "area": "99.99平",
+    "room": "3室1厅",
+    "orientation": "东南",
+    "floor": "高楼层/共6层"
+  },
+  {
+    "community": "鑫苑鑫都汇南区",
+    "price": "99.9万",
+    "area": "76.17平",
+    "room": "3室2厅",
+    "orientation": "北",
+    "floor": "中楼层/共31层"
+  },
+  {
+    "community": "古堰春晓",
+    "price": "58万",
+    "area": "92.64平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "高楼层/共6层"
+  },
+  {
+    "community": "中国西部文化城",
+    "price": "107万",
+    "area": "107.37平",
+    "room": "3室2厅",
+    "orientation": "东",
+    "floor": "低楼层/共18层"
+  },
+  {
+    "community": "万科理想城(一期)",
+    "price": "109万",
+    "area": "86.31平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "中楼层/共25层"
+  },
+  {
+    "community": "青城鉴山",
+    "price": "75万",
+    "area": "79.79平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "中楼层/共4层"
+  },
+  {
+    "community": "御青城",
+    "price": "145万",
+    "area": "121.3平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "低楼层/共1层"
+  },
+  {
+    "community": "广汇御园",
+    "price": "178万",
+    "area": "95.52平",
+    "room": "3室2厅",
+    "orientation": "西",
+    "floor": "高楼层/共33层"
+  },
+  {
+    "community": "合能珍宝翡翠",
+    "price": "118万",
+    "area": "91.97平",
+    "room": "3室1厅",
+    "orientation": "东南",
+    "floor": "中楼层/共18层"
+  },
+  {
+    "community": "北星城",
+    "price": "135万",
+    "area": "107.31平",
+    "room": "4室2厅",
+    "orientation": "南",
+    "floor": "中楼层/共31层"
+  },
+  {
+    "community": "岭秀都江(一二期)",
+    "price": "90万",
+    "area": "127.73平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "低楼层/共4层"
+  },
+  {
+    "community": "中国西部文化城",
+    "price": "165万",
+    "area": "111.95平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "高楼层/共7层"
+  },
+  {
+    "community": "优派立方",
+    "price": "65万",
+    "area": "75.63平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "高楼层/共34层"
+  },
+  {
+    "community": "源上湾国际社区(万融城B区)",
+    "price": "89万",
+    "area": "90.3平",
+    "room": "3室2厅",
+    "orientation": "-",
+    "floor": "低楼层/共28层"
+  },
+  {
+    "community": "保利心语(观园国际)",
+    "price": "350万",
+    "area": "125.43平",
+    "room": "3室1厅",
+    "orientation": "东",
+    "floor": "中楼层/共32层"
+  },
+  {
+    "community": "欧尚花园",
+    "price": "45万",
+    "area": "72平",
+    "room": "2室2厅",
+    "orientation": "-",
+    "floor": "高楼层/共31层"
+  },
+  {
+    "community": "碧桂园海德公园",
+    "price": "116万",
+    "area": "120平",
+    "room": "4室2厅",
+    "orientation": "西",
+    "floor": "中楼层/共32层"
+  },
+  {
+    "community": "中海万锦熙岸",
+    "price": "215万",
+    "area": "130.27平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "中楼层/共17层"
+  },
+  {
+    "community": "天晨花溪碧",
+    "price": "68万",
+    "area": "86.27平",
+    "room": "2室2厅",
+    "orientation": "西",
+    "floor": "低楼层/共18层"
+  },
+  {
+    "community": "张江御景豪庭",
+    "price": "120万",
+    "area": "242.21平",
+    "room": "4室1厅",
+    "orientation": "东南",
+    "floor": "高楼层/共23层"
+  },
+  {
+    "community": "碧桂园海德公园",
+    "price": "92万",
+    "area": "93.75平",
+    "room": "3室1厅",
+    "orientation": "南",
+    "floor": "中楼层/共32层"
+  },
+  {
+    "community": "广汇御园",
+    "price": "300万",
+    "area": "136.22平",
+    "room": "4室2厅",
+    "orientation": "南",
+    "floor": "高楼层/共33层"
+  },
+  {
+    "community": "海伦天麓",
+    "price": "133万",
+    "area": "92.25平",
+    "room": "3室2厅",
+    "orientation": "北",
+    "floor": "低楼层/共25层"
+  },
+  {
+    "community": "东湖郡",
+    "price": "37万",
+    "area": "66.45平",
+    "room": "2室2厅",
+    "orientation": "西北",
+    "floor": "高楼层/共23层"
+  },
+  {
+    "community": "天邑宏御花园御苑",
+    "price": "100万",
+    "area": "122.19平",
+    "room": "3室2厅",
+    "orientation": "西北",
+    "floor": "低楼层/共19层"
+  },
+  {
+    "community": "成都万达1号",
+    "price": "190万",
+    "area": "99平",
+    "room": "3室2厅",
+    "orientation": "北",
+    "floor": "低楼层/共31层"
+  },
+  {
+    "community": "中国西部文化城",
+    "price": "108万",
+    "area": "87.18平",
+    "room": "3室2厅",
+    "orientation": "西",
+    "floor": "中楼层/共18层"
+  },
+  {
+    "community": "汇尚城",
+    "price": "50万",
+    "area": "92.92平",
+    "room": "3室2厅",
+    "orientation": "东",
+    "floor": "中楼层/共25层"
+  },
+  {
+    "community": "北新国际",
+    "price": "79万",
+    "area": "89.6平",
+    "room": "3室1厅",
+    "orientation": "南",
+    "floor": "高楼层/共33层"
+  },
+  {
+    "community": "保利大都汇·雅汇",
+    "price": "123万",
+    "area": "94平",
+    "room": "3室2厅",
+    "orientation": "北",
+    "floor": "低楼层/共30层"
+  },
+  {
+    "community": "碧桂园城市花园",
+    "price": "207万",
+    "area": "145.97平",
+    "room": "4室2厅",
+    "orientation": "南",
+    "floor": "高楼层/共32层"
+  },
+  {
+    "community": "润禾花园",
+    "price": "120万",
+    "area": "120.6平",
+    "room": "4室2厅",
+    "orientation": "-",
+    "floor": "低楼层/共24层"
+  },
+  {
+    "community": "棠湖泊林城",
+    "price": "88万",
+    "area": "88.27平",
+    "room": "2室2厅",
+    "orientation": "北",
+    "floor": "低楼层/共34层"
+  },
+  {
+    "community": "广汇御园",
+    "price": "239万",
+    "area": "135.83平",
+    "room": "4室2厅",
+    "orientation": "西",
+    "floor": "中楼层/共33层"
+  },
+  {
+    "community": "岷江花园",
+    "price": "73万",
+    "area": "129.63平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "中楼层/共6层"
+  },
+  {
+    "community": "中海万锦熙岸",
+    "price": "225万",
+    "area": "130.72平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "低楼层/共17层"
+  },
+  {
+    "community": "优山樾园",
+    "price": "76.8万",
+    "area": "98平",
+    "room": "3室2厅",
+    "orientation": "南北",
+    "floor": "高楼层/共18层"
+  },
+  {
+    "community": "北新润苑(二期)",
+    "price": "158万",
+    "area": "128.87平",
+    "room": "4室2厅",
+    "orientation": "-",
+    "floor": "高楼层/共18层"
+  },
+  {
+    "community": "中海万锦熙岸",
+    "price": "319万",
+    "area": "173.19平",
+    "room": "4室2厅",
+    "orientation": "南",
+    "floor": "中楼层/共17层"
+  },
+  {
+    "community": "润禾花园",
+    "price": "128万",
+    "area": "120.35平",
+    "room": "4室2厅",
+    "orientation": "东北",
+    "floor": "高楼层/共24层"
+  },
+  {
+    "community": "隆鑫九熙",
+    "price": "158万",
+    "area": "90.85平",
+    "room": "3室2厅",
+    "orientation": "西南",
+    "floor": "中楼层/共34层"
+  },
+  {
+    "community": "汇融广场(B区)",
+    "price": "115万",
+    "area": "98.64平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "高楼层/共39层"
+  },
+  {
+    "community": "凤凰1号",
+    "price": "57万",
+    "area": "101.99平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "中楼层/共22层"
+  },
+  {
+    "community": "中海万锦熙岸",
+    "price": "230万",
+    "area": "130.72平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "高楼层/共17层"
+  },
+  {
+    "community": "首开龙湖景粼玖序三期",
+    "price": "180万",
+    "area": "117.45平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "高楼层/共30层"
+  },
+  {
+    "community": "广汇御园",
+    "price": "298万",
+    "area": "136.22平",
+    "room": "4室1厅",
+    "orientation": "东",
+    "floor": "高楼层/共33层"
+  },
+  {
+    "community": "北辰香麓",
+    "price": "269万",
+    "area": "106.78平",
+    "room": "3室2厅",
+    "orientation": "东北",
+    "floor": "高楼层/共27层"
+  },
+  {
+    "community": "中海万锦熙岸",
+    "price": "229万",
+    "area": "133.07平",
+    "room": "3室2厅",
+    "orientation": "东北",
+    "floor": "中楼层/共14层"
+  },
+  {
+    "community": "交大数字三区",
+    "price": "85万",
+    "area": "86.99平",
+    "room": "3室1厅",
+    "orientation": "北",
+    "floor": "低楼层/共18层"
+  },
+  {
+    "community": "汇融达令港",
+    "price": "125万",
+    "area": "99.22平",
+    "room": "3室2厅",
+    "orientation": "-",
+    "floor": "高楼层/共28层"
+  },
+  {
+    "community": "保利爱尚里",
+    "price": "108万",
+    "area": "81.42平",
+    "room": "3室2厅",
+    "orientation": "东",
+    "floor": "中楼层/共31层"
+  },
+  {
+    "community": "广汇御园",
+    "price": "246万",
+    "area": "103.71平",
+    "room": "3室1厅",
+    "orientation": "东",
+    "floor": "低楼层/共33层"
+  },
+  {
+    "community": "时代锦翠",
+    "price": "78.8万",
+    "area": "89.93平",
+    "room": "3室1厅",
+    "orientation": "南",
+    "floor": "高楼层/共23层"
+  },
+  {
+    "community": "中国西部文化城",
+    "price": "139万",
+    "area": "107.09平",
+    "room": "3室2厅",
+    "orientation": "东",
+    "floor": "高楼层/共18层"
+  },
+  {
+    "community": "华润金悦湾",
+    "price": "1398万",
+    "area": "354.31平",
+    "room": "5室2厅",
+    "orientation": "东南",
+    "floor": "高楼层/共22层"
+  },
+  {
+    "community": "绿地国际花都(一期)",
+    "price": "85万",
+    "area": "88.75平",
+    "room": "3室1厅",
+    "orientation": "西南",
+    "floor": "高楼层/共33层"
+  },
+  {
+    "community": "蓝润城",
+    "price": "129万",
+    "area": "107.69平",
+    "room": "3室2厅",
+    "orientation": "东",
+    "floor": "低楼层/共19层"
+  },
+  {
+    "community": "华宇阳光四季",
+    "price": "130万",
+    "area": "94.83平",
+    "room": "3室1厅",
+    "orientation": "西",
+    "floor": "高楼层/共17层"
+  },
+  {
+    "community": "上游小区(南区)",
+    "price": "45.3万",
+    "area": "72.11平",
+    "room": "2室1厅",
+    "orientation": "东南",
+    "floor": "中楼层/共11层"
+  },
+  {
+    "community": "汉嘉国际社区",
+    "price": "155万",
+    "area": "154.86平",
+    "room": "4室2厅",
+    "orientation": "南",
+    "floor": "中楼层/共4层"
+  },
+  {
+    "community": "蔚蓝卡地亚(云墅)",
+    "price": "188万",
+    "area": "199.33平",
+    "room": "5室2厅",
+    "orientation": "东南",
+    "floor": "低楼层/共12层"
+  },
+  {
+    "community": "万达城花间墅",
+    "price": "139万",
+    "area": "98.12平",
+    "room": "3室1厅",
+    "orientation": "东南",
+    "floor": "中楼层/共5层"
+  },
+  {
+    "community": "红湖公园城",
+    "price": "74.9万",
+    "area": "90.63平",
+    "room": "3室2厅",
+    "orientation": "东",
+    "floor": "中楼层/共26层"
+  },
+  {
+    "community": "万圣家园(D区)",
+    "price": "73万",
+    "area": "86.24平",
+    "room": "2室2厅",
+    "orientation": "西",
+    "floor": "中楼层/共25层"
+  },
+  {
+    "community": "中冶堰景",
+    "price": "58万",
+    "area": "98.29平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "高楼层/共11层"
+  },
+  {
+    "community": "保利两河森林",
+    "price": "433万",
+    "area": "180.28平",
+    "room": "4室2厅",
+    "orientation": "东南",
+    "floor": "低楼层/共3层"
+  },
+  {
+    "community": "优品道珑苑",
+    "price": "120万",
+    "area": "79平",
+    "room": "3室2厅",
+    "orientation": "西南",
+    "floor": "低楼层/共32层"
+  },
+  {
+    "community": "翡翠海湾",
+    "price": "165万",
+    "area": "131.77平",
+    "room": "3室2厅",
+    "orientation": "东北",
+    "floor": "中楼层/共18层"
+  },
+  {
+    "community": "北欧知识城(一期)",
+    "price": "118万",
+    "area": "132平",
+    "room": "3室2厅",
+    "orientation": "西南",
+    "floor": "中楼层/共6层"
+  },
+  {
+    "community": "都市美丽洲",
+    "price": "50万",
+    "area": "82.84平",
+    "room": "2室1厅",
+    "orientation": "东南",
+    "floor": "中楼层/共6层"
+  },
+  {
+    "community": "汇融悉尼湾",
+    "price": "77万",
+    "area": "73.71平",
+    "room": "2室2厅",
+    "orientation": "北",
+    "floor": "高楼层/共26层"
+  },
+  {
+    "community": "汇厦沙河锦庭",
+    "price": "199万",
+    "area": "89.29平",
+    "room": "3室1厅",
+    "orientation": "东",
+    "floor": "高楼层/共21层"
+  },
+  {
+    "community": "南湖国际社区",
+    "price": "155万",
+    "area": "117.43平",
+    "room": "3室1厅",
+    "orientation": "东",
+    "floor": "中楼层/共34层"
+  },
+  {
+    "community": "炜岸城",
+    "price": "195万",
+    "area": "100.61平",
+    "room": "4室2厅",
+    "orientation": "东南",
+    "floor": "高楼层/共6层"
+  },
+  {
+    "community": "堰山和畔(二期)",
+    "price": "79.9万",
+    "area": "128.96平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "中楼层/共7层"
+  },
+  {
+    "community": "蔚蓝卡地亚黑钻",
+    "price": "780万",
+    "area": "390平",
+    "room": "6室2厅",
+    "orientation": "东南",
+    "floor": "低楼层/共3层"
+  },
+  {
+    "community": "世玺",
+    "price": "93万",
+    "area": "130.3平",
+    "room": "4室2厅",
+    "orientation": "北",
+    "floor": "低楼层/共31层"
+  },
+  {
+    "community": "合能珍宝锦城",
+    "price": "85万",
+    "area": "90.7平",
+    "room": "3室2厅",
+    "orientation": "西",
+    "floor": "低楼层/共18层"
+  },
+  {
+    "community": "润禾花园",
+    "price": "92万",
+    "area": "88.53平",
+    "room": "2室2厅",
+    "orientation": "-",
+    "floor": "中楼层/共24层"
+  },
+  {
+    "community": "锦城世家",
+    "price": "229万",
+    "area": "99.45平",
+    "room": "2室2厅",
+    "orientation": "西南",
+    "floor": "高楼层/共32层"
+  },
+  {
+    "community": "中冶堰景",
+    "price": "73万",
+    "area": "126.08平",
+    "room": "3室1厅",
+    "orientation": "南",
+    "floor": "低楼层/共11层"
+  },
+  {
+    "community": "成都后花园(三期)",
+    "price": "238万",
+    "area": "141.26平",
+    "room": "4室2厅",
+    "orientation": "东",
+    "floor": "低楼层/共25层"
+  },
+  {
+    "community": "天源佐岸",
+    "price": "112万",
+    "area": "115.59平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "低楼层/共6层"
+  },
+  {
+    "community": "保利公园里(二期)",
+    "price": "125万",
+    "area": "93.02平",
+    "room": "3室2厅",
+    "orientation": "东",
+    "floor": "高楼层/共33层"
+  },
+  {
+    "community": "远洋朗基国宾御府",
+    "price": "207万",
+    "area": "134.8平",
+    "room": "4室2厅",
+    "orientation": "南",
+    "floor": "低楼层/共21层"
+  },
+  {
+    "community": "格林城市花园",
+    "price": "58万",
+    "area": "63.43平",
+    "room": "2室2厅",
+    "orientation": "西南",
+    "floor": "中楼层/共30层"
+  },
+  {
+    "community": "滨江国际",
+    "price": "125万",
+    "area": "112.08平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "中楼层/共18层"
+  },
+  {
+    "community": "汇融悉尼湾",
+    "price": "119万",
+    "area": "129.33平",
+    "room": "4室2厅",
+    "orientation": "南",
+    "floor": "高楼层/共31层"
+  },
+  {
+    "community": "保利两河森林",
+    "price": "448万",
+    "area": "137.13平",
+    "room": "4室2厅",
+    "orientation": "西南",
+    "floor": "中楼层/共4层"
+  },
+  {
+    "community": "保利心语(观园国际)",
+    "price": "348万",
+    "area": "124.34平",
+    "room": "3室1厅",
+    "orientation": "南",
+    "floor": "高楼层/共32层"
+  },
+  {
+    "community": "德馨苑(锦江)",
+    "price": "321万",
+    "area": "136.68平",
+    "room": "4室2厅",
+    "orientation": "西北",
+    "floor": "中楼层/共32层"
+  },
+  {
+    "community": "领地金科兰台府",
+    "price": "155万",
+    "area": "142.47平",
+    "room": "4室2厅",
+    "orientation": "东南",
+    "floor": "中楼层/共32层"
+  },
+  {
+    "community": "蔚蓝阁(B区)",
+    "price": "340万",
+    "area": "151平",
+    "room": "3室2厅",
+    "orientation": "西南",
+    "floor": "高楼层/共31层"
+  },
+  {
+    "community": "西郡英华二期",
+    "price": "69万",
+    "area": "91.99平",
+    "room": "3室1厅",
+    "orientation": "东南",
+    "floor": "低楼层/共31层"
+  },
+  {
+    "community": "唐安银座",
+    "price": "47.8万",
+    "area": "70平",
+    "room": "2室2厅",
+    "orientation": "南",
+    "floor": "高楼层/共18层"
+  },
+  {
+    "community": "西城御景",
+    "price": "63.8万",
+    "area": "78.42平",
+    "room": "2室1厅",
+    "orientation": "东南",
+    "floor": "中楼层/共28层"
+  },
+  {
+    "community": "蔚蓝卡地亚黑钻",
+    "price": "1250万",
+    "area": "422.02平",
+    "room": "5室2厅",
+    "orientation": "西南",
+    "floor": "高楼层/共3层"
+  },
+  {
+    "community": "天邑宏御花园御苑",
+    "price": "63.8万",
+    "area": "93.86平",
+    "room": "2室2厅",
+    "orientation": "东北",
+    "floor": "高楼层/共25层"
+  },
+  {
+    "community": "檀香花园",
+    "price": "128万",
+    "area": "92.14平",
+    "room": "3室1厅",
+    "orientation": "东北",
+    "floor": "中楼层/共26层"
+  },
+  {
+    "community": "置信逸都(C区)",
+    "price": "64万",
+    "area": "97.8平",
+    "room": "3室1厅",
+    "orientation": "东北",
+    "floor": "高楼层/共28层"
+  },
+  {
+    "community": "绿地城",
+    "price": "98万",
+    "area": "85.7平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "高楼层/共33层"
+  },
+  {
+    "community": "保利西堂和煦",
+    "price": "254万",
+    "area": "108.5平",
+    "room": "3室2厅",
+    "orientation": "西南",
+    "floor": "高楼层/共10层"
+  },
+  {
+    "community": "博雅新城(C区)",
+    "price": "56.8万",
+    "area": "88.27平",
+    "room": "2室1厅",
+    "orientation": "东",
+    "floor": "低楼层/共27层"
+  },
+  {
+    "community": "龙城国际(四期)",
+    "price": "99.8万",
+    "area": "91.46平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "中楼层/共32层"
+  },
+  {
+    "community": "华润琨瑜府",
+    "price": "118万",
+    "area": "136.89平",
+    "room": "4室2厅",
+    "orientation": "南",
+    "floor": "高楼层/共33层"
+  },
+  {
+    "community": "清河湾",
+    "price": "1100万",
+    "area": "341.04平",
+    "room": "5室2厅",
+    "orientation": "西南",
+    "floor": "低楼层/共3层"
+  },
+  {
+    "community": "金河谷(五期)",
+    "price": "98万",
+    "area": "89.08平",
+    "room": "3室1厅",
+    "orientation": "南",
+    "floor": "低楼层/共34层"
+  },
+  {
+    "community": "蓝光映玥小区",
+    "price": "85万",
+    "area": "105.39平",
+    "room": "3室2厅",
+    "orientation": "东北",
+    "floor": "低楼层/共12层"
+  },
+  {
+    "community": "中南上熙府珑悦",
+    "price": "162.8万",
+    "area": "131.44平",
+    "room": "4室2厅",
+    "orientation": "东南",
+    "floor": "中楼层/共25层"
+  },
+  {
+    "community": "朗基少帅府",
+    "price": "116万",
+    "area": "91.23平",
+    "room": "3室1厅",
+    "orientation": "东南",
+    "floor": "中楼层/共24层"
+  },
+  {
+    "community": "西郡英华三期",
+    "price": "75万",
+    "area": "86.3平",
+    "room": "3室2厅",
+    "orientation": "西南",
+    "floor": "高楼层/共22层"
+  },
+  {
+    "community": "佳兆业珑玺",
+    "price": "320万",
+    "area": "141.48平",
+    "room": "4室2厅",
+    "orientation": "西北",
+    "floor": "中楼层/共8层"
+  },
+  {
+    "community": "滨江彼岸",
+    "price": "109.9万",
+    "area": "92.82平",
+    "room": "3室2厅",
+    "orientation": "东北",
+    "floor": "高楼层/共32层"
+  },
+  {
+    "community": "民乐园",
+    "price": "79.2万",
+    "area": "75.97平",
+    "room": "2室1厅",
+    "orientation": "南",
+    "floor": "中楼层/共14层"
+  },
+  {
+    "community": "西城家园(二期)",
+    "price": "116万",
+    "area": "115.12平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "中楼层/共6层"
+  },
+  {
+    "community": "中铁奥维尔二期",
+    "price": "72.8万",
+    "area": "87.29平",
+    "room": "3室2厅",
+    "orientation": "东北",
+    "floor": "高楼层/共29层"
+  },
+  {
+    "community": "桃园柳岸",
+    "price": "73.6万",
+    "area": "118.17平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "中楼层/共6层"
+  },
+  {
+    "community": "同森锦熙",
+    "price": "90万",
+    "area": "99.09平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "中楼层/共25层"
+  },
+  {
+    "community": "金沙鹭岛(四期)",
+    "price": "216万",
+    "area": "88.62平",
+    "room": "3室2厅",
+    "orientation": "东",
+    "floor": "中楼层/共32层"
+  },
+  {
+    "community": "天璟荟",
+    "price": "120万",
+    "area": "98.18平",
+    "room": "3室2厅",
+    "orientation": "南北",
+    "floor": "高楼层/共15层"
+  },
+  {
+    "community": "石人正街29号院",
+    "price": "88万",
+    "area": "80平",
+    "room": "3室1厅",
+    "orientation": "北",
+    "floor": "中楼层/共7层"
+  },
+  {
+    "community": "佳兆业丽晶港",
+    "price": "75万",
+    "area": "71.67平",
+    "room": "2室1厅",
+    "orientation": "南",
+    "floor": "低楼层/共33层"
+  },
+  {
+    "community": "蔚蓝卡地亚(云墅)",
+    "price": "156万",
+    "area": "142.61平",
+    "room": "4室2厅",
+    "orientation": "东南",
+    "floor": "高楼层/共13层"
+  },
+  {
+    "community": "领地金科兰台府",
+    "price": "149万",
+    "area": "134.95平",
+    "room": "3室1厅",
+    "orientation": "东南",
+    "floor": "低楼层/共32层"
+  },
+  {
+    "community": "华宇天府花城",
+    "price": "87万",
+    "area": "84.96平",
+    "room": "4室2厅",
+    "orientation": "东南",
+    "floor": "高楼层/共31层"
+  },
+  {
+    "community": "西汇清江别韵",
+    "price": "88万",
+    "area": "108.98平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "高楼层/共26层"
+  },
+  {
+    "community": "朗诗未来家",
+    "price": "89万",
+    "area": "86.88平",
+    "room": "3室2厅",
+    "orientation": "西南",
+    "floor": "中楼层/共20层"
+  },
+  {
+    "community": "豪斯花园",
+    "price": "115.8万",
+    "area": "105.14平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "低楼层/共6层"
+  },
+  {
+    "community": "蔚蓝卡地亚(云墅)",
+    "price": "183万",
+    "area": "199.33平",
+    "room": "5室2厅",
+    "orientation": "东南",
+    "floor": "中楼层/共12层"
+  },
+  {
+    "community": "西汇清江别韵",
+    "price": "84万",
+    "area": "106.02平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "中楼层/共26层"
+  },
+  {
+    "community": "中铁奥维尔二期",
+    "price": "79.8万",
+    "area": "89平",
+    "room": "3室1厅",
+    "orientation": "西南",
+    "floor": "高楼层/共29层"
+  },
+  {
+    "community": "华宇天府花城",
+    "price": "87.8万",
+    "area": "92.17平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "高楼层/共31层"
+  },
+  {
+    "community": "朗基少帅府",
+    "price": "116万",
+    "area": "82.5平",
+    "room": "3室2厅",
+    "orientation": "东北",
+    "floor": "高楼层/共24层"
+  },
+  {
+    "community": "花样年龙年国际中心",
+    "price": "79.8万",
+    "area": "86.2平",
+    "room": "3室2厅",
+    "orientation": "东",
+    "floor": "中楼层/共26层"
+  },
+  {
+    "community": "朝阳时代西锦",
+    "price": "80万",
+    "area": "85.51平",
+    "room": "2室1厅",
+    "orientation": "西南",
+    "floor": "中楼层/共33层"
+  },
+  {
+    "community": "中粮锦云",
+    "price": "438万",
+    "area": "122.67平",
+    "room": "4室1厅",
+    "orientation": "西南",
+    "floor": "低楼层/共11层"
+  },
+  {
+    "community": "卧龙晓城",
+    "price": "110万",
+    "area": "94.3平",
+    "room": "3室1厅",
+    "orientation": "南",
+    "floor": "高楼层/共6层"
+  },
+  {
+    "community": "红运花园馨苑",
+    "price": "83.88万",
+    "area": "100.5平",
+    "room": "3室1厅",
+    "orientation": "东北",
+    "floor": "中楼层/共7层"
+  },
+  {
+    "community": "锦绣森邻",
+    "price": "179万",
+    "area": "144.42平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "中楼层/共17层"
+  },
+  {
+    "community": "鑫苑璟和名邸",
+    "price": "139.8万",
+    "area": "120.1平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "中楼层/共33层"
+  },
+  {
+    "community": "四季豪廷",
+    "price": "112.6万",
+    "area": "123.18平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "中楼层/共28层"
+  },
+  {
+    "community": "人民中路二段小区",
+    "price": "148万",
+    "area": "70.28平",
+    "room": "2室2厅",
+    "orientation": "西南",
+    "floor": "中楼层/共7层"
+  },
+  {
+    "community": "石人南路43号院",
+    "price": "56万",
+    "area": "45.86平",
+    "room": "1室1厅",
+    "orientation": "南",
+    "floor": "高楼层/共7层"
+  },
+  {
+    "community": "中南上熙府珑悦",
+    "price": "150万",
+    "area": "114.55平",
+    "room": "3室1厅",
+    "orientation": "东南",
+    "floor": "高楼层/共26层"
+  },
+  {
+    "community": "锦卉苑",
+    "price": "64.8万",
+    "area": "63.44平",
+    "room": "1室1厅",
+    "orientation": "东北",
+    "floor": "中楼层/共7层"
+  },
+  {
+    "community": "尚东美林(二区)",
+    "price": "92.8万",
+    "area": "88.69平",
+    "room": "2室2厅",
+    "orientation": "南",
+    "floor": "中楼层/共11层"
+  },
+  {
+    "community": "鑫苑璟和名邸",
+    "price": "106万",
+    "area": "101.48平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "高楼层/共33层"
+  },
+  {
+    "community": "攀钢苑",
+    "price": "47万",
+    "area": "45.74平",
+    "room": "1室1厅",
+    "orientation": "东",
+    "floor": "中楼层/共7层"
+  },
+  {
+    "community": "首开龙湖紫云赋",
+    "price": "149万",
+    "area": "112.33平",
+    "room": "3室2厅",
+    "orientation": "西南",
+    "floor": "高楼层/共33层"
+  },
+  {
+    "community": "龙湖金楠天街",
+    "price": "150万",
+    "area": "89.74平",
+    "room": "3室1厅",
+    "orientation": "东北",
+    "floor": "高楼层/共24层"
+  },
+  {
+    "community": "佳兆业珑玺",
+    "price": "389万",
+    "area": "171.01平",
+    "room": "4室2厅",
+    "orientation": "西南",
+    "floor": "高楼层/共16层"
+  },
+  {
+    "community": "合能珍宝金楠",
+    "price": "165万",
+    "area": "83.82平",
+    "room": "3室1厅",
+    "orientation": "南",
+    "floor": "高楼层/共21层"
+  },
+  {
+    "community": "首开龙湖紫云赋",
+    "price": "152万",
+    "area": "112.33平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "中楼层/共33层"
+  },
+  {
+    "community": "成都后花园(二期)",
+    "price": "400万",
+    "area": "261.81平",
+    "room": "6室2厅",
+    "orientation": "东南",
+    "floor": "低楼层/共12层"
+  },
+  {
+    "community": "齐力花园",
+    "price": "188万",
+    "area": "133.01平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "中楼层/共7层"
+  },
+  {
+    "community": "时代风华",
+    "price": "269万",
+    "area": "143.74平",
+    "room": "6室2厅",
+    "orientation": "西南",
+    "floor": "高楼层/共6层"
+  },
+  {
+    "community": "中新公园大道",
+    "price": "65万",
+    "area": "68.49平",
+    "room": "2室1厅",
+    "orientation": "西南",
+    "floor": "高楼层/共28层"
+  },
+  {
+    "community": "佳兆业丽晶港",
+    "price": "100万",
+    "area": "86.25平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "高楼层/共40层"
+  },
+  {
+    "community": "龙湖弗莱明戈一期",
+    "price": "93万",
+    "area": "91.8平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "高楼层/共34层"
+  },
+  {
+    "community": "蜀都新邨",
+    "price": "58万",
+    "area": "74.68平",
+    "room": "2室2厅",
+    "orientation": "南",
+    "floor": "高楼层/共24层"
+  },
+  {
+    "community": "中信未来城(南区)",
+    "price": "92万",
+    "area": "105.92平",
+    "room": "3室1厅",
+    "orientation": "西南",
+    "floor": "高楼层/共33层"
+  },
+  {
+    "community": "中冶中央公园",
+    "price": "52.6万",
+    "area": "62.8平",
+    "room": "2室1厅",
+    "orientation": "南",
+    "floor": "高楼层/共32层"
+  },
+  {
+    "community": "万科第五城(二期)",
+    "price": "116万",
+    "area": "78.08平",
+    "room": "3室2厅",
+    "orientation": "北",
+    "floor": "中楼层/共27层"
+  },
+  {
+    "community": "五彩城",
+    "price": "118万",
+    "area": "122.8平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "高楼层/共22层"
+  },
+  {
+    "community": "千禧河畔(B区)",
+    "price": "195万",
+    "area": "128.72平",
+    "room": "4室2厅",
+    "orientation": "南",
+    "floor": "低楼层/共33层"
+  },
+  {
+    "community": "凤凰栖岸",
+    "price": "130万",
+    "area": "117.82平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "中楼层/共34层"
+  },
+  {
+    "community": "佳年华新生活(A区)",
+    "price": "78万",
+    "area": "78.74平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "高楼层/共33层"
+  },
+  {
+    "community": "中南云樾",
+    "price": "168万",
+    "area": "109.44平",
+    "room": "3室2厅",
+    "orientation": "西南",
+    "floor": "高楼层/共28层"
+  },
+  {
+    "community": "璟悦天著",
+    "price": "173万",
+    "area": "134.55平",
+    "room": "4室2厅",
+    "orientation": "东南",
+    "floor": "中楼层/共14层"
+  },
+  {
+    "community": "璟悦天著",
+    "price": "182万",
+    "area": "135.68平",
+    "room": "4室2厅",
+    "orientation": "东南",
+    "floor": "高楼层/共17层"
+  },
+  {
+    "community": "天立香缇华府",
+    "price": "119.8万",
+    "area": "109.65平",
+    "room": "3室1厅",
+    "orientation": "东南",
+    "floor": "中楼层/共22层"
+  },
+  {
+    "community": "中铁丽景书香",
+    "price": "81万",
+    "area": "81.04平",
+    "room": "2室1厅",
+    "orientation": "东南",
+    "floor": "高楼层/共33层"
+  },
+  {
+    "community": "四季豪廷",
+    "price": "149万",
+    "area": "137.68平",
+    "room": "3室1厅",
+    "orientation": "西南",
+    "floor": "高楼层/共27层"
+  },
+  {
+    "community": "绿地国际花都(三期)",
+    "price": "102万",
+    "area": "124.85平",
+    "room": "4室1厅",
+    "orientation": "西北",
+    "floor": "中楼层/共32层"
+  },
+  {
+    "community": "隆基泰和紫樾书香",
+    "price": "163.5万",
+    "area": "118.37平",
+    "room": "4室1厅",
+    "orientation": "东南",
+    "floor": "中楼层/共11层"
+  },
+  {
+    "community": "上东阳光",
+    "price": "99.8万",
+    "area": "76.69平",
+    "room": "2室1厅",
+    "orientation": "南",
+    "floor": "中楼层/共27层"
+  },
+  {
+    "community": "绿地国际花都(三期)",
+    "price": "46万",
+    "area": "50.65平",
+    "room": "1室1厅",
+    "orientation": "西南",
+    "floor": "高楼层/共32层"
+  },
+  {
+    "community": "西城家园",
+    "price": "165万",
+    "area": "131.18平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "低楼层/共7层"
+  },
+  {
+    "community": "北大资源燕楠国际(四期云锦)",
+    "price": "163万",
+    "area": "95.8平",
+    "room": "3室2厅",
+    "orientation": "北",
+    "floor": "高楼层/共13层"
+  },
+  {
+    "community": "中国铁建国际城",
+    "price": "85万",
+    "area": "87.34平",
+    "room": "3室1厅",
+    "orientation": "西",
+    "floor": "高楼层/共34层"
+  },
+  {
+    "community": "世茂城(二期)",
+    "price": "192万",
+    "area": "127.23平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "低楼层/共4层"
+  },
+  {
+    "community": "东山国际新城(E区)",
+    "price": "65万",
+    "area": "90.85平",
+    "room": "2室2厅",
+    "orientation": "东南",
+    "floor": "高楼层/共18层"
+  },
+  {
+    "community": "珠江青云台",
+    "price": "125万",
+    "area": "78.54平",
+    "room": "2室2厅",
+    "orientation": "东南",
+    "floor": "中楼层/共33层"
+  },
+  {
+    "community": "人居柏云庭",
+    "price": "237.8万",
+    "area": "165.43平",
+    "room": "4室2厅",
+    "orientation": "西南",
+    "floor": "低楼层/共11层"
+  },
+  {
+    "community": "皇冠国际社区(二期)",
+    "price": "100万",
+    "area": "92.58平",
+    "room": "2室2厅",
+    "orientation": "东南",
+    "floor": "高楼层/共27层"
+  },
+  {
+    "community": "东山国际新城(C区)",
+    "price": "121万",
+    "area": "216.25平",
+    "room": "4室1厅",
+    "orientation": "东",
+    "floor": "低楼层/共17层"
+  },
+  {
+    "community": "百悦锦城",
+    "price": "155万",
+    "area": "116.29平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "低楼层/共14层"
+  },
+  {
+    "community": "保利玫瑰花语",
+    "price": "110万",
+    "area": "94.65平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "高楼层/共25层"
+  },
+  {
+    "community": "华润云庭",
+    "price": "136万",
+    "area": "101.74平",
+    "room": "3室2厅",
+    "orientation": "西",
+    "floor": "低楼层/共49层"
+  },
+  {
+    "community": "艺锦湾(一期)",
+    "price": "94万",
+    "area": "91.4平",
+    "room": "2室2厅",
+    "orientation": "东南",
+    "floor": "高楼层/共6层"
+  },
+  {
+    "community": "华润云庭",
+    "price": "149万",
+    "area": "114.48平",
+    "room": "3室2厅",
+    "orientation": "东南",
+    "floor": "高楼层/共36层"
+  },
+  {
+    "community": "龙城1号(小区)",
+    "price": "118万",
+    "area": "119.38平",
+    "room": "2室2厅",
+    "orientation": "南",
+    "floor": "高楼层/共6层"
+  },
+  {
+    "community": "融创天府逸家(一期)",
+    "price": "128万",
+    "area": "96.55平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "中楼层/共41层"
+  },
+  {
+    "community": "北大资源(紫境东来)",
+    "price": "245万",
+    "area": "165.89平",
+    "room": "4室1厅",
+    "orientation": "南",
+    "floor": "高楼层/共31层"
+  },
+  {
+    "community": "佳年华新生活(A区)",
+    "price": "106万",
+    "area": "90.02平",
+    "room": "3室2厅",
+    "orientation": "西南",
+    "floor": "高楼层/共33层"
+  },
+  {
+    "community": "融创天府逸家(二期)",
+    "price": "108.8万",
+    "area": "79.52平",
+    "room": "3室1厅",
+    "orientation": "东",
+    "floor": "高楼层/共41层"
+  },
+  {
+    "community": "融创天府逸家(一期)",
+    "price": "122万",
+    "area": "88.94平",
+    "room": "3室1厅",
+    "orientation": "东南",
+    "floor": "中楼层/共41层"
+  },
+  {
+    "community": "香悦云庭",
+    "price": "226万",
+    "area": "128.5平",
+    "room": "3室2厅",
+    "orientation": "南",
+    "floor": "高楼层/共6层"
+  }
+]
