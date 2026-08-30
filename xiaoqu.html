@@ -50,6 +50,12 @@
 <style>
   #xqMap { height: 240px; border-radius: 12px; overflow: hidden; margin-bottom: 16px; border: 1px solid rgba(255,255,255,0.1); }
   #xqMap .marker-pin { width: 22px; height: 22px; background: #ff5a5f; border: 3px solid #fff; border-radius: 50%; box-shadow: 0 0 0 3px rgba(255,90,95,0.35); }
+  /* 自定义下拉（绕开 iOS 原生 select 的闪现关闭 bug） */
+  .cs { position: relative; }
+  .cs-value { padding: 11px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2); background: #262a32; color: #fff; font-size: 15px; cursor: pointer; user-select: none; -webkit-user-select: none; }
+  .cs-drop { position: absolute; top: calc(100% + 4px); left: 0; right: 0; max-height: 260px; overflow-y: auto; background: #2b2f3a; border: 1px solid rgba(255,255,255,0.25); border-radius: 8px; z-index: 60; display: none; box-shadow: 0 6px 20px rgba(0,0,0,0.4); }
+  .cs-opt { padding: 10px 12px; color: #fff; font-size: 14px; cursor: pointer; word-break: break-all; }
+  .cs-opt:active { background: rgba(255,255,255,0.12); }
 </style>
 </head>
 <body>
@@ -61,22 +67,24 @@
     <span id="refreshBtn" style="margin-left:auto;cursor:pointer;background:#262a32;color:#fff;padding:6px 12px;border-radius:16px;font-size:13px;border:1px solid rgba(255,255,255,0.2)">🔄 刷新</span>
   </div>
   <div style="display:flex;gap:8px;margin:0 0 10px">
-    <select id="districtSelect" style="flex:1;padding:11px 8px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:#262a32;color:#fff;font-size:15px;outline:none">
-      <option value="" style="color:#fff">📍 区</option>
-    </select>
-    <select id="boardSelect" style="flex:1;padding:11px 8px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:#262a32;color:#fff;font-size:15px;outline:none">
-      <option value="" style="color:#fff">🏘️ 板块</option>
-    </select>
+    <div class="cs" id="cs_district" style="flex:1">
+      <div class="cs-value" id="cs_district_value">📍 区（全部）</div>
+      <div class="cs-drop" id="cs_district_drop"></div>
+    </div>
+    <div class="cs" id="cs_board" style="flex:1">
+      <div class="cs-value" id="cs_board_value">🏘️ 板块（全部）</div>
+      <div class="cs-drop" id="cs_board_drop"></div>
+    </div>
   </div>
-  <select id="anzhiSelect" style="width:100%;padding:11px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:#262a32;color:#fff;font-size:16px;margin:0 0 10px;outline:none">
-    <option value="all" style="color:#fff">🏘️ 全部小区</option>
-    <option value="no" style="color:#fff">✅ 排除安置房</option>
-    <option value="only" style="color:#fff">🔴 仅安置房</option>
-  </select>
+  <div class="cs" id="cs_anzhi" style="margin:0 0 10px">
+    <div class="cs-value" id="cs_anzhi_value">🏘️ 全部小区</div>
+    <div class="cs-drop" id="cs_anzhi_drop"></div>
+  </div>
   <div id="tagFilterBox" style="margin:0 0 10px;font-size:13px;color:#a9adb8">🏷️ 标签筛选（我的）：加载中…</div>
-  <select id="xqSelect" style="width:100%;padding:11px 12px;border-radius:8px;border:1px solid rgba(255,255,255,0.2);background:#262a32;color:#fff;font-size:16px;margin:0 0 12px;outline:none">
-    <option value="" style="color:#fff">📂 选择小区查看报告…</option>
-  </select>
+  <div class="cs" id="cs_xq" style="margin:0 0 12px">
+    <div class="cs-value" id="cs_xq_value">📂 选择小区查看报告…</div>
+    <div class="cs-drop" id="cs_xq_drop"></div>
+  </div>
   <a href="javascript:void(0)" id="openNoteBtn" style="display:block;text-align:center;padding:12px;border-radius:8px;background:rgba(255,224,130,0.12);border:1px solid rgba(255,224,130,0.4);color:#ffe082;font-size:16px;text-decoration:none;margin:0 0 18px">📝 看房 / 买房笔记</a>
   <div id="reportArea">
     <div id="xqMap"></div>
@@ -226,36 +234,72 @@
   let xiaoquCoords = [];
   let allFiles = []; // 缓存的小区列表（避免每次 change 都异步 fetch 导致下拉被关）
   // 同步渲染下拉（基于已缓存的数据，change 后立即完成，不会有异步窗口）
+  // 自定义下拉组件（div 模拟，绕开 iOS 原生 select 的「闪现关闭」bug）
+  function createCSelect(valueId, dropId, onChange) {
+    const valueEl = document.getElementById(valueId);
+    const dropEl = document.getElementById(dropId);
+    let cur = { value: '', label: '' };
+    valueEl.addEventListener('click', e => {
+      e.stopPropagation();
+      const wasOpen = dropEl.style.display === 'block';
+      closeAllCS();
+      dropEl.style.display = wasOpen ? 'none' : 'block';
+    });
+    dropEl.addEventListener('click', e => {
+      const opt = e.target.closest('.cs-opt');
+      if (!opt) return;
+      cur = { value: opt.dataset.value, label: opt.textContent };
+      valueEl.textContent = opt.textContent;
+      dropEl.style.display = 'none';
+      if (onChange) onChange(cur.value, cur.label);
+    });
+    return {
+      getValue: () => cur.value,
+      renderOptions: items => { dropEl.innerHTML = items.map(it => `<div class="cs-opt" data-value="${it.value}">${it.label}</div>`).join(''); },
+    };
+  }
+  function closeAllCS() { document.querySelectorAll('.cs-drop').forEach(d => d.style.display = 'none'); }
+  document.addEventListener('click', closeAllCS);
+
+  const csDistrict = createCSelect('cs_district_value', 'cs_district_drop', () => renderList());
+  const csBoard = createCSelect('cs_board_value', 'cs_board_drop', () => renderList());
+  const csAnzhi = createCSelect('cs_anzhi_value', 'cs_anzhi_drop', () => renderList());
+  csAnzhi.renderOptions([
+    { value: 'all', label: '🏘️ 全部小区' },
+    { value: 'no', label: '✅ 排除安置房' },
+    { value: 'only', label: '🔴 仅安置房' },
+  ]);
+  const csXq = createCSelect('cs_xq_value', 'cs_xq_drop', n => {
+    if (!n) { load(''); return; }
+    history.replaceState(null, '', '?name=' + encodeURIComponent(n));
+    load(n);
+    locateByName(n);
+  });
+
   function renderList() {
     try {
       const raw = allFiles;
-      const distSel = document.getElementById('districtSelect');
-      const boardSel = document.getElementById('boardSelect');
-      const sel = document.getElementById('xqSelect');
-      const anzhiSelect = document.getElementById('anzhiSelect');
       // 区下拉：只在首次填充（列表固定）
-      if (distSel.options.length <= 1) {
+      if (!window.__distInit) {
+        window.__distInit = true;
         const districts = [...new Set(raw.map(x => x.district).filter(Boolean))].sort();
-        distSel.innerHTML = '<option value="" style="color:#fff">📍 区（全部）</option>' + districts.map(d => `<option value="${d}" style="color:#fff">${d}</option>`).join('');
+        csDistrict.renderOptions([{ value: '', label: '📍 区（全部）' }].concat(districts.map(d => ({ value: d, label: d }))));
       }
-      // 板块下拉（当前区的板块）：延迟 200ms 更新，避开 iOS 原生滚轮关闭窗口，避免下拉闪现关闭
-      const curDist = distSel.value;
-      clearTimeout(window.__boardTimer);
-      window.__boardTimer = setTimeout(() => {
-        const boards = [];
-        for (const x of raw) {
-          if (!x.board) continue;
-          if (curDist && x.district !== curDist) continue;
-          if (!boards.some(b => b.board === x.board)) boards.push({ board: x.board });
-        }
-        boards.sort((a, b) => (a.board || '').localeCompare(b.board || ''));
-        boardSel.innerHTML = '<option value="" style="color:#fff">🏘️ 板块（全部）</option>' + boards.map(b => `<option value="${b.board}" style="color:#fff">${b.board}</option>`).join('');
-      }, 200);
+      // 板块下拉（当前区的板块）
+      const curDist = csDistrict.getValue();
+      const boards = [];
+      for (const x of raw) {
+        if (!x.board) continue;
+        if (curDist && x.district !== curDist) continue;
+        if (!boards.some(b => b.board === x.board)) boards.push({ board: x.board });
+      }
+      boards.sort((a, b) => (a.board || '').localeCompare(b.board || ''));
+      csBoard.renderOptions([{ value: '', label: '🏘️ 板块（全部）' }].concat(boards.map(b => ({ value: b.board, label: b.board }))));
       // 两级过滤 + 安置房
       let list = raw;
-      if (distSel.value) list = list.filter(x => x.district === distSel.value);
-      if (boardSel.value) list = list.filter(x => x.board === boardSel.value);
-      const anzhiMode = anzhiSelect.value || 'all';
+      if (curDist) list = list.filter(x => x.district === curDist);
+      if (csBoard.getValue()) list = list.filter(x => x.board === csBoard.getValue());
+      const anzhiMode = csAnzhi.getValue() || 'all';
       list = anzhiMode === 'no' ? list.filter(x => !x.anzhi) : anzhiMode === 'only' ? list.filter(x => x.anzhi) : list;
       // 标签过滤（个人隔离，管理员看全部）：筛选小区
       const myTags = allTagRecords.filter(t => isAdmin || t.name === '管理员' || (myName && t.name === myName));
@@ -268,12 +312,7 @@
         list = list.filter(x => !xqWithExcl.has(x.name));
       }
       xiaoquCoords = list;
-      // 小区下拉：延迟 200ms 更新，避开 iOS 原生滚轮关闭窗口，避免下拉闪现关闭
-      clearTimeout(window.__selTimer);
-      window.__selTimer = setTimeout(() => {
-        sel.innerHTML = '<option value="" style="color:#fff">📂 选择小区查看报告…</option>' + list.map(x => `<option value="${x.name}" style="color:#fff">${x.anzhi ? '🔴' : ''}${x.name}${x.board ? '（' + (x.district ? x.district + '·' : '') + x.board + '）' : ''}</option>`).join('');
-        if (curName && list.some(x => x.name === curName)) sel.value = curName;
-      }, 200);
+      csXq.renderOptions([{ value: '', label: '📂 选择小区查看报告…' }].concat(list.map(x => ({ value: x.name, label: (x.anzhi ? '🔴' : '') + x.name + (x.board ? '（' + (x.district ? x.district + '·' : '') + x.board + '）' : '') }))));
     } catch (e) {}
   }
   // 初始化：fetch 一次数据，缓存后渲染
@@ -314,9 +353,6 @@
     });
     renderList();
   }
-  document.getElementById('districtSelect').addEventListener('change', () => renderList());
-  document.getElementById('boardSelect').addEventListener('change', () => renderList());
-  document.getElementById('anzhiSelect').addEventListener('change', () => renderList());
 
   // ---- 2D 地图：定位小区在成都的位置 ----
   let xqMap = null, xqMarker = null;
@@ -584,13 +620,6 @@
       setTimeout(() => saveBtn.textContent = '保存备注', 1200);
     });
   }
-  document.getElementById('xqSelect').addEventListener('change', e => {
-    const n = e.target.value;
-    if (!n) { load(''); return; }
-    history.replaceState(null, '', '?name=' + encodeURIComponent(n));
-    load(n);
-    locateByName(n);
-  });
   initList().then(() => {
     initMap();
     locateByName(curName);
