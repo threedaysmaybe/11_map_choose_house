@@ -342,9 +342,12 @@ async function downloadImages(page, urls, subdir) {
 
   // 自动重新生成列表 + 坐标，并自检 APP 地图定位
   try {
-    const { execFileSync } = require('child_process');
-    execFileSync(process.execPath, ['gen_xiaoqu_list.js'], { stdio: 'inherit' });
-    execFileSync(process.execPath, ['gen_xiaoqu_coords.js'], { stdio: 'inherit' });
+    const { execFile } = require('child_process');
+    const runScript = (script) => new Promise((resolve, reject) => {
+      execFile(process.execPath, [script], { cwd: __dirname }, (err) => err ? reject(err) : resolve());
+    });
+    await runScript('gen_xiaoqu_list.js');
+    await runScript('gen_xiaoqu_coords.js');
     const list = JSON.parse(require('fs').readFileSync(path.join(DIR, 'xiaoqu_list.json'), 'utf8'));
     const noLoc = list.files.filter(x => !x.lon || !x.lat);
     if (noLoc.length) {
