@@ -1059,16 +1059,20 @@
         .catch(e => { btn.textContent = '🤖 智能抓取所有贝壳页'; info.textContent = '❌ 抓取失败：' + e.message; });
       // 轮询抓取结果 + 刷新下拉（后台抓取完成后自动更新）
       let polls = 0;
+      let finished = false;
       const timer = setInterval(async () => {
         polls++;
         await loadXiaoquArchives(true);
         try {
           const rr = await fetch('/fetch-ke-smart-result');
           const rd = await rr.json();
-          if (rd.ok && rd.msg && rd.msg !== '（抓取中…）') info.textContent = rd.msg;
+          if (rd.ok && rd.msg && rd.msg !== '（抓取中…）') {
+            info.textContent = '✅ 抓取完成\n' + rd.msg;
+            finished = true;
+          }
         } catch (e) {}
         const hasNew = xiaoquList.some(n => !beforeSet.has(n));
-        if (hasNew || polls > 240) { clearInterval(timer); btn.textContent = '🤖 智能抓取所有贝壳页'; }
+        if (finished || hasNew || polls > 240) { clearInterval(timer); btn.textContent = '🤖 智能抓取所有贝壳页'; }
       }, 1500);
     });
 
