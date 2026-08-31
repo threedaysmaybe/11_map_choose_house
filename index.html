@@ -1071,8 +1071,7 @@
             finished = true;
           }
         } catch (e) {}
-        const hasNew = xiaoquList.some(n => !beforeSet.has(n));
-        if (finished || hasNew || polls > 240) { clearInterval(timer); btn.textContent = '🤖 智能抓取所有贝壳页'; }
+        if (finished || polls > 240) { clearInterval(timer); btn.textContent = '🤖 智能抓取所有贝壳页'; }
       }, 1500);
     });
 
