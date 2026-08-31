@@ -621,7 +621,7 @@
         html += `<div style="margin-bottom:6px;flex-basis:100%"><div style="color:#fff;font-weight:bold">${h.room || '?'} ${h.area || '?'}㎡${floors}${deFang}${tihuHtml}</div><div>总价 ${h.totalPrice || '?'}万 · ${h.unitPrice || '?'}元/平 ${link} ${isAdmin ? `<a href="javascript:void(0)" class="xqUpHouse" data-hi="${hi}" style="color:#4fc3f7;font-size:14px;text-decoration:none">↑</a> <a href="javascript:void(0)" class="xqDownHouse" data-hi="${hi}" style="color:#4fc3f7;font-size:14px;text-decoration:none">↓</a> <a href="javascript:void(0)" class="xqDelHouse" data-hi="${hi}" data-hc="${hc}" style="color:#e74c3c;font-size:13px;margin-left:4px;text-decoration:none">🗑</a>` : ''}</div><div><span class="tag">${h.orientation || '朝向?'}</span><span class="tag">${h.floor || '?'}楼层</span>${structureTag}${diyaHtml}${chanquanHtml}${usageHtml}${extraTags}</div>${spHtml}</div>`;
         // 标签（云端，个人隔离，管理员看全部）
         const hTags3 = (cloudTagMap[hc] || []).filter(t => isAdmin || t.name === '管理员' || (myName && t.name === myName));
-        const xqTagsHtml = hTags3.map(t => `<span style="display:inline-block;background:rgba(139,195,74,0.15);color:#9ccc65;border:1px solid rgba(139,195,74,0.4);border-radius:10px;padding:1px 8px;font-size:11px;margin:2px 4px 2px 0">${t.name === '管理员' ? '' : (isAdmin ? t.name + '：' : '')}${t.tag}</span>`).join('');
+        const xqTagsHtml = hTags3.map(t => `<span style="display:inline-block;background:rgba(139,195,74,0.15);color:#9ccc65;border:1px solid rgba(139,195,74,0.4);border-radius:10px;padding:1px 6px 1px 8px;font-size:11px;margin:2px 4px 2px 0">${t.name === '管理员' ? '' : (isAdmin ? t.name + '：' : '')}${t.tag}${(isAdmin || t.name === myName) ? `<a href="javascript:void(0)" class="xqDelTagBtn" data-hc="${hc}" data-tag="${encodeURIComponent(t.tag)}" data-time="${t.time || ''}" style="color:#e74c3c;text-decoration:none;margin-left:4px;font-size:13px;font-weight:bold">×</a>` : ''}</span>`).join('');
         html += `<div style="margin-bottom:4px;flex-basis:100%">${xqTagsHtml}<a href="javascript:void(0)" class="xqAddTagBtn" data-hc="${hc}" style="color:#4fc3f7;font-size:12px;text-decoration:none">➕ 标签</a> <a href="javascript:void(0)" class="xqAddHouseNote" data-hc="${hc}" style="color:#f0c060;font-size:12px;text-decoration:none">📝 备注</a> <a href="javascript:void(0)" class="xqAddPool" data-hc="${hc}" style="color:#2ecc71;font-size:12px;text-decoration:none">＋ 房源池</a></div>`;
         const houseNotes = (houseNoteMap[hc] || []).filter(t => isAdmin || t.name === '管理员' || (myName && t.name === myName));
         html += houseNotes.map(x => `<div style="flex-basis:100%;white-space:pre-wrap;padding-left:1.5em;text-indent:-1.5em;color:${x.name === '管理员' ? '#ffd54f' : '#c9ccd3'};${x.name === '管理员' ? 'font-weight:bold' : ''};font-size:12px;margin-top:2px">📝 ${x.note}${(isAdmin || x.name === myName) ? ` <a href="javascript:void(0)" class="xqEditHouseNote" data-hc="${hc}" data-note="${encodeURIComponent(x.note)}" data-time="${x.time || ''}" style="color:#4fc3f7;font-size:11px;text-decoration:none">✎</a> <a href="javascript:void(0)" class="xqDelHouseNote" data-hc="${hc}" data-note="${encodeURIComponent(x.note)}" data-time="${x.time || ''}" style="color:#e74c3c;font-size:12px;text-decoration:none">×</a>` : ''}</div>`).join('');
@@ -644,7 +644,8 @@
       btn.addEventListener('click', async () => {
         const hc = btn.dataset.hc;
         const curTags = (cloudTagMap[hc] || []).map(t => t.tag);
-        const allTags = [...new Set(Object.values(cloudTagMap).flat().map(t => t.tag))].sort();
+        // 全局标签池：所有小区的标签都可快速选择（互通）
+        const allTags = [...new Set(allTagRecords.filter(t => isAdmin || t.name === '管理员' || (myName && t.name === myName)).map(t => t.tag))].sort();
         const existing = allTags.filter(t => !curTags.includes(t));
         const tag = await promptTag(existing);
         if (!tag || !tag.trim()) return;
@@ -656,6 +657,22 @@
           refreshTagFilter(); // 立即刷新标签筛选列表
           load(n, d); // 用本地数据重渲染，保留已调整的顺序
         } catch (e) { alert(e.message); }
+      });
+    });
+    // ---- 删除房源标签（右上角 ×）----
+    document.querySelectorAll('.xqDelTagBtn').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        const hc = btn.dataset.hc;
+        const tag = decodeURIComponent(btn.dataset.tag);
+        const time = btn.dataset.time;
+        if (!confirm('删除该标签？')) return;
+        try {
+          const res = await ghReadTags(n);
+          const tags = res.tags.filter(x => !(x.houseCode === hc && x.tag === tag && (x.time || '') === time));
+          await ghWriteTags(n, tags, res.sha);
+          refreshTagFilter();
+          load(n, d);
+        } catch (e) { alert('删除失败：' + e.message); }
       });
     });
     // ---- 加入房源池（全局一份）----

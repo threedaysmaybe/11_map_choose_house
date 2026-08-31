@@ -180,6 +180,8 @@ const server = http.createServer((req, res) => {
   // 智能抓取贝壳（自动识别所有打开的页面，有啥抓啥）
   if (req.method === 'POST' && req.url === '/fetch-ke-smart') {
     // 立即返回，后台执行抓取（避免前端 fetch 长连接阻塞超时导致 Failed to fetch）
+    // 先清空结果文件，避免前端轮询读到上一次抓取的旧结果（显示错小区）
+    try { fs.writeFileSync(path.join(ROOT, 'data', 'fetch_result.json'), JSON.stringify({ 小区: [], 房源: [], 列表: [], 其他: [] })); } catch (e) {}
     res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
     res.end(JSON.stringify({ ok: true, msg: '已开始抓取，完成后自动刷新' }));
     const { execFile } = require('child_process');
