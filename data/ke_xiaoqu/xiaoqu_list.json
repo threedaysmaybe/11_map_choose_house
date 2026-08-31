@@ -92,6 +92,15 @@
       "count": 12
     },
     {
+      "name": "黄金时代",
+      "board": "衣冠庙",
+      "district": "高新",
+      "anzhi": false,
+      "lon": 104.07352,
+      "lat": 30.570377,
+      "count": 21
+    },
+    {
       "name": "黄金时代(永丰路)",
       "board": "衣冠庙",
       "district": "高新",
@@ -267,8 +276,8 @@
       "board": "红牌楼",
       "district": "武侯",
       "anzhi": false,
-      "lon": null,
-      "lat": null,
+      "lon": 104.018069,
+      "lat": 30.638668,
       "count": 0
     },
     {
@@ -321,8 +330,8 @@
       "board": "红牌楼",
       "district": "武侯",
       "anzhi": true,
-      "lon": 104.008005,
-      "lat": 30.636507,
+      "lon": null,
+      "lat": null,
       "count": 0
     },
     {
@@ -357,8 +366,8 @@
       "board": "华西",
       "district": "武侯",
       "anzhi": false,
-      "lon": 104.055785,
-      "lat": 30.647234,
+      "lon": null,
+      "lat": null,
       "count": 0
     },
     {
@@ -429,8 +438,8 @@
       "board": "丽都",
       "district": "武侯",
       "anzhi": false,
-      "lon": null,
-      "lat": null,
+      "lon": 104.02409,
+      "lat": 30.628001,
       "count": 0
     },
     {
@@ -438,8 +447,8 @@
       "board": "外双楠",
       "district": "武侯",
       "anzhi": false,
-      "lon": null,
-      "lat": null,
+      "lon": 104.00808,
+      "lat": 30.648644,
       "count": 0
     },
     {
@@ -447,8 +456,8 @@
       "board": "外双楠",
       "district": "武侯",
       "anzhi": false,
-      "lon": 104.009473,
-      "lat": 30.645629,
+      "lon": null,
+      "lat": null,
       "count": 0
     },
     {
@@ -483,8 +492,8 @@
       "board": "棕北",
       "district": "武侯",
       "anzhi": false,
-      "lon": 104.072599,
-      "lat": 30.624247,
+      "lon": null,
+      "lat": null,
       "count": 0
     }
   ]
