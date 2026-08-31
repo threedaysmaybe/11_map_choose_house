@@ -1,0 +1,221 @@
+{
+  "name": "金地贝福里花园",
+  "price": "17170",
+  "board": "桐梓林",
+  "info": {
+    "建筑类型": "塔楼/板楼",
+    "房屋总数": "632户",
+    "楼栋总数": "5栋",
+    "绿化率": "24%",
+    "容积率": "1.3",
+    "交易权属": "商品房",
+    "建成年代": "2001-2008年",
+    "供暖类型": "无供暖",
+    "用水类型": "商水/民水",
+    "用电类型": "商电/民电",
+    "物业费": "1.1至1.5元/平米/月",
+    "开发商": "成都金地房屋开发有限公司"
+  },
+  "metro": [
+    {
+      "name": "桐梓林",
+      "distance": "831米",
+      "lines": "地铁1号"
+    },
+    {
+      "name": "神仙树",
+      "distance": "1476米",
+      "lines": "地铁5号"
+    },
+    {
+      "name": "倪家桥",
+      "distance": "1483米",
+      "lines": "地铁1号"
+    },
+    {
+      "name": "倪家桥",
+      "distance": "1490米",
+      "lines": "地铁18号"
+    },
+    {
+      "name": "火车南站",
+      "distance": "1543米",
+      "lines": "地铁18号"
+    },
+    {
+      "name": "火车南站",
+      "distance": "1638米",
+      "lines": "地铁18号"
+    },
+    {
+      "name": "芳草街",
+      "distance": "1643米",
+      "lines": "地铁8号"
+    }
+  ],
+  "deals": [
+    {
+      "建成年份": "暂无信息",
+      "面积": "109.15平米",
+      "签约日期": "2026-05-23",
+      "成交价": "163.5万",
+      "成交单价": "14980元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "120.69平米",
+      "签约日期": "2026-05-10",
+      "成交价": "157.2万",
+      "成交单价": "13026元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "146.63平米",
+      "签约日期": "2026-04-16",
+      "成交价": "225万",
+      "成交单价": "15345元/平"
+    }
+  ],
+  "images": [
+    "https://ke-image.ljcdn.com/hdic-resblock/fbef8250-68d7-4c71-8bec-ce8feefdf39f.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/40a0e34a-d6a0-4983-aba8-787db0c775ac.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/4caec13f-62a1-49bf-a693-e5d469617002.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/ba5c9a4f-47df-46e9-8b03-a0bb06ebf3bf.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/f6efc645-2553-442c-94ed-83736e6016ab.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/ce8c7c1b-9c9b-4f0a-9fd9-87fce21564b2.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/71175f23-1d56-4e87-ac6c-968b304abdc6.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/151a20f6-fed6-48ae-9d77-74c9e1079897.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/5a6d7ac4-2922-440b-b9d4-6fad61eca486.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/678c7752-65da-4f68-af43-b65d8f21a404.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/7d141a1e-e707-4956-8297-cc606d7e0f9c.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/bc65441f-0133-4d75-99c5-5c2f67139119.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/12b09912-d645-4fc5-9474-4977376273e0.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/03644117-6730-4133-b715-4f3e9a66308f.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/4dccadf2-2e8a-4652-adb7-123086f100e7.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/516d6701-e5be-43ed-b046-adaeb9775f1e.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/f523f600-89c7-4e67-876b-f86d0046b4d0.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/1f4df087-933c-4339-ad3e-c91115f00e60.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/17e30a65-54ec-40d5-8efe-4d88a7693888.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/fc9cc57c-a211-41d3-847d-fa96be35ff2d.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/0b198ddc-181a-4294-8df8-6c6df939a307.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/664a1b8f-3694-4a60-9702-84cdc7d3bd91.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/52210ebb-3e19-4b1e-9190-d1eb0022ddfd.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/783296f0-dfc2-4528-8c8a-84d8e86ec9d6.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/00b4105f-e076-4e66-b0e7-b0fc07d66b91.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/68e7366c-14a1-4e09-96a3-780d4654502d.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/1226bfea-f54f-4cc3-b92f-0e7117919af9.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/ca6a3b92-15e2-4eae-a6e8-4f5adecdc32d.jpg.710x400.jpg"
+  ],
+  "updatedAt": "2026-08-31T16:16:24.300Z",
+  "localImages": [
+    "1788192725825-0-t71d.JPG",
+    "1788192725909-1-ntpw.jpg",
+    "1788192725915-2-pla8.jpg",
+    "1788192725923-3-vjgx.JPG",
+    "1788192725938-4-p7bx.JPG",
+    "1788192725947-5-4lnx.JPG",
+    "1788192725956-6-oo8m.JPG",
+    "1788192725966-7-sr7l.JPG",
+    "1788192725974-8-gzlf.JPG",
+    "1788192725986-9-2fim.JPG",
+    "1788192726014-10-oq19.JPG",
+    "1788192726036-11-etz0.JPG",
+    "1788192726068-12-udz4.JPG",
+    "1788192726087-13-zbds.jpg",
+    "1788192726112-14-g07j.JPG",
+    "1788192726134-15-pda8.jpg",
+    "1788192726157-16-q68z.jpg",
+    "1788192726180-17-qrdg.jpg",
+    "1788192726211-18-zsqy.jpg",
+    "1788192726246-19-kgyu.jpg",
+    "1788192726298-20-8uji.jpg",
+    "1788192726331-21-feea.jpg",
+    "1788192726362-22-4t51.jpg",
+    "1788192726402-23-bidn.jpg",
+    "1788192726432-24-xpib.jpg",
+    "1788192726473-25-7uhz.jpg",
+    "1788192726536-26-klyy.jpg",
+    "1788192726567-27-amkb.jpg",
+    "1788192984322-0-emr4.JPG",
+    "1788192984329-1-9tx1.jpg",
+    "1788192984335-2-abyp.jpg",
+    "1788192984345-3-rmd9.JPG",
+    "1788192984359-4-cjsj.JPG",
+    "1788192984366-5-hyft.JPG",
+    "1788192984374-6-py26.JPG",
+    "1788192984381-7-ab0f.JPG",
+    "1788192984387-8-u34a.JPG",
+    "1788192984399-9-zuxn.JPG",
+    "1788192984406-10-npd7.JPG",
+    "1788192984417-11-autp.JPG",
+    "1788192984429-12-6veq.JPG",
+    "1788192984434-13-hprj.jpg",
+    "1788192984439-14-ma1k.JPG",
+    "1788192984448-15-tevu.jpg",
+    "1788192984456-16-dibs.jpg",
+    "1788192984465-17-u6q0.jpg",
+    "1788192984476-18-nds3.jpg",
+    "1788192984485-19-p131.jpg",
+    "1788192984495-20-ety3.jpg",
+    "1788192984506-21-rtbx.jpg",
+    "1788192984516-22-7at4.jpg",
+    "1788192984528-23-q75t.jpg",
+    "1788192984542-24-htgg.jpg",
+    "1788192984552-25-xq8k.jpg",
+    "1788192984561-26-wgfv.jpg",
+    "1788192984567-27-ymgw.jpg"
+  ],
+  "houses": [
+    {
+      "title": "成都武侯桐梓林金地贝福里花园 3室2厅 北",
+      "room": "3室2厅",
+      "area": "146.41",
+      "taoneiArea": "",
+      "totalPrice": "215",
+      "unitPrice": "14685",
+      "floor": "中",
+      "totalFloors": "12",
+      "orientation": "北",
+      "community": "金地贝福里花园",
+      "district": "武侯",
+      "board": "桐梓林",
+      "features": [
+        "电梯"
+      ],
+      "tihu": "2梯4户",
+      "structure": "框架结构",
+      "diya": "无抵押",
+      "chanquan": "共有",
+      "buildingType": "板楼",
+      "huxingStructure": "平层",
+      "usage": "普通住宅",
+      "decoration": "简装",
+      "listTime": "2026年07月20日",
+      "lastTrade": "2022年07月06日",
+      "sellingPoint": "",
+      "fangben": "已上传房本照片",
+      "images": [
+        "https://ke-image.ljcdn.com/hdic-frame/standard_7a2e4a75-67dc-4526-8cdf-628db9575606.png!m_fill,w_1000,h_750,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/apc_sT9BPFt7N_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/apc_bhd4rRsn8_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_7a2e4a75-67dc-4526-8cdf-628db9575606.png!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/apc_Un1sW5p8N_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/apc_uQocJlyi2_1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106128551294.html",
+      "houseCode": "106128551294",
+      "localImages": [
+        "1788192986888-0-av8c.png",
+        "1788192986895-1-a9zj.jpg",
+        "1788192986901-2-1xzs.jpg",
+        "1788192986910-3-wbb5.png",
+        "1788192986918-4-vzor.jpg",
+        "1788192986927-5-197f.jpg"
+      ]
+    }
+  ],
+  "district": "武侯",
+  "features": [
+    "电梯"
+  ]
+}

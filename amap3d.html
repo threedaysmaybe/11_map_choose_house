@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>成都 · 高德3D楼栋（选房辅助）</title>
+  <style>
+    html, body { margin: 0; padding: 0; height: 100%; width: 100%; font-family: "Microsoft YaHei", sans-serif; }
+    #container { position: absolute; top: 0; left: 0; right: 0; bottom: 0; }
+
+    .topbar {
+      position: absolute; top: 12px; left: 12px; z-index: 10;
+      background: rgba(20, 22, 28, 0.92); color: #fff;
+      padding: 10px 14px; border-radius: 8px; font-size: 13px; line-height: 1.6;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.4); max-width: 320px;
+    }
+    .topbar h3 { margin: 0 0 4px; font-size: 15px; color: #e8a04e; }
+    .topbar .hint { color: #a9adb8; font-size: 12px; }
+    .topbar a {
+      display: inline-block; margin-top: 6px; color: #4fc3f7; text-decoration: none;
+      font-size: 12px; border-bottom: 1px dashed #4fc3f7;
+    }
+
+    .legend {
+      position: absolute; bottom: 20px; left: 12px; z-index: 10;
+      background: rgba(20, 22, 28, 0.88); color: #cfd3dc;
+      padding: 8px 12px; border-radius: 6px; font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+
+  <div class="topbar">
+    <h3>成都 · 高德 3D 楼栋</h3>
+    <div class="hint">
+      楼栋高度为高德实测，可据此判断视野遮挡。<br>
+      🖱️ 右键拖动 = 旋转视角（俯仰看高低落差）<br>
+      🖱️ 滚轮 = 缩放 &nbsp;|&nbsp; 左键拖动 = 平移<br>
+      <span style="color:#f1948a">⚠️ 楼块仅在缩放 17 级以上显示，缩小后自动消失</span>
+    </div>
+    <a href="index.html">← 切换回数据版（彩色着色 + 楼栋名）</a>
+  </div>
+
+  <div class="legend">米色楼块 = 真实楼栋高度（高德）</div>
+
+  <script>
+    window._AMapSecurityConfig = {
+      securityJsCode: 'ad68cc7f9b00564ef0250d76bd402ccd',
+    };
+  </script>
+  <script src="https://webapi.amap.com/maps?v=2.0&key=9b5e474638aa0564035ba76ed7b48bd9"></script>
+  <script>
+    // 独立楼块图层：自定义颜色，与白色道路区分开
+    const buildings = new AMap.Buildings({
+      zooms: [17, 20],
+      zIndex: 10,
+      heightFactor: 1.4,        // 高度放大 1.4 倍，高低落差更明显
+      wallColor: '#d8c8a8',     // 楼体：米色
+      roofColor: '#c2ad88',     // 屋顶：深米色
+    });
+
+    const map = new AMap.Map('container', {
+      viewMode: '3D',
+      pitch: 55,
+      rotation: -20,
+      center: [104.066, 30.66],
+      zoom: 17,
+      zooms: [3, 20],
+      showBuildingBlock: false, // 关闭默认白色楼块，改用自定义颜色的楼块图层
+    });
+    map.add(buildings); // 叠加楼块图层，保留底图（道路/地名/交通）
+  </script>
+</body>
+</html>
