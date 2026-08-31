@@ -245,6 +245,15 @@
       "count": 0
     },
     {
+      "name": "航空花园",
+      "board": "航空路",
+      "district": "武侯",
+      "anzhi": false,
+      "lon": 104.068883,
+      "lat": 30.61711,
+      "count": 0
+    },
+    {
       "name": "绿地海珀香庭",
       "board": "红牌楼",
       "district": "武侯",
@@ -258,8 +267,8 @@
       "board": "红牌楼",
       "district": "武侯",
       "anzhi": false,
-      "lon": 104.018069,
-      "lat": 30.638668,
+      "lon": null,
+      "lat": null,
       "count": 0
     },
     {
@@ -420,8 +429,8 @@
       "board": "丽都",
       "district": "武侯",
       "anzhi": false,
-      "lon": 104.02409,
-      "lat": 30.628001,
+      "lon": null,
+      "lat": null,
       "count": 0
     },
     {
@@ -438,8 +447,8 @@
       "board": "外双楠",
       "district": "武侯",
       "anzhi": false,
-      "lon": null,
-      "lat": null,
+      "lon": 104.009473,
+      "lat": 30.645629,
       "count": 0
     },
     {
