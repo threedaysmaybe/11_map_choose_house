@@ -109,7 +109,8 @@ async function grabHouseDetail(page) {
     }
     if (!community) {
       const link = [...document.querySelectorAll('a[href*="xiaoqu"]')].find(a => /xiaoqu\/\d+/.test(a.href) && a.textContent.trim().length >= 2 && a.textContent.trim().length <= 12);
-      if (link) community = link.textContent.trim();
+      // 链接文本可能带地址括号（如「黄金时代(永丰路)」），去掉括号内容
+      if (link) community = link.textContent.trim().split(/[（(]/)[0].trim();
     }
     // fallback：标题正则（小区名后缀特征）
     if (!community) {
