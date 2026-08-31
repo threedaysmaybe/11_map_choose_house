@@ -179,22 +179,31 @@ const server = http.createServer((req, res) => {
 
   // 智能抓取贝壳（自动识别所有打开的页面，有啥抓啥）
   if (req.method === 'POST' && req.url === '/fetch-ke-smart') {
-    // 异步执行，避免阻塞 serve（否则抓取期间其它请求会 fail to fetch）
-    // stdio:'inherit'：子进程继承 serve 的 stdio，规避 Windows 下 pipe stdio 触发 libuv process_title 断言崩溃
+    // 立即返回，后台执行抓取（避免前端 fetch 长连接阻塞超时导致 Failed to fetch）
+    res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+    res.end(JSON.stringify({ ok: true, msg: '已开始抓取，完成后自动刷新' }));
     const { execFile } = require('child_process');
-    execFile(process.execPath, ['fetch_ke_smart.js'], { cwd: ROOT, timeout: 180000, stdio: 'inherit' }, (err) => {
-      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
-      if (err) { res.end(JSON.stringify({ ok: false, msg: err.message })); return; }
-      // 读抓取结果文件，返回详细结果给前端
-      try {
-        const result = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'fetch_result.json'), 'utf8'));
-        const parts = [];
-        for (const k of ['小区', '房源', '列表', '其他']) {
-          if (result[k] && result[k].length) parts.push(`【${k}】${result[k].length}个\n` + result[k].map(x => '· ' + x).join('\n'));
-        }
-        res.end(JSON.stringify({ ok: true, msg: parts.join('\n') || '抓取完成' }));
-      } catch (e) { res.end(JSON.stringify({ ok: true, msg: '抓取完成' })); }
+    // stdio:'ignore'：规避 Windows pipe stdio 触发 libuv process_title 断言，且不阻塞 serve
+    execFile(process.execPath, ['fetch_ke_smart.js'], { cwd: ROOT, timeout: 600000, stdio: 'ignore' }, (err) => {
+      if (err) console.log('[抓取] 后台抓取出错:', err.message);
     });
+    return;
+  }
+
+  // 查询抓取结果（前端轮询用）
+  if (req.method === 'GET' && req.url === '/fetch-ke-smart-result') {
+    try {
+      const result = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'fetch_result.json'), 'utf8'));
+      const parts = [];
+      for (const k of ['小区', '房源', '列表', '其他']) {
+        if (result[k] && result[k].length) parts.push(`【${k}】${result[k].length}个\n` + result[k].map(x => '· ' + x).join('\n'));
+      }
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+      res.end(JSON.stringify({ ok: true, msg: parts.join('\n') || '（抓取中…）' }));
+    } catch (e) {
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+      res.end(JSON.stringify({ ok: true, msg: '（抓取中…）' }));
+    }
     return;
   }
 

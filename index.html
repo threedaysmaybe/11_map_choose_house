@@ -1055,18 +1055,20 @@
       const beforeSet = new Set(xiaoquList);
       fetch('/fetch-ke-smart', { method: 'POST' })
         .then(r => r.json())
-        .then(d => {
-          btn.textContent = '🤖 智能抓取所有贝壳页';
-          info.textContent = d.ok ? d.msg : ('❌ ' + (d.msg || '抓取失败'));
-        })
+        .then(d => { info.textContent = d.ok ? d.msg : ('❌ ' + (d.msg || '抓取失败')); })
         .catch(e => { btn.textContent = '🤖 智能抓取所有贝壳页'; info.textContent = '❌ 抓取失败：' + e.message; });
-      // 轮询刷新：抓取可能超过 serve 超时，用轮询检测新小区并刷新下拉
+      // 轮询抓取结果 + 刷新下拉（后台抓取完成后自动更新）
       let polls = 0;
       const timer = setInterval(async () => {
         polls++;
         await loadXiaoquArchives(true);
+        try {
+          const rr = await fetch('/fetch-ke-smart-result');
+          const rd = await rr.json();
+          if (rd.ok && rd.msg && rd.msg !== '（抓取中…）') info.textContent = rd.msg;
+        } catch (e) {}
         const hasNew = xiaoquList.some(n => !beforeSet.has(n));
-        if (hasNew || polls > 180) { clearInterval(timer); }
+        if (hasNew || polls > 240) { clearInterval(timer); btn.textContent = '🤖 智能抓取所有贝壳页'; }
       }, 1500);
     });
 
