@@ -212,10 +212,67 @@
         "1788192986918-4-vzor.jpg",
         "1788192986927-5-197f.jpg"
       ]
+    },
+    {
+      "title": "成都武侯桐梓林金地贝福里花园 4室2厅 南 南 北",
+      "room": "4室2厅",
+      "area": "154.4",
+      "taoneiArea": "",
+      "totalPrice": "238",
+      "unitPrice": "15415",
+      "floor": "高",
+      "totalFloors": "11",
+      "orientation": "南",
+      "community": "金地贝福里花园",
+      "district": "武侯",
+      "board": "桐梓林",
+      "features": [
+        "户型方正",
+        "南北通透",
+        "精装",
+        "电梯"
+      ],
+      "tihu": "1梯2户",
+      "structure": "框架结构",
+      "diya": "无抵押",
+      "chanquan": "非共有",
+      "buildingType": "板楼",
+      "huxingStructure": "错层",
+      "usage": "普通住宅",
+      "decoration": "精装",
+      "listTime": "2026年06月12日",
+      "lastTrade": "2026年06月15日",
+      "sellingPoint": "户型方正，前后对中庭安静，楼层高，采光好 小区介绍 此房所在小区为金地贝福里花园一期，建于约2003年，有保安24小时值班，进出需刷卡，有地上地下车位。物业费1",
+      "fangben": "已上传房本照片",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/17813486090_N9zC8gEg3.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17813486090_N9zC8gEg3.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17813486090_IF8xKpbke.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1781348903872.jpeg!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17813487670_AK5koc8y2.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17813487610_41fVqiNoL.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17813487260_w943A0d1T.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17813487170_4HptIgv3F.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106128018994.html",
+      "houseCode": "106128018994",
+      "localImages": [
+        "1788194445866-0-jnbp.jpg",
+        "1788194445873-1-9cyd.jpg",
+        "1788194445880-2-zhzf.jpg",
+        "1788194445887-3-dnwn.jpeg",
+        "1788194445893-4-jbj1.jpg",
+        "1788194445899-5-d25r.jpg",
+        "1788194445905-6-trt3.jpg",
+        "1788194445912-7-8gmt.jpg"
+      ]
     }
   ],
   "district": "武侯",
   "features": [
-    "电梯"
+    "电梯",
+    "户型方正",
+    "南北通透",
+    "精装"
   ]
 }

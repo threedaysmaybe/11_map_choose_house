@@ -1,0 +1,205 @@
+{
+  "name": "城南新贵",
+  "price": "17305",
+  "board": "航空路",
+  "info": {
+    "建筑类型": "板楼/塔板结合",
+    "房屋总数": "90户",
+    "楼栋总数": "2栋",
+    "绿化率": "20%",
+    "容积率": "2.5",
+    "交易权属": "商品房",
+    "建成年代": "2002年",
+    "供暖类型": "自采暖",
+    "用水类型": "民水",
+    "用电类型": "民电",
+    "物业费": "0.3至1元/平米/月",
+    "开发商": "无开发商"
+  },
+  "metro": [
+    {
+      "name": "桐梓林",
+      "distance": "383米",
+      "lines": "地铁1号"
+    },
+    {
+      "name": "火车南站",
+      "distance": "1263米",
+      "lines": "地铁18号"
+    },
+    {
+      "name": "火车南站",
+      "distance": "1302米",
+      "lines": "地铁18号"
+    },
+    {
+      "name": "倪家桥",
+      "distance": "1382米",
+      "lines": "地铁18号"
+    },
+    {
+      "name": "倪家桥",
+      "distance": "1438米",
+      "lines": "地铁1号"
+    },
+    {
+      "name": "川大望江校区",
+      "distance": "1524米",
+      "lines": "地铁8号"
+    },
+    {
+      "name": "三瓦窑",
+      "distance": "1563米",
+      "lines": "地铁7号"
+    }
+  ],
+  "deals": [
+    {
+      "建成年份": "暂无信息",
+      "面积": "106.53平米",
+      "签约日期": "2026-07-17",
+      "成交价": "136万",
+      "成交单价": "12767元/平"
+    },
+    {
+      "建成年份": "2002年",
+      "面积": "92.37平米",
+      "签约日期": "2025-01-16",
+      "成交价": "148万",
+      "成交单价": "16023元/平"
+    },
+    {
+      "建成年份": "2002年",
+      "面积": "106.53平米",
+      "签约日期": "2024-06-30",
+      "成交价": "153.8万",
+      "成交单价": "14438元/平"
+    }
+  ],
+  "images": [
+    "https://ke-image.ljcdn.com/hdic-resblock/dd69d556-3cf2-497d-a11b-c8db1530232d.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/6482492d-fa7a-4b08-b102-619c6d7f157a.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/83db978e-2fb0-4068-9ef3-9d6541a3ad6f.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/e3c4e129-d3a4-4de6-a48a-3d1976466c90.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/42447ac6-39fc-464d-926a-08142a413e9d.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/65c99466-1a93-498e-a29c-ed38a22c7103.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/28567ca0-864c-42bd-8027-a37837eb4f5d.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/a9ee1431-277e-4574-bfb9-ea6f69e6f177.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/9dd8c881-358d-48b4-92a1-020529fb38fa.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/4b6d1424-6496-4d33-9ead-3cb043ffd42a.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/0fb5709d-9a71-41f0-8c7e-4437781bb41a.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/6480076e-a442-42f3-9819-bca687023209.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/f3babdca-41d9-4c0c-b37d-b7c5c1676df7.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/7a7f992f-9725-4ce0-b357-4ee8de72e540.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/1b6130ef-c9b8-4bdc-ba36-af082e28f689.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/1979c740-17d1-45f0-ad60-7447e491dc31.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/680fa59d-099f-4a19-8c8e-3c05c43717f2.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/400c2aa9-9be8-4d48-bbe9-c033eb2d799c.jpg.710x400.jpg"
+  ],
+  "updatedAt": "2026-08-31T17:01:30.400Z",
+  "localImages": [
+    "1788195483571-0-d3yk.jpg",
+    "1788195483809-1-l8w2.jpg",
+    "1788195484167-2-wfl0.jpg",
+    "1788195484276-3-jc5i.jpg",
+    "1788195484370-4-ynbt.jpg",
+    "1788195484434-5-8kwg.jpg",
+    "1788195484518-6-yev3.jpg",
+    "1788195484721-7-2qct.jpg",
+    "1788195484844-8-o7xo.jpg",
+    "1788195484906-9-9z3m.jpg",
+    "1788195485268-10-vaos.jpg",
+    "1788195485798-11-r0mb.jpg",
+    "1788195486175-12-2czn.jpg",
+    "1788195486873-13-7voy.jpg",
+    "1788195487686-14-p6k6.jpg",
+    "1788195488728-15-2yia.jpg",
+    "1788195489569-16-fkkb.jpg",
+    "1788195490302-17-1r1e.jpg",
+    "1788195690432-0-atl5.jpg",
+    "1788195690454-1-u79d.jpg",
+    "1788195690465-2-ajvd.jpg",
+    "1788195690473-3-ns94.jpg",
+    "1788195690482-4-c24a.jpg",
+    "1788195690489-5-2v3q.jpg",
+    "1788195690511-6-brmz.jpg",
+    "1788195690529-7-6w13.jpg",
+    "1788195690544-8-oogz.jpg",
+    "1788195690560-9-qzos.jpg",
+    "1788195690580-10-tai7.jpg",
+    "1788195690592-11-gzn1.jpg",
+    "1788195690602-12-bamd.jpg",
+    "1788195690616-13-c694.jpg",
+    "1788195690637-14-6gsf.jpg",
+    "1788195690650-15-v6eo.jpg",
+    "1788195690663-16-xinj.jpg",
+    "1788195690679-17-cvv7.jpg"
+  ],
+  "houses": [
+    {
+      "title": "成都武侯航空路城南新贵 3室2厅 东南",
+      "room": "3室2厅",
+      "area": "144.36",
+      "taoneiArea": "144.36",
+      "totalPrice": "259",
+      "unitPrice": "17942",
+      "floor": "高",
+      "totalFloors": "11",
+      "orientation": "东南",
+      "community": "城南新贵",
+      "district": "武侯",
+      "board": "航空路",
+      "features": [
+        "满五",
+        "户型方正",
+        "电梯"
+      ],
+      "tihu": "1梯4户",
+      "structure": "框架结构",
+      "diya": "有抵押",
+      "chanquan": "非共有",
+      "buildingType": "板楼",
+      "huxingStructure": "复式",
+      "usage": "普通住宅",
+      "decoration": "简装",
+      "listTime": "2026年07月12日",
+      "lastTrade": "2013年06月26日",
+      "sellingPoint": "此房满五年 户型方正 顶跃带花园 好房子 业主诚心 交通便利 小区介绍 小区总共1栋两个单元，电梯总高11层，一梯四户，物业费1元",
+      "fangben": "已上传房本照片",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/17841876000_ssZiLUpex.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17841876000_ssZiLUpex.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17841876000_CRQECGaQu.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1784187590925.jpeg!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17841876000_pW9OHk3ji.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17841876000_jqB2lPNFB.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17841876000_kGZPR7G6u.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17841876000_6F0jWg3w2.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17841876000_6RwxM5Yxz.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17841876000_Iezeu7hAM.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17841876000_eX6HLQnL9.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106128448824.html",
+      "houseCode": "106128448824",
+      "localImages": [
+        "1788195692860-0-f5lm.jpg",
+        "1788195692867-1-ts7l.jpg",
+        "1788195692874-2-1hfd.jpg",
+        "1788195692881-3-f749.jpeg",
+        "1788195692887-4-uhjn.jpg",
+        "1788195692892-5-vv10.jpg",
+        "1788195692898-6-s48x.jpg",
+        "1788195692906-7-5cvm.jpg",
+        "1788195692916-8-2f2w.jpg",
+        "1788195692924-9-o153.jpg",
+        "1788195692932-10-2z30.jpg"
+      ]
+    }
+  ],
+  "district": "武侯",
+  "features": [
+    "满五",
+    "户型方正",
+    "电梯"
+  ]
+}

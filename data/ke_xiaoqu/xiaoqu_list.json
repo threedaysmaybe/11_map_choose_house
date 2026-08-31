@@ -245,12 +245,39 @@
       "count": 0
     },
     {
+      "name": "城南新贵",
+      "board": "航空路",
+      "district": "武侯",
+      "anzhi": false,
+      "lon": null,
+      "lat": null,
+      "count": 0
+    },
+    {
+      "name": "翠云庭",
+      "board": "航空路",
+      "district": "武侯",
+      "anzhi": false,
+      "lon": 104.066276,
+      "lat": 30.6199,
+      "count": 5
+    },
+    {
       "name": "航空花园",
       "board": "航空路",
       "district": "武侯",
       "anzhi": false,
       "lon": 104.068883,
       "lat": 30.61711,
+      "count": 0
+    },
+    {
+      "name": "锦官秀城南区",
+      "board": "航空路",
+      "district": "武侯",
+      "anzhi": false,
+      "lon": 104.0728,
+      "lat": 30.615823,
       "count": 0
     },
     {
@@ -321,8 +348,8 @@
       "board": "红牌楼",
       "district": "武侯",
       "anzhi": true,
-      "lon": 104.008005,
-      "lat": 30.636507,
+      "lon": null,
+      "lat": null,
       "count": 0
     },
     {
@@ -420,8 +447,8 @@
       "board": "丽都",
       "district": "武侯",
       "anzhi": false,
-      "lon": null,
-      "lat": null,
+      "lon": 104.022233,
+      "lat": 30.625216,
       "count": 0
     },
     {
@@ -434,6 +461,24 @@
       "count": 0
     },
     {
+      "name": "风华苑",
+      "board": "桐梓林",
+      "district": "武侯",
+      "anzhi": false,
+      "lon": 104.056592,
+      "lat": 30.615499,
+      "count": 9
+    },
+    {
+      "name": "观南上域",
+      "board": "桐梓林",
+      "district": "武侯",
+      "anzhi": false,
+      "lon": 104.055998,
+      "lat": 30.6205,
+      "count": 6
+    },
+    {
       "name": "金地贝福里花园",
       "board": "桐梓林",
       "district": "武侯",
@@ -443,12 +488,39 @@
       "count": 3
     },
     {
+      "name": "桐梓林欧城",
+      "board": "桐梓林",
+      "district": "武侯",
+      "anzhi": false,
+      "lon": 104.059285,
+      "lat": 30.613107,
+      "count": 11
+    },
+    {
+      "name": "新加坡花园",
+      "board": "桐梓林",
+      "district": "武侯",
+      "anzhi": false,
+      "lon": 104.056474,
+      "lat": 30.612641,
+      "count": 14
+    },
+    {
+      "name": "中华园锦苑",
+      "board": "桐梓林",
+      "district": "武侯",
+      "anzhi": false,
+      "lon": 104.061123,
+      "lat": 30.619743,
+      "count": 22
+    },
+    {
       "name": "鹭岛国际三期",
       "board": "外双楠",
       "district": "武侯",
       "anzhi": false,
-      "lon": 104.00808,
-      "lat": 30.648644,
+      "lon": null,
+      "lat": null,
       "count": 0
     },
     {
@@ -456,8 +528,8 @@
       "board": "外双楠",
       "district": "武侯",
       "anzhi": false,
-      "lon": 104.009473,
-      "lat": 30.645629,
+      "lon": null,
+      "lat": null,
       "count": 0
     },
     {
@@ -492,8 +564,8 @@
       "board": "棕北",
       "district": "武侯",
       "anzhi": false,
-      "lon": null,
-      "lat": null,
+      "lon": 104.072599,
+      "lat": 30.624247,
       "count": 0
     }
   ]

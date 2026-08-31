@@ -1,0 +1,282 @@
+{
+  "name": "中华园锦苑",
+  "price": "19263",
+  "board": "桐梓林",
+  "info": {
+    "建筑类型": "板楼/塔板结合",
+    "房屋总数": "434户",
+    "楼栋总数": "17栋",
+    "绿化率": "35%",
+    "容积率": "1.68",
+    "交易权属": "商品房",
+    "建成年代": "2000-2004年",
+    "供暖类型": "自采暖/无供暖",
+    "用水类型": "商水/民水",
+    "用电类型": "商电/民电",
+    "物业费": "1.5至2.6元/平米/月",
+    "开发商": "成都武海置业有限公司"
+  },
+  "metro": [
+    {
+      "name": "桐梓林",
+      "distance": "443米",
+      "lines": "地铁1号"
+    },
+    {
+      "name": "倪家桥",
+      "distance": "1022米",
+      "lines": "地铁18号"
+    },
+    {
+      "name": "倪家桥",
+      "distance": "1033米",
+      "lines": "地铁1号"
+    },
+    {
+      "name": "火车南站",
+      "distance": "1633米",
+      "lines": "地铁18号"
+    },
+    {
+      "name": "川大望江校区",
+      "distance": "1682米",
+      "lines": "地铁8号"
+    },
+    {
+      "name": "芳草街",
+      "distance": "1697米",
+      "lines": "地铁8号"
+    },
+    {
+      "name": "火车南站",
+      "distance": "1712米",
+      "lines": "地铁18号"
+    }
+  ],
+  "deals": [
+    {
+      "建成年份": "暂无信息",
+      "面积": "143.48平米",
+      "签约日期": "2026-07-17",
+      "成交价": "230万",
+      "成交单价": "16031元/平"
+    },
+    {
+      "建成年份": "2004年",
+      "面积": "143.48平米",
+      "签约日期": "2026-07-08",
+      "成交价": "230万",
+      "成交单价": "16031元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "246.17平米",
+      "签约日期": "2026-03-23",
+      "成交价": "515万",
+      "成交单价": "20921元/平"
+    }
+  ],
+  "images": [
+    "https://ke-image.ljcdn.com/hdic-resblock/ff935a89-4c6e-483f-bd37-985696f16c84.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/597aaeae-4df4-40bc-b1ab-832f7cdc12dc.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/4286595d-b00d-4ce6-b9a9-2f0b3e220dd5.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/2ba01b46-93f9-415a-adb7-8627b3ffaa66.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/c14ab8c0-6ad3-4305-b43e-0fd9c1c142d4.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/45a0abfe-322f-4866-a39e-7180b68358e4.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/992db5e3-9155-484f-b2f7-8863a7f27eef.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/2c3d9d16-a15d-4178-8d82-8ba11f5ac38a.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/43070dfc-5e9e-42dd-912c-9f6d6fa29209.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/40a40557-a475-4266-9b3e-f9d32e4a15f9.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/a99e9e0a-f9af-45f8-9a32-2a727a2eb596.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/210c0a89-849c-4bbc-9325-c94bc86273c1.jpg.710x400.jpg"
+  ],
+  "updatedAt": "2026-08-31T16:28:50.758Z",
+  "localImages": [
+    "1788193648160-0-nk76.jpg",
+    "1788193648174-1-cf21.jpg",
+    "1788193648250-2-xt2w.jpg",
+    "1788193648258-3-valr.jpg",
+    "1788193648267-4-2xtu.jpg",
+    "1788193648290-5-vv5y.jpg",
+    "1788193648311-6-7djl.jpg",
+    "1788193648335-7-khy1.jpg",
+    "1788193648357-8-g8k0.jpg",
+    "1788193648379-9-t6nt.jpg",
+    "1788193648400-10-xzl1.jpg",
+    "1788193648423-11-mtf2.jpg",
+    "1788193730766-0-mdq3.jpg",
+    "1788193730780-1-rg2b.jpg",
+    "1788193730788-2-mdn8.jpg",
+    "1788193730796-3-d3qu.jpg",
+    "1788193730806-4-232c.jpg",
+    "1788193730815-5-st1f.jpg",
+    "1788193730823-6-m7rk.jpg",
+    "1788193730831-7-skkl.jpg",
+    "1788193730840-8-g3jr.jpg",
+    "1788193730848-9-s6gl.jpg",
+    "1788193730857-10-zkkk.jpg",
+    "1788193730866-11-ubcd.jpg"
+  ],
+  "houses": [
+    {
+      "title": "成都武侯桐梓林中华园锦苑 3室2厅 北",
+      "room": "3室2厅",
+      "area": "133.1",
+      "taoneiArea": null,
+      "totalPrice": "239",
+      "unitPrice": "17957",
+      "floor": "中",
+      "totalFloors": "9",
+      "orientation": "北",
+      "community": "中华园锦苑",
+      "district": "武侯",
+      "board": "桐梓林",
+      "features": [
+        "满五",
+        "户型方正",
+        "精装",
+        "电梯"
+      ],
+      "tihu": "1梯2户",
+      "structure": "框架结构",
+      "diya": "无抵押",
+      "chanquan": "共有",
+      "buildingType": "板塔结合",
+      "huxingStructure": "平层",
+      "usage": "普通住宅",
+      "decoration": "精装",
+      "listTime": "2026年05月21日",
+      "lastTrade": "2013年01月01日",
+      "sellingPoint": "此房满五，税费简单，明厨明卫，户型通透，小高层，双阳台 小区介绍 小区是中华园的一期，小区主要产品为别墅，洋房，低密度，高绿化 适宜人群 本房适宜年轻人买来做婚房，近地铁，交通便利，生活配套齐全，小区密度低 税费解析 商品房，个税1",
+      "fangben": "已上传房本照片",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/17823911340_u6AjB5Dhl.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17823911340_u6AjB5Dhl.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17823911340_rAydCwSmh.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1782391140922.jpeg!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17823911340_qxR0SrwDC.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17823911340_emAdKbVbX.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17823911340_4wEkJK0GR.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106127706526.html",
+      "houseCode": "106127706526",
+      "localImages": [
+        "1788193651183-0-6qz3.jpg",
+        "1788193651443-1-3ntx.jpg",
+        "1788193651781-2-q4qc.jpg",
+        "1788193652072-3-jdkd.jpeg",
+        "1788193652528-4-9tfz.jpg",
+        "1788193652815-5-ftps.jpg",
+        "1788193653121-6-2jbf.jpg"
+      ]
+    },
+    {
+      "title": "成都武侯桐梓林中华园锦苑 3室2厅 北 南",
+      "room": "3室2厅",
+      "area": "133.1",
+      "taoneiArea": null,
+      "totalPrice": "238",
+      "unitPrice": "17882",
+      "floor": "中",
+      "totalFloors": "9",
+      "orientation": "北",
+      "community": "中华园锦苑",
+      "district": "武侯",
+      "board": "桐梓林",
+      "features": [
+        "满五",
+        "户型方正",
+        "精装",
+        "电梯"
+      ],
+      "tihu": "1梯2户",
+      "structure": "框架结构",
+      "diya": "有抵押",
+      "chanquan": "共有",
+      "buildingType": "板塔结合",
+      "huxingStructure": "平层",
+      "usage": "普通住宅",
+      "decoration": "精装",
+      "listTime": "2026年07月02日",
+      "lastTrade": "2016年12月23日",
+      "sellingPoint": "此房满五，税费简单，明厨明卫，户型通透，小高层，双阳台 小区介绍 小区是中华园的一期，小区主要产品为别墅，洋房，低密度，高绿化 适宜人群 本房适宜年轻人买来做婚房，近地铁，交通便利，生活配套齐全，小区密度低 税费解析 商品房，个税1",
+      "fangben": "已上传房本照片",
+      "images": [
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1776423470043.jpeg!m_fill,w_1000,h_750,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17764234780_DhGrT3oXi.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17764235120_QAoaMD16F.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1776423470043.jpeg!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17764234780_RitCChKRl.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17764234780_b65K5RWQi.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17764234780_Wj8k9RbnY.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106128301437.html",
+      "houseCode": "106128301437",
+      "localImages": [
+        "1788193656160-0-wrpg.jpeg",
+        "1788193656438-1-ws5b.jpg",
+        "1788193656775-2-p3ds.jpg",
+        "1788193657073-3-roky.jpeg",
+        "1788193657419-4-7w6z.jpg",
+        "1788193657659-5-l7a7.jpg",
+        "1788193657956-6-si1q.jpg"
+      ]
+    },
+    {
+      "title": "成都武侯桐梓林中华园锦苑 3室1厅 南",
+      "room": "3室1厅",
+      "area": "153.63",
+      "taoneiArea": null,
+      "totalPrice": "288",
+      "unitPrice": "18747",
+      "floor": "低",
+      "totalFloors": "11",
+      "orientation": "南",
+      "community": "中华园锦苑",
+      "district": "武侯",
+      "board": "桐梓林",
+      "features": [
+        "满五",
+        "精装",
+        "电梯"
+      ],
+      "tihu": "1梯2户",
+      "structure": "框架结构",
+      "diya": "无抵押",
+      "chanquan": "非共有",
+      "buildingType": "板塔结合",
+      "huxingStructure": "平层",
+      "usage": "普通住宅",
+      "decoration": "精装",
+      "listTime": "2026年05月13日",
+      "lastTrade": "2003年04月22日",
+      "sellingPoint": "此房满五年业主诚心出售一梯两户洋房户型，低楼层 小区介绍 小区环境优美，绿地率高。安静，适合对生活有品质追求或者家里面有老人和孩子的客户 建筑年代 2000年建成 物业费用",
+      "fangben": "已上传房本照片",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/17829044450_B6MyGRiRS.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17829044450_0kY95iI3b.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17829044450_cFg49wiHc.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1782904500467.jpeg!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17829044450_B6MyGRiRS.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17829044450_7iuAFvmd5.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106127598937.html",
+      "houseCode": "106127598937",
+      "localImages": [
+        "1788193729236-0-aukg.jpg",
+        "1788193729540-1-dx6z.jpg",
+        "1788193729843-2-6x6h.jpg",
+        "1788193730138-3-genl.jpeg",
+        "1788193730469-4-o3o4.jpg",
+        "1788193730750-5-8d5a.jpg"
+      ]
+    }
+  ],
+  "district": "武侯",
+  "features": [
+    "满五",
+    "户型方正",
+    "精装",
+    "电梯"
+  ]
+}

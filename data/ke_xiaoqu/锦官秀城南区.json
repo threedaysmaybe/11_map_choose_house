@@ -1,0 +1,193 @@
+{
+  "houses": [
+    {
+      "title": "成都武侯航空路锦官秀城南区 3室2厅 东",
+      "room": "3室2厅",
+      "area": "141.88",
+      "taoneiArea": "",
+      "totalPrice": "236",
+      "unitPrice": "16634",
+      "floor": "中",
+      "totalFloors": "19",
+      "orientation": "东",
+      "community": "锦官秀城南区",
+      "district": "武侯",
+      "board": "航空路",
+      "features": [
+        "电梯"
+      ],
+      "tihu": "2梯4户",
+      "structure": "框架结构",
+      "diya": "无抵押",
+      "chanquan": "共有",
+      "buildingType": "板楼",
+      "huxingStructure": "平层",
+      "usage": "普通住宅",
+      "decoration": "",
+      "listTime": "2026年07月20日",
+      "lastTrade": "2023年09月09日",
+      "sellingPoint": "锦官秀城南区标准套三双卫。客厅带阳台对小区中庭安静不临街。 小区介绍 该小区开发商是新希望建于2006年，共2期，此房在2期，2梯4户，小区物业是新希望自己的物业公司，管理成熟，物业费2元",
+      "fangben": "已上传房本照片",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/17847691960_BUGikBbyB.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17847691960_BUGikBbyB.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17847691960_iAAZYrzFe.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1784769187007.jpeg!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17847691960_5ihed7LRy.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17847691960_kJ9SAEDOv.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17847691960_URh5E6kST.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17847691960_AwdfPpzWq.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17847691960_NTj7M5FJQ.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17847691960_HhsptG2bw.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17847691960_SgmTEspVY.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17847691960_TtUgXlM6w.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106128551688.html",
+      "houseCode": "106128551688",
+      "localImages": [
+        "1788195694861-0-9oae.jpg",
+        "1788195694868-1-9zp6.jpg",
+        "1788195694874-2-odab.jpg",
+        "1788195694879-3-n44o.jpeg",
+        "1788195694886-4-14hm.jpg",
+        "1788195694892-5-9zjt.jpg",
+        "1788195694900-6-34r1.jpg",
+        "1788195694906-7-wu8w.jpg",
+        "1788195694911-8-6haw.jpg",
+        "1788195694919-9-xabj.jpg",
+        "1788195694925-10-yec7.jpg",
+        "1788195694933-11-ikgh.jpg"
+      ]
+    }
+  ],
+  "board": "航空路",
+  "district": "武侯",
+  "name": "锦官秀城南区",
+  "info": {
+    "建筑类型": "板楼",
+    "房屋总数": "608户",
+    "楼栋总数": "3栋",
+    "绿化率": "30%",
+    "容积率": "3.37",
+    "交易权属": "商品房",
+    "建成年代": "2003-2007年",
+    "供暖类型": "自采暖/无供暖",
+    "用水类型": "商水/民水",
+    "用电类型": "商电/民电",
+    "物业费": "1.5至2元/平米/月",
+    "开发商": "四川新希望房地产开发有限公司"
+  },
+  "features": [
+    "电梯"
+  ],
+  "price": "18414",
+  "metro": [
+    {
+      "name": "桐梓林",
+      "distance": "938米",
+      "lines": "地铁1号"
+    },
+    {
+      "name": "三瓦窑",
+      "distance": "1247米",
+      "lines": "地铁7号"
+    },
+    {
+      "name": "火车南站",
+      "distance": "1426米",
+      "lines": "地铁18号"
+    },
+    {
+      "name": "火车南站",
+      "distance": "1426米",
+      "lines": "地铁18号"
+    },
+    {
+      "name": "川大望江校区",
+      "distance": "1507米",
+      "lines": "地铁8号"
+    },
+    {
+      "name": "东湖公园",
+      "distance": "1594米",
+      "lines": "地铁8号"
+    },
+    {
+      "name": "倪家桥",
+      "distance": "1707米",
+      "lines": "地铁18号"
+    },
+    {
+      "name": "倪家桥",
+      "distance": "1777米",
+      "lines": "地铁1号"
+    }
+  ],
+  "deals": [
+    {
+      "建成年份": "暂无信息",
+      "面积": "144.58平米",
+      "签约日期": "2026-06-14",
+      "成交价": "247万",
+      "成交单价": "17084元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "114平米",
+      "签约日期": "2026-02-01",
+      "成交价": "215.8万",
+      "成交单价": "18930元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "144.35平米",
+      "签约日期": "2026-01-11",
+      "成交价": "225万",
+      "成交单价": "15588元/平"
+    }
+  ],
+  "images": [
+    "https://ke-image.ljcdn.com/hdic-resblock/8bbc7b8c-a00b-49a4-ad83-888dbd4828af.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/ab5f7337-d6bf-4c60-a336-e3e05f29c6b6.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/3c2bc3ca-f4ae-4731-812b-8e341eb16ca8.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/a5dde16a-0a09-4caa-8368-2d588d4aa258.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/0bd8cf78-b3f9-47c3-b21c-a5bb3a1e83a9.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/ebb08354-c3f1-4555-9ceb-762508e66894.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/b0a4d45a-5ef8-4487-af9e-cc61d77ec0f7.JPG.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/3214e12c-5667-4d6d-9dbf-69b3b7fa63f0.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/0dcd913c-78f2-437a-ab1a-ab1e210bae5d.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/dd24433c-3742-40a8-9605-79608a74c27c.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/77a50c02-fe2a-4e5c-b8f9-075712996b32.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/e0a86326-15f2-4e06-9813-55d29aca6354.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/56f9ddda-f645-49e7-9cba-9ca09615ebe5.jpg.710x400.jpg"
+  ],
+  "updatedAt": "2026-08-31T17:01:34.939Z",
+  "localImages": [
+    "1788195502383-0-8z2d.JPG",
+    "1788195502394-1-tajp.JPG",
+    "1788195502426-2-54tc.JPG",
+    "1788195502449-3-u98e.JPG",
+    "1788195502460-4-99pq.JPG",
+    "1788195502584-5-0w52.JPG",
+    "1788195502761-6-okg4.JPG",
+    "1788195502872-7-2zsb.jpg",
+    "1788195502951-8-6c1t.jpg",
+    "1788195503033-9-gcf7.jpg",
+    "1788195503117-10-be3l.jpg",
+    "1788195503175-11-praz.jpg",
+    "1788195503228-12-n7k1.jpg",
+    "1788195694952-0-6t9p.JPG",
+    "1788195694963-1-b3eg.JPG",
+    "1788195694972-2-ht5n.JPG",
+    "1788195694985-3-gatt.JPG",
+    "1788195694997-4-nm5w.JPG",
+    "1788195695007-5-6ig0.JPG",
+    "1788195695019-6-2qoj.JPG",
+    "1788195695034-7-aihg.jpg",
+    "1788195695044-8-1wzg.jpg",
+    "1788195695058-9-k9b5.jpg",
+    "1788195695068-10-nz3q.jpg",
+    "1788195695081-11-5k82.jpg",
+    "1788195695092-12-avrl.jpg"
+  ]
+}
