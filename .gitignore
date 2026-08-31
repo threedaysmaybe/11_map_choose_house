@@ -1,0 +1,10 @@
+node_modules/
+*.log
+data/fetch_result.json
+data/fetch_progress.log
+data/fetch_names_progress.log
+data/fetch_jinjiang.log
+data/fetch_landuse.log
+data/fetch_boards.log
+data/fix_shop.log
+.DS_Store

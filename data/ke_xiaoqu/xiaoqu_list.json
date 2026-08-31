@@ -101,15 +101,6 @@
       "count": 21
     },
     {
-      "name": "黄金时代(永丰路)",
-      "board": "衣冠庙",
-      "district": "高新",
-      "anzhi": false,
-      "lon": 104.07352,
-      "lat": 30.570377,
-      "count": 21
-    },
-    {
       "name": "南苑公寓",
       "board": "衣冠庙",
       "district": "高新",
@@ -330,8 +321,8 @@
       "board": "红牌楼",
       "district": "武侯",
       "anzhi": true,
-      "lon": null,
-      "lat": null,
+      "lon": 104.008005,
+      "lat": 30.636507,
       "count": 0
     },
     {
@@ -366,8 +357,8 @@
       "board": "华西",
       "district": "武侯",
       "anzhi": false,
-      "lon": null,
-      "lat": null,
+      "lon": 104.055785,
+      "lat": 30.647234,
       "count": 0
     },
     {
@@ -429,8 +420,8 @@
       "board": "丽都",
       "district": "武侯",
       "anzhi": false,
-      "lon": 104.022233,
-      "lat": 30.625216,
+      "lon": null,
+      "lat": null,
       "count": 0
     },
     {
@@ -441,6 +432,15 @@
       "lon": 104.02409,
       "lat": 30.628001,
       "count": 0
+    },
+    {
+      "name": "金地贝福里花园",
+      "board": "桐梓林",
+      "district": "武侯",
+      "anzhi": false,
+      "lon": 104.057355,
+      "lat": 30.616895,
+      "count": 3
     },
     {
       "name": "鹭岛国际三期",
@@ -456,8 +456,8 @@
       "board": "外双楠",
       "district": "武侯",
       "anzhi": false,
-      "lon": null,
-      "lat": null,
+      "lon": 104.009473,
+      "lat": 30.645629,
       "count": 0
     },
     {
