@@ -267,7 +267,8 @@ async function downloadImages(page, urls, subdir) {
   let boardNames = [];
   try { boardNames = JSON.parse(fs.readFileSync('data/boards.json', 'utf8')).map(b => b.name).filter(Boolean); } catch (e) {}
   const browser = await puppeteer.connect({ browserURL: 'http://127.0.0.1:9222', defaultViewport: null });
-  const pages = await browser.pages();
+  // 反转顺序：最新打开的页面（用户这次抓的小区）排在前面，避免旧页面挤在前面看着像「上次的」
+  const pages = (await browser.pages()).reverse();
   const result = { 小区: [], 房源: [], 列表: [], 其他: [] };
 
   for (const page of pages) {
