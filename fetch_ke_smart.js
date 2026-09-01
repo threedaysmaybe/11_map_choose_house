@@ -283,10 +283,15 @@ async function screenshotHouseImages(page, subdir) {
     if (!thumb) return saved;
     await thumb.click();
     await new Promise(r => setTimeout(r, 1800)); // 等大图查看器打开、高清图 URL 就绪
-    // 读大图查看器 slide 里的高清大图 URL（710x400），页面内 fetch（带登录 Cookie）下载高清原图
+    // 优先 li 的 data-pic（1000x750，4:3 完整图，不裁上下）；fallback data-src（710x400）；页面内 fetch（带登录 Cookie）下载高清原图
     const urls = await page.evaluate(() => {
-      const imgs = [...document.querySelectorAll('.bigImg .slide img')];
-      return imgs.map(img => img.getAttribute('data-pic') || img.src || '').filter(Boolean);
+      const lis = [...document.querySelectorAll('.bigImg .slide ul li')];
+      let list = lis.map(li => li.getAttribute('data-pic') || li.getAttribute('data-src') || '').filter(Boolean);
+      if (!list.length) {
+        const imgs = [...document.querySelectorAll('.bigImg .slide img')];
+        list = imgs.map(img => img.getAttribute('data-pic') || img.src || '').filter(Boolean);
+      }
+      return list;
     });
     try { const mask = await page.$('.bigImg .mask'); if (mask) await mask.click(); } catch (e) {}
     if (!urls.length) return saved;
