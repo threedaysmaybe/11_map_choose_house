@@ -196,8 +196,8 @@ const server = http.createServer((req, res) => {
     return;
   }
 
-  // 查询抓取结果（前端轮询用）
-  if (req.method === 'GET' && req.url === '/fetch-ke-smart-result') {
+  // 查询抓取结果（前端轮询用，带 ?t= 时间戳防缓存）
+  if (req.method === 'GET' && req.url.split('?')[0] === '/fetch-ke-smart-result') {
     try {
       const result = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'fetch_result.json'), 'utf8'));
       const parts = [];
