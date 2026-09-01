@@ -146,6 +146,7 @@
         <input type="text" id="searchInput" placeholder="搜索小区，如：康郡 / 南城都汇" style="width:100%;box-sizing:border-box;padding:6px 10px;border-radius:6px;border:1px solid rgba(255,255,255,0.25);background:rgba(255,255,255,0.1);color:#fff;font-size:12px;outline:none">
         <button id="searchBtn" class="res-btn" style="margin-top:6px;width:100%">🔍 搜索并高亮</button>
         <button id="openChromeBtn" class="res-btn" style="margin-top:4px;width:100%">🌐 启动贝壳调试浏览器</button>
+        <button id="openXiaoquBtn" class="res-btn" style="margin-top:4px;width:100%">📋 打开独立报告页</button>
       </div>
     
 
@@ -1028,6 +1029,11 @@
             : '❌ 启动失败：' + (d.msg || '');
         })
         .catch(e => { info.textContent = '❌ 启动失败：' + e.message; });
+    });
+
+    // 打开独立报告页（xiaoqu.html）
+    document.getElementById('openXiaoquBtn').addEventListener('click', () => {
+      window.open('xiaoqu.html', '_blank');
     });
 
     // 抓取调试 Chrome 当前页的贝壳房源
