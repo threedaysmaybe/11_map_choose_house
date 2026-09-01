@@ -161,6 +161,13 @@ async function grabHouseDetail(page) {
     const spM = txt.match(/核心卖点\s*([\u4e00-\u9fa5，。、：；0-9a-zA-Z\s]{5,120})/);
     const sellingPoint = spM ? spM[1].trim() : '';
     const fangben = grab(/房本备件\s*([^\s]+)/) || '';
+    // 图片 URL 处理：贝壳检查照片只支持到 160x160（更大尺寸 403），用最大正方形 160x160 减少裁剪；去掉 ?from= 但保留 imageMogr2 等处理参数（VR 户型图需要）
+    const fixImg = u => {
+      let s = u || '';
+      s = s.replace(/!m_fill[^!?]*/g, '!m_fill,w_160,h_160,f_jpg').replace(/!m_fixed[^!?]*/g, '!m_fill,w_160,h_160,f_jpg');
+      s = s.replace(/[?&]from=[^&]*/, '');
+      return s;
+    };
     // 抓高清大图：点击缩略图打开大图查看器，读 data-pic(1000x750)/src(710x400)
     let imageUrls = [];
     try {
@@ -175,7 +182,7 @@ async function grabHouseDetail(page) {
             const u = img.getAttribute('data-pic') || img.src || '';
             if (!u || seen.has(u)) continue;
             seen.add(u);
-            imageUrls.push(u.replace(/\?.*$/, ''));
+            imageUrls.push(fixImg(u));
           }
           document.querySelector('.bigImg .mask')?.click();
         }
@@ -189,7 +196,7 @@ async function grabHouseDetail(page) {
         const id = (u.match(/([a-f0-9-]{32,})/) || [])[1] || u.match(/([0-9]+_[A-Za-z0-9]+)/)?.[1] || u;
         if (seen.has(id)) continue;
         seen.add(id);
-        imageUrls.push(u.replace(/\?.*$/, ''));
+        imageUrls.push(fixImg(u));
         if (imageUrls.length >= 8) break;
       }
     }
