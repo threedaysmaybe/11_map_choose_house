@@ -188,16 +188,16 @@ async function grabHouseDetail(page) {
         }
       }
     } catch (e) {}
-    // 兜底：缩略图（120x80）
-    if (!imageUrls.length) {
+    // 补充：inspection 缩略图（不管大图抓到几张都补充，避免大图查看器只抓到当前 1 张导致图片不全）
+    {
       const raw = [...document.querySelectorAll('img')].map(i => i.src || i.getAttribute('data-src')).filter(s => /hdic-frame|inspection/.test(s));
-      const seen = new Set();
+      const seen = new Set(imageUrls.map(u => (u.match(/([a-f0-9-]{32,})/) || [])[1] || u));
       for (const u of raw) {
         const id = (u.match(/([a-f0-9-]{32,})/) || [])[1] || u.match(/([0-9]+_[A-Za-z0-9]+)/)?.[1] || u;
         if (seen.has(id)) continue;
         seen.add(id);
         imageUrls.push(fixImg(u));
-        if (imageUrls.length >= 8) break;
+        if (imageUrls.length >= 12) break;
       }
     }
     return {
