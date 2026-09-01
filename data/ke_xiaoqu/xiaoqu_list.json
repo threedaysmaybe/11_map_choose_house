@@ -11,6 +11,15 @@
       "count": 8
     },
     {
+      "name": "倍特金杏苑B区",
+      "board": "芳草",
+      "district": "高新",
+      "anzhi": true,
+      "lon": 104.047116,
+      "lat": 30.631028,
+      "count": 0
+    },
+    {
       "name": "蓝天路3号",
       "board": "芳草",
       "district": "高新",
@@ -27,6 +36,15 @@
       "lon": 104.046563,
       "lat": 30.627179,
       "count": 4
+    },
+    {
+      "name": "瑞升花园",
+      "board": "芳草",
+      "district": "高新",
+      "anzhi": false,
+      "lon": 104.047827,
+      "lat": 30.627973,
+      "count": 9
     },
     {
       "name": "王府花园",
@@ -83,6 +101,15 @@
       "count": 29
     },
     {
+      "name": "神仙树馨苑",
+      "board": "新北",
+      "district": "高新",
+      "anzhi": false,
+      "lon": 104.034639,
+      "lat": 30.611124,
+      "count": 4
+    },
+    {
       "name": "国际花园",
       "board": "衣冠庙",
       "district": "高新",
@@ -110,6 +137,15 @@
       "count": 11
     },
     {
+      "name": "青云阁",
+      "board": "紫荆",
+      "district": "高新",
+      "anzhi": false,
+      "lon": 104.04632,
+      "lat": 30.619768,
+      "count": 4
+    },
+    {
       "name": "翔宇苑二期",
       "board": "紫荆",
       "district": "高新",
@@ -117,6 +153,33 @@
       "lon": 104.052157,
       "lat": 30.612825,
       "count": 31
+    },
+    {
+      "name": "新绿季节",
+      "board": "紫荆",
+      "district": "高新",
+      "anzhi": false,
+      "lon": 104.054417,
+      "lat": 30.615825,
+      "count": 3
+    },
+    {
+      "name": "银都花园嘉苑三期",
+      "board": "紫荆",
+      "district": "高新",
+      "anzhi": false,
+      "lon": 104.053527,
+      "lat": 30.62129,
+      "count": 0
+    },
+    {
+      "name": "银都花园欣苑五期",
+      "board": "紫荆",
+      "district": "高新",
+      "anzhi": false,
+      "lon": 104.054476,
+      "lat": 30.621327,
+      "count": 0
     },
     {
       "name": "鹭岛国际三期优质",
@@ -132,8 +195,8 @@
       "board": "金沙",
       "district": "金牛",
       "anzhi": false,
-      "lon": 104.009473,
-      "lat": 30.645629,
+      "lon": null,
+      "lat": null,
       "count": 0
     },
     {
@@ -249,8 +312,8 @@
       "board": "航空路",
       "district": "武侯",
       "anzhi": false,
-      "lon": null,
-      "lat": null,
+      "lon": 104.067871,
+      "lat": 30.61679,
       "count": 0
     },
     {
@@ -267,8 +330,8 @@
       "board": "航空路",
       "district": "武侯",
       "anzhi": false,
-      "lon": 104.068883,
-      "lat": 30.61711,
+      "lon": null,
+      "lat": null,
       "count": 0
     },
     {
@@ -348,8 +411,8 @@
       "board": "红牌楼",
       "district": "武侯",
       "anzhi": true,
-      "lon": null,
-      "lat": null,
+      "lon": 104.008005,
+      "lat": 30.636507,
       "count": 0
     },
     {
@@ -384,8 +447,8 @@
       "board": "华西",
       "district": "武侯",
       "anzhi": false,
-      "lon": 104.055785,
-      "lat": 30.647234,
+      "lon": null,
+      "lat": null,
       "count": 0
     },
     {
@@ -519,8 +582,8 @@
       "board": "外双楠",
       "district": "武侯",
       "anzhi": false,
-      "lon": null,
-      "lat": null,
+      "lon": 104.00808,
+      "lat": 30.648644,
       "count": 0
     },
     {
@@ -564,8 +627,8 @@
       "board": "棕北",
       "district": "武侯",
       "anzhi": false,
-      "lon": 104.072599,
-      "lat": 30.624247,
+      "lon": null,
+      "lat": null,
       "count": 0
     }
   ]

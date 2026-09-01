@@ -1,0 +1,143 @@
+{
+  "name": "青云阁",
+  "price": "19168",
+  "board": "紫荆",
+  "info": {
+    "建筑类型": "塔楼/板楼",
+    "房屋总数": "279户",
+    "楼栋总数": "4栋",
+    "绿化率": "23%",
+    "容积率": "2.9",
+    "交易权属": "商品房",
+    "建成年代": "2004年",
+    "供暖类型": "自采暖/无供暖",
+    "用水类型": "商水/民水",
+    "用电类型": "商电/民电",
+    "物业费": "1.5元/平米/月",
+    "开发商": "成都乐民居屋开发有限公司"
+  },
+  "metro": [
+    {
+      "name": "神仙树",
+      "distance": "955米",
+      "lines": "地铁5号"
+    },
+    {
+      "name": "芳草街",
+      "distance": "1205米",
+      "lines": "地铁8号"
+    },
+    {
+      "name": "九兴大道",
+      "distance": "1228米",
+      "lines": "地铁5号"
+    },
+    {
+      "name": "永丰",
+      "distance": "1439米",
+      "lines": "地铁8号"
+    },
+    {
+      "name": "高朋大道",
+      "distance": "1697米",
+      "lines": "地铁7号"
+    },
+    {
+      "name": "科园",
+      "distance": "1849米",
+      "lines": "地铁5号"
+    }
+  ],
+  "deals": [
+    {
+      "建成年份": "暂无信息",
+      "面积": "160.72平米",
+      "签约日期": "2026-05-18",
+      "成交价": "265万",
+      "成交单价": "16489元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "160.72平米",
+      "签约日期": "2025-11-05",
+      "成交价": "238万",
+      "成交单价": "14809元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "101.55平米",
+      "签约日期": "2025-10-12",
+      "成交价": "166万",
+      "成交单价": "16347元/平"
+    }
+  ],
+  "images": [
+    "https://ke-image.ljcdn.com/hdic-resblock/ee76d136-0e48-4f14-b257-84265169e281.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/32072bdd-f32c-491d-af11-ff9771d7b28c.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/270d6f0b-76db-4021-b1c8-aba7863c13ce.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/81b67969-5a5d-4862-951e-daac67aaf93c.jpg.710x400.jpg"
+  ],
+  "updatedAt": "2026-09-01T15:23:37.999Z",
+  "localImages": [
+    "1788276218065-0-z95q.jpg",
+    "1788276218120-1-opoq.jpg",
+    "1788276218165-2-oev0.jpg",
+    "1788276218215-3-vzdb.jpg"
+  ],
+  "houses": [
+    {
+      "title": "成都高新紫荆青云阁 3室2厅 西南 南",
+      "room": "3室2厅",
+      "area": "143.91",
+      "taoneiArea": null,
+      "totalPrice": "253",
+      "unitPrice": "17581",
+      "floor": "中",
+      "totalFloors": "11",
+      "orientation": "西南",
+      "community": "青云阁",
+      "district": "高新",
+      "board": "紫荆",
+      "features": [
+        "户型方正",
+        "电梯"
+      ],
+      "tihu": "1梯2户",
+      "structure": "框架结构",
+      "diya": "有抵押",
+      "chanquan": "共有",
+      "buildingType": "塔楼",
+      "huxingStructure": "平层",
+      "usage": "普通住宅",
+      "decoration": "",
+      "listTime": "2026年05月12日",
+      "lastTrade": "2026年05月12日",
+      "sellingPoint": "房子电梯中间楼层，采光好，朝南，一梯二户11层高的小洋房。 小区介绍 小区是04年的电梯房，一梯两户，总高11层的小高层。 后门出去就是菜市场，生活便利。 适宜人群 适合大众整体居住，门口就是学堂与公园，小区旁边有菜市场，近公交站地铁站，生",
+      "fangben": "已上传房本照片",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/17789366740_GQUQjWJg3.jpg!m_fill,w_160,h_160,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17789366740_GQUQjWJg3.jpg!m_fill,w_160,h_160,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17789367040_3GEFjsUUB.jpg!m_fill,w_160,h_160,f_jpg",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1778936663732.jpeg!m_fill,w_160,h_160,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17789366740_PIoJXPLED.jpg!m_fill,w_160,h_160,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17789366740_cZP1NmoLP.jpg!m_fill,w_160,h_160,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17789366740_KTQ54kE0q.jpg!m_fill,w_160,h_160,f_jpg"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106127578373.html",
+      "houseCode": "106127578373",
+      "localImages": [
+        "1788279427086-0-frug.jpg",
+        "1788279427092-1-u41d.jpg",
+        "1788279427097-2-8gml.jpeg",
+        "1788279427103-3-5fd7.jpg",
+        "1788279427108-4-cpd7.jpg",
+        "1788279427114-5-itcw.jpg"
+      ]
+    }
+  ],
+  "district": "高新",
+  "features": [
+    "户型方正",
+    "电梯"
+  ]
+}

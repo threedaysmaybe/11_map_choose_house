@@ -1,0 +1,198 @@
+{
+  "houses": [
+    {
+      "title": "成都高新紫荆新绿季节 3室2厅 东北",
+      "room": "3室2厅",
+      "area": "137.58",
+      "taoneiArea": null,
+      "totalPrice": "195",
+      "unitPrice": "14174",
+      "floor": "高",
+      "totalFloors": "11",
+      "orientation": "东北",
+      "community": "新绿季节",
+      "district": "高新",
+      "board": "紫荆",
+      "features": [
+        "满五",
+        "户型方正",
+        "电梯"
+      ],
+      "tihu": "1梯4户",
+      "structure": "框架结构",
+      "diya": "有抵押",
+      "chanquan": "共有",
+      "buildingType": "板楼",
+      "huxingStructure": "平层",
+      "usage": "普通住宅",
+      "decoration": "简装",
+      "listTime": "2026年08月23日",
+      "lastTrade": "2015年07月20日",
+      "sellingPoint": "此房通透格局，套三双卫，高楼层，视野开阔对中庭，采光充足。 小区介绍 该小区建于2004年，电梯框架结构，1梯4户。小区物业为三泰物业公司，管理成熟，物业费为1",
+      "fangben": "已上传房本照片",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/17879151100_1fLT4tMuN.jpg!m_fill,w_160,h_160,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17879151100_1fLT4tMuN.jpg!m_fill,w_160,h_160,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17879151460_6lmgsM70w.jpg!m_fill,w_160,h_160,f_jpg",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1787915116631.jpeg!m_fill,w_160,h_160,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17879151100_jlJUQBQMp.jpg!m_fill,w_160,h_160,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17879151100_G7Bvpjgoj.jpg!m_fill,w_160,h_160,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17879151100_XYUcIKHkh.jpg!m_fill,w_160,h_160,f_jpg"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106128992043.html",
+      "houseCode": "106128992043",
+      "localImages": [
+        "1788279386773-0-kkln.jpg",
+        "1788279386780-1-qc2e.jpg",
+        "1788279386786-2-mfa7.jpeg",
+        "1788279386791-3-dfwa.jpg",
+        "1788279386796-4-881l.jpg",
+        "1788279386803-5-i93k.jpg"
+      ]
+    }
+  ],
+  "board": "紫荆",
+  "district": "高新",
+  "name": "新绿季节",
+  "info": {
+    "建筑类型": "板楼",
+    "房屋总数": "431户",
+    "楼栋总数": "3栋",
+    "绿化率": "35%",
+    "容积率": "2.33",
+    "交易权属": "商品房/使用权/私产",
+    "建成年代": "2002-2009年",
+    "供暖类型": "自采暖/无供暖",
+    "用水类型": "民水",
+    "用电类型": "民电",
+    "物业费": "1.2至1.65元/平米/月",
+    "开发商": "成都三泰屋业有限公司"
+  },
+  "features": [
+    "满五",
+    "户型方正",
+    "电梯"
+  ],
+  "price": "14901",
+  "metro": [
+    {
+      "name": "神仙树",
+      "distance": "1144米",
+      "lines": "地铁5号"
+    },
+    {
+      "name": "桐梓林",
+      "distance": "1147米",
+      "lines": "地铁1号"
+    },
+    {
+      "name": "火车南站",
+      "distance": "1623米",
+      "lines": "地铁18号"
+    },
+    {
+      "name": "芳草街",
+      "distance": "1651米",
+      "lines": "地铁8号"
+    },
+    {
+      "name": "火车南站",
+      "distance": "1723米",
+      "lines": "地铁18号"
+    },
+    {
+      "name": "倪家桥",
+      "distance": "1764米",
+      "lines": "地铁1号"
+    },
+    {
+      "name": "倪家桥",
+      "distance": "1780米",
+      "lines": "地铁18号"
+    }
+  ],
+  "deals": [
+    {
+      "建成年份": "2004年",
+      "面积": "123.09平米",
+      "签约日期": "2026-03-11",
+      "成交价": "143万",
+      "成交单价": "11618元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "102平米",
+      "签约日期": "2026-01-31",
+      "成交价": "140.5万",
+      "成交单价": "13775元/平"
+    },
+    {
+      "建成年份": "2004年",
+      "面积": "148.87平米",
+      "签约日期": "2026-01-12",
+      "成交价": "195万",
+      "成交单价": "13099元/平"
+    }
+  ],
+  "images": [
+    "https://ke-image.ljcdn.com/hdic-resblock/eca24db9-d217-43a4-bcc1-77d46ca91b30.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/0bb5cf20-1604-45f4-bc42-3d35fd839e59.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/5997a246-a8e4-45ed-845e-5d31fa2d71dc.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/6c4ee7bd-8683-4f69-ad94-861baabe77bc.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/85d59203-b520-45c6-85de-18b6a6e152ce.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/489a8f5b-f64f-44b9-a881-854c6608674a.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/cb17c01f-9f54-4904-a88b-8cfdd21c7afb.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/16439b6d-7cc3-4429-8c52-6e9a4a9d2c89.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/b8707a85-3aff-45c2-85fc-5cb2c1950f8b.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/22525fb5-8796-491e-8e0a-d9b6ad813509.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/d4c4c1f7-86b6-4a23-b6f1-116b83213d95.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/3c8266e8-d1da-4c58-9a4d-2aaf2e1c9996.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/55b3fd36-5041-4b40-a949-dd118d91e827.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/eb3dde82-6706-4c93-bfdc-da2ee23a8fcf.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/8f361523-1349-44c6-8ace-8432053b0d62.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/e8974319-c364-4cb2-b21b-659532cc4ce4.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/cb3fac03-a43f-4dcb-a847-41a768ab0de0.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/bc94be94-0d06-4915-b91e-79da6a801954.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/22ac7584-4974-480f-80d0-8a6d69f7f3f1.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/158b5b0c-1e44-47f3-9309-e73508033c93.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/63cd70ad-8c14-46c7-b9da-f9ddbef44089.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/69fa09aa-9480-4265-84c8-b6118c02143b.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/5ac7b890-e848-4c5c-aa1f-42caf6731dea.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/6067c9aa-c759-4dc8-867a-5db2a97d2c61.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/ff872298-d7bf-4105-b1ad-1eb3ab570e56.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/d000bdad-aa18-4471-b1db-9c7daab8d50a.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/6f6ef212-8b80-42a3-9e97-1e0d74ac96e3.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/3f8c334a-3aca-4405-b579-2577d1721a3e.jpg.710x400.jpg"
+  ],
+  "updatedAt": "2026-09-01T15:24:19.966Z",
+  "localImages": [
+    "1788276259996-0-5k1f.jpg",
+    "1788276260020-1-g4iu.jpg",
+    "1788276260045-2-lwb6.jpg",
+    "1788276260240-3-wpy5.jpg",
+    "1788276260273-4-4oay.jpg",
+    "1788276260295-5-a1qx.jpg",
+    "1788276260352-6-9i1k.jpg",
+    "1788276260409-7-428j.jpg",
+    "1788276260446-8-itf7.jpg",
+    "1788276260478-9-u4cu.jpg",
+    "1788276260504-10-ugco.jpg",
+    "1788276260533-11-0p40.jpg",
+    "1788276260559-12-bn96.jpg",
+    "1788276260588-13-393i.jpg",
+    "1788276260630-14-r51o.jpg",
+    "1788276260666-15-3g6x.jpg",
+    "1788276260704-16-vlq3.jpg",
+    "1788276260740-17-6uxc.jpg",
+    "1788276260785-18-n1uy.jpg",
+    "1788276260854-19-ig6p.jpg",
+    "1788276260893-20-mgnc.jpg",
+    "1788276260958-21-65ru.jpg",
+    "1788276261000-22-ezl0.jpg",
+    "1788276261032-23-fhig.jpg",
+    "1788276261081-24-uajv.jpg",
+    "1788276261113-25-q20d.jpg",
+    "1788276261146-26-xwwk.jpg",
+    "1788276261167-27-xrm0.jpg"
+  ]
+}
