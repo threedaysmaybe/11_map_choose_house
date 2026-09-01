@@ -273,6 +273,34 @@ async function downloadImages(page, urls, subdir) {
   return saved;
 }
 
+// 截图房源大图：逐个点击缩略图打开大图查看器，用 element.screenshot 截取浏览器已渲染的高清图（绕过贝壳反盗链/尺寸限制）
+async function screenshotHouseImages(page, subdir) {
+  const dir = path.join(IMG_DIR, subdir);
+  ensureDir(dir);
+  const saved = [];
+  try {
+    const thumbs = await page.$$('.thumbnail img, .smallpic img');
+    if (!thumbs.length) return saved;
+    for (let i = 0; i < thumbs.length; i++) {
+      try {
+        await thumbs[i].click();
+        await new Promise(r => setTimeout(r, 1600)); // 等大图加载并渲染
+        const bigImg = await page.$('.bigImg img');
+        if (bigImg) {
+          const buf = await bigImg.screenshot({ type: 'jpeg', quality: 92 });
+          const file = path.join(dir, `${Date.now()}-${i}-${Math.random().toString(36).slice(2, 6)}.jpg`);
+          fs.writeFileSync(file, buf);
+          saved.push(file);
+        }
+      } catch (e) {}
+      // 关闭大图查看器，准备点下一张
+      try { const mask = await page.$('.bigImg .mask'); if (mask) await mask.click(); } catch (e) {}
+      await new Promise(r => setTimeout(r, 300));
+    }
+  } catch (e) {}
+  return saved;
+}
+
 (async () => {
   ensureDir(DIR); ensureDir(IMG_DIR);
   // 读取板块名列表（用于识别小区所属板块）
@@ -314,7 +342,11 @@ async function downloadImages(page, urls, subdir) {
       data.url = page.url();
       const houseCode = (page.url().match(/\/(\d{8,})\.html/) || [])[1] || '';
       data.houseCode = houseCode;
-      if (data.images && data.images.length) {
+      // 优先用截图方式抓房源高清图（逐个点开大图查看器 element.screenshot，绕过贝壳反盗链/尺寸限制），失败则用 URL 下载兜底
+      const savedShots = await screenshotHouseImages(page, comm);
+      if (savedShots.length) {
+        data.localImages = savedShots.map(f => path.basename(f));
+      } else if (data.images && data.images.length) {
         const saved = await downloadImages(page, data.images, comm);
         data.localImages = saved.map(f => path.basename(f));
       }
