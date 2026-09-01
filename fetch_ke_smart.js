@@ -161,10 +161,9 @@ async function grabHouseDetail(page) {
     const spM = txt.match(/核心卖点\s*([\u4e00-\u9fa5，。、：；0-9a-zA-Z\s]{5,120})/);
     const sellingPoint = spM ? spM[1].trim() : '';
     const fangben = grab(/房本备件\s*([^\s]+)/) || '';
-    // 图片 URL 处理：贝壳检查照片只支持到 160x160（更大尺寸 403），用最大正方形 160x160 减少裁剪；去掉 ?from= 但保留 imageMogr2 等处理参数（VR 户型图需要）
+    // 图片 URL 处理：只去掉 ?from=ke.com 来源参数，保留原始尺寸（高清大图），下载失败时在 downloadImages 里回退到 160x160
     const fixImg = u => {
       let s = u || '';
-      s = s.replace(/!m_fill[^!?]*/g, '!m_fill,w_160,h_160,f_jpg').replace(/!m_fixed[^!?]*/g, '!m_fill,w_160,h_160,f_jpg');
       s = s.replace(/[?&]from=[^&]*/, '');
       return s;
     };
@@ -241,7 +240,7 @@ async function downloadImages(page, urls, subdir) {
     try {
       const u = urls[i];
       const ext = (u.match(/\.(jpg|jpeg|png|webp)/i) || [])[1] || 'jpg';
-      const base64 = await page.evaluate(async (url) => {
+      const fetchImg = async (url) => page.evaluate(async (url) => {
         try {
           const ctrl = new AbortController();
           const timer = setTimeout(() => ctrl.abort(), 8000);
@@ -258,7 +257,13 @@ async function downloadImages(page, urls, subdir) {
           }
           return btoa(binary);
         } catch (e) { return null; }
-      }, u);
+      }, url);
+      // 先试高清大图（原始尺寸），失败（403）则回退到 160x160 缩略图
+      let base64 = await fetchImg(u);
+      if (!base64) {
+        const fallback = u.replace(/!m_fill[^!?]*/g, '!m_fill,w_160,h_160,f_jpg').replace(/!m_fixed[^!?]*/g, '!m_fill,w_160,h_160,f_jpg');
+        if (fallback !== u) base64 = await fetchImg(fallback);
+      }
       if (!base64) continue;
       const file = path.join(dir, `${Date.now()}-${i}-${Math.random().toString(36).slice(2, 6)}.${ext}`);
       fs.writeFileSync(file, Buffer.from(base64, 'base64'));
