@@ -375,6 +375,8 @@ async function downloadImages(page, urls, subdir) {
 
   // 写抓取结果到文件，供 serve 返回给前端（stdio inherit 后前端拿不到 stdout）
   try {
+    const hasAny = result['小区'].length || result['房源'].length || result['列表'].length || result['其他'].length;
+    if (!hasAny) result['小区'] = ['（没有抓到任何贝壳页面，请确认调试 Chrome 里已打开小区/房源页）'];
     fs.writeFileSync(path.join(__dirname, 'data', 'fetch_result.json'), JSON.stringify(result, null, 2));
   } catch (e) {}
 

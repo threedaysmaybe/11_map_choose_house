@@ -187,7 +187,11 @@ const server = http.createServer((req, res) => {
     const { execFile } = require('child_process');
     // stdio:'ignore'：规避 Windows pipe stdio 触发 libuv process_title 断言，且不阻塞 serve
     execFile(process.execPath, ['fetch_ke_smart.js'], { cwd: ROOT, timeout: 600000, stdio: 'ignore' }, (err) => {
-      if (err) console.log('[抓取] 后台抓取出错:', err.message);
+      if (err) {
+        console.log('[抓取] 后台抓取出错:', err.message);
+        // 写错误结果，让前端轮询能读到并提示（否则一直显示「抓取中」）
+        try { fs.writeFileSync(path.join(ROOT, 'data', 'fetch_result.json'), JSON.stringify({ 小区: ['抓取失败：' + (err.message || '未知错误') + '（请确认已启动贝壳调试浏览器）'], 房源: [], 列表: [], 其他: [] })); } catch (e) {}
+      }
     });
     return;
   }
