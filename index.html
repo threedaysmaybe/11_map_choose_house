@@ -1063,21 +1063,22 @@
         .then(r => r.json())
         .then(d => { info.textContent = d.ok ? d.msg : ('❌ ' + (d.msg || '抓取失败')); })
         .catch(e => { btn.textContent = '🤖 智能抓取所有贝壳页'; info.textContent = '❌ 抓取失败：' + e.message; });
-      // 轮询抓取结果 + 刷新下拉（后台抓取完成后自动更新）
+      // 轮询抓取结果（只读本地结果文件，很快；抓到后再刷新下拉，避免 GitHub API 慢阻塞轮询）
       let polls = 0;
-      let finished = false;
       const timer = setInterval(async () => {
         polls++;
-        await loadXiaoquArchives(true);
         try {
           const rr = await fetch('/fetch-ke-smart-result');
           const rd = await rr.json();
           if (rd.ok && rd.msg && rd.msg !== '（抓取中…）') {
             info.textContent = '✅ 抓取完成\n' + rd.msg;
-            finished = true;
+            clearInterval(timer);
+            btn.textContent = '🤖 智能抓取所有贝壳页';
+            loadXiaoquArchives(true); // 完成后刷新下拉（异步，不阻塞）
+            return;
           }
         } catch (e) {}
-        if (finished || polls > 240) { clearInterval(timer); btn.textContent = '🤖 智能抓取所有贝壳页'; }
+        if (polls > 240) { clearInterval(timer); btn.textContent = '🤖 智能抓取所有贝壳页'; info.textContent = '⚠️ 抓取超时，请确认已启动贝壳调试浏览器'; }
       }, 1500);
     });
 
