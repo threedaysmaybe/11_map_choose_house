@@ -279,23 +279,42 @@ async function screenshotHouseImages(page, subdir) {
   ensureDir(dir);
   const saved = [];
   try {
-    const thumbs = await page.$$('.thumbnail img, .smallpic img');
-    if (!thumbs.length) return saved;
-    for (let i = 0; i < thumbs.length; i++) {
+    const thumb = await page.$('.thumbnail img, .smallpic img');
+    if (!thumb) return saved;
+    await thumb.click();
+    await new Promise(r => setTimeout(r, 1800)); // 等大图查看器打开、高清图 URL 就绪
+    // 读大图查看器 slide 里的高清大图 URL（710x400），页面内 fetch（带登录 Cookie）下载高清原图
+    const urls = await page.evaluate(() => {
+      const imgs = [...document.querySelectorAll('.bigImg .slide img')];
+      return imgs.map(img => img.getAttribute('data-pic') || img.src || '').filter(Boolean);
+    });
+    try { const mask = await page.$('.bigImg .mask'); if (mask) await mask.click(); } catch (e) {}
+    if (!urls.length) return saved;
+    const seen = new Set();
+    for (let i = 0; i < urls.length; i++) {
       try {
-        await thumbs[i].click();
-        await new Promise(r => setTimeout(r, 1600)); // 等大图加载并渲染
-        const bigImg = await page.$('.bigImg img');
-        if (bigImg) {
-          const buf = await bigImg.screenshot({ type: 'jpeg', quality: 92 });
-          const file = path.join(dir, `${Date.now()}-${i}-${Math.random().toString(36).slice(2, 6)}.jpg`);
-          fs.writeFileSync(file, buf);
-          saved.push(file);
-        }
+        const base64 = await page.evaluate(async (u) => {
+          try {
+            const ctrl = new AbortController();
+            const t = setTimeout(() => ctrl.abort(), 8000);
+            const resp = await fetch(u, { headers: { Referer: 'https://cd.ke.com/' }, signal: ctrl.signal });
+            clearTimeout(t);
+            if (!resp.ok) return null;
+            const buf = await resp.arrayBuffer();
+            const bytes = new Uint8Array(buf);
+            let binary = '';
+            const CHUNK = 8192;
+            for (let j = 0; j < bytes.length; j += CHUNK) binary += String.fromCharCode.apply(null, bytes.subarray(j, j + CHUNK));
+            return btoa(binary);
+          } catch (e) { return null; }
+        }, urls[i]);
+        if (!base64 || seen.has(urls[i])) continue;
+        seen.add(urls[i]);
+        const ext = (urls[i].match(/\.(jpg|jpeg|png|webp)/i) || [])[1] || 'jpg';
+        const file = path.join(dir, `${Date.now()}-${i}-${Math.random().toString(36).slice(2, 6)}.${ext}`);
+        fs.writeFileSync(file, Buffer.from(base64, 'base64'));
+        saved.push(file);
       } catch (e) {}
-      // 关闭大图查看器，准备点下一张
-      try { const mask = await page.$('.bigImg .mask'); if (mask) await mask.click(); } catch (e) {}
-      await new Promise(r => setTimeout(r, 300));
     }
   } catch (e) {}
   return saved;
