@@ -204,10 +204,10 @@ const server = http.createServer((req, res) => {
       for (const k of ['小区', '房源', '列表', '其他']) {
         if (result[k] && result[k].length) parts.push(`【${k}】${result[k].length}个\n` + result[k].map(x => '· ' + x).join('\n'));
       }
-      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' });
       res.end(JSON.stringify({ ok: true, msg: parts.join('\n') || '（抓取中…）' }));
     } catch (e) {
-      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' });
       res.end(JSON.stringify({ ok: true, msg: '（抓取中…）' }));
     }
     return;

@@ -1068,7 +1068,7 @@
       const timer = setInterval(async () => {
         polls++;
         try {
-          const rr = await fetch('/fetch-ke-smart-result');
+          const rr = await fetch('/fetch-ke-smart-result?t=' + Date.now());
           const rd = await rr.json();
           if (rd.ok && rd.msg && rd.msg !== '（抓取中…）') {
             info.textContent = '✅ 抓取完成\n' + rd.msg;
