@@ -85,31 +85,39 @@ async function downloadHouseImages(page, subdir) {
   let done = 0, ok = 0;
   const fails = [];
   for (const t of tasks) {
+    let saved = [];
     try {
       await page.goto(t.url, { waitUntil: 'domcontentloaded', timeout: 30000 });
-      await new Promise(r => setTimeout(r, 2000));
-      const saved = await downloadHouseImages(page, t.comm);
-      if (saved.length) {
-        const f = path.join(DIR, t.comm + '.json');
-        const d = JSON.parse(fs.readFileSync(f, 'utf8'));
-        const h = (d.houses || []).find(x => x.houseCode === t.houseCode || x.url === t.url);
-        if (h) {
-          h.localImages = saved.map(x => path.basename(x));
-          fs.writeFileSync(f, JSON.stringify(d, null, 2));
-          ok++;
-        } else {
-          fails.push({ comm: t.comm, room: t.room, reason: '档案里找不到该房源(houseCode/url不匹配)' });
-        }
-      } else {
-        fails.push({ comm: t.comm, room: t.room, reason: '截图0张(可能页面无缩略图或大图查看器未打开)' });
+      await new Promise(r => setTimeout(r, 2500));
+      saved = await downloadHouseImages(page, t.comm);
+      if (!saved.length) {
+        // 0 张时重试一次（多等，可能是页面加载慢或大图查看器未打开）
+        await page.goto(t.url, { waitUntil: 'domcontentloaded', timeout: 30000 });
+        await new Promise(r => setTimeout(r, 3500));
+        saved = await downloadHouseImages(page, t.comm);
       }
-      done++;
-      console.log(`[${done}/${tasks.length}] ${t.comm} ${t.room} → ${saved.length} 张`);
     } catch (e) {
-      done++;
       fails.push({ comm: t.comm, room: t.room, reason: e.message });
+      done++;
       console.log(`[${done}/${tasks.length}] ${t.comm} ${t.room} ❌ ${e.message}`);
+      continue;
     }
+    if (saved.length) {
+      const f = path.join(DIR, t.comm + '.json');
+      const d = JSON.parse(fs.readFileSync(f, 'utf8'));
+      const h = (d.houses || []).find(x => x.houseCode === t.houseCode || x.url === t.url);
+      if (h) {
+        h.localImages = saved.map(x => path.basename(x));
+        fs.writeFileSync(f, JSON.stringify(d, null, 2));
+        ok++;
+      } else {
+        fails.push({ comm: t.comm, room: t.room, reason: '档案里找不到该房源(houseCode/url不匹配)' });
+      }
+    } else {
+      fails.push({ comm: t.comm, room: t.room, reason: '重试后仍0张(可能已下架或无图)' });
+    }
+    done++;
+    console.log(`[${done}/${tasks.length}] ${t.comm} ${t.room} → ${saved.length} 张`);
   }
 
   await page.close();
