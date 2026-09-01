@@ -266,7 +266,7 @@ async function downloadImages(page, urls, subdir) {
   // 读取板块名列表（用于识别小区所属板块）
   let boardNames = [];
   try { boardNames = JSON.parse(fs.readFileSync('data/boards.json', 'utf8')).map(b => b.name).filter(Boolean); } catch (e) {}
-  const browser = await puppeteer.connect({ browserURL: 'http://127.0.0.1:9222', defaultViewport: null });
+  const browser = await puppeteer.connect({ browserURL: 'http://127.0.0.1:9222', defaultViewport: null, timeout: 15000 });
   // 反转顺序：最新打开的页面（用户这次抓的小区）排在前面，避免旧页面挤在前面看着像「上次的」
   const pages = (await browser.pages()).reverse();
   const result = { 小区: [], 房源: [], 列表: [], 其他: [] };

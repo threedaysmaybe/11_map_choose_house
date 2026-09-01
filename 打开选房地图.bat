@@ -18,15 +18,16 @@ if errorlevel 1 (
     exit /b 1
 )
 
-rem 检查 8080 端口是否已被占用（避免重复启动）
-netstat -ano | findstr ":8080" | findstr "LISTENING" >nul 2>nul
-if %errorlevel%==0 (
-    echo 服务器已在运行，直接打开浏览器...
-) else (
-    echo 正在启动本地服务器...
-    start "" /min node serve.js
-    timeout /t 2 /nobreak >nul
+rem 清理旧的服务器进程（避免卡死后端口被占用导致重开 bat 无效）
+echo 清理旧的服务器进程...
+for /f "tokens=5" %%a in ('netstat -ano ^| findstr ":8080" ^| findstr "LISTENING"') do (
+    taskkill /PID %%a /F >nul 2>nul
 )
+timeout /t 1 /nobreak >nul
+
+echo 正在启动本地服务器...
+start "" /min node serve.js
+timeout /t 2 /nobreak >nul
 
 rem 打开浏览器
 start "" http://localhost:8080
