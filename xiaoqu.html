@@ -512,7 +512,17 @@
     if (!n) { document.getElementById('content').innerHTML = '<div class="card">请在上方选择小区查看报告</div>'; document.getElementById('xqName').textContent = '小区报告'; document.getElementById('xqSub').textContent = ''; return; }
     let d;
     if (presetD) { d = presetD; }
-    else { const r = await fetch('data/ke_xiaoqu/' + encodeURIComponent(n) + '.json?t=' + Date.now()); d = await r.json(); }
+    else {
+      const r = await fetch('data/ke_xiaoqu/' + encodeURIComponent(n) + '.json?t=' + Date.now());
+      if (!r.ok) {
+        document.getElementById('content').innerHTML = '<div class="card">该小区档案不存在（可能已删除），请重新选择小区</div>';
+        document.getElementById('xqName').textContent = '小区报告';
+        document.getElementById('xqSub').textContent = '';
+        const dl = document.getElementById('downloadImagesBtn'); if (dl) dl.style.display = 'none';
+        return;
+      }
+      d = await r.json();
+    }
     const info = d.info || {};
     // 加载云端标签（个人隔离）
     cloudTagMap = {};
