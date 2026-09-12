@@ -296,7 +296,7 @@
     poolCache.pool = { pool, sha: result.content.sha };
     return result;
   }
-  // GitHub 读所有小区标签（遍历 data/tags 目录）
+  // GitHub 读所有小区标签（遍历 data/tags 目录，并行 fetch 加快速度）
   async function ghReadAllTags() {
     try {
       const listRes = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/contents/data/tags', {
@@ -305,18 +305,16 @@
       if (!listRes.ok) return [];
       const files = await listRes.json();
       if (!Array.isArray(files)) return [];
-      const result = [];
-      for (const f of files) {
-        if (!f.name || !f.name.endsWith('.json')) continue;
-        const xiaoqu = decodeURIComponent(f.name.replace(/\.json$/, ''));
+      const items = files.filter(f => f.name && f.name.endsWith('.json')).map(f => ({ url: f.url, xiaoqu: decodeURIComponent(f.name.replace(/\.json$/, '')) }));
+      const results = await Promise.all(items.map(async (f) => {
         try {
           const r = await fetch(f.url, { headers: { Authorization: 'token ' + GITHUB_TOKEN, Accept: 'application/vnd.github.v3+json' } });
           const d = await r.json();
           const json = JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\s/g, '')))));
-          for (const t of (json.tags || [])) result.push({ xiaoqu, ...t });
-        } catch (e) {}
-      }
-      return result;
+          return (json.tags || []).map(t => ({ xiaoqu: f.xiaoqu, ...t }));
+        } catch (e) { return []; }
+      }));
+      return results.flat();
     } catch (e) { return []; }
   }
   // GitHub 读配置（管理员口令在云端）
