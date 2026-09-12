@@ -19,7 +19,7 @@ async function downloadHouseImages(page, subdir) {
   try {
     const thumb = await page.$('.thumbnail img, .smallpic img');
     if (!thumb) return saved;
-    await thumb.click();
+    await page.evaluate(() => { const el = document.querySelector('.thumbnail img, .smallpic img'); if (el) el.click(); });
     await new Promise(r => setTimeout(r, 1800));
     const urls = await page.evaluate(() => {
       const lis = [...document.querySelectorAll('.bigImg .slide ul li')];
@@ -30,7 +30,7 @@ async function downloadHouseImages(page, subdir) {
       }
       return list;
     });
-    try { const mask = await page.$('.bigImg .mask'); if (mask) await mask.click(); } catch (e) {}
+    try { await page.evaluate(() => { const m = document.querySelector('.bigImg .mask'); if (m) m.click(); }); } catch (e) {}
     if (!urls.length) return saved;
     const seen = new Set();
     for (let i = 0; i < urls.length; i++) {

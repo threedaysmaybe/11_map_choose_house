@@ -281,7 +281,8 @@ async function screenshotHouseImages(page, subdir) {
   try {
     const thumb = await page.$('.thumbnail img, .smallpic img');
     if (!thumb) return saved;
-    await thumb.click();
+    // 用页面内 evaluate 触发 click，绕过 puppeteer 的可见性等待（现有标签页上 element.click 会卡住）
+    await page.evaluate(() => { const el = document.querySelector('.thumbnail img, .smallpic img'); if (el) el.click(); });
     await new Promise(r => setTimeout(r, 1800)); // 等大图查看器打开、高清图 URL 就绪
     // 优先 li 的 data-pic（1000x750，4:3 完整图，不裁上下）；fallback data-src（710x400）；页面内 fetch（带登录 Cookie）下载高清原图
     const urls = await page.evaluate(() => {
@@ -293,7 +294,7 @@ async function screenshotHouseImages(page, subdir) {
       }
       return list;
     });
-    try { const mask = await page.$('.bigImg .mask'); if (mask) await mask.click(); } catch (e) {}
+    try { await page.evaluate(() => { const m = document.querySelector('.bigImg .mask'); if (m) m.click(); }); } catch (e) {}
     if (!urls.length) return saved;
     const seen = new Set();
     for (let i = 0; i < urls.length; i++) {
@@ -338,6 +339,7 @@ async function screenshotHouseImages(page, subdir) {
   for (const page of pages) {
     const url = page.url();
     const type = classifyPage(url);
+    console.log(`[抓取] ${type} ${url.slice(0, 60)}`);
     if (type === 'map' || type === 'other' || type === 'xiaoqu_search') { result.其他.push(url.slice(0, 60)); continue; }
 
     if (type === 'xiaoqu_detail') {
@@ -355,7 +357,9 @@ async function screenshotHouseImages(page, subdir) {
       fs.writeFileSync(file, JSON.stringify(merged, null, 2));
       result.小区.push(`${name}（均价${data.price || '?'}，成交${data.deals.length}条，地铁${data.metro.map(m => m.name + m.distance).join('/')}，图${(data.images || []).length}张）`);
     } else if (type === 'house_detail') {
+      console.log('  → grabHouseDetail 开始...');
       const data = await grabHouseDetail(page);
+      console.log('  → grabHouseDetail 完成, 开始抓图...');
       // 存房源详情，按小区归属
       const comm = data.community || '未归属';
       const file = path.join(DIR, comm + '.json');
