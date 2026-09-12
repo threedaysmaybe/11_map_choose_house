@@ -1329,7 +1329,8 @@
             const link = h.url ? `<a href="${h.url}" target="_blank" style="color:#4fc3f7;font-size:11px;margin-left:4px" title="打开贝壳房源">🔗</a>` : '';
             let structureTxt = '';
             if (h.structure) {
-              const scolor = h.structure === '框架结构' ? '#2ecc71' : '#f0c060';
+              // 建筑结构：差(砖混/砖木/未知)红，一般(钢混/混合)黄，其它(框架/钢)绿
+              const scolor = /砖混|砖木|未知/.test(h.structure) ? '#e74c3c' : /钢混|混合/.test(h.structure) ? '#f0c060' : '#2ecc71';
               structureTxt = ` · <span style="color:${scolor};font-weight:bold">${h.structure}</span>`;
             }
             let diyaTxt = '';
