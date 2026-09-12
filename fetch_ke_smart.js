@@ -1,3 +1,4 @@
+process.title = 'fetch_ke_smart'; // 规避 Windows libuv process_title 断言
 const puppeteer = require('puppeteer-core');
 const fs = require('fs');
 const path = require('path');
