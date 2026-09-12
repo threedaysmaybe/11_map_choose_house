@@ -47,7 +47,6 @@
 <link rel="apple-touch-icon" href="icon-192.png">
 <link href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css" rel="stylesheet">
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js"></script>
 <style>
   #xqMap { height: 240px; border-radius: 12px; overflow: hidden; margin-bottom: 16px; border: 1px solid rgba(255,255,255,0.1); }
   #xqMap .marker-pin { width: 22px; height: 22px; background: #ff5a5f; border: 3px solid #fff; border-radius: 50%; box-shadow: 0 0 0 3px rgba(255,90,95,0.35); }
@@ -92,7 +91,7 @@
     <div id="xqMap"></div>
     <h1 id="xqName">小区报告</h1>
     <div class="sub" id="xqSub"></div>
-    <button id="downloadImagesBtn" style="display:none;margin-top:6px;background:#2e86de;border:none;border-radius:6px;color:#fff;padding:6px 14px;font-size:13px;cursor:pointer">📥 下载本小区照片（zip）</button>
+    <button id="downloadImagesBtn" style="display:none;margin-top:6px;background:#2e86de;border:none;border-radius:6px;color:#fff;padding:6px 14px;font-size:13px;cursor:pointer">📥 缓存本小区照片（离线可看）</button>
     <div id="content"></div>
   </div>
   <div id="noteView" style="display:none">
@@ -1034,25 +1033,17 @@
   document.getElementById('downloadImagesBtn').addEventListener('click', async () => {
     const imgs = window.__curImgs || [];
     if (!imgs.length) { alert('本小区没有照片'); return; }
-    if (typeof JSZip === 'undefined') { alert('JSZip 未加载，请联网后重试'); return; }
     const btn = document.getElementById('downloadImagesBtn');
-    btn.textContent = '📥 打包中…';
-    const zip = new JSZip();
+    btn.textContent = '📥 缓存中…';
+    let ok = 0;
     for (const it of imgs) {
       try {
         const r = await fetch(it.url);
-        if (r.ok) zip.file(it.name, await r.blob());
+        if (r.ok) ok++;
       } catch (e) {}
     }
-    try {
-      const blob = await zip.generateAsync({ type: 'blob' });
-      const a = document.createElement('a');
-      a.href = URL.createObjectURL(blob);
-      a.download = (document.getElementById('xqName').textContent || '小区') + '_照片.zip';
-      document.body.appendChild(a); a.click(); a.remove();
-      setTimeout(() => URL.revokeObjectURL(a.href), 3000);
-    } catch (e) { alert('打包失败：' + e.message); }
-    btn.textContent = '📥 下载本小区照片（zip）';
+    btn.textContent = '📥 缓存本小区照片（离线可看）';
+    alert('已缓存 ' + ok + '/' + imgs.length + ' 张照片，之后打开本小区照片不再加载');
   });
   // 刷新按钮：重新加载列表 + 标签筛选 + 当前小区
   document.getElementById('refreshBtn').addEventListener('click', async () => {
