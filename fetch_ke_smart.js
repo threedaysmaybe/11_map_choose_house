@@ -426,7 +426,8 @@ async function screenshotHouseImages(page, subdir) {
   try {
     const { execFile } = require('child_process');
     const runScript = (script) => new Promise((resolve, reject) => {
-      execFile(process.execPath, [script], { cwd: __dirname }, (err) => err ? reject(err) : resolve());
+      // stdio:'ignore'：规避 Windows 上 pipe stdio 触发 libuv process_title 断言
+      execFile(process.execPath, [script], { cwd: __dirname, stdio: 'ignore' }, (err) => err ? reject(err) : resolve());
     });
     await runScript('gen_xiaoqu_list.js');
     await runScript('gen_xiaoqu_coords.js');
