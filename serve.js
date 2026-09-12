@@ -62,10 +62,12 @@ const server = http.createServer((req, res) => {
 
   // 一键启动调试 Chrome（用于登录贝壳）
   if (req.method === 'POST' && req.url === '/open-debug-chrome') {
+    // 用 spawn + detached 异步启动，不阻塞 serve（原来的 execFileSync cmd start 会同步阻塞且反斜杠被吃掉）
     try {
-      const { execFileSync } = require('child_process');
+      const { spawn } = require('child_process');
       const chrome = 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe';
-      execFileSync('cmd', ['/c', 'start', '', chrome, '--remote-debugging-port=9222', '--user-data-dir=C:\\beike_profile', 'https://map.ke.com/map/510100/ESF/']);
+      const child = spawn(chrome, ['--remote-debugging-port=9222', '--user-data-dir=C:\\beike_profile', 'https://map.ke.com/map/510100/ESF/'], { detached: true, stdio: 'ignore' });
+      child.unref();
       res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
       res.end(JSON.stringify({ ok: true }));
     } catch (e) {
