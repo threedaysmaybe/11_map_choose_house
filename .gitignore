@@ -8,3 +8,4 @@ data/fetch_landuse.log
 data/fetch_boards.log
 data/fix_shop.log
 .DS_Store
+data/push_result.json
