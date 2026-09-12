@@ -303,9 +303,9 @@ async function screenshotHouseImages(page, subdir) {
             const ctrl = new AbortController();
             const t = setTimeout(() => ctrl.abort(), 8000);
             const resp = await fetch(u, { headers: { Referer: 'https://cd.ke.com/' }, signal: ctrl.signal });
-            clearTimeout(t);
-            if (!resp.ok) return null;
+            if (!resp.ok) { clearTimeout(t); return null; }
             const buf = await resp.arrayBuffer();
+            clearTimeout(t); // body 下载完成后才清除超时，覆盖整个 fetch+下载，避免 arrayBuffer 挂起卡死
             const bytes = new Uint8Array(buf);
             let binary = '';
             const CHUNK = 8192;
