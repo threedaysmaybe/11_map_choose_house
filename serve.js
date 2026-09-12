@@ -243,13 +243,16 @@ const server = http.createServer((req, res) => {
         await runGit(['add', '-A']);
         try { await runGit(['commit', '-m', '更新报告与工具']); } catch (e) { /* 无改动时 commit 失败，忽略 */ }
       } catch (e) {}
+      let hash = '';
+      try { hash = await runGit(['rev-parse', '--short', 'HEAD']); } catch (e) {}
+      const timeStr = new Date().toLocaleString('zh-CN', { hour12: false });
       try {
         await runGit(['push']);
-        result = '✅ 已推送到 GitHub（直连）';
+        result = '✅ 已推送到 GitHub（直连）\n提交 ' + hash + '\n时间 ' + timeStr;
       } catch (e) {
         try {
           await runGit(['-c', 'http.proxy=http://127.0.0.1:1080', '-c', 'https.proxy=http://127.0.0.1:1080', 'push']);
-          result = '✅ 已推送到 GitHub（代理）';
+          result = '✅ 已推送到 GitHub（代理）\n提交 ' + hash + '\n时间 ' + timeStr;
         } catch (e2) {
           result = '❌ 推送失败：' + (e2.message || e.message);
         }
