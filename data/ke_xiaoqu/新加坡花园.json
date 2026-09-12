@@ -1,6 +1,6 @@
 {
   "name": "新加坡花园",
-  "price": "16907",
+  "price": "17221",
   "board": "桐梓林",
   "info": {
     "建筑类型": "板楼/塔板结合",
@@ -62,7 +62,6 @@
     }
   ],
   "images": [
-    "https://ke-image.ljcdn.com/hdic-resblock/5086c05a-dae4-4f33-9eeb-7048e937f591.jpg.710x400.jpg",
     "https://ke-image.ljcdn.com/hdic-resblock/9461d1f5-543c-4bc4-8108-4e9acd11292e.jpg.710x400.jpg",
     "https://ke-image.ljcdn.com/hdic-resblock/d77a59bb-622b-4109-a3f3-6fcf6d41d69f.JPG.710x400.jpg",
     "https://ke-image.ljcdn.com/hdic-resblock/d61fc5cb-57f4-4dba-a0a9-172ded8b5826.JPG.710x400.jpg",
@@ -80,12 +79,13 @@
     "https://ke-image.ljcdn.com/hdic-resblock/2884b496-2d6e-4bee-a63c-3b51eea3a210.jpg.710x400.jpg",
     "https://ke-image.ljcdn.com/hdic-resblock/980557e6-b9d2-4f5e-982c-5f0f32827213.jpg.710x400.jpg",
     "https://ke-image.ljcdn.com/hdic-resblock/643d7c36-3d80-4e7d-aed3-c17966c9b53d.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/5086c05a-dae4-4f33-9eeb-7048e937f591.jpg.710x400.jpg",
     "https://ke-image.ljcdn.com/hdic-resblock/01ef481a-6244-4328-b8b4-1813de88731b.jpg.710x400.jpg",
     "https://ke-image.ljcdn.com/hdic-resblock/844946ac-4426-4980-bba6-0b8334b2c55e.jpg.710x400.jpg",
     "https://ke-image.ljcdn.com/hdic-resblock/a2db3dd0-9509-41d5-8337-e0c2946d4d32.jpg.710x400.jpg",
     "https://ke-image.ljcdn.com/hdic-resblock/f8bd3d70-148a-460b-9fdc-b9edb9c7022f.jpg.710x400.jpg"
   ],
-  "updatedAt": "2026-08-31T16:24:23.572Z",
+  "updatedAt": "2026-09-12T16:12:17.382Z",
   "localImages": [
     "1788193399812-0-xduq.jpg",
     "1788193399823-1-jqk0.jpg",
@@ -130,11 +130,33 @@
     "1788193463799-18-s94x.jpg",
     "1788193463809-19-ilm3.jpg",
     "1788193463818-20-ilwg.jpg",
-    "1788193463827-21-pk8w.jpg"
+    "1788193463827-21-pk8w.jpg",
+    "1789229537394-0-qmvj.jpg",
+    "1789229537405-1-tfa7.JPG",
+    "1789229537417-2-a09q.JPG",
+    "1789229537425-3-q4c6.JPG",
+    "1789229537440-4-eu1x.JPG",
+    "1789229537453-5-is1n.JPG",
+    "1789229537465-6-a3ke.JPG",
+    "1789229537477-7-xp9x.JPG",
+    "1789229537485-8-oacb.JPG",
+    "1789229537492-9-1gg3.JPG",
+    "1789229537503-10-iujj.JPG",
+    "1789229537516-11-ckbj.jpg",
+    "1789229537524-12-htru.JPG",
+    "1789229537534-13-xvph.jpg",
+    "1789229537545-14-8vm0.jpg",
+    "1789229537559-15-tnpv.jpg",
+    "1789229537571-16-17ds.jpg",
+    "1789229537580-17-afqb.jpg",
+    "1789229537588-18-j1u1.jpg",
+    "1789229537597-19-xsph.jpg",
+    "1789229537605-20-51dk.jpg",
+    "1789229537614-21-qm73.jpg"
   ],
   "houses": [
     {
-      "title": "成都武侯桐梓林新加坡花园 3室1厅 北",
+      "title": "成都武侯区桐梓林新加坡花园 3室1厅 北",
       "room": "3室1厅",
       "area": "127.19",
       "taoneiArea": "",
@@ -144,7 +166,7 @@
       "totalFloors": "11",
       "orientation": "北",
       "community": "新加坡花园",
-      "district": "武侯",
+      "district": "武侯区",
       "board": "桐梓林",
       "features": [
         "满五",
@@ -164,23 +186,28 @@
       "sellingPoint": "此房满五唯一，套三双卫，中高楼层，采光佳，对中庭不临街。 小区介绍 开发商：成都信德实业有限公司；物业：成都富力物业有限公司。物业费：每月每平1",
       "fangben": "已上传房本照片",
       "images": [
-        "https://ke-image.ljcdn.com/110000-inspection/17836019350_3y4eBZsRc.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17836019350_hLtRr3Qzc.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
         "https://ke-image.ljcdn.com/110000-inspection/17836019350_hLtRr3Qzc.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
         "https://ke-image.ljcdn.com/110000-inspection/17836019950_qfufo5zML.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
         "https://ke-image.ljcdn.com/hdic-frame/standard_1783601947749.jpeg!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
         "https://ke-image.ljcdn.com/110000-inspection/17836019350_3y4eBZsRc.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
         "https://ke-image.ljcdn.com/110000-inspection/17836019350_yRk1uHe6t.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
-        "https://ke-image.ljcdn.com/110000-inspection/17836019350_hSMhgg967.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+        "https://ke-image.ljcdn.com/110000-inspection/17836019350_hSMhgg967.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17836019350_hLtRr3Qzc.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17836019950_qfufo5zML.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1783601947749.jpeg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17836019350_3y4eBZsRc.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17836019350_yRk1uHe6t.jpg!m_fill,w_120,h_80,f_jpg"
       ],
       "url": "https://cd.ke.com/ershoufang/106128292935.html",
       "houseCode": "106128292935",
       "localImages": [
-        "1788281859500-0-q7so.jpg",
-        "1788281859522-1-93p8.jpg",
-        "1788281859554-2-sb8n.jpeg",
-        "1788281859573-3-0thn.jpg",
-        "1788281859591-4-ezuj.jpg",
-        "1788281859668-5-4ue3.jpg"
+        "1789229525323-0-hmxn.jpg",
+        "1789229525349-1-2t2f.jpg",
+        "1789229525358-2-o8s1.jpeg",
+        "1789229525384-3-vbym.jpg",
+        "1789229525407-4-hzp5.jpg",
+        "1789229525424-5-vcmf.jpg"
       ]
     },
     {
@@ -233,7 +260,7 @@
       ]
     },
     {
-      "title": "成都武侯桐梓林新加坡花园 3室1厅 北 南",
+      "title": "成都武侯区桐梓林新加坡花园 3室1厅 北 南",
       "room": "3室1厅",
       "area": "127.53",
       "taoneiArea": "",
@@ -243,7 +270,7 @@
       "totalFloors": "11",
       "orientation": "北",
       "community": "新加坡花园",
-      "district": "武侯",
+      "district": "武侯区",
       "board": "桐梓林",
       "features": [
         "户型方正",
@@ -269,17 +296,22 @@
         "https://ke-image.ljcdn.com/hdic-frame/standard_1780743072351.jpeg!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
         "https://ke-image.ljcdn.com/110000-inspection/17807430810_4uanHqvpJ.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
         "https://ke-image.ljcdn.com/110000-inspection/17807430810_ulEWN0vuF.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
-        "https://ke-image.ljcdn.com/110000-inspection/17807430810_MpkKJ30BZ.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+        "https://ke-image.ljcdn.com/110000-inspection/17807430810_MpkKJ30BZ.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17807430980_WzidRkqqr.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17807431050_Vvc4bz64d.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1780743072351.jpeg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17807430810_4uanHqvpJ.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17807430810_ulEWN0vuF.jpg!m_fill,w_120,h_80,f_jpg"
       ],
       "url": "https://cd.ke.com/ershoufang/106127850271.html",
       "houseCode": "106127850271",
       "localImages": [
-        "1788281871319-0-rttx.jpg",
-        "1788281871347-1-6i8g.jpg",
-        "1788281871388-2-j9g1.jpeg",
-        "1788281871446-3-nqfl.jpg",
-        "1788281871472-4-u9ym.jpg",
-        "1788281871548-5-z50z.jpg"
+        "1789229537292-0-4j7f.jpg",
+        "1789229537301-1-r3jr.jpg",
+        "1789229537321-2-ia8v.jpeg",
+        "1789229537330-3-sfyg.jpg",
+        "1789229537357-4-sykb.jpg",
+        "1789229537377-5-o1dy.jpg"
       ]
     }
   ],

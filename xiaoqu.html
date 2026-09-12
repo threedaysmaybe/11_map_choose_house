@@ -354,14 +354,15 @@
     });
     return {
       getValue: () => cur.value,
+      setValue: (value, label) => { cur = { value, label: label || value }; valueEl.textContent = label || value; },
       renderOptions: items => { dropEl.innerHTML = items.map(it => `<div class="cs-opt" data-value="${it.value}">${it.label}</div>`).join(''); },
     };
   }
   function closeAllCS() { document.querySelectorAll('.cs-drop').forEach(d => d.style.display = 'none'); }
   document.addEventListener('click', closeAllCS);
 
-  const csDistrict = createCSelect('cs_district_value', 'cs_district_drop', () => renderList());
-  const csBoard = createCSelect('cs_board_value', 'cs_board_drop', () => renderList());
+  const csDistrict = createCSelect('cs_district_value', 'cs_district_drop', () => { localStorage.setItem('xq_district', csDistrict.getValue()); renderList(); });
+  const csBoard = createCSelect('cs_board_value', 'cs_board_drop', () => { localStorage.setItem('xq_board', csBoard.getValue()); renderList(); });
   const csAnzhi = createCSelect('cs_anzhi_value', 'cs_anzhi_drop', () => renderList());
   csAnzhi.renderOptions([
     { value: 'all', label: '🏘️ 全部小区' },
@@ -383,6 +384,9 @@
         window.__distInit = true;
         const districts = [...new Set(raw.map(x => x.district).filter(Boolean))].sort();
         csDistrict.renderOptions([{ value: '', label: '📍 区（全部）' }].concat(districts.map(d => ({ value: d, label: d }))));
+        // 恢复上次选的区（刷新后不丢）
+        const savedDist = localStorage.getItem('xq_district') || '';
+        if (savedDist) csDistrict.setValue(savedDist, savedDist);
       }
       // 板块下拉（当前区的板块）
       const curDist = csDistrict.getValue();
@@ -394,6 +398,10 @@
       }
       boards.sort((a, b) => (a.board || '').localeCompare(b.board || ''));
       csBoard.renderOptions([{ value: '', label: '🏘️ 板块（全部）' }].concat(boards.map(b => ({ value: b.board, label: b.board }))));
+      // 恢复上次选的板块（仅当它还在当前区的板块列表里）
+      const savedBoard = localStorage.getItem('xq_board') || '';
+      if (savedBoard && boards.some(b => b.board === savedBoard)) csBoard.setValue(savedBoard, savedBoard);
+      else csBoard.setValue('', '');
       // 两级过滤 + 安置房
       let list = raw;
       if (curDist) list = list.filter(x => x.district === curDist);

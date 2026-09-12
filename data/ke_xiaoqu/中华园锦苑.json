@@ -1,6 +1,6 @@
 {
   "name": "中华园锦苑",
-  "price": "19263",
+  "price": "19192",
   "board": "桐梓林",
   "info": {
     "建筑类型": "板楼/塔板结合",
@@ -55,7 +55,7 @@
   ],
   "deals": [
     {
-      "建成年份": "暂无信息",
+      "建成年份": "2004年",
       "面积": "143.48平米",
       "签约日期": "2026-07-17",
       "成交价": "230万",
@@ -77,11 +77,11 @@
     }
   ],
   "images": [
-    "https://ke-image.ljcdn.com/hdic-resblock/ff935a89-4c6e-483f-bd37-985696f16c84.jpg.710x400.jpg",
     "https://ke-image.ljcdn.com/hdic-resblock/597aaeae-4df4-40bc-b1ab-832f7cdc12dc.jpg.710x400.jpg",
     "https://ke-image.ljcdn.com/hdic-resblock/4286595d-b00d-4ce6-b9a9-2f0b3e220dd5.jpg.710x400.jpg",
     "https://ke-image.ljcdn.com/hdic-resblock/2ba01b46-93f9-415a-adb7-8627b3ffaa66.jpg.710x400.jpg",
     "https://ke-image.ljcdn.com/hdic-resblock/c14ab8c0-6ad3-4305-b43e-0fd9c1c142d4.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/ff935a89-4c6e-483f-bd37-985696f16c84.jpg.710x400.jpg",
     "https://ke-image.ljcdn.com/hdic-resblock/45a0abfe-322f-4866-a39e-7180b68358e4.jpg.710x400.jpg",
     "https://ke-image.ljcdn.com/hdic-resblock/992db5e3-9155-484f-b2f7-8863a7f27eef.jpg.710x400.jpg",
     "https://ke-image.ljcdn.com/hdic-resblock/2c3d9d16-a15d-4178-8d82-8ba11f5ac38a.jpg.710x400.jpg",
@@ -90,7 +90,7 @@
     "https://ke-image.ljcdn.com/hdic-resblock/a99e9e0a-f9af-45f8-9a32-2a727a2eb596.jpg.710x400.jpg",
     "https://ke-image.ljcdn.com/hdic-resblock/210c0a89-849c-4bbc-9325-c94bc86273c1.jpg.710x400.jpg"
   ],
-  "updatedAt": "2026-08-31T16:28:50.758Z",
+  "updatedAt": "2026-09-12T16:12:05.430Z",
   "localImages": [
     "1788193648160-0-nk76.jpg",
     "1788193648174-1-cf21.jpg",
@@ -115,25 +115,36 @@
     "1788193730840-8-g3jr.jpg",
     "1788193730848-9-s6gl.jpg",
     "1788193730857-10-zkkk.jpg",
-    "1788193730866-11-ubcd.jpg"
+    "1788193730866-11-ubcd.jpg",
+    "1789229525448-0-tgc3.jpg",
+    "1789229525461-1-kwb2.jpg",
+    "1789229525472-2-z081.jpg",
+    "1789229525486-3-a531.jpg",
+    "1789229525496-4-1s36.jpg",
+    "1789229525513-5-5te3.jpg",
+    "1789229525523-6-64sb.jpg",
+    "1789229525533-7-gfnu.jpg",
+    "1789229525543-8-pag5.jpg",
+    "1789229525553-9-ieyg.jpg",
+    "1789229525562-10-gr6q.jpg",
+    "1789229525575-11-4zbn.jpg"
   ],
   "houses": [
     {
-      "title": "成都武侯桐梓林中华园锦苑 3室2厅 北",
+      "title": "成都武侯区桐梓林中华园锦苑 3室2厅 北",
       "room": "3室2厅",
       "area": "133.1",
-      "taoneiArea": null,
+      "taoneiArea": "",
       "totalPrice": "239",
       "unitPrice": "17957",
       "floor": "中",
       "totalFloors": "9",
       "orientation": "北",
       "community": "中华园锦苑",
-      "district": "武侯",
+      "district": "武侯区",
       "board": "桐梓林",
       "features": [
         "满五",
-        "户型方正",
         "精装",
         "电梯"
       ],
@@ -156,35 +167,39 @@
         "https://ke-image.ljcdn.com/hdic-frame/standard_1782391140922.jpeg!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
         "https://ke-image.ljcdn.com/110000-inspection/17823911340_qxR0SrwDC.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
         "https://ke-image.ljcdn.com/110000-inspection/17823911340_emAdKbVbX.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
-        "https://ke-image.ljcdn.com/110000-inspection/17823911340_4wEkJK0GR.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+        "https://ke-image.ljcdn.com/110000-inspection/17823911340_4wEkJK0GR.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17823911340_u6AjB5Dhl.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17823911340_rAydCwSmh.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1782391140922.jpeg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17823911340_qxR0SrwDC.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17823911340_emAdKbVbX.jpg!m_fill,w_120,h_80,f_jpg"
       ],
       "url": "https://cd.ke.com/ershoufang/106127706526.html",
       "houseCode": "106127706526",
       "localImages": [
-        "1788281698492-0-8rcb.jpg",
-        "1788281698510-1-92yv.jpg",
-        "1788281698543-2-0o9n.jpeg",
-        "1788281698567-3-jjq7.jpg",
-        "1788281698589-4-5vg3.jpg",
-        "1788281698607-5-azdn.jpg"
+        "1789229533259-0-x2qq.jpg",
+        "1789229533279-1-044k.jpg",
+        "1789229533297-2-17og.jpeg",
+        "1789229533326-3-2wni.jpg",
+        "1789229533349-4-8c54.jpg",
+        "1789229533371-5-3x8n.jpg"
       ]
     },
     {
-      "title": "成都武侯桐梓林中华园锦苑 3室2厅 北 南",
+      "title": "成都武侯区桐梓林中华园锦苑 3室2厅 北 南",
       "room": "3室2厅",
       "area": "133.1",
-      "taoneiArea": null,
+      "taoneiArea": "",
       "totalPrice": "238",
       "unitPrice": "17882",
       "floor": "中",
       "totalFloors": "9",
       "orientation": "北",
       "community": "中华园锦苑",
-      "district": "武侯",
+      "district": "武侯区",
       "board": "桐梓林",
       "features": [
         "满五",
-        "户型方正",
         "精装",
         "电梯"
       ],
@@ -201,23 +216,28 @@
       "sellingPoint": "此房满五，税费简单，明厨明卫，户型通透，小高层，双阳台 小区介绍 小区是中华园的一期，小区主要产品为别墅，洋房，低密度，高绿化 适宜人群 本房适宜年轻人买来做婚房，近地铁，交通便利，生活配套齐全，小区密度低 税费解析 商品房，个税1",
       "fangben": "已上传房本照片",
       "images": [
-        "https://ke-image.ljcdn.com/hdic-frame/standard_1776423470043.jpeg!m_fill,w_1000,h_750,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17764234780_DhGrT3oXi.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
         "https://ke-image.ljcdn.com/110000-inspection/17764234780_DhGrT3oXi.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
         "https://ke-image.ljcdn.com/110000-inspection/17764235120_QAoaMD16F.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
         "https://ke-image.ljcdn.com/hdic-frame/standard_1776423470043.jpeg!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
         "https://ke-image.ljcdn.com/110000-inspection/17764234780_RitCChKRl.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
         "https://ke-image.ljcdn.com/110000-inspection/17764234780_b65K5RWQi.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
-        "https://ke-image.ljcdn.com/110000-inspection/17764234780_Wj8k9RbnY.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+        "https://ke-image.ljcdn.com/110000-inspection/17764234780_Wj8k9RbnY.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17764234780_DhGrT3oXi.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17764235120_QAoaMD16F.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1776423470043.jpeg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17764234780_RitCChKRl.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17764234780_b65K5RWQi.jpg!m_fill,w_120,h_80,f_jpg"
       ],
       "url": "https://cd.ke.com/ershoufang/106128301437.html",
       "houseCode": "106128301437",
       "localImages": [
-        "1788281703935-0-z10b.jpg",
-        "1788281703956-1-njtd.jpg",
-        "1788281703978-2-715v.jpeg",
-        "1788281704040-3-9yci.jpg",
-        "1788281704059-4-dwyn.jpg",
-        "1788281704078-5-2ye2.jpg"
+        "1789229529271-0-80le.jpg",
+        "1789229529293-1-7vn9.jpg",
+        "1789229529328-2-ith2.jpeg",
+        "1789229529351-3-78oi.jpg",
+        "1789229529373-4-j3wt.jpg",
+        "1789229529396-5-02re.jpg"
       ]
     },
     {

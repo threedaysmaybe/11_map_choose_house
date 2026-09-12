@@ -1,0 +1,205 @@
+{
+  "name": "丽都首府",
+  "price": "24534",
+  "board": "丽都",
+  "info": {
+    "建筑类型": "板楼/塔板结合",
+    "房屋总数": "596户",
+    "楼栋总数": "3栋",
+    "绿化率": "35%",
+    "容积率": "2.38",
+    "交易权属": "商品房",
+    "建成年代": "2016年",
+    "供暖类型": "暂无信息",
+    "用水类型": "民水",
+    "用电类型": "民电",
+    "物业费": "2.55至5元/平米/月",
+    "开发商": "成都朋汇房地产开发有限公司"
+  },
+  "metro": [
+    {
+      "name": "太平园",
+      "distance": "907米",
+      "lines": "地铁10号"
+    },
+    {
+      "name": "高朋大道",
+      "distance": "957米",
+      "lines": "地铁7号"
+    },
+    {
+      "name": "科园",
+      "distance": "1101米",
+      "lines": "地铁5号"
+    },
+    {
+      "name": "九兴大道",
+      "distance": "1108米",
+      "lines": "地铁5号"
+    },
+    {
+      "name": "红牌楼",
+      "distance": "1390米",
+      "lines": "地铁10号"
+    }
+  ],
+  "deals": [
+    {
+      "建成年份": "2016年",
+      "面积": "83.18平米",
+      "签约日期": "2026-06-07",
+      "成交价": "163.3万",
+      "成交单价": "19633元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "109.56平米",
+      "签约日期": "2026-02-07",
+      "成交价": "255万",
+      "成交单价": "23275元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "95.43平米",
+      "签约日期": "2026-01-31",
+      "成交价": "219.1万",
+      "成交单价": "22960元/平"
+    }
+  ],
+  "images": [
+    "https://ke-image.ljcdn.com/hdic-resblock/eabc5c8f-89a4-4314-ac1c-0ed3cd0a341b.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/3c39ae31-8e87-4dcf-a7ce-aabb431ebd83.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/9084d9dc-6b53-4297-81e7-c9b231f704c9.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/f82e17db-5cd2-4196-8f1f-78ce7cc67bee.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/76e46291-023c-4d2a-9f9c-3aa6771df7bd.jpg.710x400.jpg",
+    "https://ke-image.ljcdn.com/hdic-resblock/f1aee389-5fb8-43da-9e25-896aba955341.jpg.710x400.jpg"
+  ],
+  "updatedAt": "2026-09-12T16:06:14.779Z",
+  "localImages": [
+    "1789229174797-0-5cww.jpg",
+    "1789229174815-1-rn9t.jpg",
+    "1789229174829-2-yleq.jpg",
+    "1789229175246-3-zvma.jpg",
+    "1789229175709-4-wz75.jpg",
+    "1789229176135-5-uv8m.jpg"
+  ],
+  "houses": [
+    {
+      "title": "成都武侯区丽都丽都首府 3室2厅 东南",
+      "room": "3室2厅",
+      "area": "105.67",
+      "taoneiArea": null,
+      "totalPrice": "265",
+      "unitPrice": "25079",
+      "floor": "中",
+      "totalFloors": "16",
+      "orientation": "东南",
+      "community": "丽都首府",
+      "district": "武侯区",
+      "board": "丽都",
+      "features": [
+        "满五",
+        "精装",
+        "电梯"
+      ],
+      "tihu": "2梯4户",
+      "structure": "钢混结构",
+      "diya": "无抵押",
+      "chanquan": "共有",
+      "buildingType": "板塔结合",
+      "huxingStructure": "平层",
+      "usage": "普通住宅",
+      "decoration": "精装",
+      "listTime": "2026年07月18日",
+      "lastTrade": "2018年02月06日",
+      "sellingPoint": "精装拎包入住。业主诚心出售，朝南对中庭",
+      "fangben": "已上传房本照片",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/17849898910_Tpqhb6LyA.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17849898910_Tpqhb6LyA.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17849898950_uAvbFcpfL.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1784989873249.jpeg!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17849899050_cEIHcxOwl.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17849899010_pPh3U6aS1.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17849898910_Tpqhb6LyA.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17849898950_uAvbFcpfL.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1784989873249.jpeg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17849899050_cEIHcxOwl.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17849899010_pPh3U6aS1.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1784989873249.jpeg!m_fill,w_240,h_180,l_bk,f_jpg,ls_30"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106128532001.html",
+      "houseCode": "106128532001",
+      "localImages": [
+        "1789229180267-0-5qb3.jpg",
+        "1789229180289-1-wrl0.jpg",
+        "1789229180309-2-fgup.jpeg",
+        "1789229180330-3-n327.jpg",
+        "1789229180368-4-e7go.jpg"
+      ]
+    },
+    {
+      "title": "成都武侯区丽都丽都首府 3室2厅 东北",
+      "room": "3室2厅",
+      "area": "110.29",
+      "taoneiArea": null,
+      "totalPrice": "259",
+      "unitPrice": "23484",
+      "floor": "低",
+      "totalFloors": "18",
+      "orientation": "东北",
+      "community": "丽都首府",
+      "district": "武侯区",
+      "board": "丽都",
+      "features": [
+        "满五",
+        "户型方正",
+        "精装",
+        "电梯"
+      ],
+      "tihu": "2梯4户",
+      "structure": "钢混结构",
+      "diya": "有抵押",
+      "chanquan": "共有",
+      "buildingType": "板塔结合",
+      "huxingStructure": "平层",
+      "usage": "普通住宅",
+      "decoration": "",
+      "listTime": "2026年06月06日",
+      "lastTrade": "2017年09月19日",
+      "sellingPoint": "精装套三，楼层好，保养好，业主诚心卖，小区品质好。 小区介绍 小区环境：小区一共3栋。共做了的景观有",
+      "fangben": "已上传房本照片",
+      "images": [
+        "https://ke-image.ljcdn.com/110000-inspection/17811090040_6vB1YE3nk.jpg!m_fill,w_1000,h_750,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17811090040_6vB1YE3nk.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17811090080_SEGvkCO2i.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1781108971764.jpeg!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17811090250_7hRPvgUqt.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17811090150_txKhLqxK3.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17811090190_xz8dRp5Xq.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17811090040_6vB1YE3nk.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17811090080_SEGvkCO2i.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1781108971764.jpeg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17811090250_7hRPvgUqt.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17811090150_txKhLqxK3.jpg!m_fill,w_120,h_80,f_jpg"
+      ],
+      "url": "https://cd.ke.com/ershoufang/106127937348.html",
+      "houseCode": "106127937348",
+      "localImages": [
+        "1789229184257-0-4hgl.jpg",
+        "1789229184278-1-kdze.jpg",
+        "1789229184289-2-ht8h.jpeg",
+        "1789229184310-3-rmmn.jpg",
+        "1789229184319-4-j645.jpg",
+        "1789229184347-5-g665.jpg"
+      ]
+    }
+  ],
+  "district": "武侯区",
+  "features": [
+    "满五",
+    "精装",
+    "电梯",
+    "户型方正"
+  ]
+}
