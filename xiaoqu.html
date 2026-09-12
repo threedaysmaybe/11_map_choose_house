@@ -1059,11 +1059,11 @@
   document.getElementById('refreshBtn').addEventListener('click', async () => {
     const b = document.getElementById('refreshBtn');
     b.textContent = '🔄 刷新中…';
-    // 先更新 Service Worker，再重载页面，确保拿到最新代码 + 最新数据
+    // 先更新 Service Worker（最多等 3 秒，避免网络慢卡住导致一直「刷新中」），再重载页面
     try {
       if ('serviceWorker' in navigator) {
         const reg = await navigator.serviceWorker.getRegistration();
-        if (reg) await reg.update();
+        if (reg) await Promise.race([reg.update(), new Promise(r => setTimeout(r, 3000))]);
       }
     } catch (e) {}
     location.reload();
