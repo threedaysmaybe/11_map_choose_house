@@ -226,6 +226,53 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // 一键推送报告数据 + 工具代码到 GitHub
+  if (req.method === 'POST' && req.url === '/push-github') {
+    res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8' });
+    res.end(JSON.stringify({ ok: true, msg: '已开始推送...' }));
+    const { execFile } = require('child_process');
+    const runGit = (args) => new Promise((resolve, reject) => {
+      execFile('git', args, { cwd: ROOT, timeout: 120000, maxBuffer: 1024 * 1024 * 20 }, (err, stdout, stderr) => {
+        if (err) reject(new Error((stderr || stdout || err.message).trim()));
+        else resolve((stdout || '').trim());
+      });
+    });
+    (async () => {
+      let result = '';
+      try {
+        await runGit(['add', '-A']);
+        try { await runGit(['commit', '-m', '更新报告与工具']); } catch (e) { /* 无改动时 commit 失败，忽略 */ }
+      } catch (e) {}
+      try {
+        await runGit(['push']);
+        result = '✅ 已推送到 GitHub（直连）';
+      } catch (e) {
+        try {
+          await runGit(['-c', 'http.proxy=http://127.0.0.1:1080', '-c', 'https.proxy=http://127.0.0.1:1080', 'push']);
+          result = '✅ 已推送到 GitHub（代理）';
+        } catch (e2) {
+          result = '❌ 推送失败：' + (e2.message || e.message);
+        }
+      }
+      try { fs.writeFileSync(path.join(ROOT, 'data', 'push_result.json'), JSON.stringify({ result, time: new Date().toISOString() })); } catch (e) {}
+      console.log('[push]', result);
+    })();
+    return;
+  }
+
+  // 查询推送结果（前端轮询用）
+  if (req.method === 'GET' && req.url.split('?')[0] === '/push-result') {
+    try {
+      const d = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'push_result.json'), 'utf8'));
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' });
+      res.end(JSON.stringify({ ok: true, msg: d.result || '（推送中…）' }));
+    } catch (e) {
+      res.writeHead(200, { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' });
+      res.end(JSON.stringify({ ok: true, msg: '（推送中…）' }));
+    }
+    return;
+  }
+
   // 列出已抓取的小区档案
   if (req.url === '/list-xiaoqu') {
     try {

@@ -147,6 +147,7 @@
         <button id="searchBtn" class="res-btn" style="margin-top:6px;width:100%">🔍 搜索并高亮</button>
         <button id="openChromeBtn" class="res-btn" style="margin-top:4px;width:100%">🌐 启动贝壳调试浏览器</button>
         <button id="openXiaoquBtn" class="res-btn" style="margin-top:4px;width:100%">📋 打开独立报告页</button>
+        <button id="pushGithubBtn" class="res-btn" style="margin-top:4px;width:100%">🚀 一键推送报告+工具到 GitHub</button>
       </div>
     
 
@@ -1034,6 +1035,34 @@
     // 打开独立报告页（xiaoqu.html）
     document.getElementById('openXiaoquBtn').addEventListener('click', () => {
       window.open('xiaoqu.html', '_blank');
+    });
+
+    // 一键推送报告+工具到 GitHub
+    document.getElementById('pushGithubBtn').addEventListener('click', () => {
+      const info = document.getElementById('beikeInfo');
+      const btn = document.getElementById('pushGithubBtn');
+      btn.textContent = '🚀 推送中…';
+      info.textContent = '正在推送到 GitHub…';
+      fetch('/push-github', { method: 'POST' })
+        .then(r => r.json())
+        .then(d => { info.textContent = d.ok ? d.msg : ('❌ ' + (d.msg || '推送失败')); })
+        .catch(e => { btn.textContent = '🚀 一键推送报告+工具到 GitHub'; info.textContent = '❌ 推送失败：' + e.message; });
+      // 轮询推送结果
+      let polls = 0;
+      const timer = setInterval(async () => {
+        polls++;
+        try {
+          const rr = await fetch('/push-result?t=' + Date.now());
+          const rd = await rr.json();
+          if (rd.ok && rd.msg && rd.msg !== '（推送中…）') {
+            info.textContent = rd.msg;
+            btn.textContent = '🚀 一键推送报告+工具到 GitHub';
+            clearInterval(timer);
+            return;
+          }
+        } catch (e) {}
+        if (polls > 40) { clearInterval(timer); btn.textContent = '🚀 一键推送报告+工具到 GitHub'; info.textContent = '⚠️ 推送超时，请稍后查看'; }
+      }, 2000);
     });
 
     // 抓取调试 Chrome 当前页的贝壳房源

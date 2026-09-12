@@ -1,7 +1,7 @@
 {
   "houses": [
     {
-      "title": "成都武侯桐梓林桐梓林欧城 3室2厅 南 北 北 南",
+      "title": "成都武侯区桐梓林桐梓林欧城 3室2厅 南 北 北 南",
       "room": "3室2厅",
       "area": "143.76",
       "taoneiArea": "115.72",
@@ -11,10 +11,12 @@
       "totalFloors": "21",
       "orientation": "南",
       "community": "桐梓林欧城",
-      "district": "武侯",
+      "district": "武侯区",
       "board": "桐梓林",
       "features": [
         "满五",
+        "户型方正",
+        "南北通透",
         "精装",
         "电梯"
       ],
@@ -37,17 +39,22 @@
         "https://ke-image.ljcdn.com/hdic-frame/standard_1782477443007.jpeg!m_fill,w_710,h_400,l_bk,f_jpg,ls_50",
         "https://ke-image.ljcdn.com/110000-inspection/17824774510_tsNklFGJD.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
         "https://ke-image.ljcdn.com/110000-inspection/17824774510_ky2lucHkQ.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
-        "https://ke-image.ljcdn.com/110000-inspection/17824774510_vmQ83LCxr.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50"
+        "https://ke-image.ljcdn.com/110000-inspection/17824774510_vmQ83LCxr.jpg!m_fill,w_710,h_400,lg_north_west,lx_0,ly_0,l_fbk,f_jpg,ls_50",
+        "https://ke-image.ljcdn.com/110000-inspection/17824774510_50DIGyFrq.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17824775040_38q09g5Ck.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/hdic-frame/standard_1782477443007.jpeg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17824774510_tsNklFGJD.jpg!m_fill,w_120,h_80,f_jpg",
+        "https://ke-image.ljcdn.com/110000-inspection/17824774510_ky2lucHkQ.jpg!m_fill,w_120,h_80,f_jpg"
       ],
       "url": "https://cd.ke.com/ershoufang/106128179467.html",
       "houseCode": "106128179467",
       "localImages": [
-        "1788281943156-0-9lf4.jpg",
-        "1788281943194-1-w4s4.jpg",
-        "1788281943228-2-2b6d.jpeg",
-        "1788281943272-3-hsy4.jpg",
-        "1788281943334-4-loaq.jpg",
-        "1788281943521-5-24xp.jpg"
+        "1789228460301-0-yylp.jpg",
+        "1789228460324-1-4zsp.jpg",
+        "1789228460342-2-jjsi.jpeg",
+        "1789228460364-3-s7qg.jpg",
+        "1789228460390-4-3q9n.jpg",
+        "1789228460415-5-w87b.jpg"
       ]
     },
     {
@@ -127,7 +134,7 @@
     "户型方正",
     "南北通透"
   ],
-  "price": "23318",
+  "price": "23087",
   "metro": [
     {
       "name": "桐梓林",
@@ -163,24 +170,24 @@
   "deals": [
     {
       "建成年份": "暂无信息",
+      "面积": "179.12平米",
+      "签约日期": "2026-08-08",
+      "成交价": "370万",
+      "成交单价": "20657元/平"
+    },
+    {
+      "建成年份": "暂无信息",
+      "面积": "179.15平米",
+      "签约日期": "2026-08-01",
+      "成交价": "262万",
+      "成交单价": "14625元/平"
+    },
+    {
+      "建成年份": "暂无信息",
       "面积": "88.21平米",
       "签约日期": "2026-07-22",
       "成交价": "161.6万",
       "成交单价": "18320元/平"
-    },
-    {
-      "建成年份": "暂无信息",
-      "面积": "89.85平米",
-      "签约日期": "2026-07-20",
-      "成交价": "170.5万",
-      "成交单价": "18977元/平"
-    },
-    {
-      "建成年份": "暂无信息",
-      "面积": "89.39平米",
-      "签约日期": "2026-07-05",
-      "成交价": "162.6万",
-      "成交单价": "18190元/平"
     }
   ],
   "images": [
@@ -214,7 +221,7 @@
     "https://ke-image.ljcdn.com/hdic-resblock/5d5c2db2-99c9-4271-83e6-ad423508ec0b.JPG.710x400.jpg",
     "https://ke-image.ljcdn.com/hdic-resblock/c739a19c-8930-4d56-adce-d7a23ac4a965.JPG.710x400.jpg"
   ],
-  "updatedAt": "2026-08-31T16:32:46.944Z",
+  "updatedAt": "2026-09-12T15:54:20.423Z",
   "localImages": [
     "1788193922859-0-cc66.jpg",
     "1788193922910-1-djv0.jpg",
@@ -273,6 +280,35 @@
     "1788193967178-25-bwmr.JPG",
     "1788193967191-26-zyjz.jpg",
     "1788193967198-27-xwor.JPG",
-    "1788193967205-28-dja2.JPG"
+    "1788193967205-28-dja2.JPG",
+    "1789228460434-0-brsa.jpg",
+    "1789228460441-1-pv1r.jpg",
+    "1789228460461-2-ingu.jpg",
+    "1789228460473-3-80di.jpg",
+    "1789228460484-4-g0ek.jpg",
+    "1789228460496-5-hshs.jpg",
+    "1789228460508-6-s6k2.jpg",
+    "1789228460516-7-x4b7.jpg",
+    "1789228460529-8-daaj.jpg",
+    "1789228460543-9-4jn0.jpg",
+    "1789228460558-10-16co.jpg",
+    "1789228460569-11-ytlh.jpg",
+    "1789228460579-12-k0zw.jpg",
+    "1789228460588-13-ayct.JPG",
+    "1789228460606-14-53ut.JPG",
+    "1789228460614-15-ss1t.JPG",
+    "1789228460628-16-r748.jpg",
+    "1789228460644-17-12lx.jpg",
+    "1789228460656-18-1lmd.jpg",
+    "1789228460664-19-0c3n.JPG",
+    "1789228460675-20-8i66.JPG",
+    "1789228460684-21-vqqi.JPG",
+    "1789228460693-22-c2lp.JPG",
+    "1789228460706-23-hprr.JPG",
+    "1789228460714-24-mgli.JPG",
+    "1789228460723-25-gc9d.JPG",
+    "1789228460739-26-g273.jpg",
+    "1789228460749-27-87tm.JPG",
+    "1789228460758-28-9xe2.JPG"
   ]
 }

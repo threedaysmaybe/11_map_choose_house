@@ -184,7 +184,7 @@
     {
       "name": "鹭岛国际三期优质",
       "board": "金沙",
-      "district": "金牛",
+      "district": "金牛区",
       "anzhi": false,
       "lon": 104.00808,
       "lat": 30.648644,
@@ -193,16 +193,16 @@
     {
       "name": "鹭岛国际一二期优质",
       "board": "金沙",
-      "district": "金牛",
+      "district": "金牛区",
       "anzhi": false,
-      "lon": null,
-      "lat": null,
+      "lon": 104.009473,
+      "lat": 30.645629,
       "count": 0
     },
     {
       "name": "新界二期优质",
       "board": "金沙",
-      "district": "金牛",
+      "district": "金牛区",
       "anzhi": false,
       "lon": 104.013092,
       "lat": 30.631104,
@@ -211,7 +211,7 @@
     {
       "name": "启明公寓",
       "board": "合江亭",
-      "district": "锦江",
+      "district": "锦江区",
       "anzhi": false,
       "lon": 104.084856,
       "lat": 30.651432,
@@ -220,7 +220,7 @@
     {
       "name": "秀水花园",
       "board": "合江亭",
-      "district": "锦江",
+      "district": "锦江区",
       "anzhi": false,
       "lon": 104.081665,
       "lat": 30.650291,
@@ -229,7 +229,7 @@
     {
       "name": "紫东苑",
       "board": "合江亭",
-      "district": "锦江",
+      "district": "锦江区",
       "anzhi": false,
       "lon": 104.086268,
       "lat": 30.648371,
@@ -238,7 +238,7 @@
     {
       "name": "朝阳名宅",
       "board": "九眼桥",
-      "district": "锦江",
+      "district": "锦江区",
       "anzhi": true,
       "lon": 104.092076,
       "lat": 30.63962,
@@ -247,7 +247,7 @@
     {
       "name": "东方新城一期",
       "board": "九眼桥",
-      "district": "锦江",
+      "district": "锦江区",
       "anzhi": true,
       "lon": 104.140606,
       "lat": 30.633566,
@@ -256,7 +256,7 @@
     {
       "name": "锦府苑二期",
       "board": "莲花",
-      "district": "锦江",
+      "district": "锦江区",
       "anzhi": false,
       "lon": 104.095071,
       "lat": 30.631339,
@@ -265,7 +265,7 @@
     {
       "name": "蜀都花园",
       "board": "水碾河",
-      "district": "锦江",
+      "district": "锦江区",
       "anzhi": true,
       "lon": 104.100518,
       "lat": 30.647391,
@@ -274,7 +274,7 @@
     {
       "name": "海德花苑",
       "board": "川大",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
       "lon": 104.07826,
       "lat": 30.626523,
@@ -283,7 +283,7 @@
     {
       "name": "海会花园",
       "board": "川音",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
       "lon": 104.081847,
       "lat": 30.640466,
@@ -292,7 +292,7 @@
     {
       "name": "红星苑",
       "board": "川音",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": true,
       "lon": 104.073698,
       "lat": 30.645337,
@@ -301,7 +301,7 @@
     {
       "name": "龙江电信公寓",
       "board": "川音",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
       "lon": 104.073834,
       "lat": 30.643995,
@@ -310,7 +310,7 @@
     {
       "name": "城南新贵",
       "board": "航空路",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
       "lon": 104.067871,
       "lat": 30.61679,
@@ -319,7 +319,7 @@
     {
       "name": "翠云庭",
       "board": "航空路",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
       "lon": 104.066276,
       "lat": 30.6199,
@@ -328,25 +328,25 @@
     {
       "name": "航空花园",
       "board": "航空路",
-      "district": "武侯",
+      "district": "武侯区",
+      "anzhi": false,
+      "lon": 104.068883,
+      "lat": 30.61711,
+      "count": 0
+    },
+    {
+      "name": "锦官秀城南区",
+      "board": "航空路",
+      "district": "武侯区",
       "anzhi": false,
       "lon": null,
       "lat": null,
       "count": 0
     },
     {
-      "name": "锦官秀城南区",
-      "board": "航空路",
-      "district": "武侯",
-      "anzhi": false,
-      "lon": 104.0728,
-      "lat": 30.615823,
-      "count": 0
-    },
-    {
       "name": "绿地海珀香庭",
       "board": "红牌楼",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
       "lon": 104.017524,
       "lat": 30.640008,
@@ -355,16 +355,16 @@
     {
       "name": "戎盛苑",
       "board": "红牌楼",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
-      "lon": 104.018069,
-      "lat": 30.638668,
+      "lon": null,
+      "lat": null,
       "count": 0
     },
     {
       "name": "双楠名城二期",
       "board": "红牌楼",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": true,
       "lon": 104.020302,
       "lat": 30.641433,
@@ -373,7 +373,7 @@
     {
       "name": "双楠忆景",
       "board": "红牌楼",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
       "lon": 104.012346,
       "lat": 30.634277,
@@ -382,7 +382,7 @@
     {
       "name": "双楠悦天地",
       "board": "红牌楼",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
       "lon": 104.022032,
       "lat": 30.644017,
@@ -391,7 +391,7 @@
     {
       "name": "新界二期",
       "board": "红牌楼",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
       "lon": 104.012174,
       "lat": 30.631215,
@@ -400,7 +400,7 @@
     {
       "name": "新界三期",
       "board": "红牌楼",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
       "lon": 104.012174,
       "lat": 30.631215,
@@ -409,7 +409,7 @@
     {
       "name": "怡安花园",
       "board": "红牌楼",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": true,
       "lon": 104.008005,
       "lat": 30.636507,
@@ -418,7 +418,7 @@
     {
       "name": "月光诚品",
       "board": "红牌楼",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
       "lon": 104.008851,
       "lat": 30.636574,
@@ -427,7 +427,7 @@
     {
       "name": "中环晓院",
       "board": "红牌楼",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
       "lon": 104.015327,
       "lat": 30.63319,
@@ -436,7 +436,7 @@
     {
       "name": "国嘉南苑一期",
       "board": "华西",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
       "lon": 104.053473,
       "lat": 30.646936,
@@ -445,16 +445,16 @@
     {
       "name": "浆洗街教师公寓",
       "board": "华西",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
-      "lon": null,
-      "lat": null,
+      "lon": 104.055785,
+      "lat": 30.647234,
       "count": 0
     },
     {
       "name": "锦宏阁",
       "board": "华西",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
       "lon": 104.044091,
       "lat": 30.640297,
@@ -463,7 +463,7 @@
     {
       "name": "丽景天成",
       "board": "华西",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
       "lon": 104.054836,
       "lat": 30.637806,
@@ -472,7 +472,7 @@
     {
       "name": "盛锦华庭",
       "board": "华西",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
       "lon": 104.05501,
       "lat": 30.636493,
@@ -481,7 +481,7 @@
     {
       "name": "武侯名园",
       "board": "华西",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
       "lon": 104.04267,
       "lat": 30.6425,
@@ -490,7 +490,7 @@
     {
       "name": "晓天芳苑",
       "board": "华西",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
       "lon": 104.052509,
       "lat": 30.636749,
@@ -499,7 +499,7 @@
     {
       "name": "新气象小区",
       "board": "华西",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
       "lon": 104.062108,
       "lat": 30.64746,
@@ -508,7 +508,7 @@
     {
       "name": "交大归谷国际社区",
       "board": "丽都",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
       "lon": 104.022233,
       "lat": 30.625216,
@@ -517,16 +517,16 @@
     {
       "name": "丽都世家B区",
       "board": "丽都",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
-      "lon": 104.02409,
-      "lat": 30.628001,
+      "lon": null,
+      "lat": null,
       "count": 0
     },
     {
       "name": "风华苑",
       "board": "桐梓林",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
       "lon": 104.056592,
       "lat": 30.615499,
@@ -535,7 +535,7 @@
     {
       "name": "观南上域",
       "board": "桐梓林",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
       "lon": 104.055998,
       "lat": 30.6205,
@@ -544,7 +544,7 @@
     {
       "name": "金地贝福里花园",
       "board": "桐梓林",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
       "lon": 104.057355,
       "lat": 30.616895,
@@ -553,7 +553,7 @@
     {
       "name": "桐梓林欧城",
       "board": "桐梓林",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
       "lon": 104.059285,
       "lat": 30.613107,
@@ -562,7 +562,7 @@
     {
       "name": "新加坡花园",
       "board": "桐梓林",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
       "lon": 104.056474,
       "lat": 30.612641,
@@ -571,7 +571,7 @@
     {
       "name": "中华园锦苑",
       "board": "桐梓林",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
       "lon": 104.061123,
       "lat": 30.619743,
@@ -580,7 +580,7 @@
     {
       "name": "鹭岛国际三期",
       "board": "外双楠",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
       "lon": 104.00808,
       "lat": 30.648644,
@@ -589,16 +589,16 @@
     {
       "name": "鹭岛国际一二期",
       "board": "外双楠",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
-      "lon": null,
-      "lat": null,
+      "lon": 104.009473,
+      "lat": 30.645629,
       "count": 0
     },
     {
       "name": "溢阳绿城",
       "board": "外双楠",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
       "lon": 104.012534,
       "lat": 30.649239,
@@ -607,7 +607,7 @@
     {
       "name": "盘谷花园",
       "board": "棕北",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": true,
       "lon": 104.066672,
       "lat": 30.625941,
@@ -616,7 +616,7 @@
     {
       "name": "盛隆街2号",
       "board": "棕北",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
       "lon": 104.06988,
       "lat": 30.623944,
@@ -625,10 +625,10 @@
     {
       "name": "棕南正街6号",
       "board": "棕北",
-      "district": "武侯",
+      "district": "武侯区",
       "anzhi": false,
-      "lon": null,
-      "lat": null,
+      "lon": 104.072599,
+      "lat": 30.624247,
       "count": 0
     }
   ]
