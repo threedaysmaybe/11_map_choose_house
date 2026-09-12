@@ -1,5 +1,5 @@
 // 成都选房地图 Service Worker
-const CACHE = 'xuanfang-v6';
+const CACHE = 'xuanfang-v7';
 const CORE = [
   './',
   './index.html',
@@ -37,14 +37,16 @@ self.addEventListener('fetch', e => {
     );
     return;
   }
-  // 页面导航 + 数据文件走「网络优先，失败回退缓存」（保证每次打开都是最新）
+  // 页面导航 + 数据文件走「缓存优先 + 后台更新」：先返回缓存（秒开不白屏），后台静默拉最新
   if (e.request.mode === 'navigate' || /\.(json|geojson|pbf)$/.test(url.pathname) || url.pathname.includes('/data/')) {
     e.respondWith(
-      fetch(e.request).then(res => {
-        const copy = res.clone();
-        caches.open(CACHE).then(c => c.put(e.request, copy));
-        return res;
-      }).catch(() => caches.match(e.request))
+      caches.match(e.request).then(cached => {
+        const fetched = fetch(e.request).then(res => {
+          if (res.ok) { const copy = res.clone(); caches.open(CACHE).then(c => c.put(e.request, copy)); }
+          return res;
+        }).catch(() => cached);
+        return cached || fetched;
+      })
     );
     return;
   }
