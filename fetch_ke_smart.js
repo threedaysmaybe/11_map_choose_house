@@ -245,9 +245,9 @@ async function downloadImages(page, urls, subdir) {
           const ctrl = new AbortController();
           const timer = setTimeout(() => ctrl.abort(), 8000);
           const resp = await fetch(url, { headers: { 'Referer': 'https://cd.ke.com/' }, signal: ctrl.signal });
-          clearTimeout(timer);
-          if (!resp.ok) return null;
+          if (!resp.ok) { clearTimeout(timer); return null; }
           const buf = await resp.arrayBuffer();
+          clearTimeout(timer); // body 下载完成后才清除超时，覆盖整个 fetch+下载，避免 arrayBuffer 挂起卡死
           const bytes = new Uint8Array(buf);
           // 分块转 base64（避免逐字节拼接的 O(n²) 性能问题）
           let binary = '';
