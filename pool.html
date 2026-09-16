@@ -47,6 +47,10 @@
   .tag { display: inline-block; background: rgba(139,195,74,0.15); color: #9ccc65; border: 1px solid rgba(139,195,74,0.4); border-radius: 10px; padding: 1px 7px; font-size: 10px; margin: 1px 3px 1px 0; }
   .tag.r { color: #e74c3c; border-color: rgba(231,76,60,0.4); background: rgba(231,76,60,0.12); }
   .tag.y { color: #f0c060; border-color: rgba(240,192,96,0.4); background: rgba(240,192,96,0.12); }
+  /* 手机窄屏：隐藏「对比表格」tab，强制用「完整列表」卡片视图 */
+  @media (max-width: 600px) {
+    #tabTable { display: none; }
+  }
 </style>
 </head>
 <body>
@@ -352,6 +356,14 @@
     document.getElementById('listView').style.display = '';
     document.getElementById('tableView').style.display = 'none';
   });
+
+  // 手机窄屏：默认切到「完整列表」卡片视图（表格列太细不可读）
+  if (window.innerWidth <= 600) {
+    document.getElementById('tabList').classList.add('active');
+    document.getElementById('tabTable').classList.remove('active');
+    document.getElementById('listView').style.display = '';
+    document.getElementById('tableView').style.display = 'none';
+  }
 
   // 手动刷新：清缓存 + 强制重新拉取最新数据
   document.getElementById('refreshBtn').addEventListener('click', async () => {
