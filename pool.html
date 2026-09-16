@@ -51,6 +51,16 @@
   @media (max-width: 600px) {
     #tabTable { display: none; }
   }
+  /* 图片灯箱 */
+  #lightbox { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.92); z-index: 9999; cursor: grab; overflow: hidden; }
+  #lightbox img { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 92vw; height: 92vh; object-fit: contain; user-select: none; -webkit-user-drag: none; }
+  #lightbox img:active { cursor: grabbing; }
+  #lightbox .lb-hint { position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); color: #c9ccd3; font-size: 12px; pointer-events: none; }
+  #lightbox .lb-arrow { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 60px; line-height: 60px; text-align: center; font-size: 34px; color: #fff; background: rgba(255,255,255,0.1); border-radius: 6px; cursor: pointer; user-select: none; z-index: 10; }
+  #lightbox .lb-arrow:hover { background: rgba(255,255,255,0.25); }
+  #lightbox #lbPrev { left: 16px; }
+  #lightbox #lbNext { right: 16px; }
+  #lightbox .lb-count { position: absolute; top: 16px; left: 50%; transform: translateX(-50%); color: #c9ccd3; font-size: 13px; }
 </style>
 </head>
 <body>
@@ -64,6 +74,7 @@
   <div id="tableView"></div>
   <div id="listView" style="display:none"></div>
 </div>
+<div id="lightbox"><img id="lightboxImg" src="" alt=""><div id="lbPrev" class="lb-arrow">‹</div><div id="lbNext" class="lb-arrow">›</div><div class="lb-count" id="lbCount"></div><div class="lb-hint">滚轮缩放 · 按住拖动 · 单击关闭</div></div>
 <script>
   const GITHUB_TOKEN = ['ghp_','w9uOaLY','MjlBSIM','ASAJ5Pz','UvKT31G','JP4E02RP'].join('');
   const GITHUB_REPO = 'threedaysmaybe/11_map_choose_house';
@@ -397,6 +408,61 @@
   });
 
   renderPool();
+
+  // 图片灯箱：点击放大 + 滚轮缩放 + 按住拖动 + 箭头翻页 + 单击关闭
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lightboxImg');
+  let st = { scale: 1, tx: 0, ty: 0, dragging: false, moved: false, sx: 0, sy: 0, startTx: 0, startTy: 0 };
+  function lbApply() { lbImg.style.transform = `translate(calc(-50% + ${st.tx}px), calc(-50% + ${st.ty}px)) scale(${st.scale})`; }
+  let lbSrcs = [], lbIndex = 0;
+  function lbShow() {
+    lbImg.src = lbSrcs[lbIndex];
+    st = { scale: 1, tx: 0, ty: 0, dragging: false, moved: false, sx: 0, sy: 0, startTx: 0, startTy: 0 };
+    lbApply();
+    document.getElementById('lbCount').textContent = (lbIndex + 1) + ' / ' + lbSrcs.length;
+    document.getElementById('lbPrev').style.display = lbIndex > 0 ? 'block' : 'none';
+    document.getElementById('lbNext').style.display = lbIndex < lbSrcs.length - 1 ? 'block' : 'none';
+  }
+  function openLightbox(srcs, index) { lbSrcs = srcs || []; lbIndex = index || 0; lbShow(); lb.style.display = 'block'; }
+  function closeLightbox() { lb.style.display = 'none'; }
+  function lbPrevFn() { if (lbIndex > 0) { lbIndex--; lbShow(); } }
+  function lbNextFn() { if (lbIndex < lbSrcs.length - 1) { lbIndex++; lbShow(); } }
+  document.getElementById('lbPrev').addEventListener('click', e => { e.stopPropagation(); lbPrevFn(); });
+  document.getElementById('lbNext').addEventListener('click', e => { e.stopPropagation(); lbNextFn(); });
+  document.body.addEventListener('click', e => {
+    if (e.target.tagName !== 'IMG') return;
+    if (e.target.closest('#lightbox')) return;
+    const imgs = [...e.target.parentElement.querySelectorAll('img')];
+    const srcs = imgs.map(i => i.src);
+    openLightbox(srcs, srcs.indexOf(e.target.src));
+  });
+  lb.addEventListener('wheel', e => {
+    e.preventDefault();
+    st.scale *= (e.deltaY < 0 ? 1.12 : 0.89);
+    st.scale = Math.max(0.4, Math.min(6, st.scale));
+    lbApply();
+  }, { passive: false });
+  lbImg.addEventListener('mousedown', e => {
+    st.dragging = true; st.moved = false;
+    st.sx = e.clientX; st.sy = e.clientY;
+    st.startTx = st.tx; st.startTy = st.ty;
+    e.preventDefault();
+  });
+  window.addEventListener('mousemove', e => {
+    if (!st.dragging) return;
+    const dx = e.clientX - st.sx, dy = e.clientY - st.sy;
+    if (Math.abs(dx) + Math.abs(dy) > 3) st.moved = true;
+    st.tx = st.startTx + dx; st.ty = st.startTy + dy;
+    lbApply();
+  });
+  window.addEventListener('mouseup', () => { st.dragging = false; });
+  lb.addEventListener('click', e => { if (e.target !== lbImg && !st.moved) closeLightbox(); });
+  lbImg.addEventListener('click', e => { if (!st.moved) closeLightbox(); else st.moved = false; });
+  window.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+    else if (e.key === 'ArrowLeft') lbPrevFn();
+    else if (e.key === 'ArrowRight') lbNextFn();
+  });
 
   // 注册 Service Worker（复用 sw.js，让数据/照片走缓存，加速加载）
   window.addEventListener('load', () => { if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js?v=7').catch(() => {}); });
