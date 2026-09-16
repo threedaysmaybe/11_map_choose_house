@@ -92,6 +92,7 @@
     <h1 id="xqName">小区报告</h1>
     <div class="sub" id="xqSub"></div>
     <button id="downloadImagesBtn" style="display:none;margin-top:6px;background:#2e86de;border:none;border-radius:6px;color:#fff;padding:6px 14px;font-size:13px;cursor:pointer">📥 缓存本小区照片（离线可看）</button>
+    <button id="cacheAllBtn" style="display:inline-block;margin-top:6px;background:#8e44ad;border:none;border-radius:6px;color:#fff;padding:6px 14px;font-size:13px;cursor:pointer">📥 缓存全部小区照片（离线可看）</button>
     <div id="content"></div>
   </div>
   <div id="noteView" style="display:none">
@@ -1052,6 +1053,36 @@
     }
     btn.textContent = '📥 缓存本小区照片（离线可看）';
     alert('已缓存 ' + ok + '/' + imgs.length + ' 张照片，之后打开本小区照片不再加载');
+  });
+  // 一键缓存全部小区照片
+  document.getElementById('cacheAllBtn').addEventListener('click', async () => {
+    const btn = document.getElementById('cacheAllBtn');
+    const list = allFiles || [];
+    if (!list.length) { alert('还没有小区数据，请稍候或点刷新'); return; }
+    if (!confirm('将缓存全部 ' + list.length + ' 个小区的照片（耗时较长，需联网，请保持页面打开），继续？')) return;
+    btn.textContent = '📥 缓存中 0/' + list.length + ' 个小区…';
+    let okXq = 0, okImg = 0, totalImg = 0;
+    for (let i = 0; i < list.length; i++) {
+      const x = list[i];
+      btn.textContent = '📥 缓存中 ' + (i + 1) + '/' + list.length + ' 个小区…';
+      try {
+        const r = await fetch('data/ke_xiaoqu/' + encodeURIComponent(x.name) + '.json');
+        if (!r.ok) continue;
+        const d = await r.json();
+        const base = 'data/ke_xiaoqu/images/' + encodeURIComponent(d.name || x.name) + '/';
+        const urls = [];
+        (d.houses || []).forEach(h => (h.localImages || []).forEach(img => urls.push(base + img)));
+        (d.localImages || []).forEach(img => urls.push(base + img));
+        let okc = 0;
+        for (const u of urls) {
+          try { const rr = await fetch(u); if (rr.ok) okc++; } catch (e) {}
+        }
+        totalImg += urls.length; okImg += okc;
+        if (urls.length) okXq++;
+      } catch (e) {}
+    }
+    btn.textContent = '📥 缓存全部小区照片（离线可看）';
+    alert('完成：缓存 ' + okXq + '/' + list.length + ' 个小区，共 ' + okImg + '/' + totalImg + ' 张照片');
   });
   // 刷新按钮：重新加载列表 + 标签筛选 + 当前小区
   document.getElementById('refreshBtn').addEventListener('click', async () => {
