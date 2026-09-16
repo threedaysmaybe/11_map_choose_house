@@ -92,8 +92,24 @@
     <h1 id="xqName">小区报告</h1>
     <div class="sub" id="xqSub"></div>
     <button id="downloadImagesBtn" style="display:none;margin-top:6px;background:#2e86de;border:none;border-radius:6px;color:#fff;padding:6px 14px;font-size:13px;cursor:pointer">📥 缓存本小区照片（离线可看）</button>
-    <button id="cacheAllBtn" style="display:inline-block;margin-top:6px;background:#8e44ad;border:none;border-radius:6px;color:#fff;padding:6px 14px;font-size:13px;cursor:pointer">📥 缓存全部小区照片（离线可看）</button>
+    <button id="cacheAllBtn" style="display:inline-block;margin-top:6px;background:#8e44ad;border:none;border-radius:6px;color:#fff;padding:6px 14px;font-size:13px;cursor:pointer">📥 缓存照片（自选小区）</button>
     <div id="content"></div>
+    <div id="cacheModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:200;overflow-y:auto">
+      <div style="max-width:520px;margin:40px auto;background:#262a32;border-radius:12px;padding:16px;color:#e8e9ec">
+        <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
+          <span style="font-size:15px;font-weight:bold">📥 选择要缓存照片的小区</span>
+          <span>
+            <button id="cacheAllSel" style="background:#2e86de;border:none;border-radius:6px;color:#fff;padding:4px 10px;font-size:12px;cursor:pointer">全选</button>
+            <button id="cacheNoneSel" style="background:#555;border:none;border-radius:6px;color:#fff;padding:4px 10px;font-size:12px;cursor:pointer;margin-left:4px">全不选</button>
+          </span>
+        </div>
+        <div id="cacheXqList" style="max-height:50vh;overflow-y:auto;margin-bottom:12px"></div>
+        <div style="display:flex;gap:8px">
+          <button id="cacheStartBtn" style="flex:1;background:#8e44ad;border:none;border-radius:8px;color:#fff;padding:10px;font-size:14px;cursor:pointer">开始缓存</button>
+          <button id="cacheCancelBtn" style="background:#555;border:none;border-radius:8px;color:#fff;padding:10px 16px;font-size:14px;cursor:pointer">取消</button>
+        </div>
+      </div>
+    </div>
   </div>
   <div id="noteView" style="display:none">
     <a href="javascript:void(0)" id="noteBack" style="display:inline-block;padding:8px 14px;border-radius:8px;background:#262a32;border:1px solid rgba(255,255,255,0.2);color:#fff;text-decoration:none;font-size:14px;margin:0 0 12px">← 返回报告</a>
@@ -1082,26 +1098,47 @@
     alert('已缓存 ' + ok + '/' + imgs.length + ' 张照片，之后打开本小区照片不再加载');
   });
   // 一键缓存全部小区照片
-  document.getElementById('cacheAllBtn').addEventListener('click', async () => {
-    const btn = document.getElementById('cacheAllBtn');
+  // 缓存照片（自选小区）：弹窗勾选要缓存的小区
+  const cacheModal = document.getElementById('cacheModal');
+  const cacheXqList = document.getElementById('cacheXqList');
+  function renderCacheXqList() {
     const list = allFiles || [];
-    if (!list.length) { alert('还没有小区数据，请稍候或点刷新'); return; }
-    if (!confirm('将缓存全部 ' + list.length + ' 个小区的照片（耗时较长，需联网，请保持页面打开），继续？')) return;
+    cacheXqList.innerHTML = list.map(x =>
+      `<label style="display:flex;align-items:center;padding:6px 8px;border-bottom:1px solid rgba(255,255,255,0.06);font-size:14px"><input type="checkbox" class="cache-xq-cb" value="${x.name}" checked style="margin-right:8px">${x.name}${x.board ? '（' + x.board + '）' : ''}</label>`
+    ).join('');
+  }
+  document.getElementById('cacheAllBtn').addEventListener('click', () => {
+    if (!(allFiles || []).length) { alert('还没有小区数据，请稍候或点刷新'); return; }
+    renderCacheXqList();
+    cacheModal.style.display = 'block';
+  });
+  document.getElementById('cacheAllSel').addEventListener('click', () => {
+    document.querySelectorAll('.cache-xq-cb').forEach(cb => { cb.checked = true; });
+  });
+  document.getElementById('cacheNoneSel').addEventListener('click', () => {
+    document.querySelectorAll('.cache-xq-cb').forEach(cb => { cb.checked = false; });
+  });
+  document.getElementById('cacheCancelBtn').addEventListener('click', () => { cacheModal.style.display = 'none'; });
+  document.getElementById('cacheStartBtn').addEventListener('click', async () => {
+    const checked = [...document.querySelectorAll('.cache-xq-cb:checked')].map(cb => cb.value);
+    if (!checked.length) { alert('请先勾选要缓存的小区'); return; }
+    cacheModal.style.display = 'none';
     cacheAbort = false;
+    const btn = document.getElementById('cacheAllBtn');
     btn.textContent = '📥 收集中…';
-    // 1. 先收集所有照片 URL（小区 json 串行读取，很快）
+    // 1. 收集勾选小区的照片 URL
     const allImgs = [];
-    for (const x of list) {
+    for (const name of checked) {
       try {
-        const r = await fetch('data/ke_xiaoqu/' + encodeURIComponent(x.name) + '.json');
+        const r = await fetch('data/ke_xiaoqu/' + encodeURIComponent(name) + '.json');
         if (!r.ok) continue;
         const d = await r.json();
-        const base = 'data/ke_xiaoqu/images/' + encodeURIComponent(d.name || x.name) + '/';
+        const base = 'data/ke_xiaoqu/images/' + encodeURIComponent(d.name || name) + '/';
         (d.houses || []).forEach(h => (h.localImages || []).forEach(img => allImgs.push(base + img)));
         (d.localImages || []).forEach(img => allImgs.push(base + img));
       } catch (e) {}
     }
-    // 2. 并行下载（20 并发），大幅提速
+    // 2. 并行下载（6 并发）
     const CONCURRENCY = 6;
     let idx = 0, done = 0;
     btn.textContent = '📥 缓存中 0/' + allImgs.length + ' 张…';
@@ -1113,7 +1150,7 @@
       }
     });
     await Promise.all(workers);
-    btn.textContent = '📥 缓存全部小区照片（离线可看）';
+    btn.textContent = '📥 缓存照片（自选小区）';
     alert('完成：缓存 ' + done + '/' + allImgs.length + ' 张照片');
   });
   // 刷新按钮：重新加载列表 + 标签筛选 + 当前小区
