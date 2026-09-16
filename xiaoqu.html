@@ -1125,33 +1125,52 @@
     cacheModal.style.display = 'none';
     cacheAbort = false;
     const btn = document.getElementById('cacheAllBtn');
-    btn.textContent = '📥 收集中…';
-    // 1. 收集勾选小区的照片 URL
-    const allImgs = [];
+    btn.textContent = '📥 对比中…';
+
+    // 已缓存记录：{ [小区]: [照片文件名...] }
+    let record = {};
+    try { record = JSON.parse(localStorage.getItem('img_cache') || '{}'); } catch (e) {}
+
+    const toDownload = []; // 需要下载的新增照片
+    let skipped = 0, deletedCount = 0;
+
     for (const name of checked) {
       try {
         const r = await fetch('data/ke_xiaoqu/' + encodeURIComponent(name) + '.json');
         if (!r.ok) continue;
         const d = await r.json();
         const base = 'data/ke_xiaoqu/images/' + encodeURIComponent(d.name || name) + '/';
-        (d.houses || []).forEach(h => (h.localImages || []).forEach(img => allImgs.push(base + img)));
-        (d.localImages || []).forEach(img => allImgs.push(base + img));
+        const cur = [];
+        (d.houses || []).forEach(h => (h.localImages || []).forEach(img => cur.push(img)));
+        (d.localImages || []).forEach(img => cur.push(img));
+        const prev = record[name] || [];
+        const prevSet = new Set(prev);
+        const curSet = new Set(cur);
+        // 新增：当前有、之前无 → 下载
+        cur.forEach(img => { if (!prevSet.has(img)) toDownload.push(base + img); });
+        // 删除：之前有、当前无 → 记录（不主动删 Cache Storage，只在记录里清掉）
+        prev.forEach(img => { if (!curSet.has(img)) deletedCount++; });
+        // 未变：交集 → 跳过
+        skipped += cur.filter(img => prevSet.has(img)).length;
+        record[name] = cur;
       } catch (e) {}
     }
-    // 2. 并行下载（6 并发）
+    try { localStorage.setItem('img_cache', JSON.stringify(record)); } catch (e) {}
+
+    // 并行下载新增照片
     const CONCURRENCY = 6;
     let idx = 0, done = 0;
-    btn.textContent = '📥 缓存中 0/' + allImgs.length + ' 张…';
+    btn.textContent = '📥 缓存中 0/' + toDownload.length + ' 张（新增）…';
     const workers = Array.from({ length: CONCURRENCY }, async () => {
-      while (idx < allImgs.length && !cacheAbort) {
+      while (idx < toDownload.length && !cacheAbort) {
         const i = idx++;
-        try { const r = await fetch(allImgs[i]); if (r.ok) done++; } catch (e) {}
-        if (done % 20 === 0 || done === allImgs.length) btn.textContent = '📥 缓存中 ' + done + '/' + allImgs.length + ' 张…';
+        try { const r = await fetch(toDownload[i]); if (r.ok) done++; } catch (e) {}
+        if (done % 20 === 0 || done === toDownload.length) btn.textContent = '📥 缓存中 ' + done + '/' + toDownload.length + ' 张…';
       }
     });
     await Promise.all(workers);
     btn.textContent = '📥 缓存照片（自选小区）';
-    alert('完成：缓存 ' + done + '/' + allImgs.length + ' 张照片');
+    alert('完成：新增 ' + done + '/' + toDownload.length + ' 张，跳过 ' + skipped + ' 张（未变），清理 ' + deletedCount + ' 张（已删除）');
   });
   // 刷新按钮：重新加载列表 + 标签筛选 + 当前小区
   document.getElementById('refreshBtn').addEventListener('click', async () => {
