@@ -443,6 +443,17 @@
       }
       xiaoquCoords = list;
       csXq.renderOptions([{ value: '', label: '📂 选择小区查看报告…' }].concat(list.map(x => ({ value: x.name, label: (x.anzhi ? '🔴' : '') + x.name + (x.board ? '（' + (x.district ? x.district + '·' : '') + x.board + '）' : '') }))));
+      // 同步小区下拉与报告：curName 在列表里则显示选中，不在则收起报告
+      if (curName) {
+        if (list.some(x => x.name === curName)) {
+          csXq.setValue(curName, curName);
+        } else {
+          curName = '';
+          csXq.setValue('', '📂 选择小区查看报告…');
+          try { history.replaceState(null, '', location.pathname); } catch (e) {}
+          load('');
+        }
+      }
     } catch (e) {}
   }
   // 初始化：fetch 一次数据，缓存后渲染
@@ -1103,8 +1114,11 @@
   const cacheXqList = document.getElementById('cacheXqList');
   function renderCacheXqList() {
     const list = allFiles || [];
+    let sel = {};
+    try { sel = JSON.parse(localStorage.getItem('img_cache_sel') || '{}'); } catch (e) {}
+    const hasSel = Object.keys(sel).length > 0; // 有记录则按上次勾选，无记录默认全选
     cacheXqList.innerHTML = list.map(x =>
-      `<label style="display:flex;align-items:center;padding:6px 8px;border-bottom:1px solid rgba(255,255,255,0.06);font-size:14px"><input type="checkbox" class="cache-xq-cb" value="${x.name}" checked style="margin-right:8px">${x.name}${x.board ? '（' + x.board + '）' : ''}</label>`
+      `<label style="display:flex;align-items:center;padding:6px 8px;border-bottom:1px solid rgba(255,255,255,0.06);font-size:14px"><input type="checkbox" class="cache-xq-cb" value="${x.name}" ${hasSel ? (sel[x.name] ? 'checked' : '') : 'checked'} style="margin-right:8px">${x.name}${x.board ? '（' + x.board + '）' : ''}</label>`
     ).join('');
   }
   document.getElementById('cacheAllBtn').addEventListener('click', () => {
@@ -1122,6 +1136,12 @@
   document.getElementById('cacheStartBtn').addEventListener('click', async () => {
     const checked = [...document.querySelectorAll('.cache-xq-cb:checked')].map(cb => cb.value);
     if (!checked.length) { alert('请先勾选要缓存的小区'); return; }
+    // 保存勾选状态，下次打开默认勾选上次的
+    try {
+      const sel = {};
+      document.querySelectorAll('.cache-xq-cb').forEach(cb => { sel[cb.value] = cb.checked; });
+      localStorage.setItem('img_cache_sel', JSON.stringify(sel));
+    } catch (e) {}
     cacheModal.style.display = 'none';
     cacheAbort = false;
     const btn = document.getElementById('cacheAllBtn');
