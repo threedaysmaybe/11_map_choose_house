@@ -52,7 +52,7 @@
 <body>
 <div class="wrap">
   <a class="back" href="javascript:history.back()">← 返回</a>
-  <h1>🏠 房源池（<span id="poolCount">0</span> 套）</h1>
+  <h1>🏠 房源池（<span id="poolCount">0</span> 套） <button id="refreshBtn" style="background:#2e86de;border:none;border-radius:6px;color:#fff;padding:4px 12px;font-size:13px;cursor:pointer">🔄 刷新</button></h1>
   <div class="tabs">
     <button id="tabTable" class="active">📊 对比表格</button>
     <button id="tabList">📋 完整列表</button>
@@ -351,6 +351,16 @@
     document.getElementById('tabTable').classList.remove('active');
     document.getElementById('listView').style.display = '';
     document.getElementById('tableView').style.display = 'none';
+  });
+
+  // 手动刷新：清缓存 + 强制重新拉取最新数据
+  document.getElementById('refreshBtn').addEventListener('click', async () => {
+    const b = document.getElementById('refreshBtn');
+    b.textContent = '🔄 刷新中…';
+    _apiCache['data/house_pool.json'] = null;
+    try { localStorage.removeItem('pool_cache'); } catch (e) {}
+    await renderPool();
+    b.textContent = '🔄 刷新';
   });
 
   renderPool();
