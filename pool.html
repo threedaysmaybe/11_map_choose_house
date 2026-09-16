@@ -64,7 +64,9 @@
   const GITHUB_TOKEN = ['ghp_','w9uOaLY','MjlBSIM','ASAJ5Pz','UvKT31G','JP4E02RP'].join('');
   const GITHUB_REPO = 'threedaysmaybe/11_map_choose_house';
 
+  const _apiCache = {};
   async function apiReadJson(path) {
+    if (_apiCache[path]) return _apiCache[path];
     try {
       const r = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/contents/' + path, {
         headers: { Authorization: 'token ' + GITHUB_TOKEN, Accept: 'application/vnd.github.v3+json' },
@@ -72,11 +74,23 @@
       if (r.status === 404) return { json: null, sha: null };
       if (!r.ok) return null;
       const d = await r.json();
-      return { json: JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\s/g, ''))))), sha: d.sha };
+      const result = { json: JSON.parse(decodeURIComponent(escape(atob(d.content.replace(/\s/g, ''))))), sha: d.sha };
+      _apiCache[path] = result;
+      return result;
     } catch (e) { return null; }
   }
   async function readPool() {
+    // 先读 localStorage 缓存（秒开），后台静默拉最新
+    let cached = null;
+    try { cached = localStorage.getItem('pool_cache'); } catch (e) {}
+    if (cached) {
+      apiReadJson('data/house_pool.json').then(res => {
+        if (res && res.json) { try { localStorage.setItem('pool_cache', JSON.stringify(res.json)); } catch (e) {} }
+      }).catch(() => {});
+      try { return { pool: JSON.parse(cached).pool || [], sha: null }; } catch (e) {}
+    }
     const res = await apiReadJson('data/house_pool.json');
+    if (res && res.json) { try { localStorage.setItem('pool_cache', JSON.stringify(res.json)); } catch (e) {} }
     return { pool: (res && res.json && res.json.pool) || [], sha: (res && res.sha) || null };
   }
   async function writePool(pool, sha) {
@@ -90,7 +104,11 @@
       body: JSON.stringify(body),
     });
     if (!r.ok) throw new Error('保存失败 HTTP ' + r.status);
-    return await r.json();
+    const result = await r.json();
+    // 写成功后同步更新本地缓存 + 内存缓存
+    try { localStorage.setItem('pool_cache', JSON.stringify({ pool })); } catch (e) {}
+    _apiCache[path] = { json: { pool }, sha: result.content.sha };
+    return result;
   }
   function derate(x) { return (x.taoneiArea && x.area) ? ((parseFloat(x.taoneiArea) / parseFloat(x.area)) * 100).toFixed(1) + '%' : '—'; }
   function derateRate(x) { return (x.taoneiArea && x.area) ? (parseFloat(x.taoneiArea) / parseFloat(x.area)) * 100 : null; }
@@ -250,10 +268,10 @@
     const emptyHtml = '<div class="empty">（房源池为空，去小区里点「＋ 房源池」加入）</div>';
     if (!pool.length) { document.getElementById('tableView').innerHTML = emptyHtml; document.getElementById('listView').innerHTML = ''; return; }
     const groups = splitGroups(pool);
-    // 统一拉取小区档案 + 房源备注 + 标签 + 小区备注（表格/列表共用）
+    // 统一拉取小区档案 + 房源备注 + 标签 + 小区备注（表格/列表共用），并行加速
     const xqData = {}, noteMap = {}, tagMap = {}, xqNoteMap = {}; // xqNoteMap: { [xiaoqu]: [备注字符串] }
-    for (const g of groups) {
-      try { const r = await fetch('data/ke_xiaoqu/' + encodeURIComponent(g.xiaoqu) + '.json?t=' + Date.now()); xqData[g.xiaoqu] = await r.json(); } catch (e) {}
+    await Promise.all(groups.map(async (g) => {
+      try { const r = await fetch('data/ke_xiaoqu/' + encodeURIComponent(g.xiaoqu) + '.json'); if (r.ok) xqData[g.xiaoqu] = await r.json(); } catch (e) {}
       try {
         const nr = await apiReadJson('data/house_notes/' + encodeURIComponent(g.xiaoqu) + '.json');
         const m = {};
@@ -270,7 +288,7 @@
         const xn = await apiReadJson('data/notes/' + encodeURIComponent(g.xiaoqu) + '.json');
         xqNoteMap[g.xiaoqu] = (xn && xn.json && xn.json.notes) ? xn.json.notes.map(t => t.note) : [];
       } catch (e) {}
-    }
+    }));
     renderTable(groups, noteMap, xqData, xqNoteMap);
     await renderList(groups, noteMap, tagMap, xqData, xqNoteMap);
     bindEvents();
@@ -336,6 +354,9 @@
   });
 
   renderPool();
+
+  // 注册 Service Worker（复用 sw.js，让数据/照片走缓存，加速加载）
+  window.addEventListener('load', () => { if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js?v=7').catch(() => {}); });
 </script>
 </body>
 </html>
