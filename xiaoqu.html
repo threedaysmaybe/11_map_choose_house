@@ -1038,19 +1038,21 @@
       else alert('口令错误');
     }).catch(() => alert('读取配置失败，请稍后再试'));
   });
-  // 一键下载本小区照片（zip）
+  // 一键缓存本小区照片（并行下载，提速）
   document.getElementById('downloadImagesBtn').addEventListener('click', async () => {
     const imgs = window.__curImgs || [];
     if (!imgs.length) { alert('本小区没有照片'); return; }
     const btn = document.getElementById('downloadImagesBtn');
     btn.textContent = '📥 缓存中…';
-    let ok = 0;
-    for (const it of imgs) {
-      try {
-        const r = await fetch(it.url);
-        if (r.ok) ok++;
-      } catch (e) {}
-    }
+    const CONCURRENCY = 20;
+    let idx = 0, ok = 0;
+    const workers = Array.from({ length: CONCURRENCY }, async () => {
+      while (idx < imgs.length) {
+        const i = idx++;
+        try { const r = await fetch(imgs[i].url); if (r.ok) ok++; } catch (e) {}
+      }
+    });
+    await Promise.all(workers);
     btn.textContent = '📥 缓存本小区照片（离线可看）';
     alert('已缓存 ' + ok + '/' + imgs.length + ' 张照片，之后打开本小区照片不再加载');
   });
@@ -1060,29 +1062,33 @@
     const list = allFiles || [];
     if (!list.length) { alert('还没有小区数据，请稍候或点刷新'); return; }
     if (!confirm('将缓存全部 ' + list.length + ' 个小区的照片（耗时较长，需联网，请保持页面打开），继续？')) return;
-    btn.textContent = '📥 缓存中 0/' + list.length + ' 个小区…';
-    let okXq = 0, okImg = 0, totalImg = 0;
-    for (let i = 0; i < list.length; i++) {
-      const x = list[i];
-      btn.textContent = '📥 缓存中 ' + (i + 1) + '/' + list.length + ' 个小区…';
+    btn.textContent = '📥 收集中…';
+    // 1. 先收集所有照片 URL（小区 json 串行读取，很快）
+    const allImgs = [];
+    for (const x of list) {
       try {
         const r = await fetch('data/ke_xiaoqu/' + encodeURIComponent(x.name) + '.json');
         if (!r.ok) continue;
         const d = await r.json();
         const base = 'data/ke_xiaoqu/images/' + encodeURIComponent(d.name || x.name) + '/';
-        const urls = [];
-        (d.houses || []).forEach(h => (h.localImages || []).forEach(img => urls.push(base + img)));
-        (d.localImages || []).forEach(img => urls.push(base + img));
-        let okc = 0;
-        for (const u of urls) {
-          try { const rr = await fetch(u); if (rr.ok) okc++; } catch (e) {}
-        }
-        totalImg += urls.length; okImg += okc;
-        if (urls.length) okXq++;
+        (d.houses || []).forEach(h => (h.localImages || []).forEach(img => allImgs.push(base + img)));
+        (d.localImages || []).forEach(img => allImgs.push(base + img));
       } catch (e) {}
     }
+    // 2. 并行下载（20 并发），大幅提速
+    const CONCURRENCY = 20;
+    let idx = 0, done = 0;
+    btn.textContent = '📥 缓存中 0/' + allImgs.length + ' 张…';
+    const workers = Array.from({ length: CONCURRENCY }, async () => {
+      while (idx < allImgs.length) {
+        const i = idx++;
+        try { const r = await fetch(allImgs[i]); if (r.ok) done++; } catch (e) {}
+        if (done % 20 === 0 || done === allImgs.length) btn.textContent = '📥 缓存中 ' + done + '/' + allImgs.length + ' 张…';
+      }
+    });
+    await Promise.all(workers);
     btn.textContent = '📥 缓存全部小区照片（离线可看）';
-    alert('完成：缓存 ' + okXq + '/' + list.length + ' 个小区，共 ' + okImg + '/' + totalImg + ' 张照片');
+    alert('完成：缓存 ' + done + '/' + allImgs.length + ' 张照片');
   });
   // 刷新按钮：重新加载列表 + 标签筛选 + 当前小区
   document.getElementById('refreshBtn').addEventListener('click', async () => {
