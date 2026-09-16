@@ -272,9 +272,14 @@
     const emptyHtml = '<div class="empty">（房源池为空，去小区里点「＋ 房源池」加入）</div>';
     if (!pool.length) { document.getElementById('tableView').innerHTML = emptyHtml; document.getElementById('listView').innerHTML = ''; return; }
     const groups = splitGroups(pool);
-    // 统一拉取小区档案 + 房源备注 + 标签 + 小区备注（表格/列表共用），并行加速
-    const xqData = {}, noteMap = {}, tagMap = {}, xqNoteMap = {}; // xqNoteMap: { [xiaoqu]: [备注字符串] }
-    await Promise.all(groups.map(async (g) => {
+
+    // 读一个小区的数据（useCache：优先读 localStorage 缓存，缓存命中就不发请求）
+    async function loadOne(g, useCache) {
+      const ck = 'pool_xq_' + g.xiaoqu;
+      if (useCache) {
+        try { const c = JSON.parse(localStorage.getItem(ck)); if (c) return c; } catch (e) {}
+      }
+      const xqData = {}, noteMap = {}, tagMap = {}, xqNotes = [];
       try { const r = await fetch('data/ke_xiaoqu/' + encodeURIComponent(g.xiaoqu) + '.json'); if (r.ok) xqData[g.xiaoqu] = await r.json(); } catch (e) {}
       try {
         const nr = await apiReadJson('data/house_notes/' + encodeURIComponent(g.xiaoqu) + '.json');
@@ -290,11 +295,30 @@
       } catch (e) {}
       try {
         const xn = await apiReadJson('data/notes/' + encodeURIComponent(g.xiaoqu) + '.json');
-        xqNoteMap[g.xiaoqu] = (xn && xn.json && xn.json.notes) ? xn.json.notes.map(t => t.note) : [];
+        xqNotes.push(...((xn && xn.json && xn.json.notes) ? xn.json.notes.map(t => t.note) : []));
       } catch (e) {}
-    }));
-    renderTable(groups, noteMap, xqData, xqNoteMap);
-    await renderList(groups, noteMap, tagMap, xqData, xqNoteMap);
+      const result = { xqData: xqData[g.xiaoqu] || {}, noteMap: noteMap[g.xiaoqu] || {}, tagMap: tagMap[g.xiaoqu] || {}, xqNotes };
+      try { localStorage.setItem(ck, JSON.stringify(result)); } catch (e) {}
+      return result;
+    }
+    function merge(arr) {
+      const xqData = {}, noteMap = {}, tagMap = {}, xqNoteMap = {};
+      groups.forEach((g, i) => {
+        const c = arr[i];
+        xqData[g.xiaoqu] = c.xqData; noteMap[g.xiaoqu] = c.noteMap; tagMap[g.xiaoqu] = c.tagMap; xqNoteMap[g.xiaoqu] = c.xqNotes;
+      });
+      return { xqData, noteMap, tagMap, xqNoteMap };
+    }
+
+    // 先读缓存立即渲染（秒开），再后台拉最新重渲染（数据自动更新）
+    const cached = merge(await Promise.all(groups.map(g => loadOne(g, true))));
+    renderTable(groups, cached.noteMap, cached.xqData, cached.xqNoteMap);
+    await renderList(groups, cached.noteMap, cached.tagMap, cached.xqData, cached.xqNoteMap);
+    bindEvents();
+
+    const fresh = merge(await Promise.all(groups.map(g => loadOne(g, false))));
+    renderTable(groups, fresh.noteMap, fresh.xqData, fresh.xqNoteMap);
+    await renderList(groups, fresh.noteMap, fresh.tagMap, fresh.xqData, fresh.xqNoteMap);
     bindEvents();
   }
 
