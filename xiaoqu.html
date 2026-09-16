@@ -1127,12 +1127,13 @@
     const btn = document.getElementById('cacheAllBtn');
     btn.textContent = '📥 对比中…';
 
-    // 已缓存记录：{ [小区]: [照片文件名...] }
+    // 已缓存记录：{ [小区]: { [照片文件名]: 大小(字节) } }
     let record = {};
     try { record = JSON.parse(localStorage.getItem('img_cache') || '{}'); } catch (e) {}
 
-    const toDownload = []; // 需要下载的新增照片
-    let skipped = 0, deletedCount = 0;
+    const toDownload = []; // 需要下载的（新增 + 大小变化）{ url, xq, img }
+    const pending = {};    // 每个小区对比后的新记录（未变先保留，下载后补大小）
+    let skipped = 0, deletedCount = 0, updatedCount = 0;
 
     for (const name of checked) {
       try {
@@ -1143,34 +1144,58 @@
         const cur = [];
         (d.houses || []).forEach(h => (h.localImages || []).forEach(img => cur.push(img)));
         (d.localImages || []).forEach(img => cur.push(img));
-        const prev = record[name] || [];
-        const prevSet = new Set(prev);
+        const prev = record[name] || {};
         const curSet = new Set(cur);
-        // 新增：当前有、之前无 → 下载
-        cur.forEach(img => { if (!prevSet.has(img)) toDownload.push(base + img); });
-        // 删除：之前有、当前无 → 记录（不主动删 Cache Storage，只在记录里清掉）
-        prev.forEach(img => { if (!curSet.has(img)) deletedCount++; });
-        // 未变：交集 → 跳过
-        skipped += cur.filter(img => prevSet.has(img)).length;
-        record[name] = cur;
+        pending[name] = {};
+        for (const img of cur) {
+          const url = base + img;
+          const had = prev[img];
+          if (had === undefined) {
+            // 本地无记录 → 新增，下载
+            toDownload.push({ url, xq: name, img });
+          } else {
+            // 本地有记录 → HEAD 对比大小（双向判断）
+            let same = false;
+            try {
+              const hr = await fetch(url, { method: 'HEAD' });
+              const latest = hr.headers.get('Content-Length');
+              if (latest && String(had) === String(latest)) same = true;
+            } catch (e) {}
+            if (same) { skipped++; pending[name][img] = had; }
+            else { updatedCount++; toDownload.push({ url, xq: name, img }); }
+          }
+        }
+        // 删除：本地有、当前无 → 清理
+        for (const img of Object.keys(prev)) if (!curSet.has(img)) deletedCount++;
       } catch (e) {}
     }
-    try { localStorage.setItem('img_cache', JSON.stringify(record)); } catch (e) {}
 
-    // 并行下载新增照片
+    // 并行下载（新增 + 更新），下载时记录最新大小
     const CONCURRENCY = 6;
     let idx = 0, done = 0;
-    btn.textContent = '📥 缓存中 0/' + toDownload.length + ' 张（新增）…';
+    btn.textContent = '📥 缓存中 0/' + toDownload.length + ' 张…';
     const workers = Array.from({ length: CONCURRENCY }, async () => {
       while (idx < toDownload.length && !cacheAbort) {
-        const i = idx++;
-        try { const r = await fetch(toDownload[i]); if (r.ok) done++; } catch (e) {}
+        const it = toDownload[idx++];
+        try {
+          const r = await fetch(it.url);
+          if (r.ok) {
+            done++;
+            const size = r.headers.get('Content-Length') || '';
+            pending[it.xq] = pending[it.xq] || {};
+            pending[it.xq][it.img] = size;
+          }
+        } catch (e) {}
         if (done % 20 === 0 || done === toDownload.length) btn.textContent = '📥 缓存中 ' + done + '/' + toDownload.length + ' 张…';
       }
     });
     await Promise.all(workers);
+
+    // 保存新记录（保留未变 + 下载成功的，删除的已自然移除）
+    try { localStorage.setItem('img_cache', JSON.stringify(pending)); } catch (e) {}
+
     btn.textContent = '📥 缓存照片（自选小区）';
-    alert('完成：新增 ' + done + '/' + toDownload.length + ' 张，跳过 ' + skipped + ' 张（未变），清理 ' + deletedCount + ' 张（已删除）');
+    alert('完成：新增+更新 ' + done + '/' + toDownload.length + ' 张，跳过 ' + skipped + ' 张（未变），更新 ' + updatedCount + ' 张，清理 ' + deletedCount + ' 张（已删除）');
   });
   // 刷新按钮：重新加载列表 + 标签筛选 + 当前小区
   document.getElementById('refreshBtn').addEventListener('click', async () => {
