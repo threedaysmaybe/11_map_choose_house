@@ -337,6 +337,7 @@
   let xiaoquCoords = [];
   let allFiles = []; // 缓存的小区列表（避免每次 change 都异步 fetch 导致下拉被关）
   let cacheAbort = false; // 缓存任务中断标志（切小区时置 true 取消缓存，避免卡住）
+  let loadSeq = 0; // load 序号：快速切小区时丢弃过期的 load 结果，避免「切不回来」
   // 同步渲染下拉（基于已缓存的数据，change 后立即完成，不会有异步窗口）
   // 自定义下拉组件（div 模拟，绕开 iOS 原生 select 的「闪现关闭」bug）
   function createCSelect(valueId, dropId, onChange) {
@@ -515,6 +516,7 @@
 
   async function load(n, presetD) {
     if (!n) { document.getElementById('content').innerHTML = '<div class="card">请在上方选择小区查看报告</div>'; document.getElementById('xqName').textContent = '小区报告'; document.getElementById('xqSub').textContent = ''; return; }
+    const mySeq = ++loadSeq; // 本次 load 的序号，用于丢弃过期结果
     let d;
     if (presetD) { d = presetD; }
     else {
@@ -532,6 +534,7 @@
         return;
       }
       clearTimeout(timer);
+      if (mySeq !== loadSeq) return; // 已切到别的小区，丢弃
       if (!r.ok) {
         document.getElementById('content').innerHTML = '<div class="card">该小区档案不存在（可能已删除），请重新选择小区</div>';
         document.getElementById('xqName').textContent = '小区报告';
@@ -545,12 +548,14 @@
     // 加载云端标签（个人隔离）
     cloudTagMap = {};
     const tagRes = await ghReadTags(n);
+    if (mySeq !== loadSeq) return; // 已切到别的小区，丢弃
     for (const t of tagRes.tags) {
       (cloudTagMap[t.houseCode] = cloudTagMap[t.houseCode] || []).push(t);
     }
     // 加载云端房源备注
     houseNoteMap = {};
     const hnRes = await ghReadHouseNotes(n);
+    if (mySeq !== loadSeq) return; // 已切到别的小区，丢弃
     for (const t of hnRes.notes) {
       (houseNoteMap[t.houseCode] = houseNoteMap[t.houseCode] || []).push(t);
     }
