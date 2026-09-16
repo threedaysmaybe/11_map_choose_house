@@ -131,9 +131,13 @@
   // 用 api 读 JSON（实时，拿 sha），返回 { json, sha } 或 null
   async function apiReadJson(path) {
     try {
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), 10000);
       const r = await fetch('https://api.github.com/repos/' + GITHUB_REPO + '/contents/' + path, {
         headers: { Authorization: 'token ' + GITHUB_TOKEN, Accept: 'application/vnd.github.v3+json' },
+        signal: ctrl.signal,
       });
+      clearTimeout(timer);
       if (r.status === 404) return { json: null, sha: null };
       if (!r.ok) return null;
       const d = await r.json();
@@ -332,6 +336,7 @@
 
   let xiaoquCoords = [];
   let allFiles = []; // 缓存的小区列表（避免每次 change 都异步 fetch 导致下拉被关）
+  let cacheAbort = false; // 缓存任务中断标志（切小区时置 true 取消缓存，避免卡住）
   // 同步渲染下拉（基于已缓存的数据，change 后立即完成，不会有异步窗口）
   // 自定义下拉组件（div 模拟，绕开 iOS 原生 select 的「闪现关闭」bug）
   function createCSelect(valueId, dropId, onChange) {
@@ -370,6 +375,7 @@
     { value: 'only', label: '🔴 仅安置房' },
   ]);
   const csXq = createCSelect('cs_xq_value', 'cs_xq_drop', n => {
+    cacheAbort = true; // 切小区时取消正在跑的缓存任务，避免占用连接导致切换卡住
     if (!n) { load(''); return; }
     history.replaceState(null, '', '?name=' + encodeURIComponent(n));
     load(n);
@@ -512,7 +518,20 @@
     let d;
     if (presetD) { d = presetD; }
     else {
-      const r = await fetch('data/ke_xiaoqu/' + encodeURIComponent(n) + '.json');
+      // 加超时保护，避免网络卡住导致一直白屏
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), 10000);
+      let r;
+      try {
+        r = await fetch('data/ke_xiaoqu/' + encodeURIComponent(n) + '.json', { signal: ctrl.signal });
+      } catch (e) {
+        clearTimeout(timer);
+        document.getElementById('content').innerHTML = '<div class="card">加载超时，请重试或点刷新</div>';
+        document.getElementById('xqName').textContent = '小区报告';
+        document.getElementById('xqSub').textContent = '';
+        return;
+      }
+      clearTimeout(timer);
       if (!r.ok) {
         document.getElementById('content').innerHTML = '<div class="card">该小区档案不存在（可能已删除），请重新选择小区</div>';
         document.getElementById('xqName').textContent = '小区报告';
@@ -1044,10 +1063,11 @@
     if (!imgs.length) { alert('本小区没有照片'); return; }
     const btn = document.getElementById('downloadImagesBtn');
     btn.textContent = '📥 缓存中…';
-    const CONCURRENCY = 20;
+    cacheAbort = false;
+    const CONCURRENCY = 6;
     let idx = 0, ok = 0;
     const workers = Array.from({ length: CONCURRENCY }, async () => {
-      while (idx < imgs.length) {
+      while (idx < imgs.length && !cacheAbort) {
         const i = idx++;
         try { const r = await fetch(imgs[i].url); if (r.ok) ok++; } catch (e) {}
       }
@@ -1062,6 +1082,7 @@
     const list = allFiles || [];
     if (!list.length) { alert('还没有小区数据，请稍候或点刷新'); return; }
     if (!confirm('将缓存全部 ' + list.length + ' 个小区的照片（耗时较长，需联网，请保持页面打开），继续？')) return;
+    cacheAbort = false;
     btn.textContent = '📥 收集中…';
     // 1. 先收集所有照片 URL（小区 json 串行读取，很快）
     const allImgs = [];
@@ -1076,11 +1097,11 @@
       } catch (e) {}
     }
     // 2. 并行下载（20 并发），大幅提速
-    const CONCURRENCY = 20;
+    const CONCURRENCY = 6;
     let idx = 0, done = 0;
     btn.textContent = '📥 缓存中 0/' + allImgs.length + ' 张…';
     const workers = Array.from({ length: CONCURRENCY }, async () => {
-      while (idx < allImgs.length) {
+      while (idx < allImgs.length && !cacheAbort) {
         const i = idx++;
         try { const r = await fetch(allImgs[i]); if (r.ok) done++; } catch (e) {}
         if (done % 20 === 0 || done === allImgs.length) btn.textContent = '📥 缓存中 ' + done + '/' + allImgs.length + ' 张…';
