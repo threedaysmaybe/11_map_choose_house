@@ -56,7 +56,7 @@
 <body>
 <div class="wrap">
   <a class="back" href="javascript:history.back()">← 返回</a>
-  <h1>🏠 房源池（<span id="poolCount">0</span> 套） <button id="refreshBtn" style="background:#2e86de;border:none;border-radius:6px;color:#fff;padding:4px 12px;font-size:13px;cursor:pointer">🔄 刷新</button></h1>
+  <h1>🏠 房源池（<span id="poolCount">0</span> 套） <button id="refreshBtn" style="background:#2e86de;border:none;border-radius:6px;color:#fff;padding:4px 12px;font-size:13px;cursor:pointer">📥 缓存最新数据</button></h1>
   <div class="tabs">
     <button id="tabTable" class="active">📊 对比表格</button>
     <button id="tabList">📋 完整列表</button>
@@ -266,17 +266,17 @@
     area.innerHTML = html;
   }
 
-  async function renderPool() {
+  async function renderPool(force) {
     const { pool } = await readPool();
     document.getElementById('poolCount').textContent = pool.length;
     const emptyHtml = '<div class="empty">（房源池为空，去小区里点「＋ 房源池」加入）</div>';
     if (!pool.length) { document.getElementById('tableView').innerHTML = emptyHtml; document.getElementById('listView').innerHTML = ''; return; }
     const groups = splitGroups(pool);
 
-    // 读一个小区的数据（useCache：优先读 localStorage 缓存，缓存命中就不发请求）
-    async function loadOne(g, useCache) {
+    // 读一个小区的数据：force=true 强制拉最新，否则优先读本地缓存（命中就不发请求）
+    async function loadOne(g) {
       const ck = 'pool_xq_' + g.xiaoqu;
-      if (useCache) {
+      if (!force) {
         try { const c = JSON.parse(localStorage.getItem(ck)); if (c) return c; } catch (e) {}
       }
       const xqData = {}, noteMap = {}, tagMap = {}, xqNotes = [];
@@ -310,15 +310,9 @@
       return { xqData, noteMap, tagMap, xqNoteMap };
     }
 
-    // 先读缓存立即渲染（秒开），再后台拉最新重渲染（数据自动更新）
-    const cached = merge(await Promise.all(groups.map(g => loadOne(g, true))));
-    renderTable(groups, cached.noteMap, cached.xqData, cached.xqNoteMap);
-    await renderList(groups, cached.noteMap, cached.tagMap, cached.xqData, cached.xqNoteMap);
-    bindEvents();
-
-    const fresh = merge(await Promise.all(groups.map(g => loadOne(g, false))));
-    renderTable(groups, fresh.noteMap, fresh.xqData, fresh.xqNoteMap);
-    await renderList(groups, fresh.noteMap, fresh.tagMap, fresh.xqData, fresh.xqNoteMap);
+    const data = merge(await Promise.all(groups.map(g => loadOne(g))));
+    renderTable(groups, data.noteMap, data.xqData, data.xqNoteMap);
+    await renderList(groups, data.noteMap, data.tagMap, data.xqData, data.xqNoteMap);
     bindEvents();
   }
 
@@ -389,14 +383,17 @@
     document.getElementById('tableView').style.display = 'none';
   }
 
-  // 手动刷新：清缓存 + 强制重新拉取最新数据
+  // 缓存最新数据：清掉所有本地缓存 + 强制重新拉取最新并缓存
   document.getElementById('refreshBtn').addEventListener('click', async () => {
     const b = document.getElementById('refreshBtn');
-    b.textContent = '🔄 刷新中…';
+    b.textContent = '📥 缓存中…';
     _apiCache['data/house_pool.json'] = null;
-    try { localStorage.removeItem('pool_cache'); } catch (e) {}
-    await renderPool();
-    b.textContent = '🔄 刷新';
+    try {
+      localStorage.removeItem('pool_cache');
+      Object.keys(localStorage).filter(k => k.indexOf('pool_xq_') === 0).forEach(k => localStorage.removeItem(k));
+    } catch (e) {}
+    await renderPool(true);
+    b.textContent = '📥 缓存最新数据';
   });
 
   renderPool();
