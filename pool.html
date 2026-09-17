@@ -82,6 +82,7 @@
 <script>
   const GITHUB_TOKEN = ['ghp_','w9uOaLY','MjlBSIM','ASAJ5Pz','UvKT31G','JP4E02RP'].join('');
   const GITHUB_REPO = 'threedaysmaybe/11_map_choose_house';
+  let commuteData = {}; // 通勤数据 { [小区]: { [目的地]: {driveDist, driveTime, transitTime} } }
 
   const _apiCache = {};
   async function apiReadJson(path) {
@@ -188,7 +189,7 @@
   // 小区对比表格：行=小区，列=指标（红黄绿标色）
   function renderCommunityTable(groups, xqData) {
     const area = document.getElementById('communityView');
-    const cols = ['小区', '均价', '容积率', '梯户比', '绿化率', '建成年代', '地铁', '建筑类型', '权属', '物业费', '最近成交', '房源特征'];
+    const cols = ['小区', '均价', '容积率', '梯户比', '绿化率', '建成年代', '地铁', '建筑类型', '权属', '物业费', '最近成交', '房源特征', '通勤'];
     let html = '<div class="tbl-wrap tbl-community"><table><thead><tr>' + cols.map(c => `<th>${c}</th>`).join('') + '</tr></thead><tbody>';
     groups.forEach((g) => {
       const d = xqData[g.xiaoqu] || {};
@@ -213,6 +214,18 @@
       houses.forEach(h => (h.features || []).forEach(f => featSet.add(f)));
       const tihuSet = new Set();
       houses.forEach(h => { if (h.tihu) tihuSet.add(h.tihu); });
+      // 通勤（4 目的地：驾车距离 + 公交最短时间）
+      let commuteCell = '—';
+      const cm = commuteData[g.xiaoqu];
+      if (cm) {
+        commuteCell = ['春熙路', '大悦城', '万象城', '联发科技'].map(dn => {
+          const x = cm[dn];
+          if (!x) return `<div>${dn} —</div>`;
+          const driveKm = (x.driveDist / 1000).toFixed(1) + 'km';
+          const transitMin = Math.round(x.transitTime / 60) + '分';
+          return `<div>${dn} 🚗${driveKm} 🚌${transitMin}</div>`;
+        }).join('');
+      }
       html += '<tr>';
       html += `<td><a class="xg" href="xiaoqu.html?name=${encodeURIComponent(g.xiaoqu)}" target="_blank">${g.xiaoqu}</a></td>`;
       html += `<td>${d.price ? d.price + '元' : '—'}</td>`;
@@ -226,6 +239,7 @@
       html += `<td>${info['物业费'] || '—'}</td>`;
       html += `<td class="wrap">${dealsHtml}</td>`;
       html += `<td class="wrap">${[...featSet].slice(0, 8).join(' · ') || '—'}</td>`;
+      html += `<td class="wrap">${commuteCell}</td>`;
       html += '</tr>';
     });
     html += '</tbody></table></div>';
@@ -330,6 +344,15 @@
 
   async function renderPool(force) {
     const { pool } = await readPool();
+    // 加载通勤数据（localStorage 缓存优先，后台静默更新）
+    let commuteCached = null;
+    try { commuteCached = localStorage.getItem('commute_cache'); } catch (e) {}
+    if (commuteCached) {
+      try { commuteData = JSON.parse(commuteCached); } catch (e) { commuteData = {}; }
+      fetch('data/commute.json').then(r => r.json()).then(d => { commuteData = d; try { localStorage.setItem('commute_cache', JSON.stringify(d)); } catch (e) {} }).catch(() => {});
+    } else {
+      try { const cr = await fetch('data/commute.json'); if (cr.ok) { commuteData = await cr.json(); try { localStorage.setItem('commute_cache', JSON.stringify(commuteData)); } catch (e) {} } } catch (e) {}
+    }
     document.getElementById('poolCount').textContent = pool.length;
     const emptyHtml = '<div class="empty">（房源池为空，去小区里点「＋ 房源池」加入）</div>';
     if (!pool.length) { document.getElementById('tableView').innerHTML = emptyHtml; document.getElementById('listView').innerHTML = ''; return; }
