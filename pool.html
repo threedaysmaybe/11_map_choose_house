@@ -194,13 +194,10 @@
       const houses = d.houses || [];
       const metro = d.metro || [];
       const deals = d.deals || [];
-      // 地铁：1km 内最近 3 个；最近的不在 1km 内则只列 1 个
+      // 地铁：列出最近的 3 个站（metro 已按距离升序）
       let metroHtml = '—';
       if (metro.length) {
-        const parsed = metro.map(m => ({ ...m, dist: parseInt(m.distance) || 99999 }));
-        const within = parsed.filter(m => m.dist <= 1000);
-        const list = within.length ? within.slice(0, 3) : parsed.slice(0, 1);
-        metroHtml = list.map(m => `<div>${m.name} ${m.distance}${m.lines ? ' · ' + m.lines : ''}</div>`).join('');
+        metroHtml = metro.slice(0, 3).map(m => `<div>${m.name} ${m.distance}${m.lines ? ' · ' + m.lines : ''}</div>`).join('');
       }
       // 最近成交 3 条：面积 + 总价 + 单价 + 完整日期（含年份）
       const dealsHtml = deals.slice(0, 3).map(x => {
