@@ -186,7 +186,7 @@
   // 小区对比表格：行=小区，列=指标（红黄绿标色）
   function renderCommunityTable(groups, xqData) {
     const area = document.getElementById('communityView');
-    const cols = ['小区', '均价', '容积率', '绿化率', '建成年代', '地铁', '建筑类型', '水电', '权属', '物业费', '最近成交', '房源特征', '梯户比'];
+    const cols = ['小区', '均价', '容积率', '梯户比', '绿化率', '建成年代', '地铁', '建筑类型', '水电', '权属', '物业费', '最近成交', '房源特征'];
     let html = '<div class="tbl-wrap"><table><thead><tr>' + cols.map(c => `<th>${c}</th>`).join('') + '</tr></thead><tbody>';
     groups.forEach((g) => {
       const d = xqData[g.xiaoqu] || {};
@@ -197,7 +197,12 @@
       const nearestMetro = metro.length ? `${metro[0].name} ${metro[0].distance}` : '—';
       const water = info['用水类型'] || '—';
       const elec = info['用电类型'] || '—';
-      const latestDeal = deals.length ? `${deals[0].成交价 || ''} ${deals[0].签约日期 || ''}`.trim() : '—';
+      // 最近成交 3 条，每条含成交单价（平方均价）
+      const dealsHtml = deals.slice(0, 3).map(x => {
+        const unit = x.成交单价 || x.成交价 || '';
+        const date = (x.签约日期 || '').slice(5);
+        return `<div>${unit} <span style="color:#7f848c">${date}</span></div>`;
+      }).join('') || '—';
       const featSet = new Set();
       houses.forEach(h => (h.features || []).forEach(f => featSet.add(f)));
       const tihuSet = new Set();
@@ -206,6 +211,7 @@
       html += `<td><a class="xg" href="xiaoqu.html?name=${encodeURIComponent(g.xiaoqu)}" target="_blank">${g.xiaoqu}</a></td>`;
       html += `<td>${d.price ? d.price + '元' : '—'}</td>`;
       html += `<td>${colored(info['容积率'], volColor(info['容积率']))}</td>`;
+      html += `<td class="wrap">${[...tihuSet].join(' / ') || '—'}</td>`;
       html += `<td>${info['绿化率'] || '—'}</td>`;
       html += `<td>${info['建成年代'] || '—'}</td>`;
       html += `<td class="wrap">${nearestMetro}</td>`;
@@ -213,9 +219,8 @@
       html += `<td>${water}/${elec}</td>`;
       html += `<td>${quanshuHtml(info['交易权属'])}</td>`;
       html += `<td>${info['物业费'] || '—'}</td>`;
-      html += `<td class="wrap">${latestDeal}</td>`;
+      html += `<td class="wrap">${dealsHtml}</td>`;
       html += `<td class="wrap">${[...featSet].slice(0, 8).join(' · ') || '—'}</td>`;
-      html += `<td class="wrap">${[...tihuSet].join(' / ') || '—'}</td>`;
       html += '</tr>';
     });
     html += '</tbody></table></div>';
