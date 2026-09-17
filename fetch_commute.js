@@ -72,10 +72,11 @@ function classifyTransit(t) {
 }
 
 async function transit(org, dest) {
-  // 指定「最快」策略 + 明天早上 8 点出发，避开深夜公交地铁停运导致的绕远/长时间方案
+  // 固定「明早 8:30」出发 + 「最快」策略（时间点固定、结果可比，也避开深夜停运）
   const tmr = new Date(Date.now() + 86400000);
   const date = tmr.getFullYear() + '-' + String(tmr.getMonth() + 1).padStart(2, '0') + '-' + String(tmr.getDate()).padStart(2, '0');
-  const j = await get(`https://restapi.amap.com/v3/direction/transit/integrated?origin=${org}&destination=${dest}&city=成都&key=${KEY}&strategy=1&date=${date}&time=08:00`);
+  const url = `https://restapi.amap.com/v3/direction/transit/integrated?origin=${org}&destination=${dest}&city=成都&key=${KEY}&strategy=1&date=${date}&time=08:30`;
+  const j = await get(url);
   if (j.status !== '1' || !j.route || !j.route.transits || !j.route.transits.length) return null;
   // 分别取「纯地铁」和「含公交」的最短耗时
   let subway = null, bus = null;
