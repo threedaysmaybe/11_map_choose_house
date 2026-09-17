@@ -214,18 +214,19 @@
       houses.forEach(h => (h.features || []).forEach(f => featSet.add(f)));
       const tihuSet = new Set();
       houses.forEach(h => { if (h.tihu) tihuSet.add(h.tihu); });
-      // 通勤（4 目的地：驾车距离 + 纯地铁时间 + 地铁公交时间）
+      // 通勤（4 目的地：驾车距离 + 纯地铁时间 + 公交时间），grid 对齐
       let commuteCell = '—';
       const cm = commuteData[g.xiaoqu];
       if (cm) {
-        commuteCell = ['春熙路', '大悦城', '万象城', '联发科技'].map(dn => {
-          const x = cm[dn];
-          if (!x) return `<div>${dn} —</div>`;
-          const driveKm = (x.driveDist / 1000).toFixed(1) + 'km';
-          const subwayMin = x.subwayTime ? Math.round(x.subwayTime / 60) + '分' : '—';
-          const mixedMin = x.mixedTime ? Math.round(x.mixedTime / 60) + '分' : '—';
-          return `<div>${dn} 🚗${driveKm} 🚇${subwayMin} 🚌+🚇${mixedMin}</div>`;
-        }).join('');
+        commuteCell = '<div style="display:grid;grid-template-columns:auto auto auto auto;column-gap:8px;row-gap:2px;white-space:nowrap">' +
+          ['春熙路', '大悦城', '万象城', '联发科技'].map(dn => {
+            const x = cm[dn];
+            if (!x) return `<span>${dn}</span><span>—</span><span>—</span><span>—</span>`;
+            const driveKm = (x.driveDist / 1000).toFixed(1) + 'km';
+            const subwayMin = x.subwayTime ? Math.round(x.subwayTime / 60) + '分' : '—';
+            const busMin = x.busTime ? Math.round(x.busTime / 60) + '分' : '—';
+            return `<span>${dn}</span><span>🚗${driveKm}</span><span>🚇${subwayMin}</span><span>🚌${busMin}</span>`;
+          }).join('') + '</div>';
       }
       html += '<tr>';
       html += `<td><a class="xg" href="xiaoqu.html?name=${encodeURIComponent(g.xiaoqu)}" target="_blank">${g.xiaoqu}</a></td>`;
