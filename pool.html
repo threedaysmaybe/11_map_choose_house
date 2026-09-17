@@ -186,7 +186,7 @@
   // 小区对比表格：行=小区，列=指标（红黄绿标色）
   function renderCommunityTable(groups, xqData) {
     const area = document.getElementById('communityView');
-    const cols = ['小区', '均价', '容积率', '梯户比', '绿化率', '建成年代', '地铁', '建筑类型', '水电', '权属', '物业费', '最近成交', '房源特征'];
+    const cols = ['小区', '均价', '容积率', '梯户比', '绿化率', '建成年代', '地铁', '建筑类型', '权属', '物业费', '最近成交', '房源特征'];
     let html = '<div class="tbl-wrap"><table><thead><tr>' + cols.map(c => `<th>${c}</th>`).join('') + '</tr></thead><tbody>';
     groups.forEach((g) => {
       const d = xqData[g.xiaoqu] || {};
@@ -194,14 +194,22 @@
       const houses = d.houses || [];
       const metro = d.metro || [];
       const deals = d.deals || [];
-      const nearestMetro = metro.length ? `${metro[0].name} ${metro[0].distance}` : '—';
-      const water = info['用水类型'] || '—';
-      const elec = info['用电类型'] || '—';
-      // 最近成交 3 条，每条含成交单价（平方均价）
+      // 地铁：1km 内最近 3 个；最近的不在 1km 内则只列 1 个
+      let metroHtml = '—';
+      if (metro.length) {
+        const parsed = metro.map(m => ({ ...m, dist: parseInt(m.distance) || 99999 }));
+        const within = parsed.filter(m => m.dist <= 1000);
+        const list = within.length ? within.slice(0, 3) : parsed.slice(0, 1);
+        metroHtml = list.map(m => `<div>${m.name} ${m.distance}${m.lines ? ' · ' + m.lines : ''}</div>`).join('');
+      }
+      // 最近成交 3 条：面积 + 总价 + 单价 + 年数 + 日期
       const dealsHtml = deals.slice(0, 3).map(x => {
-        const unit = x.成交单价 || x.成交价 || '';
+        const area = (x.面积 || '').replace('平米', '㎡');
+        const price = x.成交价 || '';
+        const unit = x.成交单价 || '';
+        const year = x.建成年份 || '';
         const date = (x.签约日期 || '').slice(5);
-        return `<div>${unit} <span style="color:#7f848c">${date}</span></div>`;
+        return `<div>${area} ${price} ${unit} ${year} <span style="color:#7f848c">${date}</span></div>`;
       }).join('') || '—';
       const featSet = new Set();
       houses.forEach(h => (h.features || []).forEach(f => featSet.add(f)));
@@ -214,9 +222,8 @@
       html += `<td class="wrap">${[...tihuSet].join(' / ') || '—'}</td>`;
       html += `<td>${info['绿化率'] || '—'}</td>`;
       html += `<td>${info['建成年代'] || '—'}</td>`;
-      html += `<td class="wrap">${nearestMetro}</td>`;
+      html += `<td class="wrap">${metroHtml}</td>`;
       html += `<td>${info['建筑类型'] || '—'}</td>`;
-      html += `<td>${water}/${elec}</td>`;
       html += `<td>${quanshuHtml(info['交易权属'])}</td>`;
       html += `<td>${info['物业费'] || '—'}</td>`;
       html += `<td class="wrap">${dealsHtml}</td>`;
