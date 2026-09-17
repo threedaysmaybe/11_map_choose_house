@@ -207,7 +207,7 @@
         const area = (x.面积 || '').replace('平米', '㎡');
         const price = x.成交价 || '';
         const unit = x.成交单价 || '';
-        const year = x.建成年份 || '';
+        const year = (x.建成年份 && x.建成年份 !== '暂无信息') ? x.建成年份 : '';
         const date = (x.签约日期 || '').slice(5);
         return `<div>${area} ${price} ${unit} ${year} <span style="color:#7f848c">${date}</span></div>`;
       }).join('') || '—';
@@ -218,7 +218,7 @@
       html += '<tr>';
       html += `<td><a class="xg" href="xiaoqu.html?name=${encodeURIComponent(g.xiaoqu)}" target="_blank">${g.xiaoqu}</a></td>`;
       html += `<td>${d.price ? d.price + '元' : '—'}</td>`;
-      html += `<td>${colored(info['容积率'], volColor(info['容积率']))}</td>`;
+      html += `<td>${colored(info['容积率'] === '暂无信息' ? '' : info['容积率'], volColor(info['容积率']))}</td>`;
       html += `<td class="wrap">${[...tihuSet].join(' / ') || '—'}</td>`;
       html += `<td>${info['绿化率'] || '—'}</td>`;
       html += `<td>${info['建成年代'] || '—'}</td>`;
