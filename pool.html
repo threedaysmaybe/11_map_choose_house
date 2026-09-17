@@ -202,14 +202,13 @@
         const list = within.length ? within.slice(0, 3) : parsed.slice(0, 1);
         metroHtml = list.map(m => `<div>${m.name} ${m.distance}${m.lines ? ' · ' + m.lines : ''}</div>`).join('');
       }
-      // 最近成交 3 条：面积 + 总价 + 单价 + 年数 + 日期
+      // 最近成交 3 条：面积 + 总价 + 单价 + 完整日期（含年份）
       const dealsHtml = deals.slice(0, 3).map(x => {
         const area = (x.面积 || '').replace('平米', '㎡');
         const price = x.成交价 || '';
         const unit = x.成交单价 || '';
-        const year = (x.建成年份 && x.建成年份 !== '暂无信息') ? x.建成年份 : '';
-        const date = (x.签约日期 || '').slice(5);
-        return `<div>${area} ${price} ${unit} ${year} <span style="color:#7f848c">${date}</span></div>`;
+        const date = x.签约日期 || '';
+        return `<div>${area} ${price} ${unit} <span style="color:#7f848c">${date}</span></div>`;
       }).join('') || '—';
       const featSet = new Set();
       houses.forEach(h => (h.features || []).forEach(f => featSet.add(f)));
