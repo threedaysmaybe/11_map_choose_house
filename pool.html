@@ -20,6 +20,8 @@
   td { padding: 6px 5px; border: 1px solid rgba(255,255,255,0.09); color: #c9ccd3; font-size: 11px; white-space: nowrap; }
   td b { color: #fff; }
   td.wrap { white-space: normal; }
+  /* 小区对比表：所有列不换行，整体横向滚动（手机上保持每行完整可读） */
+  .tbl-community td { white-space: nowrap; }
   .xg { color: #4fc3f7; text-decoration: none; font-weight: bold; }
   .op a { color: #4fc3f7; text-decoration: none; margin: 0 2px; font-size: 12px; }
   .op a.danger { color: #e74c3c; }
@@ -187,7 +189,7 @@
   function renderCommunityTable(groups, xqData) {
     const area = document.getElementById('communityView');
     const cols = ['小区', '均价', '容积率', '梯户比', '绿化率', '建成年代', '地铁', '建筑类型', '权属', '物业费', '最近成交', '房源特征'];
-    let html = '<div class="tbl-wrap"><table><thead><tr>' + cols.map(c => `<th>${c}</th>`).join('') + '</tr></thead><tbody>';
+    let html = '<div class="tbl-wrap tbl-community"><table><thead><tr>' + cols.map(c => `<th>${c}</th>`).join('') + '</tr></thead><tbody>';
     groups.forEach((g) => {
       const d = xqData[g.xiaoqu] || {};
       const info = d.info || {};
