@@ -197,19 +197,21 @@
       const houses = d.houses || [];
       const metro = d.metro || [];
       const deals = d.deals || [];
-      // 地铁：列出最近的 3 个站（metro 已按距离升序）
+      // 地铁：列出最近的 3 个站（metro 已按距离升序），grid 对齐
       let metroHtml = '—';
       if (metro.length) {
-        metroHtml = metro.slice(0, 3).map(m => `<div>${m.name} ${m.distance}${m.lines ? ' · ' + m.lines : ''}</div>`).join('');
+        metroHtml = '<div style="display:grid;grid-template-columns:auto auto auto;column-gap:8px;row-gap:2px;white-space:nowrap">' +
+          metro.slice(0, 3).map(m => `<span>${m.name}</span><span>${m.distance}</span><span>${m.lines || ''}</span>`).join('') + '</div>';
       }
-      // 最近成交 3 条：面积 + 总价 + 单价 + 完整日期（含年份）
-      const dealsHtml = deals.slice(0, 3).map(x => {
-        const area = (x.面积 || '').replace('平米', '㎡');
-        const price = x.成交价 || '';
-        const unit = x.成交单价 || '';
-        const date = x.签约日期 || '';
-        return `<div>${area} ${price} ${unit} <span style="color:#7f848c">${date}</span></div>`;
-      }).join('') || '—';
+      // 最近成交 3 条：面积 + 总价 + 单价 + 完整日期（含年份），grid 对齐
+      const dealsHtml = deals.length ? '<div style="display:grid;grid-template-columns:auto auto auto auto;column-gap:8px;row-gap:2px;white-space:nowrap">' +
+        deals.slice(0, 3).map(x => {
+          const area = (x.面积 || '').replace('平米', '㎡');
+          const price = x.成交价 || '';
+          const unit = x.成交单价 || '';
+          const date = x.签约日期 || '';
+          return `<span>${area}</span><span>${price}</span><span>${unit}</span><span style="color:#7f848c">${date}</span>`;
+        }).join('') + '</div>' : '—';
       const featSet = new Set();
       houses.forEach(h => (h.features || []).forEach(f => featSet.add(f)));
       const tihuSet = new Set();
