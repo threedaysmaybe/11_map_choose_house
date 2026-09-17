@@ -214,7 +214,7 @@
       houses.forEach(h => (h.features || []).forEach(f => featSet.add(f)));
       const tihuSet = new Set();
       houses.forEach(h => { if (h.tihu) tihuSet.add(h.tihu); });
-      // 通勤（4 目的地：驾车距离 + 公交最短时间）
+      // 通勤（4 目的地：驾车距离 + 纯地铁时间 + 地铁公交时间）
       let commuteCell = '—';
       const cm = commuteData[g.xiaoqu];
       if (cm) {
@@ -222,8 +222,9 @@
           const x = cm[dn];
           if (!x) return `<div>${dn} —</div>`;
           const driveKm = (x.driveDist / 1000).toFixed(1) + 'km';
-          const transitMin = Math.round(x.transitTime / 60) + '分';
-          return `<div>${dn} 🚗${driveKm} 🚌${transitMin}</div>`;
+          const subwayMin = x.subwayTime ? Math.round(x.subwayTime / 60) + '分' : '—';
+          const mixedMin = x.mixedTime ? Math.round(x.mixedTime / 60) + '分' : '—';
+          return `<div>${dn} 🚗${driveKm} 🚇${subwayMin} 🚌+🚇${mixedMin}</div>`;
         }).join('');
       }
       html += '<tr>';

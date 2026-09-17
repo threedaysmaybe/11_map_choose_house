@@ -59,15 +59,33 @@ async function driving(org, dest) {
   if (j.status !== '1' || !j.route || !j.route.paths || !j.route.paths[0]) return null;
   return { distance: j.route.paths[0].distance, duration: j.route.paths[0].duration };
 }
+// 判断一个公交方案是「纯地铁」「地铁+公交」还是「纯公交」
+function classifyTransit(t) {
+  const types = [];
+  (t.segments || []).forEach(s => {
+    if (s.bus && s.bus.buslines) s.bus.buslines.forEach(b => { if (b.type) types.push(b.type); });
+  });
+  const hasSubway = types.some(x => x === '地铁线路');
+  const hasBus = types.some(x => x && x !== '地铁线路');
+  if (hasSubway && !hasBus) return 'subway';   // 纯地铁
+  if (hasSubway && hasBus) return 'mixed';     // 地铁+公交
+  return 'bus';                                // 纯公交
+}
+
 async function transit(org, dest) {
   // 指定「最快」策略 + 明天早上 8 点出发，避开深夜公交地铁停运导致的绕远/长时间方案
   const tmr = new Date(Date.now() + 86400000);
   const date = tmr.getFullYear() + '-' + String(tmr.getMonth() + 1).padStart(2, '0') + '-' + String(tmr.getDate()).padStart(2, '0');
   const j = await get(`https://restapi.amap.com/v3/direction/transit/integrated?origin=${org}&destination=${dest}&city=成都&key=${KEY}&strategy=1&date=${date}&time=08:00`);
   if (j.status !== '1' || !j.route || !j.route.transits || !j.route.transits.length) return null;
-  // 取耗时最短的一条
-  const t = j.route.transits.reduce((min, x) => (x.duration < min.duration ? x : min), j.route.transits[0]);
-  return { duration: t.duration, distance: t.distance };
+  // 分别取「纯地铁」和「地铁+公交」的最短耗时
+  let subway = null, mixed = null;
+  for (const t of j.route.transits) {
+    const c = classifyTransit(t);
+    if (c === 'subway' && (subway === null || t.duration < subway)) subway = t.duration;
+    if (c === 'mixed' && (mixed === null || t.duration < mixed)) mixed = t.duration;
+  }
+  return { subway, mixed };
 }
 
 (async () => {
@@ -88,7 +106,7 @@ async function transit(org, dest) {
       try {
         const dr = await driving(org, dest);
         const tr = await transit(org, dest);
-        r[d.name] = dr && tr ? { driveDist: dr.distance, driveTime: dr.duration, transitTime: tr.duration } : null;
+        r[d.name] = dr ? { driveDist: dr.distance, driveTime: dr.duration, subwayTime: tr ? tr.subway : null, mixedTime: tr ? tr.mixed : null } : null;
       } catch (e) { r[d.name] = null; }
       await sleep(250);
     }
