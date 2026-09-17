@@ -68,10 +68,12 @@
   <a class="back" href="javascript:history.back()">← 返回</a>
   <h1>🏠 房源池（<span id="poolCount">0</span> 套） <button id="refreshBtn" style="background:#2e86de;border:none;border-radius:6px;color:#fff;padding:4px 12px;font-size:13px;cursor:pointer">📥 缓存最新数据</button></h1>
   <div class="tabs">
-    <button id="tabTable" class="active">📊 对比表格</button>
+    <button id="tabCommunity" class="active">🏘️ 小区对比</button>
+    <button id="tabTable">📊 房源表格</button>
     <button id="tabList">📋 完整列表</button>
   </div>
-  <div id="tableView"></div>
+  <div id="communityView"></div>
+  <div id="tableView" style="display:none"></div>
   <div id="listView" style="display:none"></div>
 </div>
 <div id="lightbox"><img id="lightboxImg" src="" alt=""><div id="lbPrev" class="lb-arrow">‹</div><div id="lbNext" class="lb-arrow">›</div><div class="lb-count" id="lbCount"></div><div class="lb-hint">滚轮缩放 · 按住拖动 · 单击关闭</div></div>
@@ -179,6 +181,45 @@
     if (f.metro) s += `<div><span class="lbl">地铁</span></div>` + metroHtml(f.metro);
     s += '</div>';
     return s;
+  }
+
+  // 小区对比表格：行=小区，列=指标（红黄绿标色）
+  function renderCommunityTable(groups, xqData) {
+    const area = document.getElementById('communityView');
+    const cols = ['小区', '均价', '容积率', '绿化率', '建成年代', '地铁', '建筑类型', '水电', '权属', '物业费', '最近成交', '房源特征', '梯户比'];
+    let html = '<div class="tbl-wrap"><table><thead><tr>' + cols.map(c => `<th>${c}</th>`).join('') + '</tr></thead><tbody>';
+    groups.forEach((g) => {
+      const d = xqData[g.xiaoqu] || {};
+      const info = d.info || {};
+      const houses = d.houses || [];
+      const metro = d.metro || [];
+      const deals = d.deals || [];
+      const nearestMetro = metro.length ? `${metro[0].name} ${metro[0].distance}` : '—';
+      const water = info['用水类型'] || '—';
+      const elec = info['用电类型'] || '—';
+      const latestDeal = deals.length ? `${deals[0].成交价 || ''} ${deals[0].签约日期 || ''}`.trim() : '—';
+      const featSet = new Set();
+      houses.forEach(h => (h.features || []).forEach(f => featSet.add(f)));
+      const tihuSet = new Set();
+      houses.forEach(h => { if (h.tihu) tihuSet.add(h.tihu); });
+      html += '<tr>';
+      html += `<td><a class="xg" href="xiaoqu.html?name=${encodeURIComponent(g.xiaoqu)}" target="_blank">${g.xiaoqu}</a></td>`;
+      html += `<td>${d.price ? d.price + '元' : '—'}</td>`;
+      html += `<td>${colored(info['容积率'], volColor(info['容积率']))}</td>`;
+      html += `<td>${info['绿化率'] || '—'}</td>`;
+      html += `<td>${info['建成年代'] || '—'}</td>`;
+      html += `<td class="wrap">${nearestMetro}</td>`;
+      html += `<td>${info['建筑类型'] || '—'}</td>`;
+      html += `<td>${water}/${elec}</td>`;
+      html += `<td>${quanshuHtml(info['交易权属'])}</td>`;
+      html += `<td>${info['物业费'] || '—'}</td>`;
+      html += `<td class="wrap">${latestDeal}</td>`;
+      html += `<td class="wrap">${[...featSet].slice(0, 8).join(' · ') || '—'}</td>`;
+      html += `<td class="wrap">${[...tihuSet].join(' / ') || '—'}</td>`;
+      html += '</tr>';
+    });
+    html += '</tbody></table></div>';
+    area.innerHTML = html;
   }
 
   function renderTable(groups, noteMap, xqData, xqNoteMap) {
@@ -322,6 +363,7 @@
     }
 
     const data = merge(await Promise.all(groups.map(g => loadOne(g))));
+    renderCommunityTable(groups, data.xqData);
     renderTable(groups, data.noteMap, data.xqData, data.xqNoteMap);
     await renderList(groups, data.noteMap, data.tagMap, data.xqData, data.xqNoteMap);
     bindEvents();
@@ -373,25 +415,19 @@
     });
   }
 
-  document.getElementById('tabTable').addEventListener('click', () => {
-    document.getElementById('tabTable').classList.add('active');
-    document.getElementById('tabList').classList.remove('active');
-    document.getElementById('tableView').style.display = '';
-    document.getElementById('listView').style.display = 'none';
-  });
-  document.getElementById('tabList').addEventListener('click', () => {
-    document.getElementById('tabList').classList.add('active');
-    document.getElementById('tabTable').classList.remove('active');
-    document.getElementById('listView').style.display = '';
-    document.getElementById('tableView').style.display = 'none';
-  });
+  function switchTab(tab) {
+    ['tabCommunity', 'tabTable', 'tabList'].forEach(t => document.getElementById(t).classList.toggle('active', t === tab));
+    document.getElementById('communityView').style.display = tab === 'tabCommunity' ? '' : 'none';
+    document.getElementById('tableView').style.display = tab === 'tabTable' ? '' : 'none';
+    document.getElementById('listView').style.display = tab === 'tabList' ? '' : 'none';
+  }
+  document.getElementById('tabCommunity').addEventListener('click', () => switchTab('tabCommunity'));
+  document.getElementById('tabTable').addEventListener('click', () => switchTab('tabTable'));
+  document.getElementById('tabList').addEventListener('click', () => switchTab('tabList'));
 
-  // 手机窄屏：默认切到「完整列表」卡片视图（表格列太细不可读）
+  // 手机窄屏：默认切到「小区对比」视图
   if (window.innerWidth <= 600) {
-    document.getElementById('tabList').classList.add('active');
-    document.getElementById('tabTable').classList.remove('active');
-    document.getElementById('listView').style.display = '';
-    document.getElementById('tableView').style.display = 'none';
+    switchTab('tabCommunity');
   }
 
   // 缓存最新数据：清掉所有本地缓存 + 强制重新拉取最新并缓存
