@@ -189,7 +189,7 @@
   // 小区对比表格：行=小区，列=指标（红黄绿标色）
   function renderCommunityTable(groups, xqData) {
     const area = document.getElementById('communityView');
-    const cols = ['小区', '均价', '容积率', '梯户比', '绿化率', '建成年代', '地铁', '建筑类型', '权属', '物业费', '最近成交', '房源特征', '通勤'];
+    const cols = ['小区', '均价', '容积率', '梯户比', '绿化率', '建成年代', '地铁', '建筑类型', '权属', '物业费', '最近成交', '通勤'];
     let html = '<div class="tbl-wrap tbl-community"><table><thead><tr>' + cols.map(c => `<th>${c}</th>`).join('') + '</tr></thead><tbody>';
     groups.forEach((g) => {
       const d = xqData[g.xiaoqu] || {};
@@ -212,8 +212,6 @@
           const date = x.签约日期 || '';
           return `<span>${area}</span><span>${price}</span><span>${unit}</span><span style="color:#7f848c">${date}</span>`;
         }).join('') + '</div>' : '—';
-      const featSet = new Set();
-      houses.forEach(h => (h.features || []).forEach(f => featSet.add(f)));
       const tihuSet = new Set();
       houses.forEach(h => { if (h.tihu) tihuSet.add(h.tihu); });
       // 通勤（4 目的地：驾车距离 + 纯地铁时间 + 公交时间），grid 对齐
@@ -247,7 +245,6 @@
       html += `<td>${quanshuHtml(info['交易权属'])}</td>`;
       html += `<td>${info['物业费'] || '—'}</td>`;
       html += `<td class="wrap">${dealsHtml}</td>`;
-      html += `<td class="wrap">${[...featSet].slice(0, 8).join(' · ') || '—'}</td>`;
       html += `<td class="wrap">${commuteCell}</td>`;
       html += '</tr>';
     });
