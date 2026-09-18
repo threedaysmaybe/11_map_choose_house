@@ -225,7 +225,7 @@
             const driveKm = (x.driveDist / 1000).toFixed(1) + 'km';
             const driveMin = x.driveTime ? `<br><span style="color:#7f848c;font-size:10px">约${Math.round(x.driveTime / 60)}分</span>` : '';
             const subwayMin = x.subwayTime ? Math.round(x.subwayTime / 60) + '分' : '—';
-            const busMin = x.busTime ? Math.round(x.busTime / 60) + '分' : '—';
+            const busMin = x.busTime ? Math.round(x.busTime / 60) + '分' : '同地铁';
             const subwayL = x.subwayLines ? `<br><span style="color:#7f848c;font-size:10px">${x.subwayLines}</span>` : '';
             const busL = x.busLines ? `<br><span style="color:#7f848c;font-size:10px">${x.busLines}</span>` : '';
             const subwayDirect = x.subwayDirectTime ? `<br><span style="color:#ffd54f;font-size:10px">直达 ${x.subwayDirectLines} ${Math.round(x.subwayDirectTime / 60)}分</span>` : '';
