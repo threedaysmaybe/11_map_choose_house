@@ -59,16 +59,22 @@ async function driving(org, dest) {
   if (j.status !== '1' || !j.route || !j.route.paths || !j.route.paths[0]) return null;
   return { distance: j.route.paths[0].distance, duration: j.route.paths[0].duration };
 }
-// 判断一个公交方案是「纯地铁」还是「含公交」
+// 判断方案类型：是否含地铁/公交、是否「地铁直达」(1条地铁不换乘)、「公交直达」(1条公交不换乘)
 function classifyTransit(t) {
-  const types = [];
+  const segs = [];
   (t.segments || []).forEach(s => {
-    if (s.bus && s.bus.buslines) s.bus.buslines.forEach(b => { if (b.type) types.push(b.type); });
+    if (s.bus && s.bus.buslines) s.bus.buslines.forEach(b => {
+      segs.push({ type: b.type, name: (b.name || '').split('(')[0].trim() });
+    });
   });
-  const hasSubway = types.some(x => x === '地铁线路');
-  const hasBus = types.some(x => x && x !== '地铁线路');
-  if (hasSubway && !hasBus) return 'subway'; // 纯地铁
-  return 'bus'; // 含公交（纯公交 或 地铁+公交）
+  const subways = segs.filter(x => x.type === '地铁线路');
+  const buses = segs.filter(x => x.type && x.type !== '地铁线路');
+  return {
+    hasSubway: subways.length > 0,
+    hasBus: buses.length > 0,
+    subwayDirect: subways.length === 1 && buses.length === 0, // 地铁直达
+    busDirect: buses.length === 1 && subways.length === 0,     // 公交直达
+  };
 }
 
 // 提取一个方案里乘坐的线路名（公交/地铁名，去掉括号里的起终点）
@@ -90,14 +96,18 @@ async function transit(org, dest) {
   const url = `https://restapi.amap.com/v3/direction/transit/integrated?origin=${org}&destination=${dest}&city=成都&key=${KEY}&strategy=1&date=${date}&time=08:30`;
   const j = await get(url);
   if (j.status !== '1' || !j.route || !j.route.transits || !j.route.transits.length) return null;
-  // 分别取「纯地铁」和「含公交」的最短耗时 + 对应线路名
+  // 分别取「纯地铁」「含公交」的最短耗时 + 线路名，以及「地铁直达」「公交直达」的最短耗时 + 线路名
   let subway = null, bus = null, subwayLines = '', busLines = '';
+  let subwayDirectTime = null, subwayDirectLines = '';
+  let busDirectTime = null, busDirectLines = '';
   for (const t of j.route.transits) {
     const c = classifyTransit(t);
-    if (c === 'subway' && (subway === null || t.duration < subway)) { subway = t.duration; subwayLines = getLines(t); }
-    if (c === 'bus' && (bus === null || t.duration < bus)) { bus = t.duration; busLines = getLines(t); }
+    if (c.hasSubway && !c.hasBus && (subway === null || t.duration < subway)) { subway = t.duration; subwayLines = getLines(t); }
+    if (c.hasBus && (bus === null || t.duration < bus)) { bus = t.duration; busLines = getLines(t); }
+    if (c.subwayDirect && (subwayDirectTime === null || t.duration < subwayDirectTime)) { subwayDirectTime = t.duration; subwayDirectLines = getLines(t); }
+    if (c.busDirect && (busDirectTime === null || t.duration < busDirectTime)) { busDirectTime = t.duration; busDirectLines = getLines(t); }
   }
-  return { subway, bus, subwayLines, busLines };
+  return { subway, bus, subwayLines, busLines, subwayDirectTime, subwayDirectLines, busDirectTime, busDirectLines };
 }
 
 (async () => {
@@ -118,7 +128,7 @@ async function transit(org, dest) {
       try {
         const dr = await driving(org, dest);
         const tr = await transit(org, dest);
-        r[d.name] = dr ? { driveDist: dr.distance, driveTime: dr.duration, subwayTime: tr ? tr.subway : null, busTime: tr ? tr.bus : null, subwayLines: tr ? tr.subwayLines : '', busLines: tr ? tr.busLines : '' } : null;
+        r[d.name] = dr ? { driveDist: dr.distance, driveTime: dr.duration, subwayTime: tr ? tr.subway : null, busTime: tr ? tr.bus : null, subwayLines: tr ? tr.subwayLines : '', busLines: tr ? tr.busLines : '', subwayDirectTime: tr ? tr.subwayDirectTime : null, subwayDirectLines: tr ? tr.subwayDirectLines : '', busDirectTime: tr ? tr.busDirectTime : null, busDirectLines: tr ? tr.busDirectLines : '' } : null;
       } catch (e) { r[d.name] = null; }
       await sleep(250);
     }
