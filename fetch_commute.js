@@ -71,6 +71,18 @@ function classifyTransit(t) {
   return 'bus'; // 含公交（纯公交 或 地铁+公交）
 }
 
+// 提取一个方案里乘坐的线路名（公交/地铁名，去掉括号里的起终点）
+function getLines(t) {
+  const lines = [];
+  (t.segments || []).forEach(s => {
+    if (s.bus && s.bus.buslines) s.bus.buslines.forEach(b => {
+      const name = (b.name || '').split('(')[0].trim();
+      if (name) lines.push(name);
+    });
+  });
+  return lines.join('→');
+}
+
 async function transit(org, dest) {
   // 固定「明早 8:30」出发 + 「最快」策略（时间点固定、结果可比，也避开深夜停运）
   const tmr = new Date(Date.now() + 86400000);
@@ -78,14 +90,14 @@ async function transit(org, dest) {
   const url = `https://restapi.amap.com/v3/direction/transit/integrated?origin=${org}&destination=${dest}&city=成都&key=${KEY}&strategy=1&date=${date}&time=08:30`;
   const j = await get(url);
   if (j.status !== '1' || !j.route || !j.route.transits || !j.route.transits.length) return null;
-  // 分别取「纯地铁」和「含公交」的最短耗时
-  let subway = null, bus = null;
+  // 分别取「纯地铁」和「含公交」的最短耗时 + 对应线路名
+  let subway = null, bus = null, subwayLines = '', busLines = '';
   for (const t of j.route.transits) {
     const c = classifyTransit(t);
-    if (c === 'subway' && (subway === null || t.duration < subway)) subway = t.duration;
-    if (c === 'bus' && (bus === null || t.duration < bus)) bus = t.duration;
+    if (c === 'subway' && (subway === null || t.duration < subway)) { subway = t.duration; subwayLines = getLines(t); }
+    if (c === 'bus' && (bus === null || t.duration < bus)) { bus = t.duration; busLines = getLines(t); }
   }
-  return { subway, bus };
+  return { subway, bus, subwayLines, busLines };
 }
 
 (async () => {
@@ -106,7 +118,7 @@ async function transit(org, dest) {
       try {
         const dr = await driving(org, dest);
         const tr = await transit(org, dest);
-        r[d.name] = dr ? { driveDist: dr.distance, driveTime: dr.duration, subwayTime: tr ? tr.subway : null, busTime: tr ? tr.bus : null } : null;
+        r[d.name] = dr ? { driveDist: dr.distance, driveTime: dr.duration, subwayTime: tr ? tr.subway : null, busTime: tr ? tr.bus : null, subwayLines: tr ? tr.subwayLines : '', busLines: tr ? tr.busLines : '' } : null;
       } catch (e) { r[d.name] = null; }
       await sleep(250);
     }
